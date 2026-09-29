@@ -52,7 +52,6 @@ BoringSSL is a C++ library, so [`config.nims`](config.nims) overrides the linker
 ### Platform notes
 
 - **Windows**: builds with `clang` (llvm-mingw) and assembles `.asm` files with [NASM](https://www.nasm.us/). NASM must be on `PATH`.
-- **Linux i386**: no longer supported.
 - **Threads**: bindings are built with `--threads:on` for testing; downstream consumers may build either way.
 
 ## Regenerating bindings
