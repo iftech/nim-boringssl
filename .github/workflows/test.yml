@@ -90,6 +90,15 @@ jobs:
           choco install nasm --no-progress -y
           "C:\Program Files\NASM" | Out-File -FilePath $Env:GITHUB_PATH -Encoding utf8 -Append
 
+      - name: Use gcc 14
+        if: ${{ matrix.platform.os == 'linux-gcc-14'}}
+        run: |
+          # Add GCC-14 to alternatives
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
+
+          # Set GCC-14 as the default
+          sudo update-alternatives --set gcc /usr/bin/gcc-14
+
       - name: Setup Nim
         uses: "./.github/actions/install_nim"
         with:
@@ -101,15 +110,6 @@ jobs:
       - name: Install deps
         run: |
           nimble install
-
-      - name: Use gcc 14
-        if: ${{ matrix.platform.os == 'linux-gcc-14'}}
-        run: |
-          # Add GCC-14 to alternatives
-          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14
-
-          # Set GCC-14 as the default
-          sudo update-alternatives --set gcc /usr/bin/gcc-14
 
       - name: Run tests
         run: |
