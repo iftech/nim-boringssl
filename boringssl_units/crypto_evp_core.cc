@@ -11,6 +11,7 @@
 #include "../boringssl/crypto/evp/p_ec.cc"
 #include "../boringssl/crypto/evp/p_ed25519.cc"
 #include "../boringssl/crypto/evp/p_hkdf.cc"
+#include "../boringssl/crypto/evp/p_keccak.cc"
 #include "../boringssl/crypto/evp/p_mldsa.cc"
 #include "../boringssl/crypto/evp/p_rsa.cc"
 #include "../boringssl/crypto/evp/p_x25519.cc"

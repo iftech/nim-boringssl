@@ -485,8 +485,9 @@ type struct_stack_st_X509_NAME_ENTRY* = object
 type struct_stack_st_X509_NAME* = object
 type ERR_LIB_EVP* = object
 type ERR_LIB_ECDH* = object
-type struct_trust_token_st* = object
+type struct_cpace_ctx_st* = object
 type struct_env_md_st* = object
+type struct_trust_token_st* = object
 type ERR_LIB_SYS* = object
 type struct_stack_st_ACCESS_DESCRIPTION* = object
 type struct_RIPEMD160state_st* = object
@@ -572,7 +573,7 @@ type
   ASN1_BIT_STRING* = struct_asn1_string_st
     ## Generated based on boringssl/include/openssl/base.h:238:31
   struct_asn1_string_st* {.pure, inheritable, bycopy.} = object
-    length*: cint ## Generated based on boringssl/include/openssl/asn1.h:479:8
+    length*: cint ## Generated based on boringssl/include/openssl/asn1.h:480:8
     type_field*: cint
     data*: ptr uint8
     flags*: clong
@@ -633,21 +634,21 @@ type
     asn1_value*: ptr ASN1_VALUE
 
   struct_asn1_type_st* {.pure, inheritable, bycopy.} = object
-    type_field*: cint ## Generated based on boringssl/include/openssl/asn1.h:1447:8
+    type_field*: cint ## Generated based on boringssl/include/openssl/asn1.h:1437:8
     value*: struct_asn1_type_st_value_t
 
   AUTHORITY_KEYID* = struct_AUTHORITY_KEYID_st
     ## Generated based on boringssl/include/openssl/base.h:255:35
   struct_AUTHORITY_KEYID_st* {.pure, inheritable, bycopy.} = object
     keyid*: ptr ASN1_OCTET_STRING
-      ## Generated based on boringssl/include/openssl/x509.h:2175:8
+      ## Generated based on boringssl/include/openssl/x509.h:2182:8
     issuer*: ptr GENERAL_NAMES
     serial*: ptr ASN1_INTEGER
 
   BASIC_CONSTRAINTS* = struct_BASIC_CONSTRAINTS_st
     ## Generated based on boringssl/include/openssl/base.h:256:37
   struct_BASIC_CONSTRAINTS_st* {.pure, inheritable, bycopy.} = object
-    ca*: ASN1_BOOLEAN ## Generated based on boringssl/include/openssl/x509.h:1942:8
+    ca*: ASN1_BOOLEAN ## Generated based on boringssl/include/openssl/x509.h:1949:8
     pathlen*: ptr ASN1_INTEGER
 
   CMS_ContentInfo* = struct_CMS_ContentInfo_st
@@ -658,14 +659,14 @@ type
     ## Generated based on boringssl/include/openssl/base.h:259:30
   struct_DIST_POINT_st* {.pure, inheritable, bycopy.} = object
     distpoint*: ptr DIST_POINT_NAME
-      ## Generated based on boringssl/include/openssl/x509.h:2327:8
+      ## Generated based on boringssl/include/openssl/x509.h:2332:8
     reasons*: ptr ASN1_BIT_STRING
     CRLissuer*: ptr GENERAL_NAMES
 
   DSA_SIG* = struct_DSA_SIG_st
     ## Generated based on boringssl/include/openssl/base.h:260:27
   struct_DSA_SIG_st* {.pure, inheritable, bycopy.} = object
-    r*: ptr BIGNUM ## Generated based on boringssl/include/openssl/dsa.h:148:8
+    r*: ptr BIGNUM ## Generated based on boringssl/include/openssl/dsa.h:153:8
     s*: ptr BIGNUM
 
   GENERAL_NAME* = struct_GENERAL_NAME_st
@@ -687,14 +688,14 @@ type
     rid*: ptr ASN1_OBJECT
 
   struct_GENERAL_NAME_st* {.pure, inheritable, bycopy.} = object
-    type_field*: cint ## Generated based on boringssl/include/openssl/x509.h:2041:8
+    type_field*: cint ## Generated based on boringssl/include/openssl/x509.h:2048:8
     d*: struct_GENERAL_NAME_st_d_t
 
   ISSUING_DIST_POINT* = struct_ISSUING_DIST_POINT_st
     ## Generated based on boringssl/include/openssl/base.h:262:38
   struct_ISSUING_DIST_POINT_st* {.pure, inheritable, bycopy.} = object
     distpoint*: ptr DIST_POINT_NAME
-      ## Generated based on boringssl/include/openssl/x509.h:2368:8
+      ## Generated based on boringssl/include/openssl/x509.h:2373:8
     onlyuser*: ASN1_BOOLEAN
     onlyCA*: ASN1_BOOLEAN
     onlysomereasons*: ptr ASN1_BIT_STRING
@@ -705,21 +706,21 @@ type
     ## Generated based on boringssl/include/openssl/base.h:263:36
   struct_NAME_CONSTRAINTS_st* {.pure, inheritable, bycopy.} = object
     permittedSubtrees*: ptr struct_stack_st_GENERAL_SUBTREE
-      ## Generated based on boringssl/include/openssl/x509.h:2229:8
+      ## Generated based on boringssl/include/openssl/x509.h:2236:8
     excludedSubtrees*: ptr struct_stack_st_GENERAL_SUBTREE
 
   NETSCAPE_SPKAC* = struct_Netscape_spkac_st
     ## Generated based on boringssl/include/openssl/base.h:264:34
   struct_Netscape_spkac_st* {.pure, inheritable, bycopy.} = object
     pubkey*: ptr X509_PUBKEY
-      ## Generated based on boringssl/include/openssl/x509.h:3790:8
+      ## Generated based on boringssl/include/openssl/x509.h:3796:8
     challenge*: ptr ASN1_IA5STRING
 
   NETSCAPE_SPKI* = struct_Netscape_spki_st
     ## Generated based on boringssl/include/openssl/base.h:265:33
   struct_Netscape_spki_st* {.pure, inheritable, bycopy.} = object
     spkac*: ptr NETSCAPE_SPKAC
-      ## Generated based on boringssl/include/openssl/x509.h:3729:8
+      ## Generated based on boringssl/include/openssl/x509.h:3735:8
     sig_algor*: ptr X509_ALGOR
     signature*: ptr ASN1_BIT_STRING
 
@@ -731,7 +732,7 @@ type
     ## Generated based on boringssl/include/openssl/base.h:268:30
   struct_X509_algor_st* {.pure, inheritable, bycopy.} = object
     algorithm*: ptr ASN1_OBJECT
-      ## Generated based on boringssl/include/openssl/x509.h:5298:8
+      ## Generated based on boringssl/include/openssl/x509.h:5308:8
     parameter*: ptr ASN1_TYPE
 
   X509_CRL* = struct_X509_crl_st
@@ -741,7 +742,7 @@ type
   X509_INFO* = struct_X509_info_st
     ## Generated based on boringssl/include/openssl/base.h:271:29
   struct_X509_info_st* {.pure, inheritable, bycopy.} = object
-    x509*: ptr X509 ## Generated based on boringssl/include/openssl/x509.h:4726:8
+    x509*: ptr X509 ## Generated based on boringssl/include/openssl/x509.h:4736:8
     crl*: ptr X509_CRL
     x_pkey*: ptr X509_PKEY
     enc_cipher*: EVP_CIPHER_INFO
@@ -795,7 +796,7 @@ type
     child*: struct_cbb_child_st
 
   struct_cbb_st* {.pure, inheritable, bycopy.} = object
-    child*: ptr CBB ## Generated based on boringssl/include/openssl/bytestring.h:504:8
+    child*: ptr CBB ## Generated based on boringssl/include/openssl/bytestring.h:505:8
     is_child*: cschar
     u*: struct_cbb_st_u_t
 
@@ -814,38 +815,40 @@ type
     name*: cstring
     value*: cstring
 
+  CPACE_CTX* = struct_cpace_ctx_st
+    ## Generated based on boringssl/include/openssl/base.h:290:29
   CRYPTO_BUFFER_POOL* = struct_crypto_buffer_pool_st
-    ## Generated based on boringssl/include/openssl/base.h:290:38
+    ## Generated based on boringssl/include/openssl/base.h:291:38
   CRYPTO_BUFFER* = struct_crypto_buffer_st
-    ## Generated based on boringssl/include/openssl/base.h:291:33
+    ## Generated based on boringssl/include/openssl/base.h:292:33
   CRYPTO_IVEC* = struct_crypto_ivec_st
-    ## Generated based on boringssl/include/openssl/base.h:292:31
+    ## Generated based on boringssl/include/openssl/base.h:293:31
   struct_crypto_ivec_st* {.pure, inheritable, bycopy.} = object
     in_field*: ptr uint8 ## Generated based on boringssl/include/openssl/aead.h:402:8
     len*: csize_t
 
   CRYPTO_IOVEC* = struct_crypto_iovec_st
-    ## Generated based on boringssl/include/openssl/base.h:293:32
+    ## Generated based on boringssl/include/openssl/base.h:294:32
   struct_crypto_iovec_st* {.pure, inheritable, bycopy.} = object
     out_field*: ptr uint8 ## Generated based on boringssl/include/openssl/aead.h:409:8
     in_field*: ptr uint8
     len*: csize_t
 
   CTR_DRBG_STATE* = struct_ctr_drbg_state_st
-    ## Generated based on boringssl/include/openssl/base.h:294:34
-  DH* = struct_dh_st ## Generated based on boringssl/include/openssl/base.h:295:22
-  DSA* = struct_dsa_st ## Generated based on boringssl/include/openssl/base.h:296:23
+    ## Generated based on boringssl/include/openssl/base.h:295:34
+  DH* = struct_dh_st ## Generated based on boringssl/include/openssl/base.h:296:22
+  DSA* = struct_dsa_st ## Generated based on boringssl/include/openssl/base.h:297:23
   EC_GROUP* = struct_ec_group_st
-    ## Generated based on boringssl/include/openssl/base.h:297:28
+    ## Generated based on boringssl/include/openssl/base.h:298:28
   EC_KEY* = struct_ec_key_st
-    ## Generated based on boringssl/include/openssl/base.h:298:26
+    ## Generated based on boringssl/include/openssl/base.h:299:26
   EC_POINT* = struct_ec_point_st
-    ## Generated based on boringssl/include/openssl/base.h:299:28
+    ## Generated based on boringssl/include/openssl/base.h:300:28
   ECDSA_METHOD* = struct_ecdsa_method_st
-    ## Generated based on boringssl/include/openssl/base.h:300:32
+    ## Generated based on boringssl/include/openssl/base.h:301:32
   struct_ecdsa_method_st* {.pure, inheritable, bycopy.} = object
     common*: struct_openssl_method_common_st
-      ## Generated based on boringssl/include/openssl/ec_key.h:261:8
+      ## Generated based on boringssl/include/openssl/ec_key.h:266:8
     app_data*: pointer
     init*: proc(a0: ptr EC_KEY): cint {.cdecl.}
     finish*: proc(a0: ptr EC_KEY): cint {.cdecl.}
@@ -855,39 +858,39 @@ type
     flags*: cint
 
   ECDSA_SIG* = struct_ecdsa_sig_st
-    ## Generated based on boringssl/include/openssl/base.h:301:29
+    ## Generated based on boringssl/include/openssl/base.h:302:29
   struct_ecdsa_sig_st* {.pure, inheritable, bycopy.} = object
     r*: ptr BIGNUM ## Generated based on boringssl/include/openssl/ecdsa.h:73:8
     s*: ptr BIGNUM
 
   ENGINE* = struct_engine_st
-    ## Generated based on boringssl/include/openssl/base.h:302:26
+    ## Generated based on boringssl/include/openssl/base.h:303:26
   EVP_MD_CTX* = struct_env_md_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:303:30
+    ## Generated based on boringssl/include/openssl/base.h:304:30
   struct_env_md_ctx_st_anon0_t* {.union, bycopy.} = object
-    md_data*: array[208'i64, uint8]
+    md_data*: array[240'i64, uint8]
     alignment*: uint64
 
   struct_env_md_ctx_st* {.pure, inheritable, bycopy.} = object
     anon0*: struct_env_md_ctx_st_anon0_t
-      ## Generated based on boringssl/include/openssl/digest.h:354:8
+      ## Generated based on boringssl/include/openssl/digest.h:364:8
     digest*: ptr EVP_MD
     pctx*: ptr EVP_PKEY_CTX
     pctx_ops*: ptr struct_evp_md_pctx_ops
 
   EVP_MD* = struct_env_md_st
-    ## Generated based on boringssl/include/openssl/base.h:304:26
+    ## Generated based on boringssl/include/openssl/base.h:305:26
   EVP_AEAD* = struct_evp_aead_st
-    ## Generated based on boringssl/include/openssl/base.h:305:28
+    ## Generated based on boringssl/include/openssl/base.h:306:28
   EVP_AEAD_CTX* = struct_evp_aead_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:306:32
+    ## Generated based on boringssl/include/openssl/base.h:307:32
   struct_evp_aead_ctx_st* {.pure, inheritable, bycopy.} = object
     aead*: ptr EVP_AEAD ## Generated based on boringssl/include/openssl/aead.h:229:8
     state*: union_evp_aead_ctx_st_state
     tag_len*: uint8
 
   EVP_CIPHER_CTX* = struct_evp_cipher_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:307:34
+    ## Generated based on boringssl/include/openssl/base.h:308:34
   struct_evp_cipher_ctx_st* {.pure, inheritable, bycopy.} = object
     cipher*: ptr EVP_CIPHER
       ## Generated based on boringssl/include/openssl/cipher.h:721:8
@@ -905,9 +908,9 @@ type
     final*: array[32'i64, uint8]
 
   EVP_CIPHER* = struct_evp_cipher_st
-    ## Generated based on boringssl/include/openssl/base.h:308:30
+    ## Generated based on boringssl/include/openssl/base.h:309:30
   EVP_ENCODE_CTX* = struct_evp_encode_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:309:34
+    ## Generated based on boringssl/include/openssl/base.h:310:34
   struct_evp_encode_ctx_st* {.pure, inheritable, bycopy.} = object
     data_used*: cuint ## Generated based on boringssl/include/openssl/base64.h:135:8
     data*: array[48'i64, uint8]
@@ -915,46 +918,46 @@ type
     error_encountered*: cschar
 
   EVP_HPKE_AEAD* = struct_evp_hpke_aead_st
-    ## Generated based on boringssl/include/openssl/base.h:310:33
+    ## Generated based on boringssl/include/openssl/base.h:311:33
   EVP_HPKE_CTX* = struct_evp_hpke_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:311:32
-  EVP_HPKE_KDF* = struct_evp_hpke_kdf_st
     ## Generated based on boringssl/include/openssl/base.h:312:32
-  EVP_HPKE_KEM* = struct_evp_hpke_kem_st
+  EVP_HPKE_KDF* = struct_evp_hpke_kdf_st
     ## Generated based on boringssl/include/openssl/base.h:313:32
-  EVP_HPKE_KEY* = struct_evp_hpke_key_st
+  EVP_HPKE_KEM* = struct_evp_hpke_kem_st
     ## Generated based on boringssl/include/openssl/base.h:314:32
+  EVP_HPKE_KEY* = struct_evp_hpke_key_st
+    ## Generated based on boringssl/include/openssl/base.h:315:32
   EVP_KEM* = struct_evp_kem_st
-    ## Generated based on boringssl/include/openssl/base.h:315:27
+    ## Generated based on boringssl/include/openssl/base.h:316:27
   EVP_PKEY_ALG* = struct_evp_pkey_alg_st
-    ## Generated based on boringssl/include/openssl/base.h:316:32
-  EVP_PKEY_CTX* = struct_evp_pkey_ctx_st
     ## Generated based on boringssl/include/openssl/base.h:317:32
+  EVP_PKEY_CTX* = struct_evp_pkey_ctx_st
+    ## Generated based on boringssl/include/openssl/base.h:318:32
   EVP_PKEY* = struct_evp_pkey_st
-    ## Generated based on boringssl/include/openssl/base.h:318:28
-  HMAC_CTX* = struct_hmac_ctx_st
     ## Generated based on boringssl/include/openssl/base.h:319:28
+  HMAC_CTX* = struct_hmac_ctx_st
+    ## Generated based on boringssl/include/openssl/base.h:320:28
   MD4_CTX* = struct_md4_state_st
-    ## Generated based on boringssl/include/openssl/base.h:320:29
-  MD5_CTX* = struct_md5_state_st
     ## Generated based on boringssl/include/openssl/base.h:321:29
+  MD5_CTX* = struct_md5_state_st
+    ## Generated based on boringssl/include/openssl/base.h:322:29
   OPENSSL_INIT_SETTINGS* = struct_ossl_init_settings_st
-    ## Generated based on boringssl/include/openssl/base.h:322:38
+    ## Generated based on boringssl/include/openssl/base.h:323:38
   OSSL_LIB_CTX* = struct_ossl_lib_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:323:32
+    ## Generated based on boringssl/include/openssl/base.h:324:32
   OSSL_PARAM* = struct_ossl_param_st
-    ## Generated based on boringssl/include/openssl/base.h:324:30
+    ## Generated based on boringssl/include/openssl/base.h:325:30
   PKCS12* = struct_pkcs12_st
-    ## Generated based on boringssl/include/openssl/base.h:325:26
+    ## Generated based on boringssl/include/openssl/base.h:326:26
   PKCS8_PRIV_KEY_INFO* = struct_pkcs8_priv_key_info_st
-    ## Generated based on boringssl/include/openssl/base.h:326:39
+    ## Generated based on boringssl/include/openssl/base.h:327:39
   X509_PKEY* = struct_private_key_st
-    ## Generated based on boringssl/include/openssl/base.h:327:31
+    ## Generated based on boringssl/include/openssl/base.h:328:31
   struct_private_key_st* {.pure, inheritable, bycopy.} = object
-    dec_pkey*: ptr EVP_PKEY ## Generated based on boringssl/include/openssl/x509.h:4722:8
+    dec_pkey*: ptr EVP_PKEY ## Generated based on boringssl/include/openssl/x509.h:4732:8
 
   RAND_METHOD* = struct_rand_meth_st
-    ## Generated based on boringssl/include/openssl/base.h:328:29
+    ## Generated based on boringssl/include/openssl/base.h:329:29
   struct_rand_meth_st* {.pure, inheritable, bycopy.} = object
     seed*: proc(a0: pointer, a1: cint): void {.cdecl.}
       ## Generated based on boringssl/include/openssl/rand.h:112:8
@@ -965,12 +968,12 @@ type
     status*: proc(): cint {.cdecl.}
 
   RC4_KEY* = struct_rc4_key_st
-    ## Generated based on boringssl/include/openssl/base.h:329:27
+    ## Generated based on boringssl/include/openssl/base.h:330:27
   RSA_METHOD* = struct_rsa_meth_st
-    ## Generated based on boringssl/include/openssl/base.h:330:28
+    ## Generated based on boringssl/include/openssl/base.h:331:28
   struct_rsa_meth_st* {.pure, inheritable, bycopy.} = object
     common*: struct_openssl_method_common_st
-      ## Generated based on boringssl/include/openssl/rsa.h:791:8
+      ## Generated based on boringssl/include/openssl/rsa.h:796:8
     app_data*: pointer
     init*: proc(a0: ptr RSA): cint {.cdecl.}
     finish*: proc(a0: ptr RSA): cint {.cdecl.}
@@ -1000,18 +1003,18 @@ type
     flags*: cint
 
   RSA_PSS_PARAMS* = struct_rsa_pss_params_st
-    ## Generated based on boringssl/include/openssl/base.h:331:34
+    ## Generated based on boringssl/include/openssl/base.h:332:34
   struct_rsa_pss_params_st* {.pure, inheritable, bycopy.} = object
     hashAlgorithm*: ptr X509_ALGOR
-      ## Generated based on boringssl/include/openssl/x509.h:3824:8
+      ## Generated based on boringssl/include/openssl/x509.h:3830:8
     maskGenAlgorithm*: ptr X509_ALGOR
     saltLength*: ptr ASN1_INTEGER
     trailerField*: ptr ASN1_INTEGER
     maskHash*: ptr X509_ALGOR
 
-  RSA* = struct_rsa_st ## Generated based on boringssl/include/openssl/base.h:332:23
+  RSA* = struct_rsa_st ## Generated based on boringssl/include/openssl/base.h:333:23
   SHA256_CTX* = struct_sha256_state_st
-    ## Generated based on boringssl/include/openssl/base.h:333:32
+    ## Generated based on boringssl/include/openssl/base.h:334:32
   struct_sha256_state_st* {.pure, inheritable, bycopy.} = object
     h*: array[8'i64, uint32] ## Generated based on boringssl/include/openssl/sha2.h:95:8
     Nl*: uint32
@@ -1021,7 +1024,7 @@ type
     md_len*: cuint
 
   SHA512_CTX* = struct_sha512_state_st
-    ## Generated based on boringssl/include/openssl/base.h:334:32
+    ## Generated based on boringssl/include/openssl/base.h:335:32
   struct_sha512_state_st* {.pure, inheritable, bycopy.} = object
     h*: array[8'i64, uint64] ## Generated based on boringssl/include/openssl/sha2.h:162:8
     num*: uint16
@@ -1031,7 +1034,7 @@ type
     p*: array[128'i64, uint8]
 
   SHA_CTX* = struct_sha_state_st
-    ## Generated based on boringssl/include/openssl/base.h:335:29
+    ## Generated based on boringssl/include/openssl/base.h:336:29
   struct_sha_state_st_anon0_t_anon0_t* {.pure, inheritable, bycopy.} = object
     h0*: uint32
     h1*: uint32
@@ -1052,23 +1055,23 @@ type
     num*: cuint
 
   SPAKE2_CTX* = struct_spake2_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:336:30
+    ## Generated based on boringssl/include/openssl/base.h:337:30
   SRTP_PROTECTION_PROFILE* = struct_srtp_protection_profile_st
-    ## Generated based on boringssl/include/openssl/base.h:337:43
+    ## Generated based on boringssl/include/openssl/base.h:338:43
   struct_srtp_protection_profile_st* {.pure, inheritable, bycopy.} = object
-    name*: cstring ## Generated based on boringssl/include/openssl/ssl.h:3762:8
+    name*: cstring ## Generated based on boringssl/include/openssl/ssl.h:3879:8
     id*: culong
 
   SSL_CIPHER* = struct_ssl_cipher_st
-    ## Generated based on boringssl/include/openssl/base.h:338:30
+    ## Generated based on boringssl/include/openssl/base.h:339:30
   SSL_CREDENTIAL* = struct_ssl_credential_st
-    ## Generated based on boringssl/include/openssl/base.h:339:34
+    ## Generated based on boringssl/include/openssl/base.h:340:34
   SSL_CTX* = struct_ssl_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:340:27
+    ## Generated based on boringssl/include/openssl/base.h:341:27
   SSL_CLIENT_HELLO* = struct_ssl_early_callback_ctx
-    ## Generated based on boringssl/include/openssl/base.h:341:39
+    ## Generated based on boringssl/include/openssl/base.h:342:39
   struct_ssl_early_callback_ctx* {.pure, inheritable, bycopy.} = object
-    ssl*: ptr SSL ## Generated based on boringssl/include/openssl/ssl.h:5323:8
+    ssl*: ptr SSL ## Generated based on boringssl/include/openssl/ssl.h:5448:8
     client_hello*: ptr uint8
     client_hello_len*: csize_t
     version*: uint16
@@ -1086,11 +1089,11 @@ type
     extensions_len*: csize_t
 
   SSL_ECH_KEYS* = struct_ssl_ech_keys_st
-    ## Generated based on boringssl/include/openssl/base.h:342:32
+    ## Generated based on boringssl/include/openssl/base.h:343:32
   SSL_METHOD* = struct_ssl_method_st
-    ## Generated based on boringssl/include/openssl/base.h:343:30
+    ## Generated based on boringssl/include/openssl/base.h:344:30
   SSL_PRIVATE_KEY_METHOD* = struct_ssl_private_key_method_st
-    ## Generated based on boringssl/include/openssl/base.h:344:42
+    ## Generated based on boringssl/include/openssl/base.h:345:42
   struct_ssl_private_key_method_st* {.pure, inheritable, bycopy.} = object
     sign*: proc(
       a0: ptr SSL,
@@ -1101,7 +1104,7 @@ type
       a5: ptr uint8,
       a6: csize_t,
     ): enum_ssl_private_key_result_t {.cdecl.}
-      ## Generated based on boringssl/include/openssl/ssl.h:1391:8
+      ## Generated based on boringssl/include/openssl/ssl.h:1458:8
     decrypt*: proc(
       a0: ptr SSL,
       a1: ptr uint8,
@@ -1115,7 +1118,7 @@ type
     ): enum_ssl_private_key_result_t {.cdecl.}
 
   SSL_QUIC_METHOD* = struct_ssl_quic_method_st
-    ## Generated based on boringssl/include/openssl/base.h:345:35
+    ## Generated based on boringssl/include/openssl/base.h:346:35
   struct_ssl_quic_method_st* {.pure, inheritable, bycopy.} = object
     set_read_secret*: proc(
       a0: ptr SSL,
@@ -1123,7 +1126,7 @@ type
       a2: ptr SSL_CIPHER,
       a3: ptr uint8,
       a4: csize_t,
-    ): cint {.cdecl.} ## Generated based on boringssl/include/openssl/ssl.h:4278:8
+    ): cint {.cdecl.} ## Generated based on boringssl/include/openssl/ssl.h:4395:8
     set_write_secret*: proc(
       a0: ptr SSL,
       a1: enum_ssl_encryption_level_t,
@@ -1139,13 +1142,13 @@ type
       proc(a0: ptr SSL, a1: enum_ssl_encryption_level_t, a2: uint8): cint {.cdecl.}
 
   SSL_SESSION* = struct_ssl_session_st
-    ## Generated based on boringssl/include/openssl/base.h:346:31
-  SSL* = struct_ssl_st ## Generated based on boringssl/include/openssl/base.h:347:23
+    ## Generated based on boringssl/include/openssl/base.h:347:31
+  SSL* = struct_ssl_st ## Generated based on boringssl/include/openssl/base.h:348:23
   SSL_TICKET_AEAD_METHOD* = struct_ssl_ticket_aead_method_st
-    ## Generated based on boringssl/include/openssl/base.h:348:42
+    ## Generated based on boringssl/include/openssl/base.h:349:42
   struct_ssl_ticket_aead_method_st* {.pure, inheritable, bycopy.} = object
     max_overhead*: proc(a0: ptr SSL): csize_t {.cdecl.}
-      ## Generated based on boringssl/include/openssl/ssl.h:2541:8
+      ## Generated based on boringssl/include/openssl/ssl.h:2654:8
     seal*: proc(
       a0: ptr SSL,
       a1: ptr uint8,
@@ -1164,19 +1167,19 @@ type
     ): enum_ssl_ticket_aead_result_t {.cdecl.}
 
   ERR_FNS* = struct_st_ERR_FNS
-    ## Generated based on boringssl/include/openssl/base.h:349:27
+    ## Generated based on boringssl/include/openssl/base.h:350:27
   TRUST_TOKEN* = struct_trust_token_st
-    ## Generated based on boringssl/include/openssl/base.h:350:31
+    ## Generated based on boringssl/include/openssl/base.h:351:31
   TRUST_TOKEN_CLIENT* = struct_trust_token_client_st
-    ## Generated based on boringssl/include/openssl/base.h:351:38
-  TRUST_TOKEN_ISSUER* = struct_trust_token_issuer_st
     ## Generated based on boringssl/include/openssl/base.h:352:38
-  TRUST_TOKEN_METHOD* = struct_trust_token_method_st
+  TRUST_TOKEN_ISSUER* = struct_trust_token_issuer_st
     ## Generated based on boringssl/include/openssl/base.h:353:38
+  TRUST_TOKEN_METHOD* = struct_trust_token_method_st
+    ## Generated based on boringssl/include/openssl/base.h:354:38
   X509V3_CTX* = struct_v3_ext_ctx
-    ## Generated based on boringssl/include/openssl/base.h:354:27
+    ## Generated based on boringssl/include/openssl/base.h:355:27
   struct_v3_ext_ctx* {.pure, inheritable, bycopy.} = object
-    flags*: cint ## Generated based on boringssl/include/openssl/x509.h:4879:8
+    flags*: cint ## Generated based on boringssl/include/openssl/x509.h:4889:8
     issuer_cert*: ptr X509
     subject_cert*: ptr X509
     subject_req*: ptr X509_REQ
@@ -1184,9 +1187,9 @@ type
     db*: ptr CONF
 
   X509V3_EXT_METHOD* = struct_v3_ext_method
-    ## Generated based on boringssl/include/openssl/base.h:355:30
+    ## Generated based on boringssl/include/openssl/base.h:356:30
   struct_v3_ext_method* {.pure, inheritable, bycopy.} = object
-    ext_nid*: cint ## Generated based on boringssl/include/openssl/x509.h:4777:8
+    ext_nid*: cint ## Generated based on boringssl/include/openssl/x509.h:4787:8
     ext_flags*: cint
     it*: ptr ASN1_ITEM_EXP
     ext_new*: X509V3_EXT_NEW
@@ -1202,23 +1205,23 @@ type
     usr_data*: pointer
 
   X509_ATTRIBUTE* = struct_x509_attributes_st
-    ## Generated based on boringssl/include/openssl/base.h:356:35
+    ## Generated based on boringssl/include/openssl/base.h:357:35
   X509_LOOKUP* = struct_x509_lookup_st
-    ## Generated based on boringssl/include/openssl/base.h:357:31
+    ## Generated based on boringssl/include/openssl/base.h:358:31
   X509_LOOKUP_METHOD* = struct_x509_lookup_method_st
-    ## Generated based on boringssl/include/openssl/base.h:358:38
+    ## Generated based on boringssl/include/openssl/base.h:359:38
   X509_OBJECT* = struct_x509_object_st
-    ## Generated based on boringssl/include/openssl/base.h:359:31
+    ## Generated based on boringssl/include/openssl/base.h:360:31
   X509_PURPOSE* = struct_x509_purpose_st
-    ## Generated based on boringssl/include/openssl/base.h:360:32
-  X509_REVOKED* = struct_x509_revoked_st
     ## Generated based on boringssl/include/openssl/base.h:361:32
-  X509* = struct_x509_st ## Generated based on boringssl/include/openssl/base.h:362:24
+  X509_REVOKED* = struct_x509_revoked_st
+    ## Generated based on boringssl/include/openssl/base.h:362:32
+  X509* = struct_x509_st ## Generated based on boringssl/include/openssl/base.h:363:24
   X509_STORE_CTX* = struct_x509_store_ctx_st
-    ## Generated based on boringssl/include/openssl/base.h:363:34
+    ## Generated based on boringssl/include/openssl/base.h:364:34
   X509_STORE* = struct_x509_store_st
-    ## Generated based on boringssl/include/openssl/base.h:364:30
-  OPENSSL_BLOCK* = pointer ## Generated based on boringssl/include/openssl/base.h:366:15
+    ## Generated based on boringssl/include/openssl/base.h:365:30
+  OPENSSL_BLOCK* = pointer ## Generated based on boringssl/include/openssl/base.h:367:15
   union_evp_aead_ctx_st_state* {.union, bycopy.} = object
     opaque*: array[560'i64, uint8]
       ## Generated based on boringssl/include/openssl/aead.h:222:7
@@ -1245,47 +1248,47 @@ type
   CRYPTO_EX_unused* = cint
     ## Generated based on boringssl/include/openssl/ex_data.h:110:13
   OPENSSL_sk_free_func* = proc(a0: pointer): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:242:16
+    ## Generated based on boringssl/include/openssl/stack.h:246:16
   OPENSSL_sk_copy_func* = proc(a0: pointer): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:247:17
+    ## Generated based on boringssl/include/openssl/stack.h:251:17
   OPENSSL_sk_cmp_func* = proc(a0: ptr pointer, a1: ptr pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:257:15
-  OPENSSL_sk_delete_if_func* = proc(a0: pointer, a1: pointer): cint {.cdecl.}
     ## Generated based on boringssl/include/openssl/stack.h:261:15
+  OPENSSL_sk_delete_if_func* = proc(a0: pointer, a1: pointer): cint {.cdecl.}
+    ## Generated based on boringssl/include/openssl/stack.h:265:15
   OPENSSL_sk_call_free_func* =
     proc(a0: OPENSSL_sk_free_func, a1: pointer): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:265:16
+    ## Generated based on boringssl/include/openssl/stack.h:269:16
   OPENSSL_sk_call_copy_func* =
     proc(a0: OPENSSL_sk_copy_func, a1: pointer): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:266:17
+    ## Generated based on boringssl/include/openssl/stack.h:270:17
   OPENSSL_sk_call_cmp_func* =
     proc(a0: OPENSSL_sk_cmp_func, a1: pointer, a2: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:267:15
+    ## Generated based on boringssl/include/openssl/stack.h:271:15
   OPENSSL_sk_call_delete_if_func* =
     proc(a0: OPENSSL_sk_delete_if_func, a1: pointer, a2: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:269:15
+    ## Generated based on boringssl/include/openssl/stack.h:273:15
   OPENSSL_STACK* = struct_stack_st
-    ## Generated based on boringssl/include/openssl/stack.h:274:25
+    ## Generated based on boringssl/include/openssl/stack.h:278:25
   internal_STACK* = OPENSSL_STACK
-    ## Generated based on boringssl/include/openssl/stack.h:325:23
+    ## Generated based on boringssl/include/openssl/stack.h:330:23
   OPENSSL_STRING* = cstring
-    ## Generated based on boringssl/include/openssl/stack.h:547:15
+    ## Generated based on boringssl/include/openssl/stack.h:556:15
   sk_void_free_func* = proc(a0: pointer): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:549:1
+    ## Generated based on boringssl/include/openssl/stack.h:558:1
   sk_void_copy_func* = proc(a0: pointer): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:549:1
+    ## Generated based on boringssl/include/openssl/stack.h:558:1
   sk_void_cmp_func* = proc(a0: ptr pointer, a1: ptr pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:549:1
+    ## Generated based on boringssl/include/openssl/stack.h:558:1
   sk_void_delete_if_func* = proc(a0: pointer, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:549:1
+    ## Generated based on boringssl/include/openssl/stack.h:558:1
   sk_OPENSSL_STRING_free_func* = proc(a0: cstring): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:550:1
+    ## Generated based on boringssl/include/openssl/stack.h:559:1
   sk_OPENSSL_STRING_copy_func* = proc(a0: cstring): cstring {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:550:1
+    ## Generated based on boringssl/include/openssl/stack.h:559:1
   sk_OPENSSL_STRING_cmp_func* = proc(a0: ptr cstring, a1: ptr cstring): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:550:1
+    ## Generated based on boringssl/include/openssl/stack.h:559:1
   sk_OPENSSL_STRING_delete_if_func* = proc(a0: cstring, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/stack.h:550:1
+    ## Generated based on boringssl/include/openssl/stack.h:559:1
   sk_BIO_free_func* = proc(a0: ptr BIO): void {.cdecl.}
     ## Generated based on boringssl/include/openssl/bio.h:37:1
   sk_BIO_copy_func* = proc(a0: ptr BIO): ptr BIO {.cdecl.}
@@ -1295,8 +1298,8 @@ type
   sk_BIO_delete_if_func* = proc(a0: ptr BIO, a1: pointer): cint {.cdecl.}
     ## Generated based on boringssl/include/openssl/bio.h:37:1
   BIO_info_cb* = proc(a0: ptr BIO, a1: cint, a2: cint): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/bio.h:207:13
-  bio_info_cb* = BIO_info_cb ## Generated based on boringssl/include/openssl/bio.h:841:21
+    ## Generated based on boringssl/include/openssl/bio.h:218:13
+  bio_info_cb* = BIO_info_cb ## Generated based on boringssl/include/openssl/bio.h:862:21
   struct_evp_cipher_info_st* {.pure, inheritable, bycopy.} = object
     cipher*: ptr EVP_CIPHER
       ## Generated based on boringssl/include/openssl/cipher.h:765:16
@@ -1337,46 +1340,46 @@ type
   PKCS7* = struct_PKCS7 ## Generated based on boringssl/include/openssl/pkcs7.h:143:3
   BN_ULONG* = uint64 ## Generated based on boringssl/include/openssl/bn.h:52:18
   d2i_of_void* = proc(a0: ptr pointer, a1: ptr ptr uint8, a2: clong): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:195:15
+    ## Generated based on boringssl/include/openssl/asn1.h:196:15
   i2d_of_void* = proc(a0: pointer, a1: ptr ptr uint8): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:196:13
+    ## Generated based on boringssl/include/openssl/asn1.h:197:13
   ASN1_ITEM_EXP* = ASN1_ITEM
-    ## Generated based on boringssl/include/openssl/asn1.h:230:25
+    ## Generated based on boringssl/include/openssl/asn1.h:231:25
   ASN1_VALUE* = struct_ASN1_VALUE_st
-    ## Generated based on boringssl/include/openssl/asn1.h:241:30
+    ## Generated based on boringssl/include/openssl/asn1.h:242:30
   sk_ASN1_INTEGER_free_func* = proc(a0: ptr ASN1_INTEGER): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:963:1
+    ## Generated based on boringssl/include/openssl/asn1.h:953:1
   sk_ASN1_INTEGER_copy_func* = proc(a0: ptr ASN1_INTEGER): ptr ASN1_INTEGER {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:963:1
+    ## Generated based on boringssl/include/openssl/asn1.h:953:1
   sk_ASN1_INTEGER_cmp_func* =
     proc(a0: ptr ptr ASN1_INTEGER, a1: ptr ptr ASN1_INTEGER): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:963:1
+    ## Generated based on boringssl/include/openssl/asn1.h:953:1
   sk_ASN1_INTEGER_delete_if_func* =
     proc(a0: ptr ASN1_INTEGER, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:963:1
+    ## Generated based on boringssl/include/openssl/asn1.h:953:1
   time_t* = compiler_time_t
     ## Generated based on /usr/include/x86_64-linux-gnu/bits/types/time_t.h:10:18
   sk_ASN1_OBJECT_free_func* = proc(a0: ptr ASN1_OBJECT): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1365:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1355:1
   sk_ASN1_OBJECT_copy_func* = proc(a0: ptr ASN1_OBJECT): ptr ASN1_OBJECT {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1365:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1355:1
   sk_ASN1_OBJECT_cmp_func* =
     proc(a0: ptr ptr ASN1_OBJECT, a1: ptr ptr ASN1_OBJECT): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1365:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1355:1
   sk_ASN1_OBJECT_delete_if_func* =
     proc(a0: ptr ASN1_OBJECT, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1365:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1355:1
   sk_ASN1_TYPE_free_func* = proc(a0: ptr ASN1_TYPE): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1475:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1465:1
   sk_ASN1_TYPE_copy_func* = proc(a0: ptr ASN1_TYPE): ptr ASN1_TYPE {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1475:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1465:1
   sk_ASN1_TYPE_cmp_func* =
     proc(a0: ptr ptr ASN1_TYPE, a1: ptr ptr ASN1_TYPE): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1475:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1465:1
   sk_ASN1_TYPE_delete_if_func* = proc(a0: ptr ASN1_TYPE, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/asn1.h:1475:1
+    ## Generated based on boringssl/include/openssl/asn1.h:1465:1
   ASN1_SEQUENCE_ANY* = struct_stack_st_ASN1_TYPE
-    ## Generated based on boringssl/include/openssl/asn1.h:1530:29
+    ## Generated based on boringssl/include/openssl/asn1.h:1520:29
   sk_CONF_VALUE_free_func* = proc(a0: ptr CONF_VALUE): void {.cdecl.}
     ## Generated based on boringssl/include/openssl/conf.h:51:1
   sk_CONF_VALUE_copy_func* = proc(a0: ptr CONF_VALUE): ptr CONF_VALUE {.cdecl.}
@@ -1389,13 +1392,13 @@ type
   point_conversion_form_t* = enum_point_conversion_form_t
     ## Generated based on boringssl/include/openssl/ec.h:47:3
   EC_METHOD* = struct_ec_method_st
-    ## Generated based on boringssl/include/openssl/ec.h:419:29
+    ## Generated based on boringssl/include/openssl/ec.h:443:29
   struct_EC_builtin_curve* {.pure, inheritable, bycopy.} = object
-    nid*: cint ## Generated based on boringssl/include/openssl/ec.h:433:9
+    nid*: cint ## Generated based on boringssl/include/openssl/ec.h:457:9
     comment*: cstring
 
   EC_builtin_curve* = struct_EC_builtin_curve
-    ## Generated based on boringssl/include/openssl/ec.h:436:3
+    ## Generated based on boringssl/include/openssl/ec.h:460:3
   struct_openssl_method_common_st* {.pure, inheritable, bycopy.} = object
     references*: cint ## Generated based on boringssl/include/openssl/engine.h:86:8
     is_static*: cschar
@@ -1415,7 +1418,7 @@ type
     tm_zone*: cstring
 
   struct_cbb_buffer_st* {.pure, inheritable, bycopy.} = object
-    buf*: ptr uint8 ## Generated based on boringssl/include/openssl/bytestring.h:478:8
+    buf*: ptr uint8 ## Generated based on boringssl/include/openssl/bytestring.h:479:8
     len*: csize_t
     cap*: csize_t
     can_resize* {.bitsize: 1'i64.}: cuint
@@ -1423,7 +1426,7 @@ type
 
   struct_cbb_child_st* {.pure, inheritable, bycopy.} = object
     base*: ptr struct_cbb_buffer_st
-      ## Generated based on boringssl/include/openssl/bytestring.h:492:8
+      ## Generated based on boringssl/include/openssl/bytestring.h:493:8
     offset*: csize_t
     pending_len_len*: uint8
     pending_is_asn1* {.bitsize: 1'i64.}: cuint
@@ -1455,160 +1458,159 @@ type
   sk_X509_delete_if_func* = proc(a0: ptr X509, a1: pointer): cint {.cdecl.}
     ## Generated based on boringssl/include/openssl/x509.h:71:1
   sk_GENERAL_NAME_free_func* = proc(a0: ptr GENERAL_NAME): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:307:1
+    ## Generated based on boringssl/include/openssl/x509.h:309:1
   sk_GENERAL_NAME_copy_func* = proc(a0: ptr GENERAL_NAME): ptr GENERAL_NAME {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:307:1
+    ## Generated based on boringssl/include/openssl/x509.h:309:1
   sk_GENERAL_NAME_cmp_func* =
     proc(a0: ptr ptr GENERAL_NAME, a1: ptr ptr GENERAL_NAME): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:307:1
+    ## Generated based on boringssl/include/openssl/x509.h:309:1
   sk_GENERAL_NAME_delete_if_func* =
     proc(a0: ptr GENERAL_NAME, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:307:1
+    ## Generated based on boringssl/include/openssl/x509.h:309:1
   GENERAL_NAMES* = struct_stack_st_GENERAL_NAME
-    ## Generated based on boringssl/include/openssl/x509.h:308:32
+    ## Generated based on boringssl/include/openssl/x509.h:310:32
   sk_X509_CRL_free_func* = proc(a0: ptr X509_CRL): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:679:1
+    ## Generated based on boringssl/include/openssl/x509.h:682:1
   sk_X509_CRL_copy_func* = proc(a0: ptr X509_CRL): ptr X509_CRL {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:679:1
+    ## Generated based on boringssl/include/openssl/x509.h:682:1
   sk_X509_CRL_cmp_func* =
     proc(a0: ptr ptr X509_CRL, a1: ptr ptr X509_CRL): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:679:1
+    ## Generated based on boringssl/include/openssl/x509.h:682:1
   sk_X509_CRL_delete_if_func* = proc(a0: ptr X509_CRL, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:679:1
+    ## Generated based on boringssl/include/openssl/x509.h:682:1
   sk_X509_REVOKED_free_func* = proc(a0: ptr X509_REVOKED): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:680:1
+    ## Generated based on boringssl/include/openssl/x509.h:683:1
   sk_X509_REVOKED_copy_func* = proc(a0: ptr X509_REVOKED): ptr X509_REVOKED {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:680:1
+    ## Generated based on boringssl/include/openssl/x509.h:683:1
   sk_X509_REVOKED_cmp_func* =
     proc(a0: ptr ptr X509_REVOKED, a1: ptr ptr X509_REVOKED): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:680:1
+    ## Generated based on boringssl/include/openssl/x509.h:683:1
   sk_X509_REVOKED_delete_if_func* =
     proc(a0: ptr X509_REVOKED, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:680:1
+    ## Generated based on boringssl/include/openssl/x509.h:683:1
   sk_X509_NAME_ENTRY_free_func* = proc(a0: ptr X509_NAME_ENTRY): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1335:1
+    ## Generated based on boringssl/include/openssl/x509.h:1342:1
   sk_X509_NAME_ENTRY_copy_func* =
     proc(a0: ptr X509_NAME_ENTRY): ptr X509_NAME_ENTRY {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1335:1
+    ## Generated based on boringssl/include/openssl/x509.h:1342:1
   sk_X509_NAME_ENTRY_cmp_func* =
     proc(a0: ptr ptr X509_NAME_ENTRY, a1: ptr ptr X509_NAME_ENTRY): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1335:1
+    ## Generated based on boringssl/include/openssl/x509.h:1342:1
   sk_X509_NAME_ENTRY_delete_if_func* =
     proc(a0: ptr X509_NAME_ENTRY, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1335:1
+    ## Generated based on boringssl/include/openssl/x509.h:1342:1
   sk_X509_NAME_free_func* = proc(a0: ptr X509_NAME): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1336:1
+    ## Generated based on boringssl/include/openssl/x509.h:1343:1
   sk_X509_NAME_copy_func* = proc(a0: ptr X509_NAME): ptr X509_NAME {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1336:1
+    ## Generated based on boringssl/include/openssl/x509.h:1343:1
   sk_X509_NAME_cmp_func* =
     proc(a0: ptr ptr X509_NAME, a1: ptr ptr X509_NAME): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1336:1
+    ## Generated based on boringssl/include/openssl/x509.h:1343:1
   sk_X509_NAME_delete_if_func* = proc(a0: ptr X509_NAME, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1336:1
+    ## Generated based on boringssl/include/openssl/x509.h:1343:1
   sk_X509_EXTENSION_free_func* = proc(a0: ptr X509_EXTENSION): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1704:1
+    ## Generated based on boringssl/include/openssl/x509.h:1711:1
   sk_X509_EXTENSION_copy_func* =
     proc(a0: ptr X509_EXTENSION): ptr X509_EXTENSION {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1704:1
+    ## Generated based on boringssl/include/openssl/x509.h:1711:1
   sk_X509_EXTENSION_cmp_func* =
     proc(a0: ptr ptr X509_EXTENSION, a1: ptr ptr X509_EXTENSION): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1704:1
+    ## Generated based on boringssl/include/openssl/x509.h:1711:1
   sk_X509_EXTENSION_delete_if_func* =
     proc(a0: ptr X509_EXTENSION, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:1704:1
+    ## Generated based on boringssl/include/openssl/x509.h:1711:1
   X509_EXTENSIONS* = struct_stack_st_X509_EXTENSION
-    ## Generated based on boringssl/include/openssl/x509.h:1705:34
+    ## Generated based on boringssl/include/openssl/x509.h:1712:34
   EXTENDED_KEY_USAGE* = struct_stack_st_ASN1_OBJECT
-    ## Generated based on boringssl/include/openssl/x509.h:1976:31
+    ## Generated based on boringssl/include/openssl/x509.h:1983:31
   struct_otherName_st* {.pure, inheritable, bycopy.} = object
     type_id*: ptr ASN1_OBJECT
-      ## Generated based on boringssl/include/openssl/x509.h:2012:16
+      ## Generated based on boringssl/include/openssl/x509.h:2019:16
     value*: ptr ASN1_TYPE
 
   OTHERNAME* = struct_otherName_st
-    ## Generated based on boringssl/include/openssl/x509.h:2015:3
+    ## Generated based on boringssl/include/openssl/x509.h:2022:3
   struct_EDIPartyName_st* {.pure, inheritable, bycopy.} = object
     nameAssigner*: ptr ASN1_STRING
-      ## Generated based on boringssl/include/openssl/x509.h:2017:16
+      ## Generated based on boringssl/include/openssl/x509.h:2024:16
     partyName*: ptr ASN1_STRING
 
   EDIPARTYNAME* = struct_EDIPartyName_st
-    ## Generated based on boringssl/include/openssl/x509.h:2020:3
+    ## Generated based on boringssl/include/openssl/x509.h:2027:3
   struct_GENERAL_SUBTREE_st* {.pure, inheritable, bycopy.} = object
     base*: ptr GENERAL_NAME
-      ## Generated based on boringssl/include/openssl/x509.h:2212:16
+      ## Generated based on boringssl/include/openssl/x509.h:2219:16
     minimum*: ptr ASN1_INTEGER
     maximum*: ptr ASN1_INTEGER
 
   GENERAL_SUBTREE* = struct_GENERAL_SUBTREE_st
-    ## Generated based on boringssl/include/openssl/x509.h:2216:3
+    ## Generated based on boringssl/include/openssl/x509.h:2223:3
   sk_GENERAL_SUBTREE_free_func* = proc(a0: ptr GENERAL_SUBTREE): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2218:1
+    ## Generated based on boringssl/include/openssl/x509.h:2225:1
   sk_GENERAL_SUBTREE_copy_func* =
     proc(a0: ptr GENERAL_SUBTREE): ptr GENERAL_SUBTREE {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2218:1
+    ## Generated based on boringssl/include/openssl/x509.h:2225:1
   sk_GENERAL_SUBTREE_cmp_func* =
     proc(a0: ptr ptr GENERAL_SUBTREE, a1: ptr ptr GENERAL_SUBTREE): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2218:1
+    ## Generated based on boringssl/include/openssl/x509.h:2225:1
   sk_GENERAL_SUBTREE_delete_if_func* =
     proc(a0: ptr GENERAL_SUBTREE, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2218:1
+    ## Generated based on boringssl/include/openssl/x509.h:2225:1
   struct_ACCESS_DESCRIPTION_st* {.pure, inheritable, bycopy.} = object
     method_field*: ptr ASN1_OBJECT
-      ## Generated based on boringssl/include/openssl/x509.h:2255:16
+      ## Generated based on boringssl/include/openssl/x509.h:2262:16
     location*: ptr GENERAL_NAME
 
   ACCESS_DESCRIPTION* = struct_ACCESS_DESCRIPTION_st
-    ## Generated based on boringssl/include/openssl/x509.h:2258:3
+    ## Generated based on boringssl/include/openssl/x509.h:2265:3
   sk_ACCESS_DESCRIPTION_free_func* = proc(a0: ptr ACCESS_DESCRIPTION): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2260:1
+    ## Generated based on boringssl/include/openssl/x509.h:2267:1
   sk_ACCESS_DESCRIPTION_copy_func* =
     proc(a0: ptr ACCESS_DESCRIPTION): ptr ACCESS_DESCRIPTION {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2260:1
+    ## Generated based on boringssl/include/openssl/x509.h:2267:1
   sk_ACCESS_DESCRIPTION_cmp_func* =
     proc(a0: ptr ptr ACCESS_DESCRIPTION, a1: ptr ptr ACCESS_DESCRIPTION): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2260:1
+    ## Generated based on boringssl/include/openssl/x509.h:2267:1
   sk_ACCESS_DESCRIPTION_delete_if_func* =
     proc(a0: ptr ACCESS_DESCRIPTION, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2260:1
+    ## Generated based on boringssl/include/openssl/x509.h:2267:1
   AUTHORITY_INFO_ACCESS* = struct_stack_st_ACCESS_DESCRIPTION
-    ## Generated based on boringssl/include/openssl/x509.h:2269:38
+    ## Generated based on boringssl/include/openssl/x509.h:2276:38
   struct_DIST_POINT_NAME_st_name_t* {.union, bycopy.} = object
     fullname*: ptr GENERAL_NAMES
     relativename*: ptr struct_stack_st_X509_NAME_ENTRY
 
   struct_DIST_POINT_NAME_st* {.pure, inheritable, bycopy.} = object
-    type_field*: cint ## Generated based on boringssl/include/openssl/x509.h:2308:16
+    type_field*: cint ## Generated based on boringssl/include/openssl/x509.h:2315:16
     name*: struct_DIST_POINT_NAME_st_name_t
-    dpname*: ptr X509_NAME
 
   DIST_POINT_NAME* = struct_DIST_POINT_NAME_st
-    ## Generated based on boringssl/include/openssl/x509.h:2316:3
+    ## Generated based on boringssl/include/openssl/x509.h:2321:3
   sk_DIST_POINT_free_func* = proc(a0: ptr DIST_POINT): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2333:1
+    ## Generated based on boringssl/include/openssl/x509.h:2338:1
   sk_DIST_POINT_copy_func* = proc(a0: ptr DIST_POINT): ptr DIST_POINT {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2333:1
+    ## Generated based on boringssl/include/openssl/x509.h:2338:1
   sk_DIST_POINT_cmp_func* =
     proc(a0: ptr ptr DIST_POINT, a1: ptr ptr DIST_POINT): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2333:1
+    ## Generated based on boringssl/include/openssl/x509.h:2338:1
   sk_DIST_POINT_delete_if_func* = proc(a0: ptr DIST_POINT, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2333:1
+    ## Generated based on boringssl/include/openssl/x509.h:2338:1
   CRL_DIST_POINTS* = struct_stack_st_DIST_POINT
-    ## Generated based on boringssl/include/openssl/x509.h:2342:30
+    ## Generated based on boringssl/include/openssl/x509.h:2347:30
   struct_NOTICEREF_st* {.pure, inheritable, bycopy.} = object
     organization*: ptr ASN1_STRING
-      ## Generated based on boringssl/include/openssl/x509.h:2410:16
+      ## Generated based on boringssl/include/openssl/x509.h:2415:16
     noticenos*: ptr struct_stack_st_ASN1_INTEGER
 
   NOTICEREF* = struct_NOTICEREF_st
-    ## Generated based on boringssl/include/openssl/x509.h:2413:3
+    ## Generated based on boringssl/include/openssl/x509.h:2418:3
   struct_USERNOTICE_st* {.pure, inheritable, bycopy.} = object
     noticeref*: ptr NOTICEREF
-      ## Generated based on boringssl/include/openssl/x509.h:2423:16
+      ## Generated based on boringssl/include/openssl/x509.h:2428:16
     exptext*: ptr ASN1_STRING
 
   USERNOTICE* = struct_USERNOTICE_st
-    ## Generated based on boringssl/include/openssl/x509.h:2426:3
+    ## Generated based on boringssl/include/openssl/x509.h:2431:3
   struct_POLICYQUALINFO_st_d_t* {.union, bycopy.} = object
     cpsuri*: ptr ASN1_IA5STRING
     usernotice*: ptr USERNOTICE
@@ -1616,135 +1618,135 @@ type
 
   struct_POLICYQUALINFO_st* {.pure, inheritable, bycopy.} = object
     pqualid*: ptr ASN1_OBJECT
-      ## Generated based on boringssl/include/openssl/x509.h:2443:16
+      ## Generated based on boringssl/include/openssl/x509.h:2448:16
     d*: struct_POLICYQUALINFO_st_d_t
 
   POLICYQUALINFO* = struct_POLICYQUALINFO_st
-    ## Generated based on boringssl/include/openssl/x509.h:2450:3
+    ## Generated based on boringssl/include/openssl/x509.h:2455:3
   sk_POLICYQUALINFO_free_func* = proc(a0: ptr POLICYQUALINFO): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2452:1
+    ## Generated based on boringssl/include/openssl/x509.h:2457:1
   sk_POLICYQUALINFO_copy_func* =
     proc(a0: ptr POLICYQUALINFO): ptr POLICYQUALINFO {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2452:1
+    ## Generated based on boringssl/include/openssl/x509.h:2457:1
   sk_POLICYQUALINFO_cmp_func* =
     proc(a0: ptr ptr POLICYQUALINFO, a1: ptr ptr POLICYQUALINFO): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2452:1
+    ## Generated based on boringssl/include/openssl/x509.h:2457:1
   sk_POLICYQUALINFO_delete_if_func* =
     proc(a0: ptr POLICYQUALINFO, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2452:1
+    ## Generated based on boringssl/include/openssl/x509.h:2457:1
   struct_POLICYINFO_st* {.pure, inheritable, bycopy.} = object
     policyid*: ptr ASN1_OBJECT
-      ## Generated based on boringssl/include/openssl/x509.h:2462:16
+      ## Generated based on boringssl/include/openssl/x509.h:2467:16
     qualifiers*: ptr struct_stack_st_POLICYQUALINFO
 
   POLICYINFO* = struct_POLICYINFO_st
-    ## Generated based on boringssl/include/openssl/x509.h:2465:3
+    ## Generated based on boringssl/include/openssl/x509.h:2470:3
   sk_POLICYINFO_free_func* = proc(a0: ptr POLICYINFO): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2467:1
+    ## Generated based on boringssl/include/openssl/x509.h:2472:1
   sk_POLICYINFO_copy_func* = proc(a0: ptr POLICYINFO): ptr POLICYINFO {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2467:1
+    ## Generated based on boringssl/include/openssl/x509.h:2472:1
   sk_POLICYINFO_cmp_func* =
     proc(a0: ptr ptr POLICYINFO, a1: ptr ptr POLICYINFO): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2467:1
+    ## Generated based on boringssl/include/openssl/x509.h:2472:1
   sk_POLICYINFO_delete_if_func* = proc(a0: ptr POLICYINFO, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2467:1
+    ## Generated based on boringssl/include/openssl/x509.h:2472:1
   CERTIFICATEPOLICIES* = struct_stack_st_POLICYINFO
-    ## Generated based on boringssl/include/openssl/x509.h:2476:30
+    ## Generated based on boringssl/include/openssl/x509.h:2481:30
   struct_POLICY_MAPPING_st* {.pure, inheritable, bycopy.} = object
     issuerDomainPolicy*: ptr ASN1_OBJECT
-      ## Generated based on boringssl/include/openssl/x509.h:2501:16
+      ## Generated based on boringssl/include/openssl/x509.h:2506:16
     subjectDomainPolicy*: ptr ASN1_OBJECT
 
   POLICY_MAPPING* = struct_POLICY_MAPPING_st
-    ## Generated based on boringssl/include/openssl/x509.h:2504:3
+    ## Generated based on boringssl/include/openssl/x509.h:2509:3
   sk_POLICY_MAPPING_free_func* = proc(a0: ptr POLICY_MAPPING): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2506:1
+    ## Generated based on boringssl/include/openssl/x509.h:2511:1
   sk_POLICY_MAPPING_copy_func* =
     proc(a0: ptr POLICY_MAPPING): ptr POLICY_MAPPING {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2506:1
+    ## Generated based on boringssl/include/openssl/x509.h:2511:1
   sk_POLICY_MAPPING_cmp_func* =
     proc(a0: ptr ptr POLICY_MAPPING, a1: ptr ptr POLICY_MAPPING): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2506:1
+    ## Generated based on boringssl/include/openssl/x509.h:2511:1
   sk_POLICY_MAPPING_delete_if_func* =
     proc(a0: ptr POLICY_MAPPING, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2506:1
+    ## Generated based on boringssl/include/openssl/x509.h:2511:1
   POLICY_MAPPINGS* = struct_stack_st_POLICY_MAPPING
-    ## Generated based on boringssl/include/openssl/x509.h:2515:34
+    ## Generated based on boringssl/include/openssl/x509.h:2520:34
   struct_POLICY_CONSTRAINTS_st* {.pure, inheritable, bycopy.} = object
     requireExplicitPolicy*: ptr ASN1_INTEGER
-      ## Generated based on boringssl/include/openssl/x509.h:2522:16
+      ## Generated based on boringssl/include/openssl/x509.h:2527:16
     inhibitPolicyMapping*: ptr ASN1_INTEGER
 
   POLICY_CONSTRAINTS* = struct_POLICY_CONSTRAINTS_st
-    ## Generated based on boringssl/include/openssl/x509.h:2525:3
+    ## Generated based on boringssl/include/openssl/x509.h:2530:3
   sk_X509_ALGOR_free_func* = proc(a0: ptr X509_ALGOR): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2544:1
+    ## Generated based on boringssl/include/openssl/x509.h:2549:1
   sk_X509_ALGOR_copy_func* = proc(a0: ptr X509_ALGOR): ptr X509_ALGOR {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2544:1
+    ## Generated based on boringssl/include/openssl/x509.h:2549:1
   sk_X509_ALGOR_cmp_func* =
     proc(a0: ptr ptr X509_ALGOR, a1: ptr ptr X509_ALGOR): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2544:1
+    ## Generated based on boringssl/include/openssl/x509.h:2549:1
   sk_X509_ALGOR_delete_if_func* = proc(a0: ptr X509_ALGOR, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2544:1
+    ## Generated based on boringssl/include/openssl/x509.h:2549:1
   sk_X509_ATTRIBUTE_free_func* = proc(a0: ptr X509_ATTRIBUTE): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2641:1
+    ## Generated based on boringssl/include/openssl/x509.h:2646:1
   sk_X509_ATTRIBUTE_copy_func* =
     proc(a0: ptr X509_ATTRIBUTE): ptr X509_ATTRIBUTE {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2641:1
+    ## Generated based on boringssl/include/openssl/x509.h:2646:1
   sk_X509_ATTRIBUTE_cmp_func* =
     proc(a0: ptr ptr X509_ATTRIBUTE, a1: ptr ptr X509_ATTRIBUTE): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2641:1
+    ## Generated based on boringssl/include/openssl/x509.h:2646:1
   sk_X509_ATTRIBUTE_delete_if_func* =
     proc(a0: ptr X509_ATTRIBUTE, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2641:1
+    ## Generated based on boringssl/include/openssl/x509.h:2646:1
   sk_X509_OBJECT_free_func* = proc(a0: ptr X509_OBJECT): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2890:1
+    ## Generated based on boringssl/include/openssl/x509.h:2900:1
   sk_X509_OBJECT_copy_func* = proc(a0: ptr X509_OBJECT): ptr X509_OBJECT {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2890:1
+    ## Generated based on boringssl/include/openssl/x509.h:2900:1
   sk_X509_OBJECT_cmp_func* =
     proc(a0: ptr ptr X509_OBJECT, a1: ptr ptr X509_OBJECT): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2890:1
+    ## Generated based on boringssl/include/openssl/x509.h:2900:1
   sk_X509_OBJECT_delete_if_func* =
     proc(a0: ptr X509_OBJECT, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:2890:1
+    ## Generated based on boringssl/include/openssl/x509.h:2900:1
   sk_X509_INFO_free_func* = proc(a0: ptr X509_INFO): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4736:1
+    ## Generated based on boringssl/include/openssl/x509.h:4746:1
   sk_X509_INFO_copy_func* = proc(a0: ptr X509_INFO): ptr X509_INFO {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4736:1
+    ## Generated based on boringssl/include/openssl/x509.h:4746:1
   sk_X509_INFO_cmp_func* =
     proc(a0: ptr ptr X509_INFO, a1: ptr ptr X509_INFO): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4736:1
+    ## Generated based on boringssl/include/openssl/x509.h:4746:1
   sk_X509_INFO_delete_if_func* = proc(a0: ptr X509_INFO, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4736:1
+    ## Generated based on boringssl/include/openssl/x509.h:4746:1
   X509V3_EXT_NEW* = proc(): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4757:17
+    ## Generated based on boringssl/include/openssl/x509.h:4767:17
   X509V3_EXT_FREE_typedef* = proc(a0: pointer): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4758:16
+    ## Generated based on boringssl/include/openssl/x509.h:4768:16
   X509V3_EXT_D2I_typedef* =
     proc(a0: pointer, a1: ptr ptr uint8, a2: clong): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4759:17
+    ## Generated based on boringssl/include/openssl/x509.h:4769:17
   X509V3_EXT_I2D_typedef* = proc(a0: pointer, a1: ptr ptr uint8): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4760:15
+    ## Generated based on boringssl/include/openssl/x509.h:4770:15
   X509V3_EXT_I2V* = proc(
     a0: ptr X509V3_EXT_METHOD, a1: pointer, a2: ptr struct_stack_st_CONF_VALUE
   ): ptr struct_stack_st_CONF_VALUE {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4761:33
+    ## Generated based on boringssl/include/openssl/x509.h:4771:33
   X509V3_EXT_V2I* = proc(
     a0: ptr X509V3_EXT_METHOD, a1: ptr X509V3_CTX, a2: ptr struct_stack_st_CONF_VALUE
-  ): pointer {.cdecl.} ## Generated based on boringssl/include/openssl/x509.h:4764:17
+  ): pointer {.cdecl.} ## Generated based on boringssl/include/openssl/x509.h:4774:17
   X509V3_EXT_I2S* = proc(a0: ptr X509V3_EXT_METHOD, a1: pointer): cstring {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4767:17
+    ## Generated based on boringssl/include/openssl/x509.h:4777:17
   X509V3_EXT_S2I* =
     proc(a0: ptr X509V3_EXT_METHOD, a1: ptr X509V3_CTX, a2: cstring): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4768:17
+    ## Generated based on boringssl/include/openssl/x509.h:4778:17
   X509V3_EXT_I2R* =
     proc(a0: ptr X509V3_EXT_METHOD, a1: pointer, a2: ptr BIO, a3: cint): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4770:15
+    ## Generated based on boringssl/include/openssl/x509.h:4780:15
   X509V3_EXT_R2I* =
     proc(a0: ptr X509V3_EXT_METHOD, a1: ptr X509V3_CTX, a2: cstring): pointer {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:4772:17
+    ## Generated based on boringssl/include/openssl/x509.h:4782:17
   X509_STORE_CTX_verify_cb* = proc(a0: cint, a1: ptr X509_STORE_CTX): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/x509.h:5177:15
+    ## Generated based on boringssl/include/openssl/x509.h:5187:15
   struct_CRYPTO_dynlock* {.pure, inheritable, bycopy.} = object
     references*: cint ## Generated based on boringssl/include/openssl/thread.h:78:9
     data*: ptr struct_CRYPTO_dynlock_value
@@ -1759,57 +1761,57 @@ type
     tv_usec*: compiler_suseconds_t
 
   sk_SSL_CIPHER_free_func* = proc(a0: ptr SSL_CIPHER): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:1490:1
+    ## Generated based on boringssl/include/openssl/ssl.h:1557:1
   sk_SSL_CIPHER_copy_func* = proc(a0: ptr SSL_CIPHER): ptr SSL_CIPHER {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:1490:1
+    ## Generated based on boringssl/include/openssl/ssl.h:1557:1
   sk_SSL_CIPHER_cmp_func* =
     proc(a0: ptr ptr SSL_CIPHER, a1: ptr ptr SSL_CIPHER): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:1490:1
+    ## Generated based on boringssl/include/openssl/ssl.h:1557:1
   sk_SSL_CIPHER_delete_if_func* = proc(a0: ptr SSL_CIPHER, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:1490:1
+    ## Generated based on boringssl/include/openssl/ssl.h:1557:1
   SSL_new_session_cb* = proc(a0: ptr SSL, a1: ptr SSL_SESSION): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:2331:15
+    ## Generated based on boringssl/include/openssl/ssl.h:2444:15
   SSL_remove_session_cb* = proc(a0: ptr SSL_CTX, a1: ptr SSL_SESSION): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:2360:16
+    ## Generated based on boringssl/include/openssl/ssl.h:2473:16
   SSL_get_session_cb* =
     proc(a0: ptr SSL, a1: ptr uint8, a2: cint, a3: ptr cint): ptr SSL_SESSION {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:2376:24
+    ## Generated based on boringssl/include/openssl/ssl.h:2489:24
   ssl_cert_compression_func_t* =
     proc(a0: ptr SSL, a1: ptr CBB, a2: ptr uint8, a3: csize_t): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:3573:15
+    ## Generated based on boringssl/include/openssl/ssl.h:3689:15
   ssl_cert_decompression_func_t* = proc(
     a0: ptr SSL, a1: ptr ptr CRYPTO_BUFFER, a2: csize_t, a3: ptr uint8, a4: csize_t
-  ): cint {.cdecl.} ## Generated based on boringssl/include/openssl/ssl.h:3585:15
+  ): cint {.cdecl.} ## Generated based on boringssl/include/openssl/ssl.h:3701:15
   sk_SRTP_PROTECTION_PROFILE_free_func* =
     proc(a0: ptr SRTP_PROTECTION_PROFILE): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:3767:1
+    ## Generated based on boringssl/include/openssl/ssl.h:3884:1
   sk_SRTP_PROTECTION_PROFILE_copy_func* =
     proc(a0: ptr SRTP_PROTECTION_PROFILE): ptr SRTP_PROTECTION_PROFILE {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:3767:1
+    ## Generated based on boringssl/include/openssl/ssl.h:3884:1
   sk_SRTP_PROTECTION_PROFILE_cmp_func* = proc(
     a0: ptr ptr SRTP_PROTECTION_PROFILE, a1: ptr ptr SRTP_PROTECTION_PROFILE
-  ): cint {.cdecl.} ## Generated based on boringssl/include/openssl/ssl.h:3767:1
+  ): cint {.cdecl.} ## Generated based on boringssl/include/openssl/ssl.h:3884:1
   sk_SRTP_PROTECTION_PROFILE_delete_if_func* =
     proc(a0: ptr SRTP_PROTECTION_PROFILE, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:3767:1
+    ## Generated based on boringssl/include/openssl/ssl.h:3884:1
   SSL_COMP* = struct_ssl_comp_st
-    ## Generated based on boringssl/include/openssl/ssl.h:5639:28
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:67:28
   struct_ssl_comp_st* {.pure, inheritable, bycopy.} = object
-    id*: cint ## Generated based on boringssl/include/openssl/ssl.h:5927:8
+    id*: cint ## Generated based on boringssl/include/openssl/ssl_deprecated.h:355:8
     name*: cstring
     method_field*: cstring
 
   sk_SSL_COMP_free_func* = proc(a0: ptr SSL_COMP): void {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:5933:1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:361:1
   sk_SSL_COMP_copy_func* = proc(a0: ptr SSL_COMP): ptr SSL_COMP {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:5933:1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:361:1
   sk_SSL_COMP_cmp_func* =
     proc(a0: ptr ptr SSL_COMP, a1: ptr ptr SSL_COMP): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:5933:1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:361:1
   sk_SSL_COMP_delete_if_func* = proc(a0: ptr SSL_COMP, a1: pointer): cint {.cdecl.}
-    ## Generated based on boringssl/include/openssl/ssl.h:5933:1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:361:1
   SSL_CONF_CTX* = struct_ssl_conf_ctx_st
-    ## Generated based on boringssl/include/openssl/ssl.h:6094:32
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:522:32
   struct_IO_FILE* {.pure, inheritable, bycopy.} = object
     internal_flags*: cint
       ## Generated based on /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:49:8
@@ -1868,11 +1870,11 @@ else:
   else:
     let SSLEAY_VERSION_NUMBER* = OPENSSL_VERSION_NUMBER
       ## Generated based on boringssl/include/openssl/base.h:66:9
-when 43 is static:
-  const BORINGSSL_API_VERSION* = 43
+when 44 is static:
+  const BORINGSSL_API_VERSION* = 44
     ## Generated based on boringssl/include/openssl/base.h:76:9
 else:
-  let BORINGSSL_API_VERSION* = 43
+  let BORINGSSL_API_VERSION* = 44
     ## Generated based on boringssl/include/openssl/base.h:76:9
 when 80 is static:
   const EVP_AEAD_MAX_KEY_LENGTH* = 80
@@ -1910,54 +1912,112 @@ when 100 is static:
 else:
   let HKDF_R_OUTPUT_TOO_LARGE* = 100
     ## Generated based on boringssl/include/openssl/hkdf.h:66:9
+when 64 is static:
+  const SHA224_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:31:9
+else:
+  let SHA224_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:31:9
+when 28 is static:
+  const SHA224_DIGEST_LENGTH* = 28
+    ## Generated based on boringssl/include/openssl/sha2.h:34:9
+else:
+  let SHA224_DIGEST_LENGTH* = 28
+    ## Generated based on boringssl/include/openssl/sha2.h:34:9
+when 64 is static:
+  const SHA256_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:58:9
+else:
+  let SHA256_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:58:9
+when 32 is static:
+  const SHA256_DIGEST_LENGTH* = 32
+    ## Generated based on boringssl/include/openssl/sha2.h:61:9
+else:
+  let SHA256_DIGEST_LENGTH* = 32
+    ## Generated based on boringssl/include/openssl/sha2.h:61:9
+when 128 is static:
+  const SHA384_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:106:9
+else:
+  let SHA384_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:106:9
+when 48 is static:
+  const SHA384_DIGEST_LENGTH* = 48
+    ## Generated based on boringssl/include/openssl/sha2.h:109:9
+else:
+  let SHA384_DIGEST_LENGTH* = 48
+    ## Generated based on boringssl/include/openssl/sha2.h:109:9
+when 128 is static:
+  const SHA512_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:133:9
+else:
+  let SHA512_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:133:9
+when 64 is static:
+  const SHA512_DIGEST_LENGTH* = 64
+    ## Generated based on boringssl/include/openssl/sha2.h:136:9
+else:
+  let SHA512_DIGEST_LENGTH* = 64
+    ## Generated based on boringssl/include/openssl/sha2.h:136:9
+when 32 is static:
+  const SHA512_256_DIGEST_LENGTH* = 32
+    ## Generated based on boringssl/include/openssl/sha2.h:175:9
+else:
+  let SHA512_256_DIGEST_LENGTH* = 32
+    ## Generated based on boringssl/include/openssl/sha2.h:175:9
 when 32 is static:
   const X25519_PRIVATE_KEY_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:36:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:37:9
 else:
   let X25519_PRIVATE_KEY_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:36:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:37:9
 when 32 is static:
   const X25519_PUBLIC_VALUE_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:37:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:38:9
 else:
   let X25519_PUBLIC_VALUE_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:37:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:38:9
 when 32 is static:
   const X25519_SHARED_KEY_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:38:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:39:9
 else:
   let X25519_SHARED_KEY_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:38:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:39:9
 when 64 is static:
   const ED25519_PRIVATE_KEY_LEN* = 64
-    ## Generated based on boringssl/include/openssl/curve25519.h:71:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:72:9
 else:
   let ED25519_PRIVATE_KEY_LEN* = 64
-    ## Generated based on boringssl/include/openssl/curve25519.h:71:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:72:9
 when 32 is static:
   const ED25519_PUBLIC_KEY_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:72:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:73:9
 else:
   let ED25519_PUBLIC_KEY_LEN* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:72:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:73:9
 when 64 is static:
   const ED25519_SIGNATURE_LEN* = 64
-    ## Generated based on boringssl/include/openssl/curve25519.h:73:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:74:9
 else:
   let ED25519_SIGNATURE_LEN* = 64
-    ## Generated based on boringssl/include/openssl/curve25519.h:73:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:74:9
 when 32 is static:
   const SPAKE2_MAX_MSG_SIZE* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:139:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:177:9
 else:
   let SPAKE2_MAX_MSG_SIZE* = 32
-    ## Generated based on boringssl/include/openssl/curve25519.h:139:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:177:9
 when 64 is static:
   const SPAKE2_MAX_KEY_SIZE* = 64
-    ## Generated based on boringssl/include/openssl/curve25519.h:157:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:195:9
 else:
   let SPAKE2_MAX_KEY_SIZE* = 64
-    ## Generated based on boringssl/include/openssl/curve25519.h:157:9
+    ## Generated based on boringssl/include/openssl/curve25519.h:195:9
+when 32 is static:
+  const CPACE_MSG_LEN* = 32
+    ## Generated based on boringssl/include/openssl/curve25519.h:261:9
+else:
+  let CPACE_MSG_LEN* = 32
+    ## Generated based on boringssl/include/openssl/curve25519.h:261:9
+when 64 is static:
+  const CPACE_SHARED_SECRET_LEN* = 64
+    ## Generated based on boringssl/include/openssl/curve25519.h:262:9
+else:
+  let CPACE_SHARED_SECRET_LEN* = 64
+    ## Generated based on boringssl/include/openssl/curve25519.h:262:9
 when 1 is static:
   const ERR_FLAG_STRING* = 1 ## Generated based on boringssl/include/openssl/err.h:81:9
 else:
@@ -2421,542 +2481,531 @@ when 16 is static:
 else:
   let ERR_NUM_ERRORS* = 16 ## Generated based on boringssl/include/openssl/err.h:399:9
 when 2 is static:
-  const BIO_RR_CONNECT* = 2 ## Generated based on boringssl/include/openssl/bio.h:174:9
+  const BIO_RR_CONNECT* = 2 ## Generated based on boringssl/include/openssl/bio.h:185:9
 else:
-  let BIO_RR_CONNECT* = 2 ## Generated based on boringssl/include/openssl/bio.h:174:9
+  let BIO_RR_CONNECT* = 2 ## Generated based on boringssl/include/openssl/bio.h:185:9
 when 3 is static:
-  const BIO_RR_ACCEPT* = 3 ## Generated based on boringssl/include/openssl/bio.h:177:9
+  const BIO_RR_ACCEPT* = 3 ## Generated based on boringssl/include/openssl/bio.h:188:9
 else:
-  let BIO_RR_ACCEPT* = 3 ## Generated based on boringssl/include/openssl/bio.h:177:9
+  let BIO_RR_ACCEPT* = 3 ## Generated based on boringssl/include/openssl/bio.h:188:9
 when 0 is static:
-  const BIO_NOCLOSE* = 0 ## Generated based on boringssl/include/openssl/bio.h:334:9
+  const BIO_NOCLOSE* = 0 ## Generated based on boringssl/include/openssl/bio.h:345:9
 else:
-  let BIO_NOCLOSE* = 0 ## Generated based on boringssl/include/openssl/bio.h:334:9
+  let BIO_NOCLOSE* = 0 ## Generated based on boringssl/include/openssl/bio.h:345:9
 when 1 is static:
-  const BIO_CLOSE* = 1 ## Generated based on boringssl/include/openssl/bio.h:335:9
+  const BIO_CLOSE* = 1 ## Generated based on boringssl/include/openssl/bio.h:346:9
 else:
-  let BIO_CLOSE* = 1 ## Generated based on boringssl/include/openssl/bio.h:335:9
+  let BIO_CLOSE* = 1 ## Generated based on boringssl/include/openssl/bio.h:346:9
 when 16 is static:
-  const BIO_FP_TEXT* = 16 ## Generated based on boringssl/include/openssl/bio.h:444:9
+  const BIO_FP_TEXT* = 16 ## Generated based on boringssl/include/openssl/bio.h:455:9
 else:
-  let BIO_FP_TEXT* = 16 ## Generated based on boringssl/include/openssl/bio.h:444:9
+  let BIO_FP_TEXT* = 16 ## Generated based on boringssl/include/openssl/bio.h:455:9
 when 40 is static:
   const BIO_CTRL_DGRAM_QUERY_MTU* = 40
-    ## Generated based on boringssl/include/openssl/bio.h:607:9
+    ## Generated based on boringssl/include/openssl/bio.h:618:9
 else:
   let BIO_CTRL_DGRAM_QUERY_MTU* = 40
-    ## Generated based on boringssl/include/openssl/bio.h:607:9
-when 42 is static:
-  const BIO_CTRL_DGRAM_SET_MTU* = 42
-    ## Generated based on boringssl/include/openssl/bio.h:609:9
-else:
-  let BIO_CTRL_DGRAM_SET_MTU* = 42
-    ## Generated based on boringssl/include/openssl/bio.h:609:9
-when 43 is static:
-  const BIO_CTRL_DGRAM_MTU_EXCEEDED* = 43
-    ## Generated based on boringssl/include/openssl/bio.h:612:9
-else:
-  let BIO_CTRL_DGRAM_MTU_EXCEEDED* = 43
-    ## Generated based on boringssl/include/openssl/bio.h:612:9
+    ## Generated based on boringssl/include/openssl/bio.h:618:9
 when 46 is static:
   const BIO_CTRL_DGRAM_GET_PEER* = 46
-    ## Generated based on boringssl/include/openssl/bio.h:618:9
+    ## Generated based on boringssl/include/openssl/bio.h:631:9
 else:
   let BIO_CTRL_DGRAM_GET_PEER* = 46
-    ## Generated based on boringssl/include/openssl/bio.h:618:9
+    ## Generated based on boringssl/include/openssl/bio.h:631:9
 when 47 is static:
   const BIO_CTRL_DGRAM_GET_FALLBACK_MTU* = 47
-    ## Generated based on boringssl/include/openssl/bio.h:620:9
+    ## Generated based on boringssl/include/openssl/bio.h:633:9
 else:
   let BIO_CTRL_DGRAM_GET_FALLBACK_MTU* = 47
-    ## Generated based on boringssl/include/openssl/bio.h:620:9
+    ## Generated based on boringssl/include/openssl/bio.h:633:9
 when 1 is static:
-  const BIO_CTRL_RESET* = 1 ## Generated based on boringssl/include/openssl/bio.h:777:9
+  const BIO_CTRL_RESET* = 1 ## Generated based on boringssl/include/openssl/bio.h:798:9
 else:
-  let BIO_CTRL_RESET* = 1 ## Generated based on boringssl/include/openssl/bio.h:777:9
+  let BIO_CTRL_RESET* = 1 ## Generated based on boringssl/include/openssl/bio.h:798:9
 when 2 is static:
-  const BIO_CTRL_EOF* = 2 ## Generated based on boringssl/include/openssl/bio.h:780:9
+  const BIO_CTRL_EOF* = 2 ## Generated based on boringssl/include/openssl/bio.h:801:9
 else:
-  let BIO_CTRL_EOF* = 2 ## Generated based on boringssl/include/openssl/bio.h:780:9
+  let BIO_CTRL_EOF* = 2 ## Generated based on boringssl/include/openssl/bio.h:801:9
 when 3 is static:
-  const BIO_CTRL_INFO* = 3 ## Generated based on boringssl/include/openssl/bio.h:785:9
+  const BIO_CTRL_INFO* = 3 ## Generated based on boringssl/include/openssl/bio.h:806:9
 else:
-  let BIO_CTRL_INFO* = 3 ## Generated based on boringssl/include/openssl/bio.h:785:9
+  let BIO_CTRL_INFO* = 3 ## Generated based on boringssl/include/openssl/bio.h:806:9
 when 8 is static:
   const BIO_CTRL_GET_CLOSE* = 8
-    ## Generated based on boringssl/include/openssl/bio.h:789:9
+    ## Generated based on boringssl/include/openssl/bio.h:810:9
 else:
-  let BIO_CTRL_GET_CLOSE* = 8 ## Generated based on boringssl/include/openssl/bio.h:789:9
+  let BIO_CTRL_GET_CLOSE* = 8 ## Generated based on boringssl/include/openssl/bio.h:810:9
 when 9 is static:
   const BIO_CTRL_SET_CLOSE* = 9
-    ## Generated based on boringssl/include/openssl/bio.h:793:9
+    ## Generated based on boringssl/include/openssl/bio.h:814:9
 else:
-  let BIO_CTRL_SET_CLOSE* = 9 ## Generated based on boringssl/include/openssl/bio.h:793:9
+  let BIO_CTRL_SET_CLOSE* = 9 ## Generated based on boringssl/include/openssl/bio.h:814:9
 when 10 is static:
   const BIO_CTRL_PENDING* = 10
-    ## Generated based on boringssl/include/openssl/bio.h:796:9
+    ## Generated based on boringssl/include/openssl/bio.h:817:9
 else:
-  let BIO_CTRL_PENDING* = 10 ## Generated based on boringssl/include/openssl/bio.h:796:9
+  let BIO_CTRL_PENDING* = 10 ## Generated based on boringssl/include/openssl/bio.h:817:9
 when 11 is static:
-  const BIO_CTRL_FLUSH* = 11 ## Generated based on boringssl/include/openssl/bio.h:799:9
+  const BIO_CTRL_FLUSH* = 11 ## Generated based on boringssl/include/openssl/bio.h:820:9
 else:
-  let BIO_CTRL_FLUSH* = 11 ## Generated based on boringssl/include/openssl/bio.h:799:9
+  let BIO_CTRL_FLUSH* = 11 ## Generated based on boringssl/include/openssl/bio.h:820:9
 when 13 is static:
   const BIO_CTRL_WPENDING* = 13
-    ## Generated based on boringssl/include/openssl/bio.h:802:9
+    ## Generated based on boringssl/include/openssl/bio.h:823:9
 else:
-  let BIO_CTRL_WPENDING* = 13 ## Generated based on boringssl/include/openssl/bio.h:802:9
+  let BIO_CTRL_WPENDING* = 13 ## Generated based on boringssl/include/openssl/bio.h:823:9
 when 14 is static:
   const BIO_CTRL_SET_CALLBACK* = 14
-    ## Generated based on boringssl/include/openssl/bio.h:806:9
+    ## Generated based on boringssl/include/openssl/bio.h:827:9
 else:
   let BIO_CTRL_SET_CALLBACK* = 14
-    ## Generated based on boringssl/include/openssl/bio.h:806:9
+    ## Generated based on boringssl/include/openssl/bio.h:827:9
 when 15 is static:
   const BIO_CTRL_GET_CALLBACK* = 15
-    ## Generated based on boringssl/include/openssl/bio.h:809:9
+    ## Generated based on boringssl/include/openssl/bio.h:830:9
 else:
   let BIO_CTRL_GET_CALLBACK* = 15
-    ## Generated based on boringssl/include/openssl/bio.h:809:9
+    ## Generated based on boringssl/include/openssl/bio.h:830:9
 when 4 is static:
-  const BIO_CTRL_SET* = 4 ## Generated based on boringssl/include/openssl/bio.h:812:9
+  const BIO_CTRL_SET* = 4 ## Generated based on boringssl/include/openssl/bio.h:833:9
 else:
-  let BIO_CTRL_SET* = 4 ## Generated based on boringssl/include/openssl/bio.h:812:9
+  let BIO_CTRL_SET* = 4 ## Generated based on boringssl/include/openssl/bio.h:833:9
 when 5 is static:
-  const BIO_CTRL_GET* = 5 ## Generated based on boringssl/include/openssl/bio.h:813:9
+  const BIO_CTRL_GET* = 5 ## Generated based on boringssl/include/openssl/bio.h:834:9
 else:
-  let BIO_CTRL_GET* = 5 ## Generated based on boringssl/include/openssl/bio.h:813:9
+  let BIO_CTRL_GET* = 5 ## Generated based on boringssl/include/openssl/bio.h:834:9
 when 6 is static:
-  const BIO_CTRL_PUSH* = 6 ## Generated based on boringssl/include/openssl/bio.h:814:9
+  const BIO_CTRL_PUSH* = 6 ## Generated based on boringssl/include/openssl/bio.h:835:9
 else:
-  let BIO_CTRL_PUSH* = 6 ## Generated based on boringssl/include/openssl/bio.h:814:9
+  let BIO_CTRL_PUSH* = 6 ## Generated based on boringssl/include/openssl/bio.h:835:9
 when 7 is static:
-  const BIO_CTRL_POP* = 7 ## Generated based on boringssl/include/openssl/bio.h:815:9
+  const BIO_CTRL_POP* = 7 ## Generated based on boringssl/include/openssl/bio.h:836:9
 else:
-  let BIO_CTRL_POP* = 7 ## Generated based on boringssl/include/openssl/bio.h:815:9
+  let BIO_CTRL_POP* = 7 ## Generated based on boringssl/include/openssl/bio.h:836:9
 when 12 is static:
-  const BIO_CTRL_DUP* = 12 ## Generated based on boringssl/include/openssl/bio.h:816:9
+  const BIO_CTRL_DUP* = 12 ## Generated based on boringssl/include/openssl/bio.h:837:9
 else:
-  let BIO_CTRL_DUP* = 12 ## Generated based on boringssl/include/openssl/bio.h:816:9
+  let BIO_CTRL_DUP* = 12 ## Generated based on boringssl/include/openssl/bio.h:837:9
 when 30 is static:
   const BIO_CTRL_SET_FILENAME* = 30
-    ## Generated based on boringssl/include/openssl/bio.h:817:9
+    ## Generated based on boringssl/include/openssl/bio.h:838:9
 else:
   let BIO_CTRL_SET_FILENAME* = 30
-    ## Generated based on boringssl/include/openssl/bio.h:817:9
+    ## Generated based on boringssl/include/openssl/bio.h:838:9
 when 1 is static:
-  const BIO_FLAGS_READ* = 1 ## Generated based on boringssl/include/openssl/bio.h:913:9
+  const BIO_FLAGS_READ* = 1 ## Generated based on boringssl/include/openssl/bio.h:934:9
 else:
-  let BIO_FLAGS_READ* = 1 ## Generated based on boringssl/include/openssl/bio.h:913:9
+  let BIO_FLAGS_READ* = 1 ## Generated based on boringssl/include/openssl/bio.h:934:9
 when 2 is static:
-  const BIO_FLAGS_WRITE* = 2 ## Generated based on boringssl/include/openssl/bio.h:914:9
+  const BIO_FLAGS_WRITE* = 2 ## Generated based on boringssl/include/openssl/bio.h:935:9
 else:
-  let BIO_FLAGS_WRITE* = 2 ## Generated based on boringssl/include/openssl/bio.h:914:9
+  let BIO_FLAGS_WRITE* = 2 ## Generated based on boringssl/include/openssl/bio.h:935:9
 when 4 is static:
   const BIO_FLAGS_IO_SPECIAL* = 4
-    ## Generated based on boringssl/include/openssl/bio.h:915:9
+    ## Generated based on boringssl/include/openssl/bio.h:936:9
 else:
   let BIO_FLAGS_IO_SPECIAL* = 4
-    ## Generated based on boringssl/include/openssl/bio.h:915:9
+    ## Generated based on boringssl/include/openssl/bio.h:936:9
 when 8 is static:
   const BIO_FLAGS_SHOULD_RETRY* = 8
-    ## Generated based on boringssl/include/openssl/bio.h:917:9
+    ## Generated based on boringssl/include/openssl/bio.h:938:9
 else:
   let BIO_FLAGS_SHOULD_RETRY* = 8
-    ## Generated based on boringssl/include/openssl/bio.h:917:9
+    ## Generated based on boringssl/include/openssl/bio.h:938:9
 when 256 is static:
   const BIO_FLAGS_BASE64_NO_NL* = 256
-    ## Generated based on boringssl/include/openssl/bio.h:918:9
+    ## Generated based on boringssl/include/openssl/bio.h:939:9
 else:
   let BIO_FLAGS_BASE64_NO_NL* = 256
-    ## Generated based on boringssl/include/openssl/bio.h:918:9
+    ## Generated based on boringssl/include/openssl/bio.h:939:9
 when 512 is static:
   const BIO_FLAGS_MEM_RDONLY* = 512
-    ## Generated based on boringssl/include/openssl/bio.h:921:9
+    ## Generated based on boringssl/include/openssl/bio.h:942:9
 else:
   let BIO_FLAGS_MEM_RDONLY* = 512
-    ## Generated based on boringssl/include/openssl/bio.h:921:9
+    ## Generated based on boringssl/include/openssl/bio.h:942:9
 when 256 is static:
   const BIO_TYPE_DESCRIPTOR* = 256
-    ## Generated based on boringssl/include/openssl/bio.h:925:9
+    ## Generated based on boringssl/include/openssl/bio.h:946:9
 else:
   let BIO_TYPE_DESCRIPTOR* = 256
-    ## Generated based on boringssl/include/openssl/bio.h:925:9
+    ## Generated based on boringssl/include/openssl/bio.h:946:9
 when 512 is static:
   const BIO_TYPE_FILTER* = 512
-    ## Generated based on boringssl/include/openssl/bio.h:926:9
+    ## Generated based on boringssl/include/openssl/bio.h:947:9
 else:
-  let BIO_TYPE_FILTER* = 512 ## Generated based on boringssl/include/openssl/bio.h:926:9
+  let BIO_TYPE_FILTER* = 512 ## Generated based on boringssl/include/openssl/bio.h:947:9
 when 1024 is static:
   const BIO_TYPE_SOURCE_SINK* = 1024
-    ## Generated based on boringssl/include/openssl/bio.h:927:9
+    ## Generated based on boringssl/include/openssl/bio.h:948:9
 else:
   let BIO_TYPE_SOURCE_SINK* = 1024
-    ## Generated based on boringssl/include/openssl/bio.h:927:9
+    ## Generated based on boringssl/include/openssl/bio.h:948:9
 when 0 is static:
-  const BIO_TYPE_NONE* = 0 ## Generated based on boringssl/include/openssl/bio.h:930:9
+  const BIO_TYPE_NONE* = 0 ## Generated based on boringssl/include/openssl/bio.h:951:9
 else:
-  let BIO_TYPE_NONE* = 0 ## Generated based on boringssl/include/openssl/bio.h:930:9
+  let BIO_TYPE_NONE* = 0 ## Generated based on boringssl/include/openssl/bio.h:951:9
 when 128 is static:
-  const BIO_TYPE_START* = 128 ## Generated based on boringssl/include/openssl/bio.h:956:9
+  const BIO_TYPE_START* = 128 ## Generated based on boringssl/include/openssl/bio.h:977:9
 else:
-  let BIO_TYPE_START* = 128 ## Generated based on boringssl/include/openssl/bio.h:956:9
+  let BIO_TYPE_START* = 128 ## Generated based on boringssl/include/openssl/bio.h:977:9
 when 100 is static:
   const BIO_C_SET_CONNECT* = 100
-    ## Generated based on boringssl/include/openssl/bio.h:958:9
+    ## Generated based on boringssl/include/openssl/bio.h:979:9
 else:
   let BIO_C_SET_CONNECT* = 100
-    ## Generated based on boringssl/include/openssl/bio.h:958:9
+    ## Generated based on boringssl/include/openssl/bio.h:979:9
 when 101 is static:
   const BIO_C_DO_STATE_MACHINE* = 101
-    ## Generated based on boringssl/include/openssl/bio.h:959:9
-else:
-  let BIO_C_DO_STATE_MACHINE* = 101
-    ## Generated based on boringssl/include/openssl/bio.h:959:9
-when 102 is static:
-  const BIO_C_SET_NBIO* = 102 ## Generated based on boringssl/include/openssl/bio.h:960:9
-else:
-  let BIO_C_SET_NBIO* = 102 ## Generated based on boringssl/include/openssl/bio.h:960:9
-when 103 is static:
-  const BIO_C_SET_PROXY_PARAM* = 103
-    ## Generated based on boringssl/include/openssl/bio.h:961:9
-else:
-  let BIO_C_SET_PROXY_PARAM* = 103
-    ## Generated based on boringssl/include/openssl/bio.h:961:9
-when 104 is static:
-  const BIO_C_SET_FD* = 104 ## Generated based on boringssl/include/openssl/bio.h:962:9
-else:
-  let BIO_C_SET_FD* = 104 ## Generated based on boringssl/include/openssl/bio.h:962:9
-when 105 is static:
-  const BIO_C_GET_FD* = 105 ## Generated based on boringssl/include/openssl/bio.h:963:9
-else:
-  let BIO_C_GET_FD* = 105 ## Generated based on boringssl/include/openssl/bio.h:963:9
-when 106 is static:
-  const BIO_C_SET_FILE_PTR* = 106
-    ## Generated based on boringssl/include/openssl/bio.h:964:9
-else:
-  let BIO_C_SET_FILE_PTR* = 106
-    ## Generated based on boringssl/include/openssl/bio.h:964:9
-when 107 is static:
-  const BIO_C_GET_FILE_PTR* = 107
-    ## Generated based on boringssl/include/openssl/bio.h:965:9
-else:
-  let BIO_C_GET_FILE_PTR* = 107
-    ## Generated based on boringssl/include/openssl/bio.h:965:9
-when 108 is static:
-  const BIO_C_SET_FILENAME* = 108
-    ## Generated based on boringssl/include/openssl/bio.h:966:9
-else:
-  let BIO_C_SET_FILENAME* = 108
-    ## Generated based on boringssl/include/openssl/bio.h:966:9
-when 109 is static:
-  const BIO_C_SET_SSL* = 109 ## Generated based on boringssl/include/openssl/bio.h:967:9
-else:
-  let BIO_C_SET_SSL* = 109 ## Generated based on boringssl/include/openssl/bio.h:967:9
-when 111 is static:
-  const BIO_C_SET_MD* = 111 ## Generated based on boringssl/include/openssl/bio.h:968:9
-else:
-  let BIO_C_SET_MD* = 111 ## Generated based on boringssl/include/openssl/bio.h:968:9
-when 112 is static:
-  const BIO_C_GET_MD* = 112 ## Generated based on boringssl/include/openssl/bio.h:969:9
-else:
-  let BIO_C_GET_MD* = 112 ## Generated based on boringssl/include/openssl/bio.h:969:9
-when 113 is static:
-  const BIO_C_GET_CIPHER_STATUS* = 113
-    ## Generated based on boringssl/include/openssl/bio.h:970:9
-else:
-  let BIO_C_GET_CIPHER_STATUS* = 113
-    ## Generated based on boringssl/include/openssl/bio.h:970:9
-when 114 is static:
-  const BIO_C_SET_BUF_MEM* = 114
-    ## Generated based on boringssl/include/openssl/bio.h:971:9
-else:
-  let BIO_C_SET_BUF_MEM* = 114
-    ## Generated based on boringssl/include/openssl/bio.h:971:9
-when 115 is static:
-  const BIO_C_GET_BUF_MEM_PTR* = 115
-    ## Generated based on boringssl/include/openssl/bio.h:972:9
-else:
-  let BIO_C_GET_BUF_MEM_PTR* = 115
-    ## Generated based on boringssl/include/openssl/bio.h:972:9
-when 116 is static:
-  const BIO_C_GET_BUFF_NUM_LINES* = 116
-    ## Generated based on boringssl/include/openssl/bio.h:973:9
-else:
-  let BIO_C_GET_BUFF_NUM_LINES* = 116
-    ## Generated based on boringssl/include/openssl/bio.h:973:9
-when 117 is static:
-  const BIO_C_SET_BUFF_SIZE* = 117
-    ## Generated based on boringssl/include/openssl/bio.h:974:9
-else:
-  let BIO_C_SET_BUFF_SIZE* = 117
-    ## Generated based on boringssl/include/openssl/bio.h:974:9
-when 118 is static:
-  const BIO_C_SET_ACCEPT* = 118
-    ## Generated based on boringssl/include/openssl/bio.h:975:9
-else:
-  let BIO_C_SET_ACCEPT* = 118 ## Generated based on boringssl/include/openssl/bio.h:975:9
-when 119 is static:
-  const BIO_C_SSL_MODE* = 119 ## Generated based on boringssl/include/openssl/bio.h:976:9
-else:
-  let BIO_C_SSL_MODE* = 119 ## Generated based on boringssl/include/openssl/bio.h:976:9
-when 120 is static:
-  const BIO_C_GET_MD_CTX* = 120
-    ## Generated based on boringssl/include/openssl/bio.h:977:9
-else:
-  let BIO_C_GET_MD_CTX* = 120 ## Generated based on boringssl/include/openssl/bio.h:977:9
-when 121 is static:
-  const BIO_C_GET_PROXY_PARAM* = 121
-    ## Generated based on boringssl/include/openssl/bio.h:978:9
-else:
-  let BIO_C_GET_PROXY_PARAM* = 121
-    ## Generated based on boringssl/include/openssl/bio.h:978:9
-when 122 is static:
-  const BIO_C_SET_BUFF_READ_DATA* = 122
-    ## Generated based on boringssl/include/openssl/bio.h:979:9
-else:
-  let BIO_C_SET_BUFF_READ_DATA* = 122
-    ## Generated based on boringssl/include/openssl/bio.h:979:9
-when 124 is static:
-  const BIO_C_GET_ACCEPT* = 124
     ## Generated based on boringssl/include/openssl/bio.h:980:9
 else:
-  let BIO_C_GET_ACCEPT* = 124 ## Generated based on boringssl/include/openssl/bio.h:980:9
-when 128 is static:
-  const BIO_C_FILE_SEEK* = 128
-    ## Generated based on boringssl/include/openssl/bio.h:981:9
+  let BIO_C_DO_STATE_MACHINE* = 101
+    ## Generated based on boringssl/include/openssl/bio.h:980:9
+when 102 is static:
+  const BIO_C_SET_NBIO* = 102 ## Generated based on boringssl/include/openssl/bio.h:981:9
 else:
-  let BIO_C_FILE_SEEK* = 128 ## Generated based on boringssl/include/openssl/bio.h:981:9
-when 129 is static:
-  const BIO_C_GET_CIPHER_CTX* = 129
+  let BIO_C_SET_NBIO* = 102 ## Generated based on boringssl/include/openssl/bio.h:981:9
+when 103 is static:
+  const BIO_C_SET_PROXY_PARAM* = 103
     ## Generated based on boringssl/include/openssl/bio.h:982:9
 else:
-  let BIO_C_GET_CIPHER_CTX* = 129
+  let BIO_C_SET_PROXY_PARAM* = 103
     ## Generated based on boringssl/include/openssl/bio.h:982:9
-when 130 is static:
-  const BIO_C_SET_BUF_MEM_EOF_RETURN* = 130
-    ## Generated based on boringssl/include/openssl/bio.h:983:9
+when 104 is static:
+  const BIO_C_SET_FD* = 104 ## Generated based on boringssl/include/openssl/bio.h:983:9
 else:
-  let BIO_C_SET_BUF_MEM_EOF_RETURN* = 130
-    ## Generated based on boringssl/include/openssl/bio.h:983:9
-when 131 is static:
-  const BIO_C_SET_BIND_MODE* = 131
-    ## Generated based on boringssl/include/openssl/bio.h:984:9
+  let BIO_C_SET_FD* = 104 ## Generated based on boringssl/include/openssl/bio.h:983:9
+when 105 is static:
+  const BIO_C_GET_FD* = 105 ## Generated based on boringssl/include/openssl/bio.h:984:9
 else:
-  let BIO_C_SET_BIND_MODE* = 131
-    ## Generated based on boringssl/include/openssl/bio.h:984:9
-when 132 is static:
-  const BIO_C_GET_BIND_MODE* = 132
+  let BIO_C_GET_FD* = 105 ## Generated based on boringssl/include/openssl/bio.h:984:9
+when 106 is static:
+  const BIO_C_SET_FILE_PTR* = 106
     ## Generated based on boringssl/include/openssl/bio.h:985:9
 else:
-  let BIO_C_GET_BIND_MODE* = 132
+  let BIO_C_SET_FILE_PTR* = 106
     ## Generated based on boringssl/include/openssl/bio.h:985:9
-when 133 is static:
-  const BIO_C_FILE_TELL* = 133
+when 107 is static:
+  const BIO_C_GET_FILE_PTR* = 107
     ## Generated based on boringssl/include/openssl/bio.h:986:9
 else:
-  let BIO_C_FILE_TELL* = 133 ## Generated based on boringssl/include/openssl/bio.h:986:9
-when 134 is static:
-  const BIO_C_GET_SOCKS* = 134
+  let BIO_C_GET_FILE_PTR* = 107
+    ## Generated based on boringssl/include/openssl/bio.h:986:9
+when 108 is static:
+  const BIO_C_SET_FILENAME* = 108
     ## Generated based on boringssl/include/openssl/bio.h:987:9
 else:
-  let BIO_C_GET_SOCKS* = 134 ## Generated based on boringssl/include/openssl/bio.h:987:9
+  let BIO_C_SET_FILENAME* = 108
+    ## Generated based on boringssl/include/openssl/bio.h:987:9
+when 109 is static:
+  const BIO_C_SET_SSL* = 109 ## Generated based on boringssl/include/openssl/bio.h:988:9
+else:
+  let BIO_C_SET_SSL* = 109 ## Generated based on boringssl/include/openssl/bio.h:988:9
+when 111 is static:
+  const BIO_C_SET_MD* = 111 ## Generated based on boringssl/include/openssl/bio.h:989:9
+else:
+  let BIO_C_SET_MD* = 111 ## Generated based on boringssl/include/openssl/bio.h:989:9
+when 112 is static:
+  const BIO_C_GET_MD* = 112 ## Generated based on boringssl/include/openssl/bio.h:990:9
+else:
+  let BIO_C_GET_MD* = 112 ## Generated based on boringssl/include/openssl/bio.h:990:9
+when 113 is static:
+  const BIO_C_GET_CIPHER_STATUS* = 113
+    ## Generated based on boringssl/include/openssl/bio.h:991:9
+else:
+  let BIO_C_GET_CIPHER_STATUS* = 113
+    ## Generated based on boringssl/include/openssl/bio.h:991:9
+when 114 is static:
+  const BIO_C_SET_BUF_MEM* = 114
+    ## Generated based on boringssl/include/openssl/bio.h:992:9
+else:
+  let BIO_C_SET_BUF_MEM* = 114
+    ## Generated based on boringssl/include/openssl/bio.h:992:9
+when 115 is static:
+  const BIO_C_GET_BUF_MEM_PTR* = 115
+    ## Generated based on boringssl/include/openssl/bio.h:993:9
+else:
+  let BIO_C_GET_BUF_MEM_PTR* = 115
+    ## Generated based on boringssl/include/openssl/bio.h:993:9
+when 116 is static:
+  const BIO_C_GET_BUFF_NUM_LINES* = 116
+    ## Generated based on boringssl/include/openssl/bio.h:994:9
+else:
+  let BIO_C_GET_BUFF_NUM_LINES* = 116
+    ## Generated based on boringssl/include/openssl/bio.h:994:9
+when 117 is static:
+  const BIO_C_SET_BUFF_SIZE* = 117
+    ## Generated based on boringssl/include/openssl/bio.h:995:9
+else:
+  let BIO_C_SET_BUFF_SIZE* = 117
+    ## Generated based on boringssl/include/openssl/bio.h:995:9
+when 118 is static:
+  const BIO_C_SET_ACCEPT* = 118
+    ## Generated based on boringssl/include/openssl/bio.h:996:9
+else:
+  let BIO_C_SET_ACCEPT* = 118 ## Generated based on boringssl/include/openssl/bio.h:996:9
+when 119 is static:
+  const BIO_C_SSL_MODE* = 119 ## Generated based on boringssl/include/openssl/bio.h:997:9
+else:
+  let BIO_C_SSL_MODE* = 119 ## Generated based on boringssl/include/openssl/bio.h:997:9
+when 120 is static:
+  const BIO_C_GET_MD_CTX* = 120
+    ## Generated based on boringssl/include/openssl/bio.h:998:9
+else:
+  let BIO_C_GET_MD_CTX* = 120 ## Generated based on boringssl/include/openssl/bio.h:998:9
+when 121 is static:
+  const BIO_C_GET_PROXY_PARAM* = 121
+    ## Generated based on boringssl/include/openssl/bio.h:999:9
+else:
+  let BIO_C_GET_PROXY_PARAM* = 121
+    ## Generated based on boringssl/include/openssl/bio.h:999:9
+when 122 is static:
+  const BIO_C_SET_BUFF_READ_DATA* = 122
+    ## Generated based on boringssl/include/openssl/bio.h:1000:9
+else:
+  let BIO_C_SET_BUFF_READ_DATA* = 122
+    ## Generated based on boringssl/include/openssl/bio.h:1000:9
+when 124 is static:
+  const BIO_C_GET_ACCEPT* = 124
+    ## Generated based on boringssl/include/openssl/bio.h:1001:9
+else:
+  let BIO_C_GET_ACCEPT* = 124
+    ## Generated based on boringssl/include/openssl/bio.h:1001:9
+when 128 is static:
+  const BIO_C_FILE_SEEK* = 128
+    ## Generated based on boringssl/include/openssl/bio.h:1002:9
+else:
+  let BIO_C_FILE_SEEK* = 128 ## Generated based on boringssl/include/openssl/bio.h:1002:9
+when 129 is static:
+  const BIO_C_GET_CIPHER_CTX* = 129
+    ## Generated based on boringssl/include/openssl/bio.h:1003:9
+else:
+  let BIO_C_GET_CIPHER_CTX* = 129
+    ## Generated based on boringssl/include/openssl/bio.h:1003:9
+when 130 is static:
+  const BIO_C_SET_BUF_MEM_EOF_RETURN* = 130
+    ## Generated based on boringssl/include/openssl/bio.h:1004:9
+else:
+  let BIO_C_SET_BUF_MEM_EOF_RETURN* = 130
+    ## Generated based on boringssl/include/openssl/bio.h:1004:9
+when 131 is static:
+  const BIO_C_SET_BIND_MODE* = 131
+    ## Generated based on boringssl/include/openssl/bio.h:1005:9
+else:
+  let BIO_C_SET_BIND_MODE* = 131
+    ## Generated based on boringssl/include/openssl/bio.h:1005:9
+when 132 is static:
+  const BIO_C_GET_BIND_MODE* = 132
+    ## Generated based on boringssl/include/openssl/bio.h:1006:9
+else:
+  let BIO_C_GET_BIND_MODE* = 132
+    ## Generated based on boringssl/include/openssl/bio.h:1006:9
+when 133 is static:
+  const BIO_C_FILE_TELL* = 133
+    ## Generated based on boringssl/include/openssl/bio.h:1007:9
+else:
+  let BIO_C_FILE_TELL* = 133 ## Generated based on boringssl/include/openssl/bio.h:1007:9
+when 134 is static:
+  const BIO_C_GET_SOCKS* = 134
+    ## Generated based on boringssl/include/openssl/bio.h:1008:9
+else:
+  let BIO_C_GET_SOCKS* = 134 ## Generated based on boringssl/include/openssl/bio.h:1008:9
 when 135 is static:
   const BIO_C_SET_SOCKS* = 135
-    ## Generated based on boringssl/include/openssl/bio.h:988:9
+    ## Generated based on boringssl/include/openssl/bio.h:1009:9
 else:
-  let BIO_C_SET_SOCKS* = 135 ## Generated based on boringssl/include/openssl/bio.h:988:9
+  let BIO_C_SET_SOCKS* = 135 ## Generated based on boringssl/include/openssl/bio.h:1009:9
 when 136 is static:
   const BIO_C_SET_WRITE_BUF_SIZE* = 136
-    ## Generated based on boringssl/include/openssl/bio.h:990:9
+    ## Generated based on boringssl/include/openssl/bio.h:1011:9
 else:
   let BIO_C_SET_WRITE_BUF_SIZE* = 136
-    ## Generated based on boringssl/include/openssl/bio.h:990:9
+    ## Generated based on boringssl/include/openssl/bio.h:1011:9
 when 137 is static:
   const BIO_C_GET_WRITE_BUF_SIZE* = 137
-    ## Generated based on boringssl/include/openssl/bio.h:991:9
+    ## Generated based on boringssl/include/openssl/bio.h:1012:9
 else:
   let BIO_C_GET_WRITE_BUF_SIZE* = 137
-    ## Generated based on boringssl/include/openssl/bio.h:991:9
+    ## Generated based on boringssl/include/openssl/bio.h:1012:9
 when 140 is static:
   const BIO_C_GET_WRITE_GUARANTEE* = 140
-    ## Generated based on boringssl/include/openssl/bio.h:992:9
+    ## Generated based on boringssl/include/openssl/bio.h:1013:9
 else:
   let BIO_C_GET_WRITE_GUARANTEE* = 140
-    ## Generated based on boringssl/include/openssl/bio.h:992:9
+    ## Generated based on boringssl/include/openssl/bio.h:1013:9
 when 141 is static:
   const BIO_C_GET_READ_REQUEST* = 141
-    ## Generated based on boringssl/include/openssl/bio.h:993:9
+    ## Generated based on boringssl/include/openssl/bio.h:1014:9
 else:
   let BIO_C_GET_READ_REQUEST* = 141
-    ## Generated based on boringssl/include/openssl/bio.h:993:9
+    ## Generated based on boringssl/include/openssl/bio.h:1014:9
 when 142 is static:
   const BIO_C_SHUTDOWN_WR* = 142
-    ## Generated based on boringssl/include/openssl/bio.h:994:9
+    ## Generated based on boringssl/include/openssl/bio.h:1015:9
 else:
   let BIO_C_SHUTDOWN_WR* = 142
-    ## Generated based on boringssl/include/openssl/bio.h:994:9
+    ## Generated based on boringssl/include/openssl/bio.h:1015:9
 when 143 is static:
-  const BIO_C_NREAD0* = 143 ## Generated based on boringssl/include/openssl/bio.h:995:9
+  const BIO_C_NREAD0* = 143 ## Generated based on boringssl/include/openssl/bio.h:1016:9
 else:
-  let BIO_C_NREAD0* = 143 ## Generated based on boringssl/include/openssl/bio.h:995:9
+  let BIO_C_NREAD0* = 143 ## Generated based on boringssl/include/openssl/bio.h:1016:9
 when 144 is static:
-  const BIO_C_NREAD* = 144 ## Generated based on boringssl/include/openssl/bio.h:996:9
+  const BIO_C_NREAD* = 144 ## Generated based on boringssl/include/openssl/bio.h:1017:9
 else:
-  let BIO_C_NREAD* = 144 ## Generated based on boringssl/include/openssl/bio.h:996:9
+  let BIO_C_NREAD* = 144 ## Generated based on boringssl/include/openssl/bio.h:1017:9
 when 145 is static:
-  const BIO_C_NWRITE0* = 145 ## Generated based on boringssl/include/openssl/bio.h:997:9
+  const BIO_C_NWRITE0* = 145 ## Generated based on boringssl/include/openssl/bio.h:1018:9
 else:
-  let BIO_C_NWRITE0* = 145 ## Generated based on boringssl/include/openssl/bio.h:997:9
+  let BIO_C_NWRITE0* = 145 ## Generated based on boringssl/include/openssl/bio.h:1018:9
 when 146 is static:
-  const BIO_C_NWRITE* = 146 ## Generated based on boringssl/include/openssl/bio.h:998:9
+  const BIO_C_NWRITE* = 146 ## Generated based on boringssl/include/openssl/bio.h:1019:9
 else:
-  let BIO_C_NWRITE* = 146 ## Generated based on boringssl/include/openssl/bio.h:998:9
+  let BIO_C_NWRITE* = 146 ## Generated based on boringssl/include/openssl/bio.h:1019:9
 when 147 is static:
   const BIO_C_RESET_READ_REQUEST* = 147
-    ## Generated based on boringssl/include/openssl/bio.h:999:9
+    ## Generated based on boringssl/include/openssl/bio.h:1020:9
 else:
   let BIO_C_RESET_READ_REQUEST* = 147
-    ## Generated based on boringssl/include/openssl/bio.h:999:9
+    ## Generated based on boringssl/include/openssl/bio.h:1020:9
 when 148 is static:
   const BIO_C_SET_MD_CTX* = 148
-    ## Generated based on boringssl/include/openssl/bio.h:1000:9
+    ## Generated based on boringssl/include/openssl/bio.h:1021:9
 else:
   let BIO_C_SET_MD_CTX* = 148
-    ## Generated based on boringssl/include/openssl/bio.h:1000:9
+    ## Generated based on boringssl/include/openssl/bio.h:1021:9
 when 149 is static:
   const BIO_C_SET_PREFIX* = 149
-    ## Generated based on boringssl/include/openssl/bio.h:1002:9
+    ## Generated based on boringssl/include/openssl/bio.h:1023:9
 else:
   let BIO_C_SET_PREFIX* = 149
-    ## Generated based on boringssl/include/openssl/bio.h:1002:9
+    ## Generated based on boringssl/include/openssl/bio.h:1023:9
 when 150 is static:
   const BIO_C_GET_PREFIX* = 150
-    ## Generated based on boringssl/include/openssl/bio.h:1003:9
+    ## Generated based on boringssl/include/openssl/bio.h:1024:9
 else:
   let BIO_C_GET_PREFIX* = 150
-    ## Generated based on boringssl/include/openssl/bio.h:1003:9
+    ## Generated based on boringssl/include/openssl/bio.h:1024:9
 when 151 is static:
   const BIO_C_SET_SUFFIX* = 151
-    ## Generated based on boringssl/include/openssl/bio.h:1004:9
+    ## Generated based on boringssl/include/openssl/bio.h:1025:9
 else:
   let BIO_C_SET_SUFFIX* = 151
-    ## Generated based on boringssl/include/openssl/bio.h:1004:9
+    ## Generated based on boringssl/include/openssl/bio.h:1025:9
 when 152 is static:
   const BIO_C_GET_SUFFIX* = 152
-    ## Generated based on boringssl/include/openssl/bio.h:1005:9
+    ## Generated based on boringssl/include/openssl/bio.h:1026:9
 else:
   let BIO_C_GET_SUFFIX* = 152
-    ## Generated based on boringssl/include/openssl/bio.h:1005:9
+    ## Generated based on boringssl/include/openssl/bio.h:1026:9
 when 153 is static:
   const BIO_C_SET_EX_ARG* = 153
-    ## Generated based on boringssl/include/openssl/bio.h:1007:9
+    ## Generated based on boringssl/include/openssl/bio.h:1028:9
 else:
   let BIO_C_SET_EX_ARG* = 153
-    ## Generated based on boringssl/include/openssl/bio.h:1007:9
+    ## Generated based on boringssl/include/openssl/bio.h:1028:9
 when 154 is static:
   const BIO_C_GET_EX_ARG* = 154
-    ## Generated based on boringssl/include/openssl/bio.h:1008:9
+    ## Generated based on boringssl/include/openssl/bio.h:1029:9
 else:
   let BIO_C_GET_EX_ARG* = 154
-    ## Generated based on boringssl/include/openssl/bio.h:1008:9
+    ## Generated based on boringssl/include/openssl/bio.h:1029:9
 when 100 is static:
   const BIO_R_BAD_FOPEN_MODE* = 100
-    ## Generated based on boringssl/include/openssl/bio.h:1028:9
+    ## Generated based on boringssl/include/openssl/bio.h:1049:9
 else:
   let BIO_R_BAD_FOPEN_MODE* = 100
-    ## Generated based on boringssl/include/openssl/bio.h:1028:9
+    ## Generated based on boringssl/include/openssl/bio.h:1049:9
 when 101 is static:
   const BIO_R_BROKEN_PIPE* = 101
-    ## Generated based on boringssl/include/openssl/bio.h:1029:9
+    ## Generated based on boringssl/include/openssl/bio.h:1050:9
 else:
   let BIO_R_BROKEN_PIPE* = 101
-    ## Generated based on boringssl/include/openssl/bio.h:1029:9
+    ## Generated based on boringssl/include/openssl/bio.h:1050:9
 when 102 is static:
   const BIO_R_CONNECT_ERROR* = 102
-    ## Generated based on boringssl/include/openssl/bio.h:1030:9
+    ## Generated based on boringssl/include/openssl/bio.h:1051:9
 else:
   let BIO_R_CONNECT_ERROR* = 102
-    ## Generated based on boringssl/include/openssl/bio.h:1030:9
+    ## Generated based on boringssl/include/openssl/bio.h:1051:9
 when 103 is static:
   const BIO_R_ERROR_SETTING_NBIO* = 103
-    ## Generated based on boringssl/include/openssl/bio.h:1031:9
+    ## Generated based on boringssl/include/openssl/bio.h:1052:9
 else:
   let BIO_R_ERROR_SETTING_NBIO* = 103
-    ## Generated based on boringssl/include/openssl/bio.h:1031:9
+    ## Generated based on boringssl/include/openssl/bio.h:1052:9
 when 104 is static:
   const BIO_R_INVALID_ARGUMENT* = 104
-    ## Generated based on boringssl/include/openssl/bio.h:1032:9
+    ## Generated based on boringssl/include/openssl/bio.h:1053:9
 else:
   let BIO_R_INVALID_ARGUMENT* = 104
-    ## Generated based on boringssl/include/openssl/bio.h:1032:9
+    ## Generated based on boringssl/include/openssl/bio.h:1053:9
 when 105 is static:
-  const BIO_R_IN_USE* = 105 ## Generated based on boringssl/include/openssl/bio.h:1033:9
+  const BIO_R_IN_USE* = 105 ## Generated based on boringssl/include/openssl/bio.h:1054:9
 else:
-  let BIO_R_IN_USE* = 105 ## Generated based on boringssl/include/openssl/bio.h:1033:9
+  let BIO_R_IN_USE* = 105 ## Generated based on boringssl/include/openssl/bio.h:1054:9
 when 106 is static:
   const BIO_R_KEEPALIVE* = 106
-    ## Generated based on boringssl/include/openssl/bio.h:1034:9
+    ## Generated based on boringssl/include/openssl/bio.h:1055:9
 else:
-  let BIO_R_KEEPALIVE* = 106 ## Generated based on boringssl/include/openssl/bio.h:1034:9
+  let BIO_R_KEEPALIVE* = 106 ## Generated based on boringssl/include/openssl/bio.h:1055:9
 when 107 is static:
   const BIO_R_NBIO_CONNECT_ERROR* = 107
-    ## Generated based on boringssl/include/openssl/bio.h:1035:9
+    ## Generated based on boringssl/include/openssl/bio.h:1056:9
 else:
   let BIO_R_NBIO_CONNECT_ERROR* = 107
-    ## Generated based on boringssl/include/openssl/bio.h:1035:9
+    ## Generated based on boringssl/include/openssl/bio.h:1056:9
 when 108 is static:
   const BIO_R_NO_HOSTNAME_SPECIFIED* = 108
-    ## Generated based on boringssl/include/openssl/bio.h:1036:9
+    ## Generated based on boringssl/include/openssl/bio.h:1057:9
 else:
   let BIO_R_NO_HOSTNAME_SPECIFIED* = 108
-    ## Generated based on boringssl/include/openssl/bio.h:1036:9
+    ## Generated based on boringssl/include/openssl/bio.h:1057:9
 when 109 is static:
   const BIO_R_NO_PORT_SPECIFIED* = 109
-    ## Generated based on boringssl/include/openssl/bio.h:1037:9
+    ## Generated based on boringssl/include/openssl/bio.h:1058:9
 else:
   let BIO_R_NO_PORT_SPECIFIED* = 109
-    ## Generated based on boringssl/include/openssl/bio.h:1037:9
+    ## Generated based on boringssl/include/openssl/bio.h:1058:9
 when 110 is static:
   const BIO_R_NO_SUCH_FILE* = 110
-    ## Generated based on boringssl/include/openssl/bio.h:1038:9
+    ## Generated based on boringssl/include/openssl/bio.h:1059:9
 else:
   let BIO_R_NO_SUCH_FILE* = 110
-    ## Generated based on boringssl/include/openssl/bio.h:1038:9
+    ## Generated based on boringssl/include/openssl/bio.h:1059:9
 when 111 is static:
   const BIO_R_NULL_PARAMETER* = 111
-    ## Generated based on boringssl/include/openssl/bio.h:1039:9
+    ## Generated based on boringssl/include/openssl/bio.h:1060:9
 else:
   let BIO_R_NULL_PARAMETER* = 111
-    ## Generated based on boringssl/include/openssl/bio.h:1039:9
+    ## Generated based on boringssl/include/openssl/bio.h:1060:9
 when 112 is static:
-  const BIO_R_SYS_LIB* = 112 ## Generated based on boringssl/include/openssl/bio.h:1040:9
+  const BIO_R_SYS_LIB* = 112 ## Generated based on boringssl/include/openssl/bio.h:1061:9
 else:
-  let BIO_R_SYS_LIB* = 112 ## Generated based on boringssl/include/openssl/bio.h:1040:9
+  let BIO_R_SYS_LIB* = 112 ## Generated based on boringssl/include/openssl/bio.h:1061:9
 when 113 is static:
   const BIO_R_UNABLE_TO_CREATE_SOCKET* = 113
-    ## Generated based on boringssl/include/openssl/bio.h:1041:9
+    ## Generated based on boringssl/include/openssl/bio.h:1062:9
 else:
   let BIO_R_UNABLE_TO_CREATE_SOCKET* = 113
-    ## Generated based on boringssl/include/openssl/bio.h:1041:9
+    ## Generated based on boringssl/include/openssl/bio.h:1062:9
 when 114 is static:
   const BIO_R_UNINITIALIZED* = 114
-    ## Generated based on boringssl/include/openssl/bio.h:1042:9
+    ## Generated based on boringssl/include/openssl/bio.h:1063:9
 else:
   let BIO_R_UNINITIALIZED* = 114
-    ## Generated based on boringssl/include/openssl/bio.h:1042:9
+    ## Generated based on boringssl/include/openssl/bio.h:1063:9
 when 115 is static:
   const BIO_R_UNSUPPORTED_METHOD* = 115
-    ## Generated based on boringssl/include/openssl/bio.h:1043:9
+    ## Generated based on boringssl/include/openssl/bio.h:1064:9
 else:
   let BIO_R_UNSUPPORTED_METHOD* = 115
-    ## Generated based on boringssl/include/openssl/bio.h:1043:9
+    ## Generated based on boringssl/include/openssl/bio.h:1064:9
 when 116 is static:
   const BIO_R_WRITE_TO_READ_ONLY_BIO* = 116
-    ## Generated based on boringssl/include/openssl/bio.h:1044:9
+    ## Generated based on boringssl/include/openssl/bio.h:1065:9
 else:
   let BIO_R_WRITE_TO_READ_ONLY_BIO* = 116
-    ## Generated based on boringssl/include/openssl/bio.h:1044:9
+    ## Generated based on boringssl/include/openssl/bio.h:1065:9
 when 0 is static:
   const EVP_CIPH_STREAM_CIPHER* = 0
     ## Generated based on boringssl/include/openssl/cipher.h:416:9
@@ -3419,57 +3468,57 @@ else:
     ## Generated based on boringssl/include/openssl/cipher.h:817:9
 when 64 is static:
   const EVP_MAX_MD_SIZE* = 64
-    ## Generated based on boringssl/include/openssl/digest.h:126:9
+    ## Generated based on boringssl/include/openssl/digest.h:136:9
 else:
   let EVP_MAX_MD_SIZE* = 64
-    ## Generated based on boringssl/include/openssl/digest.h:126:9
-when 128 is static:
-  const EVP_MAX_MD_BLOCK_SIZE* = 128
-    ## Generated based on boringssl/include/openssl/digest.h:130:9
+    ## Generated based on boringssl/include/openssl/digest.h:136:9
+when 136 is static:
+  const EVP_MAX_MD_BLOCK_SIZE* = 136
+    ## Generated based on boringssl/include/openssl/digest.h:140:9
 else:
-  let EVP_MAX_MD_BLOCK_SIZE* = 128
-    ## Generated based on boringssl/include/openssl/digest.h:130:9
+  let EVP_MAX_MD_BLOCK_SIZE* = 136
+    ## Generated based on boringssl/include/openssl/digest.h:140:9
 when 2 is static:
   const EVP_MD_FLAG_DIGALGID_ABSENT* = 2
-    ## Generated based on boringssl/include/openssl/digest.h:177:9
+    ## Generated based on boringssl/include/openssl/digest.h:187:9
 else:
   let EVP_MD_FLAG_DIGALGID_ABSENT* = 2
-    ## Generated based on boringssl/include/openssl/digest.h:177:9
+    ## Generated based on boringssl/include/openssl/digest.h:187:9
 when 4 is static:
   const EVP_MD_FLAG_XOF* = 4
-    ## Generated based on boringssl/include/openssl/digest.h:182:9
+    ## Generated based on boringssl/include/openssl/digest.h:192:9
 else:
-  let EVP_MD_FLAG_XOF* = 4 ## Generated based on boringssl/include/openssl/digest.h:182:9
+  let EVP_MD_FLAG_XOF* = 4 ## Generated based on boringssl/include/openssl/digest.h:192:9
 when 0 is static:
   const EVP_MD_CTX_FLAG_NON_FIPS_ALLOW* = 0
-    ## Generated based on boringssl/include/openssl/digest.h:319:9
+    ## Generated based on boringssl/include/openssl/digest.h:329:9
 else:
   let EVP_MD_CTX_FLAG_NON_FIPS_ALLOW* = 0
-    ## Generated based on boringssl/include/openssl/digest.h:319:9
-when 208 is static:
-  const EVP_MAX_MD_DATA_SIZE* = 208
-    ## Generated based on boringssl/include/openssl/digest.h:349:9
+    ## Generated based on boringssl/include/openssl/digest.h:329:9
+when 240 is static:
+  const EVP_MAX_MD_DATA_SIZE* = 240
+    ## Generated based on boringssl/include/openssl/digest.h:359:9
 else:
-  let EVP_MAX_MD_DATA_SIZE* = 208
-    ## Generated based on boringssl/include/openssl/digest.h:349:9
+  let EVP_MAX_MD_DATA_SIZE* = 240
+    ## Generated based on boringssl/include/openssl/digest.h:359:9
 when 100 is static:
   const DIGEST_R_INPUT_NOT_INITIALIZED* = 100
-    ## Generated based on boringssl/include/openssl/digest.h:395:9
+    ## Generated based on boringssl/include/openssl/digest.h:405:9
 else:
   let DIGEST_R_INPUT_NOT_INITIALIZED* = 100
-    ## Generated based on boringssl/include/openssl/digest.h:395:9
+    ## Generated based on boringssl/include/openssl/digest.h:405:9
 when 101 is static:
   const DIGEST_R_DECODE_ERROR* = 101
-    ## Generated based on boringssl/include/openssl/digest.h:396:9
+    ## Generated based on boringssl/include/openssl/digest.h:406:9
 else:
   let DIGEST_R_DECODE_ERROR* = 101
-    ## Generated based on boringssl/include/openssl/digest.h:396:9
+    ## Generated based on boringssl/include/openssl/digest.h:406:9
 when 102 is static:
   const DIGEST_R_UNKNOWN_HASH* = 102
-    ## Generated based on boringssl/include/openssl/digest.h:397:9
+    ## Generated based on boringssl/include/openssl/digest.h:407:9
 else:
   let DIGEST_R_UNKNOWN_HASH* = 102
-    ## Generated based on boringssl/include/openssl/digest.h:397:9
+    ## Generated based on boringssl/include/openssl/digest.h:407:9
 when 100 is static:
   const EVP_R_BUFFER_TOO_SMALL* = 100
     ## Generated based on boringssl/include/openssl/evp_errors.h:18:9
@@ -3728,17 +3777,23 @@ when 142 is static:
 else:
   let EVP_R_INVALID_SECRET_LENGTH* = 142
     ## Generated based on boringssl/include/openssl/evp_errors.h:60:9
+when 143 is static:
+  const EVP_R_INVALID_ENTROPY_LENGTH* = 143
+    ## Generated based on boringssl/include/openssl/evp_errors.h:61:9
+else:
+  let EVP_R_INVALID_ENTROPY_LENGTH* = 143
+    ## Generated based on boringssl/include/openssl/evp_errors.h:61:9
 when EVP_R_OPERATION_NOT_INITIALIZED is typedesc:
   type EVP_R_OPERATON_NOT_INITIALIZED* = EVP_R_OPERATION_NOT_INITIALIZED
-    ## Generated based on boringssl/include/openssl/evp_errors.h:63:9
+    ## Generated based on boringssl/include/openssl/evp_errors.h:64:9
 
 else:
   when EVP_R_OPERATION_NOT_INITIALIZED is static:
     const EVP_R_OPERATON_NOT_INITIALIZED* = EVP_R_OPERATION_NOT_INITIALIZED
-      ## Generated based on boringssl/include/openssl/evp_errors.h:63:9
+      ## Generated based on boringssl/include/openssl/evp_errors.h:64:9
   else:
     let EVP_R_OPERATON_NOT_INITIALIZED* = EVP_R_OPERATION_NOT_INITIALIZED
-      ## Generated based on boringssl/include/openssl/evp_errors.h:63:9
+      ## Generated based on boringssl/include/openssl/evp_errors.h:64:9
 when "UNDEF" is static:
   const SN_undef* = "UNDEF" ## Generated based on boringssl/include/openssl/nid.h:52:9
 else:
@@ -16345,234 +16400,288 @@ when 972 is static:
   const NID_X_Wing* = 972 ## Generated based on boringssl/include/openssl/nid.h:5512:9
 else:
   let NID_X_Wing* = 972 ## Generated based on boringssl/include/openssl/nid.h:5512:9
-when "alg-mtcProof-draft" is static:
-  const SN_alg_mtcProof_draft* = "alg-mtcProof-draft"
+when "id-slh-dsa-sha2-128s" is static:
+  const SN_SLH_DSA_SHA2_128s* = "id-slh-dsa-sha2-128s"
     ## Generated based on boringssl/include/openssl/nid.h:5514:9
 else:
-  let SN_alg_mtcProof_draft* = "alg-mtcProof-draft"
+  let SN_SLH_DSA_SHA2_128s* = "id-slh-dsa-sha2-128s"
     ## Generated based on boringssl/include/openssl/nid.h:5514:9
+when "SLH-DSA-SHA2-128s" is static:
+  const LN_SLH_DSA_SHA2_128s* = "SLH-DSA-SHA2-128s"
+    ## Generated based on boringssl/include/openssl/nid.h:5515:9
+else:
+  let LN_SLH_DSA_SHA2_128s* = "SLH-DSA-SHA2-128s"
+    ## Generated based on boringssl/include/openssl/nid.h:5515:9
+when 973 is static:
+  const NID_SLH_DSA_SHA2_128s* = 973
+    ## Generated based on boringssl/include/openssl/nid.h:5516:9
+else:
+  let NID_SLH_DSA_SHA2_128s* = 973
+    ## Generated based on boringssl/include/openssl/nid.h:5516:9
+when "id-slh-dsa-shake-256f" is static:
+  const SN_SLH_DSA_SHAKE_256f* = "id-slh-dsa-shake-256f"
+    ## Generated based on boringssl/include/openssl/nid.h:5521:9
+else:
+  let SN_SLH_DSA_SHAKE_256f* = "id-slh-dsa-shake-256f"
+    ## Generated based on boringssl/include/openssl/nid.h:5521:9
+when "SLH-DSA-SHAKE-256f" is static:
+  const LN_SLH_DSA_SHAKE_256f* = "SLH-DSA-SHAKE-256f"
+    ## Generated based on boringssl/include/openssl/nid.h:5522:9
+else:
+  let LN_SLH_DSA_SHAKE_256f* = "SLH-DSA-SHAKE-256f"
+    ## Generated based on boringssl/include/openssl/nid.h:5522:9
+when 974 is static:
+  const NID_SLH_DSA_SHAKE_256f* = 974
+    ## Generated based on boringssl/include/openssl/nid.h:5523:9
+else:
+  let NID_SLH_DSA_SHAKE_256f* = 974
+    ## Generated based on boringssl/include/openssl/nid.h:5523:9
+when "id-hash-slh-dsa-sha2-128s-with-sha256" is static:
+  const SN_SLH_DSA_SHA2_128s_WITH_SHA256* = "id-hash-slh-dsa-sha2-128s-with-sha256"
+    ## Generated based on boringssl/include/openssl/nid.h:5528:9
+else:
+  let SN_SLH_DSA_SHA2_128s_WITH_SHA256* = "id-hash-slh-dsa-sha2-128s-with-sha256"
+    ## Generated based on boringssl/include/openssl/nid.h:5528:9
+when "SLH-DSA-SHA2-128s-WITH-SHA256" is static:
+  const LN_SLH_DSA_SHA2_128s_WITH_SHA256* = "SLH-DSA-SHA2-128s-WITH-SHA256"
+    ## Generated based on boringssl/include/openssl/nid.h:5529:9
+else:
+  let LN_SLH_DSA_SHA2_128s_WITH_SHA256* = "SLH-DSA-SHA2-128s-WITH-SHA256"
+    ## Generated based on boringssl/include/openssl/nid.h:5529:9
+when 975 is static:
+  const NID_SLH_DSA_SHA2_128s_WITH_SHA256* = 975
+    ## Generated based on boringssl/include/openssl/nid.h:5530:9
+else:
+  let NID_SLH_DSA_SHA2_128s_WITH_SHA256* = 975
+    ## Generated based on boringssl/include/openssl/nid.h:5530:9
+when "alg-mtcProof" is static:
+  const SN_alg_mtcProof* = "alg-mtcProof"
+    ## Generated based on boringssl/include/openssl/nid.h:5536:9
+else:
+  let SN_alg_mtcProof* = "alg-mtcProof"
+    ## Generated based on boringssl/include/openssl/nid.h:5536:9
 when 976 is static:
-  const NID_alg_mtcProof_draft* = 976
-    ## Generated based on boringssl/include/openssl/nid.h:5515:9
+  const NID_alg_mtcProof* = 976
+    ## Generated based on boringssl/include/openssl/nid.h:5537:9
 else:
-  let NID_alg_mtcProof_draft* = 976
-    ## Generated based on boringssl/include/openssl/nid.h:5515:9
-when "rdna-trustAnchorID-draft" is static:
-  const SN_rdna_trustAnchorID_draft* = "rdna-trustAnchorID-draft"
-    ## Generated based on boringssl/include/openssl/nid.h:5520:9
+  let NID_alg_mtcProof* = 976
+    ## Generated based on boringssl/include/openssl/nid.h:5537:9
+when "rdna-trustAnchorID" is static:
+  const SN_rdna_trustAnchorID* = "rdna-trustAnchorID"
+    ## Generated based on boringssl/include/openssl/nid.h:5541:9
 else:
-  let SN_rdna_trustAnchorID_draft* = "rdna-trustAnchorID-draft"
-    ## Generated based on boringssl/include/openssl/nid.h:5520:9
+  let SN_rdna_trustAnchorID* = "rdna-trustAnchorID"
+    ## Generated based on boringssl/include/openssl/nid.h:5541:9
 when 977 is static:
-  const NID_rdna_trustAnchorID_draft* = 977
-    ## Generated based on boringssl/include/openssl/nid.h:5521:9
+  const NID_rdna_trustAnchorID* = 977
+    ## Generated based on boringssl/include/openssl/nid.h:5542:9
 else:
-  let NID_rdna_trustAnchorID_draft* = 977
-    ## Generated based on boringssl/include/openssl/nid.h:5521:9
+  let NID_rdna_trustAnchorID* = 977
+    ## Generated based on boringssl/include/openssl/nid.h:5542:9
 when 978 is static:
-  const NID_pe_mtcCertificationAuthority_draft* = 978
-    ## Generated based on boringssl/include/openssl/nid.h:5528:9
+  const NID_pe_mtcCertificationAuthority_SHA256* = 978
+    ## Generated based on boringssl/include/openssl/nid.h:5549:9
 else:
-  let NID_pe_mtcCertificationAuthority_draft* = 978
-    ## Generated based on boringssl/include/openssl/nid.h:5528:9
+  let NID_pe_mtcCertificationAuthority_SHA256* = 978
+    ## Generated based on boringssl/include/openssl/nid.h:5549:9
 when NID_undef is typedesc:
   type EVP_PKEY_NONE* = NID_undef
-    ## Generated based on boringssl/include/openssl/evp.h:115:9
+    ## Generated based on boringssl/include/openssl/evp.h:116:9
 
 else:
   when NID_undef is static:
     const EVP_PKEY_NONE* = NID_undef
-      ## Generated based on boringssl/include/openssl/evp.h:115:9
+      ## Generated based on boringssl/include/openssl/evp.h:116:9
   else:
     let EVP_PKEY_NONE* = NID_undef
-      ## Generated based on boringssl/include/openssl/evp.h:115:9
+      ## Generated based on boringssl/include/openssl/evp.h:116:9
 when NID_rsaEncryption is typedesc:
   type EVP_PKEY_RSA* = NID_rsaEncryption
-    ## Generated based on boringssl/include/openssl/evp.h:116:9
+    ## Generated based on boringssl/include/openssl/evp.h:117:9
 
 else:
   when NID_rsaEncryption is static:
     const EVP_PKEY_RSA* = NID_rsaEncryption
-      ## Generated based on boringssl/include/openssl/evp.h:116:9
+      ## Generated based on boringssl/include/openssl/evp.h:117:9
   else:
     let EVP_PKEY_RSA* = NID_rsaEncryption
-      ## Generated based on boringssl/include/openssl/evp.h:116:9
+      ## Generated based on boringssl/include/openssl/evp.h:117:9
 when NID_rsassaPss is typedesc:
   type EVP_PKEY_RSA_PSS* = NID_rsassaPss
-    ## Generated based on boringssl/include/openssl/evp.h:117:9
+    ## Generated based on boringssl/include/openssl/evp.h:118:9
 
 else:
   when NID_rsassaPss is static:
     const EVP_PKEY_RSA_PSS* = NID_rsassaPss
-      ## Generated based on boringssl/include/openssl/evp.h:117:9
+      ## Generated based on boringssl/include/openssl/evp.h:118:9
   else:
     let EVP_PKEY_RSA_PSS* = NID_rsassaPss
-      ## Generated based on boringssl/include/openssl/evp.h:117:9
+      ## Generated based on boringssl/include/openssl/evp.h:118:9
 when NID_dsa is typedesc:
   type EVP_PKEY_DSA* = NID_dsa
-    ## Generated based on boringssl/include/openssl/evp.h:118:9
+    ## Generated based on boringssl/include/openssl/evp.h:119:9
 
 else:
   when NID_dsa is static:
     const EVP_PKEY_DSA* = NID_dsa
-      ## Generated based on boringssl/include/openssl/evp.h:118:9
+      ## Generated based on boringssl/include/openssl/evp.h:119:9
   else:
     let EVP_PKEY_DSA* = NID_dsa
-      ## Generated based on boringssl/include/openssl/evp.h:118:9
+      ## Generated based on boringssl/include/openssl/evp.h:119:9
 when NID_X9_62_id_ecPublicKey is typedesc:
   type EVP_PKEY_EC* = NID_X9_62_id_ecPublicKey
-    ## Generated based on boringssl/include/openssl/evp.h:119:9
+    ## Generated based on boringssl/include/openssl/evp.h:120:9
 
 else:
   when NID_X9_62_id_ecPublicKey is static:
     const EVP_PKEY_EC* = NID_X9_62_id_ecPublicKey
-      ## Generated based on boringssl/include/openssl/evp.h:119:9
+      ## Generated based on boringssl/include/openssl/evp.h:120:9
   else:
     let EVP_PKEY_EC* = NID_X9_62_id_ecPublicKey
-      ## Generated based on boringssl/include/openssl/evp.h:119:9
+      ## Generated based on boringssl/include/openssl/evp.h:120:9
 when NID_ED25519 is typedesc:
   type EVP_PKEY_ED25519* = NID_ED25519
-    ## Generated based on boringssl/include/openssl/evp.h:120:9
+    ## Generated based on boringssl/include/openssl/evp.h:121:9
 
 else:
   when NID_ED25519 is static:
     const EVP_PKEY_ED25519* = NID_ED25519
-      ## Generated based on boringssl/include/openssl/evp.h:120:9
+      ## Generated based on boringssl/include/openssl/evp.h:121:9
   else:
     let EVP_PKEY_ED25519* = NID_ED25519
-      ## Generated based on boringssl/include/openssl/evp.h:120:9
+      ## Generated based on boringssl/include/openssl/evp.h:121:9
 when NID_X25519 is typedesc:
   type EVP_PKEY_X25519* = NID_X25519
-    ## Generated based on boringssl/include/openssl/evp.h:121:9
+    ## Generated based on boringssl/include/openssl/evp.h:122:9
 
 else:
   when NID_X25519 is static:
     const EVP_PKEY_X25519* = NID_X25519
-      ## Generated based on boringssl/include/openssl/evp.h:121:9
+      ## Generated based on boringssl/include/openssl/evp.h:122:9
   else:
     let EVP_PKEY_X25519* = NID_X25519
-      ## Generated based on boringssl/include/openssl/evp.h:121:9
+      ## Generated based on boringssl/include/openssl/evp.h:122:9
 when NID_hkdf is typedesc:
   type EVP_PKEY_HKDF* = NID_hkdf
-    ## Generated based on boringssl/include/openssl/evp.h:122:9
+    ## Generated based on boringssl/include/openssl/evp.h:123:9
 
 else:
   when NID_hkdf is static:
     const EVP_PKEY_HKDF* = NID_hkdf
-      ## Generated based on boringssl/include/openssl/evp.h:122:9
+      ## Generated based on boringssl/include/openssl/evp.h:123:9
   else:
     let EVP_PKEY_HKDF* = NID_hkdf
-      ## Generated based on boringssl/include/openssl/evp.h:122:9
+      ## Generated based on boringssl/include/openssl/evp.h:123:9
 when NID_dhKeyAgreement is typedesc:
   type EVP_PKEY_DH* = NID_dhKeyAgreement
-    ## Generated based on boringssl/include/openssl/evp.h:123:9
+    ## Generated based on boringssl/include/openssl/evp.h:124:9
 
 else:
   when NID_dhKeyAgreement is static:
     const EVP_PKEY_DH* = NID_dhKeyAgreement
-      ## Generated based on boringssl/include/openssl/evp.h:123:9
+      ## Generated based on boringssl/include/openssl/evp.h:124:9
   else:
     let EVP_PKEY_DH* = NID_dhKeyAgreement
-      ## Generated based on boringssl/include/openssl/evp.h:123:9
+      ## Generated based on boringssl/include/openssl/evp.h:124:9
 when NID_ML_DSA_44 is typedesc:
   type EVP_PKEY_ML_DSA_44* = NID_ML_DSA_44
-    ## Generated based on boringssl/include/openssl/evp.h:124:9
+    ## Generated based on boringssl/include/openssl/evp.h:125:9
 
 else:
   when NID_ML_DSA_44 is static:
     const EVP_PKEY_ML_DSA_44* = NID_ML_DSA_44
-      ## Generated based on boringssl/include/openssl/evp.h:124:9
+      ## Generated based on boringssl/include/openssl/evp.h:125:9
   else:
     let EVP_PKEY_ML_DSA_44* = NID_ML_DSA_44
-      ## Generated based on boringssl/include/openssl/evp.h:124:9
+      ## Generated based on boringssl/include/openssl/evp.h:125:9
 when NID_ML_DSA_65 is typedesc:
   type EVP_PKEY_ML_DSA_65* = NID_ML_DSA_65
-    ## Generated based on boringssl/include/openssl/evp.h:125:9
+    ## Generated based on boringssl/include/openssl/evp.h:126:9
 
 else:
   when NID_ML_DSA_65 is static:
     const EVP_PKEY_ML_DSA_65* = NID_ML_DSA_65
-      ## Generated based on boringssl/include/openssl/evp.h:125:9
+      ## Generated based on boringssl/include/openssl/evp.h:126:9
   else:
     let EVP_PKEY_ML_DSA_65* = NID_ML_DSA_65
-      ## Generated based on boringssl/include/openssl/evp.h:125:9
+      ## Generated based on boringssl/include/openssl/evp.h:126:9
 when NID_ML_DSA_87 is typedesc:
   type EVP_PKEY_ML_DSA_87* = NID_ML_DSA_87
-    ## Generated based on boringssl/include/openssl/evp.h:126:9
+    ## Generated based on boringssl/include/openssl/evp.h:127:9
 
 else:
   when NID_ML_DSA_87 is static:
     const EVP_PKEY_ML_DSA_87* = NID_ML_DSA_87
-      ## Generated based on boringssl/include/openssl/evp.h:126:9
+      ## Generated based on boringssl/include/openssl/evp.h:127:9
   else:
     let EVP_PKEY_ML_DSA_87* = NID_ML_DSA_87
-      ## Generated based on boringssl/include/openssl/evp.h:126:9
+      ## Generated based on boringssl/include/openssl/evp.h:127:9
 when NID_ML_KEM_768 is typedesc:
   type EVP_PKEY_ML_KEM_768* = NID_ML_KEM_768
-    ## Generated based on boringssl/include/openssl/evp.h:127:9
+    ## Generated based on boringssl/include/openssl/evp.h:128:9
 
 else:
   when NID_ML_KEM_768 is static:
     const EVP_PKEY_ML_KEM_768* = NID_ML_KEM_768
-      ## Generated based on boringssl/include/openssl/evp.h:127:9
+      ## Generated based on boringssl/include/openssl/evp.h:128:9
   else:
     let EVP_PKEY_ML_KEM_768* = NID_ML_KEM_768
-      ## Generated based on boringssl/include/openssl/evp.h:127:9
+      ## Generated based on boringssl/include/openssl/evp.h:128:9
 when NID_ML_KEM_1024 is typedesc:
   type EVP_PKEY_ML_KEM_1024* = NID_ML_KEM_1024
-    ## Generated based on boringssl/include/openssl/evp.h:128:9
+    ## Generated based on boringssl/include/openssl/evp.h:129:9
 
 else:
   when NID_ML_KEM_1024 is static:
     const EVP_PKEY_ML_KEM_1024* = NID_ML_KEM_1024
-      ## Generated based on boringssl/include/openssl/evp.h:128:9
+      ## Generated based on boringssl/include/openssl/evp.h:129:9
   else:
     let EVP_PKEY_ML_KEM_1024* = NID_ML_KEM_1024
-      ## Generated based on boringssl/include/openssl/evp.h:128:9
+      ## Generated based on boringssl/include/openssl/evp.h:129:9
 when NID_X_Wing is typedesc:
   type EVP_PKEY_XWING* = NID_X_Wing
-    ## Generated based on boringssl/include/openssl/evp.h:129:9
+    ## Generated based on boringssl/include/openssl/evp.h:130:9
 
 else:
   when NID_X_Wing is static:
     const EVP_PKEY_XWING* = NID_X_Wing
-      ## Generated based on boringssl/include/openssl/evp.h:129:9
+      ## Generated based on boringssl/include/openssl/evp.h:130:9
   else:
     let EVP_PKEY_XWING* = NID_X_Wing
-      ## Generated based on boringssl/include/openssl/evp.h:129:9
+      ## Generated based on boringssl/include/openssl/evp.h:130:9
 when NID_rsa is typedesc:
   type EVP_PKEY_RSA2* = NID_rsa
-    ## Generated based on boringssl/include/openssl/evp.h:1312:9
+    ## Generated based on boringssl/include/openssl/evp.h:1319:9
 
 else:
   when NID_rsa is static:
     const EVP_PKEY_RSA2* = NID_rsa
-      ## Generated based on boringssl/include/openssl/evp.h:1312:9
+      ## Generated based on boringssl/include/openssl/evp.h:1319:9
   else:
     let EVP_PKEY_RSA2* = NID_rsa
-      ## Generated based on boringssl/include/openssl/evp.h:1312:9
+      ## Generated based on boringssl/include/openssl/evp.h:1319:9
 when NID_X448 is typedesc:
   type EVP_PKEY_X448* = NID_X448
-    ## Generated based on boringssl/include/openssl/evp.h:1316:9
+    ## Generated based on boringssl/include/openssl/evp.h:1323:9
 
 else:
   when NID_X448 is static:
     const EVP_PKEY_X448* = NID_X448
-      ## Generated based on boringssl/include/openssl/evp.h:1316:9
+      ## Generated based on boringssl/include/openssl/evp.h:1323:9
   else:
     let EVP_PKEY_X448* = NID_X448
-      ## Generated based on boringssl/include/openssl/evp.h:1316:9
+      ## Generated based on boringssl/include/openssl/evp.h:1323:9
 when NID_ED448 is typedesc:
   type EVP_PKEY_ED448* = NID_ED448
-    ## Generated based on boringssl/include/openssl/evp.h:1320:9
+    ## Generated based on boringssl/include/openssl/evp.h:1327:9
 
 else:
   when NID_ED448 is static:
     const EVP_PKEY_ED448* = NID_ED448
-      ## Generated based on boringssl/include/openssl/evp.h:1320:9
+      ## Generated based on boringssl/include/openssl/evp.h:1327:9
   else:
     let EVP_PKEY_ED448* = NID_ED448
-      ## Generated based on boringssl/include/openssl/evp.h:1320:9
+      ## Generated based on boringssl/include/openssl/evp.h:1327:9
 proc EVP_PKEY_CTX_set_rsa_oaep_md*(
   ctx: ptr EVP_PKEY_CTX, md: ptr EVP_MD
 ): cint {.cdecl, importc: "EVP_PKEY_CTX_set_rsa_oaep_md".}
@@ -16583,60 +16692,60 @@ proc EVP_PKEY_CTX_set0_rsa_oaep_label*(
 
 when 64 is static:
   const PKCS7_DETACHED* = 64
-    ## Generated based on boringssl/include/openssl/pkcs7.h:187:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:186:9
 else:
-  let PKCS7_DETACHED* = 64 ## Generated based on boringssl/include/openssl/pkcs7.h:187:9
+  let PKCS7_DETACHED* = 64 ## Generated based on boringssl/include/openssl/pkcs7.h:186:9
 when 1 is static:
-  const PKCS7_TEXT* = 1 ## Generated based on boringssl/include/openssl/pkcs7.h:190:9
+  const PKCS7_TEXT* = 1 ## Generated based on boringssl/include/openssl/pkcs7.h:189:9
 else:
-  let PKCS7_TEXT* = 1 ## Generated based on boringssl/include/openssl/pkcs7.h:190:9
+  let PKCS7_TEXT* = 1 ## Generated based on boringssl/include/openssl/pkcs7.h:189:9
 when 2 is static:
-  const PKCS7_NOCERTS* = 2 ## Generated based on boringssl/include/openssl/pkcs7.h:191:9
+  const PKCS7_NOCERTS* = 2 ## Generated based on boringssl/include/openssl/pkcs7.h:190:9
 else:
-  let PKCS7_NOCERTS* = 2 ## Generated based on boringssl/include/openssl/pkcs7.h:191:9
+  let PKCS7_NOCERTS* = 2 ## Generated based on boringssl/include/openssl/pkcs7.h:190:9
 when 4 is static:
-  const PKCS7_NOSIGS* = 4 ## Generated based on boringssl/include/openssl/pkcs7.h:192:9
+  const PKCS7_NOSIGS* = 4 ## Generated based on boringssl/include/openssl/pkcs7.h:191:9
 else:
-  let PKCS7_NOSIGS* = 4 ## Generated based on boringssl/include/openssl/pkcs7.h:192:9
+  let PKCS7_NOSIGS* = 4 ## Generated based on boringssl/include/openssl/pkcs7.h:191:9
 when 8 is static:
-  const PKCS7_NOCHAIN* = 8 ## Generated based on boringssl/include/openssl/pkcs7.h:193:9
+  const PKCS7_NOCHAIN* = 8 ## Generated based on boringssl/include/openssl/pkcs7.h:192:9
 else:
-  let PKCS7_NOCHAIN* = 8 ## Generated based on boringssl/include/openssl/pkcs7.h:193:9
+  let PKCS7_NOCHAIN* = 8 ## Generated based on boringssl/include/openssl/pkcs7.h:192:9
 when 16 is static:
   const PKCS7_NOINTERN* = 16
-    ## Generated based on boringssl/include/openssl/pkcs7.h:194:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:193:9
 else:
-  let PKCS7_NOINTERN* = 16 ## Generated based on boringssl/include/openssl/pkcs7.h:194:9
+  let PKCS7_NOINTERN* = 16 ## Generated based on boringssl/include/openssl/pkcs7.h:193:9
 when 32 is static:
   const PKCS7_NOVERIFY* = 32
-    ## Generated based on boringssl/include/openssl/pkcs7.h:195:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:194:9
 else:
-  let PKCS7_NOVERIFY* = 32 ## Generated based on boringssl/include/openssl/pkcs7.h:195:9
+  let PKCS7_NOVERIFY* = 32 ## Generated based on boringssl/include/openssl/pkcs7.h:194:9
 when 128 is static:
-  const PKCS7_BINARY* = 128 ## Generated based on boringssl/include/openssl/pkcs7.h:196:9
+  const PKCS7_BINARY* = 128 ## Generated based on boringssl/include/openssl/pkcs7.h:195:9
 else:
-  let PKCS7_BINARY* = 128 ## Generated based on boringssl/include/openssl/pkcs7.h:196:9
+  let PKCS7_BINARY* = 128 ## Generated based on boringssl/include/openssl/pkcs7.h:195:9
 when 256 is static:
-  const PKCS7_NOATTR* = 256 ## Generated based on boringssl/include/openssl/pkcs7.h:197:9
+  const PKCS7_NOATTR* = 256 ## Generated based on boringssl/include/openssl/pkcs7.h:196:9
 else:
-  let PKCS7_NOATTR* = 256 ## Generated based on boringssl/include/openssl/pkcs7.h:197:9
+  let PKCS7_NOATTR* = 256 ## Generated based on boringssl/include/openssl/pkcs7.h:196:9
 when 512 is static:
   const PKCS7_NOSMIMECAP* = 512
-    ## Generated based on boringssl/include/openssl/pkcs7.h:198:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:197:9
 else:
   let PKCS7_NOSMIMECAP* = 512
-    ## Generated based on boringssl/include/openssl/pkcs7.h:198:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:197:9
 when 4096 is static:
   const PKCS7_STREAM* = 4096
-    ## Generated based on boringssl/include/openssl/pkcs7.h:199:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:198:9
 else:
-  let PKCS7_STREAM* = 4096 ## Generated based on boringssl/include/openssl/pkcs7.h:199:9
+  let PKCS7_STREAM* = 4096 ## Generated based on boringssl/include/openssl/pkcs7.h:198:9
 when 16384 is static:
   const PKCS7_PARTIAL* = 16384
-    ## Generated based on boringssl/include/openssl/pkcs7.h:200:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:199:9
 else:
   let PKCS7_PARTIAL* = 16384
-    ## Generated based on boringssl/include/openssl/pkcs7.h:200:9
+    ## Generated based on boringssl/include/openssl/pkcs7.h:199:9
 when 100 is static:
   const PKCS7_R_BAD_PKCS7_VERSION* = 100
     ## Generated based on boringssl/include/openssl/pkcs7.h:234:9
@@ -16947,888 +17056,894 @@ when 12 is static:
     ## Generated based on boringssl/include/openssl/asn1.h:92:9
 else:
   let V_ASN1_UTF8STRING* = 12 ## Generated based on boringssl/include/openssl/asn1.h:92:9
+when 13 is static:
+  const V_ASN1_RELATIVE_OID* = 13
+    ## Generated based on boringssl/include/openssl/asn1.h:93:9
+else:
+  let V_ASN1_RELATIVE_OID* = 13
+    ## Generated based on boringssl/include/openssl/asn1.h:93:9
 when 16 is static:
-  const V_ASN1_SEQUENCE* = 16 ## Generated based on boringssl/include/openssl/asn1.h:93:9
+  const V_ASN1_SEQUENCE* = 16 ## Generated based on boringssl/include/openssl/asn1.h:94:9
 else:
-  let V_ASN1_SEQUENCE* = 16 ## Generated based on boringssl/include/openssl/asn1.h:93:9
+  let V_ASN1_SEQUENCE* = 16 ## Generated based on boringssl/include/openssl/asn1.h:94:9
 when 17 is static:
-  const V_ASN1_SET* = 17 ## Generated based on boringssl/include/openssl/asn1.h:94:9
+  const V_ASN1_SET* = 17 ## Generated based on boringssl/include/openssl/asn1.h:95:9
 else:
-  let V_ASN1_SET* = 17 ## Generated based on boringssl/include/openssl/asn1.h:94:9
+  let V_ASN1_SET* = 17 ## Generated based on boringssl/include/openssl/asn1.h:95:9
 when 18 is static:
   const V_ASN1_NUMERICSTRING* = 18
-    ## Generated based on boringssl/include/openssl/asn1.h:95:9
+    ## Generated based on boringssl/include/openssl/asn1.h:96:9
 else:
   let V_ASN1_NUMERICSTRING* = 18
-    ## Generated based on boringssl/include/openssl/asn1.h:95:9
+    ## Generated based on boringssl/include/openssl/asn1.h:96:9
 when 19 is static:
   const V_ASN1_PRINTABLESTRING* = 19
-    ## Generated based on boringssl/include/openssl/asn1.h:96:9
-else:
-  let V_ASN1_PRINTABLESTRING* = 19
-    ## Generated based on boringssl/include/openssl/asn1.h:96:9
-when 20 is static:
-  const V_ASN1_T61STRING* = 20
     ## Generated based on boringssl/include/openssl/asn1.h:97:9
 else:
-  let V_ASN1_T61STRING* = 20 ## Generated based on boringssl/include/openssl/asn1.h:97:9
+  let V_ASN1_PRINTABLESTRING* = 19
+    ## Generated based on boringssl/include/openssl/asn1.h:97:9
+when 20 is static:
+  const V_ASN1_T61STRING* = 20
+    ## Generated based on boringssl/include/openssl/asn1.h:98:9
+else:
+  let V_ASN1_T61STRING* = 20 ## Generated based on boringssl/include/openssl/asn1.h:98:9
 when 20 is static:
   const V_ASN1_TELETEXSTRING* = 20
-    ## Generated based on boringssl/include/openssl/asn1.h:98:9
+    ## Generated based on boringssl/include/openssl/asn1.h:99:9
 else:
   let V_ASN1_TELETEXSTRING* = 20
-    ## Generated based on boringssl/include/openssl/asn1.h:98:9
+    ## Generated based on boringssl/include/openssl/asn1.h:99:9
 when 21 is static:
   const V_ASN1_VIDEOTEXSTRING* = 21
-    ## Generated based on boringssl/include/openssl/asn1.h:99:9
-else:
-  let V_ASN1_VIDEOTEXSTRING* = 21
-    ## Generated based on boringssl/include/openssl/asn1.h:99:9
-when 22 is static:
-  const V_ASN1_IA5STRING* = 22
     ## Generated based on boringssl/include/openssl/asn1.h:100:9
 else:
-  let V_ASN1_IA5STRING* = 22 ## Generated based on boringssl/include/openssl/asn1.h:100:9
-when 23 is static:
-  const V_ASN1_UTCTIME* = 23 ## Generated based on boringssl/include/openssl/asn1.h:101:9
+  let V_ASN1_VIDEOTEXSTRING* = 21
+    ## Generated based on boringssl/include/openssl/asn1.h:100:9
+when 22 is static:
+  const V_ASN1_IA5STRING* = 22
+    ## Generated based on boringssl/include/openssl/asn1.h:101:9
 else:
-  let V_ASN1_UTCTIME* = 23 ## Generated based on boringssl/include/openssl/asn1.h:101:9
+  let V_ASN1_IA5STRING* = 22 ## Generated based on boringssl/include/openssl/asn1.h:101:9
+when 23 is static:
+  const V_ASN1_UTCTIME* = 23 ## Generated based on boringssl/include/openssl/asn1.h:102:9
+else:
+  let V_ASN1_UTCTIME* = 23 ## Generated based on boringssl/include/openssl/asn1.h:102:9
 when 24 is static:
   const V_ASN1_GENERALIZEDTIME* = 24
-    ## Generated based on boringssl/include/openssl/asn1.h:102:9
+    ## Generated based on boringssl/include/openssl/asn1.h:103:9
 else:
   let V_ASN1_GENERALIZEDTIME* = 24
-    ## Generated based on boringssl/include/openssl/asn1.h:102:9
+    ## Generated based on boringssl/include/openssl/asn1.h:103:9
 when 25 is static:
   const V_ASN1_GRAPHICSTRING* = 25
-    ## Generated based on boringssl/include/openssl/asn1.h:103:9
+    ## Generated based on boringssl/include/openssl/asn1.h:104:9
 else:
   let V_ASN1_GRAPHICSTRING* = 25
-    ## Generated based on boringssl/include/openssl/asn1.h:103:9
+    ## Generated based on boringssl/include/openssl/asn1.h:104:9
 when 26 is static:
   const V_ASN1_ISO64STRING* = 26
-    ## Generated based on boringssl/include/openssl/asn1.h:104:9
+    ## Generated based on boringssl/include/openssl/asn1.h:105:9
 else:
   let V_ASN1_ISO64STRING* = 26
-    ## Generated based on boringssl/include/openssl/asn1.h:104:9
+    ## Generated based on boringssl/include/openssl/asn1.h:105:9
 when 26 is static:
   const V_ASN1_VISIBLESTRING* = 26
-    ## Generated based on boringssl/include/openssl/asn1.h:105:9
+    ## Generated based on boringssl/include/openssl/asn1.h:106:9
 else:
   let V_ASN1_VISIBLESTRING* = 26
-    ## Generated based on boringssl/include/openssl/asn1.h:105:9
+    ## Generated based on boringssl/include/openssl/asn1.h:106:9
 when 27 is static:
   const V_ASN1_GENERALSTRING* = 27
-    ## Generated based on boringssl/include/openssl/asn1.h:106:9
+    ## Generated based on boringssl/include/openssl/asn1.h:107:9
 else:
   let V_ASN1_GENERALSTRING* = 27
-    ## Generated based on boringssl/include/openssl/asn1.h:106:9
+    ## Generated based on boringssl/include/openssl/asn1.h:107:9
 when 28 is static:
   const V_ASN1_UNIVERSALSTRING* = 28
-    ## Generated based on boringssl/include/openssl/asn1.h:107:9
-else:
-  let V_ASN1_UNIVERSALSTRING* = 28
-    ## Generated based on boringssl/include/openssl/asn1.h:107:9
-when 30 is static:
-  const V_ASN1_BMPSTRING* = 30
     ## Generated based on boringssl/include/openssl/asn1.h:108:9
 else:
-  let V_ASN1_BMPSTRING* = 30 ## Generated based on boringssl/include/openssl/asn1.h:108:9
-when 256 is static:
-  const V_ASN1_NEG* = 256 ## Generated based on boringssl/include/openssl/asn1.h:112:9
+  let V_ASN1_UNIVERSALSTRING* = 28
+    ## Generated based on boringssl/include/openssl/asn1.h:108:9
+when 30 is static:
+  const V_ASN1_BMPSTRING* = 30
+    ## Generated based on boringssl/include/openssl/asn1.h:109:9
 else:
-  let V_ASN1_NEG* = 256 ## Generated based on boringssl/include/openssl/asn1.h:112:9
+  let V_ASN1_BMPSTRING* = 30 ## Generated based on boringssl/include/openssl/asn1.h:109:9
+when 256 is static:
+  const V_ASN1_NEG* = 256 ## Generated based on boringssl/include/openssl/asn1.h:113:9
+else:
+  let V_ASN1_NEG* = 256 ## Generated based on boringssl/include/openssl/asn1.h:113:9
 when 1 is static:
   const B_ASN1_NUMERICSTRING* = 1
-    ## Generated based on boringssl/include/openssl/asn1.h:117:9
+    ## Generated based on boringssl/include/openssl/asn1.h:118:9
 else:
   let B_ASN1_NUMERICSTRING* = 1
-    ## Generated based on boringssl/include/openssl/asn1.h:117:9
+    ## Generated based on boringssl/include/openssl/asn1.h:118:9
 when 2 is static:
   const B_ASN1_PRINTABLESTRING* = 2
-    ## Generated based on boringssl/include/openssl/asn1.h:118:9
-else:
-  let B_ASN1_PRINTABLESTRING* = 2
-    ## Generated based on boringssl/include/openssl/asn1.h:118:9
-when 4 is static:
-  const B_ASN1_T61STRING* = 4
     ## Generated based on boringssl/include/openssl/asn1.h:119:9
 else:
-  let B_ASN1_T61STRING* = 4 ## Generated based on boringssl/include/openssl/asn1.h:119:9
+  let B_ASN1_PRINTABLESTRING* = 2
+    ## Generated based on boringssl/include/openssl/asn1.h:119:9
+when 4 is static:
+  const B_ASN1_T61STRING* = 4
+    ## Generated based on boringssl/include/openssl/asn1.h:120:9
+else:
+  let B_ASN1_T61STRING* = 4 ## Generated based on boringssl/include/openssl/asn1.h:120:9
 when 4 is static:
   const B_ASN1_TELETEXSTRING* = 4
-    ## Generated based on boringssl/include/openssl/asn1.h:120:9
+    ## Generated based on boringssl/include/openssl/asn1.h:121:9
 else:
   let B_ASN1_TELETEXSTRING* = 4
-    ## Generated based on boringssl/include/openssl/asn1.h:120:9
+    ## Generated based on boringssl/include/openssl/asn1.h:121:9
 when 8 is static:
   const B_ASN1_VIDEOTEXSTRING* = 8
-    ## Generated based on boringssl/include/openssl/asn1.h:121:9
-else:
-  let B_ASN1_VIDEOTEXSTRING* = 8
-    ## Generated based on boringssl/include/openssl/asn1.h:121:9
-when 16 is static:
-  const B_ASN1_IA5STRING* = 16
     ## Generated based on boringssl/include/openssl/asn1.h:122:9
 else:
-  let B_ASN1_IA5STRING* = 16 ## Generated based on boringssl/include/openssl/asn1.h:122:9
+  let B_ASN1_VIDEOTEXSTRING* = 8
+    ## Generated based on boringssl/include/openssl/asn1.h:122:9
+when 16 is static:
+  const B_ASN1_IA5STRING* = 16
+    ## Generated based on boringssl/include/openssl/asn1.h:123:9
+else:
+  let B_ASN1_IA5STRING* = 16 ## Generated based on boringssl/include/openssl/asn1.h:123:9
 when 32 is static:
   const B_ASN1_GRAPHICSTRING* = 32
-    ## Generated based on boringssl/include/openssl/asn1.h:123:9
+    ## Generated based on boringssl/include/openssl/asn1.h:124:9
 else:
   let B_ASN1_GRAPHICSTRING* = 32
-    ## Generated based on boringssl/include/openssl/asn1.h:123:9
+    ## Generated based on boringssl/include/openssl/asn1.h:124:9
 when 64 is static:
   const B_ASN1_ISO64STRING* = 64
-    ## Generated based on boringssl/include/openssl/asn1.h:124:9
+    ## Generated based on boringssl/include/openssl/asn1.h:125:9
 else:
   let B_ASN1_ISO64STRING* = 64
-    ## Generated based on boringssl/include/openssl/asn1.h:124:9
+    ## Generated based on boringssl/include/openssl/asn1.h:125:9
 when 64 is static:
   const B_ASN1_VISIBLESTRING* = 64
-    ## Generated based on boringssl/include/openssl/asn1.h:125:9
+    ## Generated based on boringssl/include/openssl/asn1.h:126:9
 else:
   let B_ASN1_VISIBLESTRING* = 64
-    ## Generated based on boringssl/include/openssl/asn1.h:125:9
+    ## Generated based on boringssl/include/openssl/asn1.h:126:9
 when 128 is static:
   const B_ASN1_GENERALSTRING* = 128
-    ## Generated based on boringssl/include/openssl/asn1.h:126:9
+    ## Generated based on boringssl/include/openssl/asn1.h:127:9
 else:
   let B_ASN1_GENERALSTRING* = 128
-    ## Generated based on boringssl/include/openssl/asn1.h:126:9
+    ## Generated based on boringssl/include/openssl/asn1.h:127:9
 when 256 is static:
   const B_ASN1_UNIVERSALSTRING* = 256
-    ## Generated based on boringssl/include/openssl/asn1.h:127:9
+    ## Generated based on boringssl/include/openssl/asn1.h:128:9
 else:
   let B_ASN1_UNIVERSALSTRING* = 256
-    ## Generated based on boringssl/include/openssl/asn1.h:127:9
+    ## Generated based on boringssl/include/openssl/asn1.h:128:9
 when 512 is static:
   const B_ASN1_OCTET_STRING* = 512
-    ## Generated based on boringssl/include/openssl/asn1.h:128:9
+    ## Generated based on boringssl/include/openssl/asn1.h:129:9
 else:
   let B_ASN1_OCTET_STRING* = 512
-    ## Generated based on boringssl/include/openssl/asn1.h:128:9
+    ## Generated based on boringssl/include/openssl/asn1.h:129:9
 when 1024 is static:
   const B_ASN1_BIT_STRING* = 1024
-    ## Generated based on boringssl/include/openssl/asn1.h:129:9
+    ## Generated based on boringssl/include/openssl/asn1.h:130:9
 else:
   let B_ASN1_BIT_STRING* = 1024
-    ## Generated based on boringssl/include/openssl/asn1.h:129:9
+    ## Generated based on boringssl/include/openssl/asn1.h:130:9
 when 2048 is static:
   const B_ASN1_BMPSTRING* = 2048
-    ## Generated based on boringssl/include/openssl/asn1.h:130:9
+    ## Generated based on boringssl/include/openssl/asn1.h:131:9
 else:
   let B_ASN1_BMPSTRING* = 2048
-    ## Generated based on boringssl/include/openssl/asn1.h:130:9
+    ## Generated based on boringssl/include/openssl/asn1.h:131:9
 when 8192 is static:
   const B_ASN1_UTF8STRING* = 8192
-    ## Generated based on boringssl/include/openssl/asn1.h:131:9
+    ## Generated based on boringssl/include/openssl/asn1.h:132:9
 else:
   let B_ASN1_UTF8STRING* = 8192
-    ## Generated based on boringssl/include/openssl/asn1.h:131:9
+    ## Generated based on boringssl/include/openssl/asn1.h:132:9
 when 16384 is static:
   const B_ASN1_UTCTIME* = 16384
-    ## Generated based on boringssl/include/openssl/asn1.h:132:9
+    ## Generated based on boringssl/include/openssl/asn1.h:133:9
 else:
   let B_ASN1_UTCTIME* = 16384
-    ## Generated based on boringssl/include/openssl/asn1.h:132:9
+    ## Generated based on boringssl/include/openssl/asn1.h:133:9
 when 32768 is static:
   const B_ASN1_GENERALIZEDTIME* = 32768
-    ## Generated based on boringssl/include/openssl/asn1.h:133:9
+    ## Generated based on boringssl/include/openssl/asn1.h:134:9
 else:
   let B_ASN1_GENERALIZEDTIME* = 32768
-    ## Generated based on boringssl/include/openssl/asn1.h:133:9
+    ## Generated based on boringssl/include/openssl/asn1.h:134:9
 when 65536 is static:
   const B_ASN1_SEQUENCE* = 65536
-    ## Generated based on boringssl/include/openssl/asn1.h:134:9
+    ## Generated based on boringssl/include/openssl/asn1.h:135:9
 else:
   let B_ASN1_SEQUENCE* = 65536
-    ## Generated based on boringssl/include/openssl/asn1.h:134:9
+    ## Generated based on boringssl/include/openssl/asn1.h:135:9
 when 0 is static:
   const ASN1_BOOLEAN_FALSE* = 0
-    ## Generated based on boringssl/include/openssl/asn1.h:369:9
+    ## Generated based on boringssl/include/openssl/asn1.h:370:9
 else:
   let ASN1_BOOLEAN_FALSE* = 0
-    ## Generated based on boringssl/include/openssl/asn1.h:369:9
+    ## Generated based on boringssl/include/openssl/asn1.h:370:9
 when 255 is static:
   const ASN1_BOOLEAN_TRUE* = 255
-    ## Generated based on boringssl/include/openssl/asn1.h:373:9
+    ## Generated based on boringssl/include/openssl/asn1.h:374:9
 else:
   let ASN1_BOOLEAN_TRUE* = 255
-    ## Generated based on boringssl/include/openssl/asn1.h:373:9
+    ## Generated based on boringssl/include/openssl/asn1.h:374:9
 when -1 is static:
   const ASN1_BOOLEAN_NONE* = -1
-    ## Generated based on boringssl/include/openssl/asn1.h:378:9
+    ## Generated based on boringssl/include/openssl/asn1.h:379:9
 else:
   let ASN1_BOOLEAN_NONE* = -1
-    ## Generated based on boringssl/include/openssl/asn1.h:378:9
+    ## Generated based on boringssl/include/openssl/asn1.h:379:9
 when 4096 is static:
   const MBSTRING_FLAG* = 4096
-    ## Generated based on boringssl/include/openssl/asn1.h:671:9
+    ## Generated based on boringssl/include/openssl/asn1.h:661:9
 else:
-  let MBSTRING_FLAG* = 4096 ## Generated based on boringssl/include/openssl/asn1.h:671:9
+  let MBSTRING_FLAG* = 4096 ## Generated based on boringssl/include/openssl/asn1.h:661:9
 when MBSTRING_FLAG is typedesc:
   type MBSTRING_UTF8* = MBSTRING_FLAG
-    ## Generated based on boringssl/include/openssl/asn1.h:672:9
+    ## Generated based on boringssl/include/openssl/asn1.h:662:9
 
 else:
   when MBSTRING_FLAG is static:
     const MBSTRING_UTF8* = MBSTRING_FLAG
-      ## Generated based on boringssl/include/openssl/asn1.h:672:9
+      ## Generated based on boringssl/include/openssl/asn1.h:662:9
   else:
     let MBSTRING_UTF8* = MBSTRING_FLAG
-      ## Generated based on boringssl/include/openssl/asn1.h:672:9
+      ## Generated based on boringssl/include/openssl/asn1.h:662:9
 when 2 is static:
-  const STABLE_NO_MASK* = 2 ## Generated based on boringssl/include/openssl/asn1.h:748:9
+  const STABLE_NO_MASK* = 2 ## Generated based on boringssl/include/openssl/asn1.h:738:9
 else:
-  let STABLE_NO_MASK* = 2 ## Generated based on boringssl/include/openssl/asn1.h:748:9
+  let STABLE_NO_MASK* = 2 ## Generated based on boringssl/include/openssl/asn1.h:738:9
 when cast[culong](1'i64) is static:
   const ASN1_STRFLGS_ESC_2253* = cast[culong](1'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1593:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1583:9
 else:
   let ASN1_STRFLGS_ESC_2253* = cast[culong](1'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1593:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1583:9
 when cast[culong](2'i64) is static:
   const ASN1_STRFLGS_ESC_CTRL* = cast[culong](2'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1596:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1586:9
 else:
   let ASN1_STRFLGS_ESC_CTRL* = cast[culong](2'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1596:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1586:9
 when cast[culong](4'i64) is static:
   const ASN1_STRFLGS_ESC_MSB* = cast[culong](4'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1599:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1589:9
 else:
   let ASN1_STRFLGS_ESC_MSB* = cast[culong](4'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1599:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1589:9
 when cast[culong](8'i64) is static:
   const ASN1_STRFLGS_ESC_QUOTE* = cast[culong](8'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1604:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1594:9
 else:
   let ASN1_STRFLGS_ESC_QUOTE* = cast[culong](8'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1604:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1594:9
 when cast[culong](16'i64) is static:
   const ASN1_STRFLGS_UTF8_CONVERT* = cast[culong](16'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1612:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1602:9
 else:
   let ASN1_STRFLGS_UTF8_CONVERT* = cast[culong](16'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1612:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1602:9
 when cast[culong](32'i64) is static:
   const ASN1_STRFLGS_IGNORE_TYPE* = cast[culong](32'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1616:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1606:9
 else:
   let ASN1_STRFLGS_IGNORE_TYPE* = cast[culong](32'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1616:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1606:9
 when cast[culong](64'i64) is static:
   const ASN1_STRFLGS_SHOW_TYPE* = cast[culong](64'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1619:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1609:9
 else:
   let ASN1_STRFLGS_SHOW_TYPE* = cast[culong](64'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1619:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1609:9
 when cast[culong](128'i64) is static:
   const ASN1_STRFLGS_DUMP_ALL* = cast[culong](128'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1623:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1613:9
 else:
   let ASN1_STRFLGS_DUMP_ALL* = cast[culong](128'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1623:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1613:9
 when cast[culong](256'i64) is static:
   const ASN1_STRFLGS_DUMP_UNKNOWN* = cast[culong](256'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1628:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1618:9
 else:
   let ASN1_STRFLGS_DUMP_UNKNOWN* = cast[culong](256'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1628:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1618:9
 when cast[culong](512'i64) is static:
   const ASN1_STRFLGS_DUMP_DER* = cast[culong](512'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1634:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1624:9
 else:
   let ASN1_STRFLGS_DUMP_DER* = cast[culong](512'i64)
-    ## Generated based on boringssl/include/openssl/asn1.h:1634:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1624:9
 when 8 is static:
   const ASN1_STRING_FLAG_BITS_LEFT* = 8
-    ## Generated based on boringssl/include/openssl/asn1.h:1785:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1775:9
 else:
   let ASN1_STRING_FLAG_BITS_LEFT* = 8
-    ## Generated based on boringssl/include/openssl/asn1.h:1785:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1775:9
 when 100 is static:
   const ASN1_R_ASN1_LENGTH_MISMATCH* = 100
-    ## Generated based on boringssl/include/openssl/asn1.h:1904:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1913:9
 else:
   let ASN1_R_ASN1_LENGTH_MISMATCH* = 100
-    ## Generated based on boringssl/include/openssl/asn1.h:1904:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1913:9
 when 101 is static:
   const ASN1_R_AUX_ERROR* = 101
-    ## Generated based on boringssl/include/openssl/asn1.h:1905:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1914:9
 else:
   let ASN1_R_AUX_ERROR* = 101
-    ## Generated based on boringssl/include/openssl/asn1.h:1905:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1914:9
 when 102 is static:
   const ASN1_R_BAD_GET_ASN1_OBJECT_CALL* = 102
-    ## Generated based on boringssl/include/openssl/asn1.h:1906:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1915:9
 else:
   let ASN1_R_BAD_GET_ASN1_OBJECT_CALL* = 102
-    ## Generated based on boringssl/include/openssl/asn1.h:1906:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1915:9
 when 103 is static:
   const ASN1_R_BAD_OBJECT_HEADER* = 103
-    ## Generated based on boringssl/include/openssl/asn1.h:1907:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1916:9
 else:
   let ASN1_R_BAD_OBJECT_HEADER* = 103
-    ## Generated based on boringssl/include/openssl/asn1.h:1907:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1916:9
 when 104 is static:
   const ASN1_R_BMPSTRING_IS_WRONG_LENGTH* = 104
-    ## Generated based on boringssl/include/openssl/asn1.h:1908:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1917:9
 else:
   let ASN1_R_BMPSTRING_IS_WRONG_LENGTH* = 104
-    ## Generated based on boringssl/include/openssl/asn1.h:1908:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1917:9
 when 105 is static:
   const ASN1_R_BN_LIB* = 105
-    ## Generated based on boringssl/include/openssl/asn1.h:1909:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1918:9
 else:
-  let ASN1_R_BN_LIB* = 105 ## Generated based on boringssl/include/openssl/asn1.h:1909:9
+  let ASN1_R_BN_LIB* = 105 ## Generated based on boringssl/include/openssl/asn1.h:1918:9
 when 106 is static:
   const ASN1_R_BOOLEAN_IS_WRONG_LENGTH* = 106
-    ## Generated based on boringssl/include/openssl/asn1.h:1910:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1919:9
 else:
   let ASN1_R_BOOLEAN_IS_WRONG_LENGTH* = 106
-    ## Generated based on boringssl/include/openssl/asn1.h:1910:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1919:9
 when 107 is static:
   const ASN1_R_BUFFER_TOO_SMALL* = 107
-    ## Generated based on boringssl/include/openssl/asn1.h:1911:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1920:9
 else:
   let ASN1_R_BUFFER_TOO_SMALL* = 107
-    ## Generated based on boringssl/include/openssl/asn1.h:1911:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1920:9
 when 108 is static:
   const ASN1_R_CONTEXT_NOT_INITIALISED* = 108
-    ## Generated based on boringssl/include/openssl/asn1.h:1912:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1921:9
 else:
   let ASN1_R_CONTEXT_NOT_INITIALISED* = 108
-    ## Generated based on boringssl/include/openssl/asn1.h:1912:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1921:9
 when 109 is static:
   const ASN1_R_DECODE_ERROR* = 109
-    ## Generated based on boringssl/include/openssl/asn1.h:1913:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1922:9
 else:
   let ASN1_R_DECODE_ERROR* = 109
-    ## Generated based on boringssl/include/openssl/asn1.h:1913:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1922:9
 when 110 is static:
   const ASN1_R_DEPTH_EXCEEDED* = 110
-    ## Generated based on boringssl/include/openssl/asn1.h:1914:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1923:9
 else:
   let ASN1_R_DEPTH_EXCEEDED* = 110
-    ## Generated based on boringssl/include/openssl/asn1.h:1914:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1923:9
 when 111 is static:
   const ASN1_R_DIGEST_AND_KEY_TYPE_NOT_SUPPORTED* = 111
-    ## Generated based on boringssl/include/openssl/asn1.h:1915:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1924:9
 else:
   let ASN1_R_DIGEST_AND_KEY_TYPE_NOT_SUPPORTED* = 111
-    ## Generated based on boringssl/include/openssl/asn1.h:1915:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1924:9
 when 112 is static:
   const ASN1_R_ENCODE_ERROR* = 112
-    ## Generated based on boringssl/include/openssl/asn1.h:1916:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1925:9
 else:
   let ASN1_R_ENCODE_ERROR* = 112
-    ## Generated based on boringssl/include/openssl/asn1.h:1916:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1925:9
 when 113 is static:
   const ASN1_R_ERROR_GETTING_TIME* = 113
-    ## Generated based on boringssl/include/openssl/asn1.h:1917:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1926:9
 else:
   let ASN1_R_ERROR_GETTING_TIME* = 113
-    ## Generated based on boringssl/include/openssl/asn1.h:1917:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1926:9
 when 114 is static:
   const ASN1_R_EXPECTING_AN_ASN1_SEQUENCE* = 114
-    ## Generated based on boringssl/include/openssl/asn1.h:1918:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1927:9
 else:
   let ASN1_R_EXPECTING_AN_ASN1_SEQUENCE* = 114
-    ## Generated based on boringssl/include/openssl/asn1.h:1918:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1927:9
 when 115 is static:
   const ASN1_R_EXPECTING_AN_INTEGER* = 115
-    ## Generated based on boringssl/include/openssl/asn1.h:1919:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1928:9
 else:
   let ASN1_R_EXPECTING_AN_INTEGER* = 115
-    ## Generated based on boringssl/include/openssl/asn1.h:1919:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1928:9
 when 116 is static:
   const ASN1_R_EXPECTING_AN_OBJECT* = 116
-    ## Generated based on boringssl/include/openssl/asn1.h:1920:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1929:9
 else:
   let ASN1_R_EXPECTING_AN_OBJECT* = 116
-    ## Generated based on boringssl/include/openssl/asn1.h:1920:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1929:9
 when 117 is static:
   const ASN1_R_EXPECTING_A_BOOLEAN* = 117
-    ## Generated based on boringssl/include/openssl/asn1.h:1921:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1930:9
 else:
   let ASN1_R_EXPECTING_A_BOOLEAN* = 117
-    ## Generated based on boringssl/include/openssl/asn1.h:1921:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1930:9
 when 118 is static:
   const ASN1_R_EXPECTING_A_TIME* = 118
-    ## Generated based on boringssl/include/openssl/asn1.h:1922:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1931:9
 else:
   let ASN1_R_EXPECTING_A_TIME* = 118
-    ## Generated based on boringssl/include/openssl/asn1.h:1922:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1931:9
 when 119 is static:
   const ASN1_R_EXPLICIT_LENGTH_MISMATCH* = 119
-    ## Generated based on boringssl/include/openssl/asn1.h:1923:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1932:9
 else:
   let ASN1_R_EXPLICIT_LENGTH_MISMATCH* = 119
-    ## Generated based on boringssl/include/openssl/asn1.h:1923:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1932:9
 when 120 is static:
   const ASN1_R_EXPLICIT_TAG_NOT_CONSTRUCTED* = 120
-    ## Generated based on boringssl/include/openssl/asn1.h:1924:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1933:9
 else:
   let ASN1_R_EXPLICIT_TAG_NOT_CONSTRUCTED* = 120
-    ## Generated based on boringssl/include/openssl/asn1.h:1924:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1933:9
 when 121 is static:
   const ASN1_R_FIELD_MISSING* = 121
-    ## Generated based on boringssl/include/openssl/asn1.h:1925:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1934:9
 else:
   let ASN1_R_FIELD_MISSING* = 121
-    ## Generated based on boringssl/include/openssl/asn1.h:1925:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1934:9
 when 122 is static:
   const ASN1_R_FIRST_NUM_TOO_LARGE* = 122
-    ## Generated based on boringssl/include/openssl/asn1.h:1926:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1935:9
 else:
   let ASN1_R_FIRST_NUM_TOO_LARGE* = 122
-    ## Generated based on boringssl/include/openssl/asn1.h:1926:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1935:9
 when 123 is static:
   const ASN1_R_HEADER_TOO_LONG* = 123
-    ## Generated based on boringssl/include/openssl/asn1.h:1927:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1936:9
 else:
   let ASN1_R_HEADER_TOO_LONG* = 123
-    ## Generated based on boringssl/include/openssl/asn1.h:1927:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1936:9
 when 124 is static:
   const ASN1_R_ILLEGAL_BITSTRING_FORMAT* = 124
-    ## Generated based on boringssl/include/openssl/asn1.h:1928:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1937:9
 else:
   let ASN1_R_ILLEGAL_BITSTRING_FORMAT* = 124
-    ## Generated based on boringssl/include/openssl/asn1.h:1928:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1937:9
 when 125 is static:
   const ASN1_R_ILLEGAL_BOOLEAN* = 125
-    ## Generated based on boringssl/include/openssl/asn1.h:1929:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1938:9
 else:
   let ASN1_R_ILLEGAL_BOOLEAN* = 125
-    ## Generated based on boringssl/include/openssl/asn1.h:1929:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1938:9
 when 126 is static:
   const ASN1_R_ILLEGAL_CHARACTERS* = 126
-    ## Generated based on boringssl/include/openssl/asn1.h:1930:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1939:9
 else:
   let ASN1_R_ILLEGAL_CHARACTERS* = 126
-    ## Generated based on boringssl/include/openssl/asn1.h:1930:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1939:9
 when 127 is static:
   const ASN1_R_ILLEGAL_FORMAT* = 127
-    ## Generated based on boringssl/include/openssl/asn1.h:1931:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1940:9
 else:
   let ASN1_R_ILLEGAL_FORMAT* = 127
-    ## Generated based on boringssl/include/openssl/asn1.h:1931:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1940:9
 when 128 is static:
   const ASN1_R_ILLEGAL_HEX* = 128
-    ## Generated based on boringssl/include/openssl/asn1.h:1932:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1941:9
 else:
   let ASN1_R_ILLEGAL_HEX* = 128
-    ## Generated based on boringssl/include/openssl/asn1.h:1932:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1941:9
 when 129 is static:
   const ASN1_R_ILLEGAL_IMPLICIT_TAG* = 129
-    ## Generated based on boringssl/include/openssl/asn1.h:1933:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1942:9
 else:
   let ASN1_R_ILLEGAL_IMPLICIT_TAG* = 129
-    ## Generated based on boringssl/include/openssl/asn1.h:1933:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1942:9
 when 130 is static:
   const ASN1_R_ILLEGAL_INTEGER* = 130
-    ## Generated based on boringssl/include/openssl/asn1.h:1934:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1943:9
 else:
   let ASN1_R_ILLEGAL_INTEGER* = 130
-    ## Generated based on boringssl/include/openssl/asn1.h:1934:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1943:9
 when 131 is static:
   const ASN1_R_ILLEGAL_NESTED_TAGGING* = 131
-    ## Generated based on boringssl/include/openssl/asn1.h:1935:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1944:9
 else:
   let ASN1_R_ILLEGAL_NESTED_TAGGING* = 131
-    ## Generated based on boringssl/include/openssl/asn1.h:1935:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1944:9
 when 132 is static:
   const ASN1_R_ILLEGAL_NULL* = 132
-    ## Generated based on boringssl/include/openssl/asn1.h:1936:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1945:9
 else:
   let ASN1_R_ILLEGAL_NULL* = 132
-    ## Generated based on boringssl/include/openssl/asn1.h:1936:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1945:9
 when 133 is static:
   const ASN1_R_ILLEGAL_NULL_VALUE* = 133
-    ## Generated based on boringssl/include/openssl/asn1.h:1937:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1946:9
 else:
   let ASN1_R_ILLEGAL_NULL_VALUE* = 133
-    ## Generated based on boringssl/include/openssl/asn1.h:1937:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1946:9
 when 134 is static:
   const ASN1_R_ILLEGAL_OBJECT* = 134
-    ## Generated based on boringssl/include/openssl/asn1.h:1938:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1947:9
 else:
   let ASN1_R_ILLEGAL_OBJECT* = 134
-    ## Generated based on boringssl/include/openssl/asn1.h:1938:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1947:9
 when 135 is static:
   const ASN1_R_ILLEGAL_OPTIONAL_ANY* = 135
-    ## Generated based on boringssl/include/openssl/asn1.h:1939:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1948:9
 else:
   let ASN1_R_ILLEGAL_OPTIONAL_ANY* = 135
-    ## Generated based on boringssl/include/openssl/asn1.h:1939:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1948:9
 when 136 is static:
   const ASN1_R_ILLEGAL_OPTIONS_ON_ITEM_TEMPLATE* = 136
-    ## Generated based on boringssl/include/openssl/asn1.h:1940:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1949:9
 else:
   let ASN1_R_ILLEGAL_OPTIONS_ON_ITEM_TEMPLATE* = 136
-    ## Generated based on boringssl/include/openssl/asn1.h:1940:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1949:9
 when 137 is static:
   const ASN1_R_ILLEGAL_TAGGED_ANY* = 137
-    ## Generated based on boringssl/include/openssl/asn1.h:1941:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1950:9
 else:
   let ASN1_R_ILLEGAL_TAGGED_ANY* = 137
-    ## Generated based on boringssl/include/openssl/asn1.h:1941:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1950:9
 when 138 is static:
   const ASN1_R_ILLEGAL_TIME_VALUE* = 138
-    ## Generated based on boringssl/include/openssl/asn1.h:1942:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1951:9
 else:
   let ASN1_R_ILLEGAL_TIME_VALUE* = 138
-    ## Generated based on boringssl/include/openssl/asn1.h:1942:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1951:9
 when 139 is static:
   const ASN1_R_INTEGER_NOT_ASCII_FORMAT* = 139
-    ## Generated based on boringssl/include/openssl/asn1.h:1943:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1952:9
 else:
   let ASN1_R_INTEGER_NOT_ASCII_FORMAT* = 139
-    ## Generated based on boringssl/include/openssl/asn1.h:1943:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1952:9
 when 140 is static:
   const ASN1_R_INTEGER_TOO_LARGE_FOR_LONG* = 140
-    ## Generated based on boringssl/include/openssl/asn1.h:1944:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1953:9
 else:
   let ASN1_R_INTEGER_TOO_LARGE_FOR_LONG* = 140
-    ## Generated based on boringssl/include/openssl/asn1.h:1944:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1953:9
 when 141 is static:
   const ASN1_R_INVALID_BIT_STRING_BITS_LEFT* = 141
-    ## Generated based on boringssl/include/openssl/asn1.h:1945:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1954:9
 else:
   let ASN1_R_INVALID_BIT_STRING_BITS_LEFT* = 141
-    ## Generated based on boringssl/include/openssl/asn1.h:1945:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1954:9
 when 142 is static:
   const ASN1_R_INVALID_BMPSTRING* = 142
-    ## Generated based on boringssl/include/openssl/asn1.h:1946:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1955:9
 else:
   let ASN1_R_INVALID_BMPSTRING* = 142
-    ## Generated based on boringssl/include/openssl/asn1.h:1946:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1955:9
 when 143 is static:
   const ASN1_R_INVALID_DIGIT* = 143
-    ## Generated based on boringssl/include/openssl/asn1.h:1947:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1956:9
 else:
   let ASN1_R_INVALID_DIGIT* = 143
-    ## Generated based on boringssl/include/openssl/asn1.h:1947:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1956:9
 when 144 is static:
   const ASN1_R_INVALID_MODIFIER* = 144
-    ## Generated based on boringssl/include/openssl/asn1.h:1948:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1957:9
 else:
   let ASN1_R_INVALID_MODIFIER* = 144
-    ## Generated based on boringssl/include/openssl/asn1.h:1948:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1957:9
 when 145 is static:
   const ASN1_R_INVALID_NUMBER* = 145
-    ## Generated based on boringssl/include/openssl/asn1.h:1949:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1958:9
 else:
   let ASN1_R_INVALID_NUMBER* = 145
-    ## Generated based on boringssl/include/openssl/asn1.h:1949:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1958:9
 when 146 is static:
   const ASN1_R_INVALID_OBJECT_ENCODING* = 146
-    ## Generated based on boringssl/include/openssl/asn1.h:1950:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1959:9
 else:
   let ASN1_R_INVALID_OBJECT_ENCODING* = 146
-    ## Generated based on boringssl/include/openssl/asn1.h:1950:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1959:9
 when 147 is static:
   const ASN1_R_INVALID_SEPARATOR* = 147
-    ## Generated based on boringssl/include/openssl/asn1.h:1951:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1960:9
 else:
   let ASN1_R_INVALID_SEPARATOR* = 147
-    ## Generated based on boringssl/include/openssl/asn1.h:1951:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1960:9
 when 148 is static:
   const ASN1_R_INVALID_TIME_FORMAT* = 148
-    ## Generated based on boringssl/include/openssl/asn1.h:1952:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1961:9
 else:
   let ASN1_R_INVALID_TIME_FORMAT* = 148
-    ## Generated based on boringssl/include/openssl/asn1.h:1952:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1961:9
 when 149 is static:
   const ASN1_R_INVALID_UNIVERSALSTRING* = 149
-    ## Generated based on boringssl/include/openssl/asn1.h:1953:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1962:9
 else:
   let ASN1_R_INVALID_UNIVERSALSTRING* = 149
-    ## Generated based on boringssl/include/openssl/asn1.h:1953:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1962:9
 when 150 is static:
   const ASN1_R_INVALID_UTF8STRING* = 150
-    ## Generated based on boringssl/include/openssl/asn1.h:1954:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1963:9
 else:
   let ASN1_R_INVALID_UTF8STRING* = 150
-    ## Generated based on boringssl/include/openssl/asn1.h:1954:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1963:9
 when 151 is static:
   const ASN1_R_LIST_ERROR* = 151
-    ## Generated based on boringssl/include/openssl/asn1.h:1955:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1964:9
 else:
   let ASN1_R_LIST_ERROR* = 151
-    ## Generated based on boringssl/include/openssl/asn1.h:1955:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1964:9
 when 152 is static:
   const ASN1_R_MISSING_ASN1_EOS* = 152
-    ## Generated based on boringssl/include/openssl/asn1.h:1956:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1965:9
 else:
   let ASN1_R_MISSING_ASN1_EOS* = 152
-    ## Generated based on boringssl/include/openssl/asn1.h:1956:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1965:9
 when 153 is static:
   const ASN1_R_MISSING_EOC* = 153
-    ## Generated based on boringssl/include/openssl/asn1.h:1957:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1966:9
 else:
   let ASN1_R_MISSING_EOC* = 153
-    ## Generated based on boringssl/include/openssl/asn1.h:1957:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1966:9
 when 154 is static:
   const ASN1_R_MISSING_SECOND_NUMBER* = 154
-    ## Generated based on boringssl/include/openssl/asn1.h:1958:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1967:9
 else:
   let ASN1_R_MISSING_SECOND_NUMBER* = 154
-    ## Generated based on boringssl/include/openssl/asn1.h:1958:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1967:9
 when 155 is static:
   const ASN1_R_MISSING_VALUE* = 155
-    ## Generated based on boringssl/include/openssl/asn1.h:1959:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1968:9
 else:
   let ASN1_R_MISSING_VALUE* = 155
-    ## Generated based on boringssl/include/openssl/asn1.h:1959:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1968:9
 when 156 is static:
   const ASN1_R_MSTRING_NOT_UNIVERSAL* = 156
-    ## Generated based on boringssl/include/openssl/asn1.h:1960:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1969:9
 else:
   let ASN1_R_MSTRING_NOT_UNIVERSAL* = 156
-    ## Generated based on boringssl/include/openssl/asn1.h:1960:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1969:9
 when 157 is static:
   const ASN1_R_MSTRING_WRONG_TAG* = 157
-    ## Generated based on boringssl/include/openssl/asn1.h:1961:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1970:9
 else:
   let ASN1_R_MSTRING_WRONG_TAG* = 157
-    ## Generated based on boringssl/include/openssl/asn1.h:1961:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1970:9
 when 158 is static:
   const ASN1_R_NESTED_ASN1_ERROR* = 158
-    ## Generated based on boringssl/include/openssl/asn1.h:1962:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1971:9
 else:
   let ASN1_R_NESTED_ASN1_ERROR* = 158
-    ## Generated based on boringssl/include/openssl/asn1.h:1962:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1971:9
 when 159 is static:
   const ASN1_R_NESTED_ASN1_STRING* = 159
-    ## Generated based on boringssl/include/openssl/asn1.h:1963:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1972:9
 else:
   let ASN1_R_NESTED_ASN1_STRING* = 159
-    ## Generated based on boringssl/include/openssl/asn1.h:1963:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1972:9
 when 160 is static:
   const ASN1_R_NON_HEX_CHARACTERS* = 160
-    ## Generated based on boringssl/include/openssl/asn1.h:1964:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1973:9
 else:
   let ASN1_R_NON_HEX_CHARACTERS* = 160
-    ## Generated based on boringssl/include/openssl/asn1.h:1964:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1973:9
 when 161 is static:
   const ASN1_R_NOT_ASCII_FORMAT* = 161
-    ## Generated based on boringssl/include/openssl/asn1.h:1965:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1974:9
 else:
   let ASN1_R_NOT_ASCII_FORMAT* = 161
-    ## Generated based on boringssl/include/openssl/asn1.h:1965:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1974:9
 when 162 is static:
   const ASN1_R_NOT_ENOUGH_DATA* = 162
-    ## Generated based on boringssl/include/openssl/asn1.h:1966:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1975:9
 else:
   let ASN1_R_NOT_ENOUGH_DATA* = 162
-    ## Generated based on boringssl/include/openssl/asn1.h:1966:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1975:9
 when 163 is static:
   const ASN1_R_NO_MATCHING_CHOICE_TYPE* = 163
-    ## Generated based on boringssl/include/openssl/asn1.h:1967:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1976:9
 else:
   let ASN1_R_NO_MATCHING_CHOICE_TYPE* = 163
-    ## Generated based on boringssl/include/openssl/asn1.h:1967:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1976:9
 when 164 is static:
   const ASN1_R_NULL_IS_WRONG_LENGTH* = 164
-    ## Generated based on boringssl/include/openssl/asn1.h:1968:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1977:9
 else:
   let ASN1_R_NULL_IS_WRONG_LENGTH* = 164
-    ## Generated based on boringssl/include/openssl/asn1.h:1968:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1977:9
 when 165 is static:
   const ASN1_R_OBJECT_NOT_ASCII_FORMAT* = 165
-    ## Generated based on boringssl/include/openssl/asn1.h:1969:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1978:9
 else:
   let ASN1_R_OBJECT_NOT_ASCII_FORMAT* = 165
-    ## Generated based on boringssl/include/openssl/asn1.h:1969:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1978:9
 when 166 is static:
   const ASN1_R_ODD_NUMBER_OF_CHARS* = 166
-    ## Generated based on boringssl/include/openssl/asn1.h:1970:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1979:9
 else:
   let ASN1_R_ODD_NUMBER_OF_CHARS* = 166
-    ## Generated based on boringssl/include/openssl/asn1.h:1970:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1979:9
 when 167 is static:
   const ASN1_R_SECOND_NUMBER_TOO_LARGE* = 167
-    ## Generated based on boringssl/include/openssl/asn1.h:1971:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1980:9
 else:
   let ASN1_R_SECOND_NUMBER_TOO_LARGE* = 167
-    ## Generated based on boringssl/include/openssl/asn1.h:1971:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1980:9
 when 168 is static:
   const ASN1_R_SEQUENCE_LENGTH_MISMATCH* = 168
-    ## Generated based on boringssl/include/openssl/asn1.h:1972:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1981:9
 else:
   let ASN1_R_SEQUENCE_LENGTH_MISMATCH* = 168
-    ## Generated based on boringssl/include/openssl/asn1.h:1972:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1981:9
 when 169 is static:
   const ASN1_R_SEQUENCE_NOT_CONSTRUCTED* = 169
-    ## Generated based on boringssl/include/openssl/asn1.h:1973:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1982:9
 else:
   let ASN1_R_SEQUENCE_NOT_CONSTRUCTED* = 169
-    ## Generated based on boringssl/include/openssl/asn1.h:1973:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1982:9
 when 170 is static:
   const ASN1_R_SEQUENCE_OR_SET_NEEDS_CONFIG* = 170
-    ## Generated based on boringssl/include/openssl/asn1.h:1974:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1983:9
 else:
   let ASN1_R_SEQUENCE_OR_SET_NEEDS_CONFIG* = 170
-    ## Generated based on boringssl/include/openssl/asn1.h:1974:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1983:9
 when 171 is static:
   const ASN1_R_SHORT_LINE* = 171
-    ## Generated based on boringssl/include/openssl/asn1.h:1975:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1984:9
 else:
   let ASN1_R_SHORT_LINE* = 171
-    ## Generated based on boringssl/include/openssl/asn1.h:1975:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1984:9
 when 172 is static:
   const ASN1_R_STREAMING_NOT_SUPPORTED* = 172
-    ## Generated based on boringssl/include/openssl/asn1.h:1976:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1985:9
 else:
   let ASN1_R_STREAMING_NOT_SUPPORTED* = 172
-    ## Generated based on boringssl/include/openssl/asn1.h:1976:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1985:9
 when 173 is static:
   const ASN1_R_STRING_TOO_LONG* = 173
-    ## Generated based on boringssl/include/openssl/asn1.h:1977:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1986:9
 else:
   let ASN1_R_STRING_TOO_LONG* = 173
-    ## Generated based on boringssl/include/openssl/asn1.h:1977:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1986:9
 when 174 is static:
   const ASN1_R_STRING_TOO_SHORT* = 174
-    ## Generated based on boringssl/include/openssl/asn1.h:1978:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1987:9
 else:
   let ASN1_R_STRING_TOO_SHORT* = 174
-    ## Generated based on boringssl/include/openssl/asn1.h:1978:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1987:9
 when 175 is static:
   const ASN1_R_TAG_VALUE_TOO_HIGH* = 175
-    ## Generated based on boringssl/include/openssl/asn1.h:1979:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1988:9
 else:
   let ASN1_R_TAG_VALUE_TOO_HIGH* = 175
-    ## Generated based on boringssl/include/openssl/asn1.h:1979:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1988:9
 when 176 is static:
   const ASN1_R_TIME_NOT_ASCII_FORMAT* = 176
-    ## Generated based on boringssl/include/openssl/asn1.h:1980:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1989:9
 else:
   let ASN1_R_TIME_NOT_ASCII_FORMAT* = 176
-    ## Generated based on boringssl/include/openssl/asn1.h:1980:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1989:9
 when 177 is static:
   const ASN1_R_TOO_LONG* = 177
-    ## Generated based on boringssl/include/openssl/asn1.h:1981:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1990:9
 else:
   let ASN1_R_TOO_LONG* = 177
-    ## Generated based on boringssl/include/openssl/asn1.h:1981:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1990:9
 when 178 is static:
   const ASN1_R_TYPE_NOT_CONSTRUCTED* = 178
-    ## Generated based on boringssl/include/openssl/asn1.h:1982:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1991:9
 else:
   let ASN1_R_TYPE_NOT_CONSTRUCTED* = 178
-    ## Generated based on boringssl/include/openssl/asn1.h:1982:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1991:9
 when 179 is static:
   const ASN1_R_TYPE_NOT_PRIMITIVE* = 179
-    ## Generated based on boringssl/include/openssl/asn1.h:1983:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1992:9
 else:
   let ASN1_R_TYPE_NOT_PRIMITIVE* = 179
-    ## Generated based on boringssl/include/openssl/asn1.h:1983:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1992:9
 when 180 is static:
   const ASN1_R_UNEXPECTED_EOC* = 180
-    ## Generated based on boringssl/include/openssl/asn1.h:1984:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1993:9
 else:
   let ASN1_R_UNEXPECTED_EOC* = 180
-    ## Generated based on boringssl/include/openssl/asn1.h:1984:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1993:9
 when 181 is static:
   const ASN1_R_UNIVERSALSTRING_IS_WRONG_LENGTH* = 181
-    ## Generated based on boringssl/include/openssl/asn1.h:1985:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1994:9
 else:
   let ASN1_R_UNIVERSALSTRING_IS_WRONG_LENGTH* = 181
-    ## Generated based on boringssl/include/openssl/asn1.h:1985:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1994:9
 when 182 is static:
   const ASN1_R_UNKNOWN_FORMAT* = 182
-    ## Generated based on boringssl/include/openssl/asn1.h:1986:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1995:9
 else:
   let ASN1_R_UNKNOWN_FORMAT* = 182
-    ## Generated based on boringssl/include/openssl/asn1.h:1986:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1995:9
 when 183 is static:
   const ASN1_R_UNKNOWN_MESSAGE_DIGEST_ALGORITHM* = 183
-    ## Generated based on boringssl/include/openssl/asn1.h:1987:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1996:9
 else:
   let ASN1_R_UNKNOWN_MESSAGE_DIGEST_ALGORITHM* = 183
-    ## Generated based on boringssl/include/openssl/asn1.h:1987:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1996:9
 when 184 is static:
   const ASN1_R_UNKNOWN_SIGNATURE_ALGORITHM* = 184
-    ## Generated based on boringssl/include/openssl/asn1.h:1988:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1997:9
 else:
   let ASN1_R_UNKNOWN_SIGNATURE_ALGORITHM* = 184
-    ## Generated based on boringssl/include/openssl/asn1.h:1988:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1997:9
 when 185 is static:
   const ASN1_R_UNKNOWN_TAG* = 185
-    ## Generated based on boringssl/include/openssl/asn1.h:1989:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1998:9
 else:
   let ASN1_R_UNKNOWN_TAG* = 185
-    ## Generated based on boringssl/include/openssl/asn1.h:1989:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1998:9
 when 186 is static:
   const ASN1_R_UNSUPPORTED_ANY_DEFINED_BY_TYPE* = 186
-    ## Generated based on boringssl/include/openssl/asn1.h:1990:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1999:9
 else:
   let ASN1_R_UNSUPPORTED_ANY_DEFINED_BY_TYPE* = 186
-    ## Generated based on boringssl/include/openssl/asn1.h:1990:9
+    ## Generated based on boringssl/include/openssl/asn1.h:1999:9
 when 187 is static:
   const ASN1_R_UNSUPPORTED_PUBLIC_KEY_TYPE* = 187
-    ## Generated based on boringssl/include/openssl/asn1.h:1991:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2000:9
 else:
   let ASN1_R_UNSUPPORTED_PUBLIC_KEY_TYPE* = 187
-    ## Generated based on boringssl/include/openssl/asn1.h:1991:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2000:9
 when 188 is static:
   const ASN1_R_UNSUPPORTED_TYPE* = 188
-    ## Generated based on boringssl/include/openssl/asn1.h:1992:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2001:9
 else:
   let ASN1_R_UNSUPPORTED_TYPE* = 188
-    ## Generated based on boringssl/include/openssl/asn1.h:1992:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2001:9
 when 189 is static:
   const ASN1_R_WRONG_PUBLIC_KEY_TYPE* = 189
-    ## Generated based on boringssl/include/openssl/asn1.h:1993:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2002:9
 else:
   let ASN1_R_WRONG_PUBLIC_KEY_TYPE* = 189
-    ## Generated based on boringssl/include/openssl/asn1.h:1993:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2002:9
 when 190 is static:
   const ASN1_R_WRONG_TAG* = 190
-    ## Generated based on boringssl/include/openssl/asn1.h:1994:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2003:9
 else:
   let ASN1_R_WRONG_TAG* = 190
-    ## Generated based on boringssl/include/openssl/asn1.h:1994:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2003:9
 when 191 is static:
   const ASN1_R_WRONG_TYPE* = 191
-    ## Generated based on boringssl/include/openssl/asn1.h:1995:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2004:9
 else:
   let ASN1_R_WRONG_TYPE* = 191
-    ## Generated based on boringssl/include/openssl/asn1.h:1995:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2004:9
 when 192 is static:
   const ASN1_R_NESTED_TOO_DEEP* = 192
-    ## Generated based on boringssl/include/openssl/asn1.h:1996:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2005:9
 else:
   let ASN1_R_NESTED_TOO_DEEP* = 192
-    ## Generated based on boringssl/include/openssl/asn1.h:1996:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2005:9
 when 193 is static:
   const ASN1_R_BAD_TEMPLATE* = 193
-    ## Generated based on boringssl/include/openssl/asn1.h:1997:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2006:9
 else:
   let ASN1_R_BAD_TEMPLATE* = 193
-    ## Generated based on boringssl/include/openssl/asn1.h:1997:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2006:9
 when 194 is static:
   const ASN1_R_INVALID_BIT_STRING_PADDING* = 194
-    ## Generated based on boringssl/include/openssl/asn1.h:1998:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2007:9
 else:
   let ASN1_R_INVALID_BIT_STRING_PADDING* = 194
-    ## Generated based on boringssl/include/openssl/asn1.h:1998:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2007:9
 when 195 is static:
   const ASN1_R_WRONG_INTEGER_TYPE* = 195
-    ## Generated based on boringssl/include/openssl/asn1.h:1999:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2008:9
 else:
   let ASN1_R_WRONG_INTEGER_TYPE* = 195
-    ## Generated based on boringssl/include/openssl/asn1.h:1999:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2008:9
 when 196 is static:
   const ASN1_R_INVALID_INTEGER* = 196
-    ## Generated based on boringssl/include/openssl/asn1.h:2000:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2009:9
 else:
   let ASN1_R_INVALID_INTEGER* = 196
-    ## Generated based on boringssl/include/openssl/asn1.h:2000:9
+    ## Generated based on boringssl/include/openssl/asn1.h:2009:9
 when 0 is static:
   const CONF_MFLAGS_DEFAULT_SECTION* = 0
     ## Generated based on boringssl/include/openssl/conf.h:90:9
@@ -17891,206 +18006,206 @@ else:
     ## Generated based on boringssl/include/openssl/conf.h:134:9
 when 8192 is static:
   const OPENSSL_DH_MAX_MODULUS_BITS* = 8192
-    ## Generated based on boringssl/include/openssl/dh.h:57:9
+    ## Generated based on boringssl/include/openssl/dh.h:62:9
 else:
   let OPENSSL_DH_MAX_MODULUS_BITS* = 8192
-    ## Generated based on boringssl/include/openssl/dh.h:57:9
+    ## Generated based on boringssl/include/openssl/dh.h:62:9
 when 2 is static:
-  const DH_GENERATOR_2* = 2 ## Generated based on boringssl/include/openssl/dh.h:154:9
+  const DH_GENERATOR_2* = 2 ## Generated based on boringssl/include/openssl/dh.h:159:9
 else:
-  let DH_GENERATOR_2* = 2 ## Generated based on boringssl/include/openssl/dh.h:154:9
+  let DH_GENERATOR_2* = 2 ## Generated based on boringssl/include/openssl/dh.h:159:9
 when 5 is static:
-  const DH_GENERATOR_5* = 5 ## Generated based on boringssl/include/openssl/dh.h:155:9
+  const DH_GENERATOR_5* = 5 ## Generated based on boringssl/include/openssl/dh.h:160:9
 else:
-  let DH_GENERATOR_5* = 5 ## Generated based on boringssl/include/openssl/dh.h:155:9
+  let DH_GENERATOR_5* = 5 ## Generated based on boringssl/include/openssl/dh.h:160:9
 when 1 is static:
   const DH_CHECK_P_NOT_PRIME* = 1
-    ## Generated based on boringssl/include/openssl/dh.h:218:9
+    ## Generated based on boringssl/include/openssl/dh.h:223:9
 else:
   let DH_CHECK_P_NOT_PRIME* = 1
-    ## Generated based on boringssl/include/openssl/dh.h:218:9
+    ## Generated based on boringssl/include/openssl/dh.h:223:9
 when 2 is static:
   const DH_CHECK_P_NOT_SAFE_PRIME* = 2
-    ## Generated based on boringssl/include/openssl/dh.h:219:9
+    ## Generated based on boringssl/include/openssl/dh.h:224:9
 else:
   let DH_CHECK_P_NOT_SAFE_PRIME* = 2
-    ## Generated based on boringssl/include/openssl/dh.h:219:9
+    ## Generated based on boringssl/include/openssl/dh.h:224:9
 when 4 is static:
   const DH_CHECK_UNABLE_TO_CHECK_GENERATOR* = 4
-    ## Generated based on boringssl/include/openssl/dh.h:220:9
+    ## Generated based on boringssl/include/openssl/dh.h:225:9
 else:
   let DH_CHECK_UNABLE_TO_CHECK_GENERATOR* = 4
-    ## Generated based on boringssl/include/openssl/dh.h:220:9
+    ## Generated based on boringssl/include/openssl/dh.h:225:9
 when 8 is static:
   const DH_CHECK_NOT_SUITABLE_GENERATOR* = 8
-    ## Generated based on boringssl/include/openssl/dh.h:221:9
+    ## Generated based on boringssl/include/openssl/dh.h:226:9
 else:
   let DH_CHECK_NOT_SUITABLE_GENERATOR* = 8
-    ## Generated based on boringssl/include/openssl/dh.h:221:9
+    ## Generated based on boringssl/include/openssl/dh.h:226:9
 when 16 is static:
   const DH_CHECK_Q_NOT_PRIME* = 16
-    ## Generated based on boringssl/include/openssl/dh.h:222:9
+    ## Generated based on boringssl/include/openssl/dh.h:227:9
 else:
   let DH_CHECK_Q_NOT_PRIME* = 16
-    ## Generated based on boringssl/include/openssl/dh.h:222:9
+    ## Generated based on boringssl/include/openssl/dh.h:227:9
 when 32 is static:
   const DH_CHECK_INVALID_Q_VALUE* = 32
-    ## Generated based on boringssl/include/openssl/dh.h:223:9
+    ## Generated based on boringssl/include/openssl/dh.h:228:9
 else:
   let DH_CHECK_INVALID_Q_VALUE* = 32
-    ## Generated based on boringssl/include/openssl/dh.h:223:9
+    ## Generated based on boringssl/include/openssl/dh.h:228:9
 when DH_CHECK_NOT_SUITABLE_GENERATOR is typedesc:
   type DH_NOT_SUITABLE_GENERATOR* = DH_CHECK_NOT_SUITABLE_GENERATOR
-    ## Generated based on boringssl/include/openssl/dh.h:226:9
+    ## Generated based on boringssl/include/openssl/dh.h:231:9
 
 else:
   when DH_CHECK_NOT_SUITABLE_GENERATOR is static:
     const DH_NOT_SUITABLE_GENERATOR* = DH_CHECK_NOT_SUITABLE_GENERATOR
-      ## Generated based on boringssl/include/openssl/dh.h:226:9
+      ## Generated based on boringssl/include/openssl/dh.h:231:9
   else:
     let DH_NOT_SUITABLE_GENERATOR* = DH_CHECK_NOT_SUITABLE_GENERATOR
-      ## Generated based on boringssl/include/openssl/dh.h:226:9
+      ## Generated based on boringssl/include/openssl/dh.h:231:9
 when DH_CHECK_UNABLE_TO_CHECK_GENERATOR is typedesc:
   type DH_UNABLE_TO_CHECK_GENERATOR* = DH_CHECK_UNABLE_TO_CHECK_GENERATOR
-    ## Generated based on boringssl/include/openssl/dh.h:227:9
+    ## Generated based on boringssl/include/openssl/dh.h:232:9
 
 else:
   when DH_CHECK_UNABLE_TO_CHECK_GENERATOR is static:
     const DH_UNABLE_TO_CHECK_GENERATOR* = DH_CHECK_UNABLE_TO_CHECK_GENERATOR
-      ## Generated based on boringssl/include/openssl/dh.h:227:9
+      ## Generated based on boringssl/include/openssl/dh.h:232:9
   else:
     let DH_UNABLE_TO_CHECK_GENERATOR* = DH_CHECK_UNABLE_TO_CHECK_GENERATOR
-      ## Generated based on boringssl/include/openssl/dh.h:227:9
+      ## Generated based on boringssl/include/openssl/dh.h:232:9
 when 1 is static:
   const DH_CHECK_PUBKEY_TOO_SMALL* = 1
-    ## Generated based on boringssl/include/openssl/dh.h:236:9
+    ## Generated based on boringssl/include/openssl/dh.h:241:9
 else:
   let DH_CHECK_PUBKEY_TOO_SMALL* = 1
-    ## Generated based on boringssl/include/openssl/dh.h:236:9
+    ## Generated based on boringssl/include/openssl/dh.h:241:9
 when 2 is static:
   const DH_CHECK_PUBKEY_TOO_LARGE* = 2
-    ## Generated based on boringssl/include/openssl/dh.h:237:9
+    ## Generated based on boringssl/include/openssl/dh.h:242:9
 else:
   let DH_CHECK_PUBKEY_TOO_LARGE* = 2
-    ## Generated based on boringssl/include/openssl/dh.h:237:9
+    ## Generated based on boringssl/include/openssl/dh.h:242:9
 when 4 is static:
   const DH_CHECK_PUBKEY_INVALID* = 4
-    ## Generated based on boringssl/include/openssl/dh.h:238:9
+    ## Generated based on boringssl/include/openssl/dh.h:243:9
 else:
   let DH_CHECK_PUBKEY_INVALID* = 4
-    ## Generated based on boringssl/include/openssl/dh.h:238:9
+    ## Generated based on boringssl/include/openssl/dh.h:243:9
 when 100 is static:
   const DH_R_BAD_GENERATOR* = 100
-    ## Generated based on boringssl/include/openssl/dh.h:328:9
-else:
-  let DH_R_BAD_GENERATOR* = 100
-    ## Generated based on boringssl/include/openssl/dh.h:328:9
-when 101 is static:
-  const DH_R_INVALID_PUBKEY* = 101
-    ## Generated based on boringssl/include/openssl/dh.h:329:9
-else:
-  let DH_R_INVALID_PUBKEY* = 101
-    ## Generated based on boringssl/include/openssl/dh.h:329:9
-when 102 is static:
-  const DH_R_MODULUS_TOO_LARGE* = 102
-    ## Generated based on boringssl/include/openssl/dh.h:330:9
-else:
-  let DH_R_MODULUS_TOO_LARGE* = 102
-    ## Generated based on boringssl/include/openssl/dh.h:330:9
-when 103 is static:
-  const DH_R_NO_PRIVATE_VALUE* = 103
-    ## Generated based on boringssl/include/openssl/dh.h:331:9
-else:
-  let DH_R_NO_PRIVATE_VALUE* = 103
-    ## Generated based on boringssl/include/openssl/dh.h:331:9
-when 104 is static:
-  const DH_R_DECODE_ERROR* = 104
-    ## Generated based on boringssl/include/openssl/dh.h:332:9
-else:
-  let DH_R_DECODE_ERROR* = 104 ## Generated based on boringssl/include/openssl/dh.h:332:9
-when 105 is static:
-  const DH_R_ENCODE_ERROR* = 105
     ## Generated based on boringssl/include/openssl/dh.h:333:9
 else:
-  let DH_R_ENCODE_ERROR* = 105 ## Generated based on boringssl/include/openssl/dh.h:333:9
+  let DH_R_BAD_GENERATOR* = 100
+    ## Generated based on boringssl/include/openssl/dh.h:333:9
+when 101 is static:
+  const DH_R_INVALID_PUBKEY* = 101
+    ## Generated based on boringssl/include/openssl/dh.h:334:9
+else:
+  let DH_R_INVALID_PUBKEY* = 101
+    ## Generated based on boringssl/include/openssl/dh.h:334:9
+when 102 is static:
+  const DH_R_MODULUS_TOO_LARGE* = 102
+    ## Generated based on boringssl/include/openssl/dh.h:335:9
+else:
+  let DH_R_MODULUS_TOO_LARGE* = 102
+    ## Generated based on boringssl/include/openssl/dh.h:335:9
+when 103 is static:
+  const DH_R_NO_PRIVATE_VALUE* = 103
+    ## Generated based on boringssl/include/openssl/dh.h:336:9
+else:
+  let DH_R_NO_PRIVATE_VALUE* = 103
+    ## Generated based on boringssl/include/openssl/dh.h:336:9
+when 104 is static:
+  const DH_R_DECODE_ERROR* = 104
+    ## Generated based on boringssl/include/openssl/dh.h:337:9
+else:
+  let DH_R_DECODE_ERROR* = 104 ## Generated based on boringssl/include/openssl/dh.h:337:9
+when 105 is static:
+  const DH_R_ENCODE_ERROR* = 105
+    ## Generated based on boringssl/include/openssl/dh.h:338:9
+else:
+  let DH_R_ENCODE_ERROR* = 105 ## Generated based on boringssl/include/openssl/dh.h:338:9
 when 106 is static:
   const DH_R_INVALID_PARAMETERS* = 106
-    ## Generated based on boringssl/include/openssl/dh.h:334:9
+    ## Generated based on boringssl/include/openssl/dh.h:339:9
 else:
   let DH_R_INVALID_PARAMETERS* = 106
-    ## Generated based on boringssl/include/openssl/dh.h:334:9
+    ## Generated based on boringssl/include/openssl/dh.h:339:9
 when 8192 is static:
   const OPENSSL_DSA_MAX_MODULUS_BITS* = 8192
-    ## Generated based on boringssl/include/openssl/dsa.h:59:9
+    ## Generated based on boringssl/include/openssl/dsa.h:64:9
 else:
   let OPENSSL_DSA_MAX_MODULUS_BITS* = 8192
-    ## Generated based on boringssl/include/openssl/dsa.h:59:9
+    ## Generated based on boringssl/include/openssl/dsa.h:64:9
 when 100 is static:
   const DSA_R_BAD_Q_VALUE* = 100
-    ## Generated based on boringssl/include/openssl/dsa.h:382:9
+    ## Generated based on boringssl/include/openssl/dsa.h:387:9
 else:
   let DSA_R_BAD_Q_VALUE* = 100
-    ## Generated based on boringssl/include/openssl/dsa.h:382:9
+    ## Generated based on boringssl/include/openssl/dsa.h:387:9
 when 101 is static:
   const DSA_R_MISSING_PARAMETERS* = 101
-    ## Generated based on boringssl/include/openssl/dsa.h:383:9
+    ## Generated based on boringssl/include/openssl/dsa.h:388:9
 else:
   let DSA_R_MISSING_PARAMETERS* = 101
-    ## Generated based on boringssl/include/openssl/dsa.h:383:9
+    ## Generated based on boringssl/include/openssl/dsa.h:388:9
 when 102 is static:
   const DSA_R_MODULUS_TOO_LARGE* = 102
-    ## Generated based on boringssl/include/openssl/dsa.h:384:9
+    ## Generated based on boringssl/include/openssl/dsa.h:389:9
 else:
   let DSA_R_MODULUS_TOO_LARGE* = 102
-    ## Generated based on boringssl/include/openssl/dsa.h:384:9
+    ## Generated based on boringssl/include/openssl/dsa.h:389:9
 when 103 is static:
   const DSA_R_NEED_NEW_SETUP_VALUES* = 103
-    ## Generated based on boringssl/include/openssl/dsa.h:385:9
+    ## Generated based on boringssl/include/openssl/dsa.h:390:9
 else:
   let DSA_R_NEED_NEW_SETUP_VALUES* = 103
-    ## Generated based on boringssl/include/openssl/dsa.h:385:9
+    ## Generated based on boringssl/include/openssl/dsa.h:390:9
 when 104 is static:
   const DSA_R_BAD_VERSION* = 104
-    ## Generated based on boringssl/include/openssl/dsa.h:386:9
+    ## Generated based on boringssl/include/openssl/dsa.h:391:9
 else:
   let DSA_R_BAD_VERSION* = 104
-    ## Generated based on boringssl/include/openssl/dsa.h:386:9
+    ## Generated based on boringssl/include/openssl/dsa.h:391:9
 when 105 is static:
   const DSA_R_DECODE_ERROR* = 105
-    ## Generated based on boringssl/include/openssl/dsa.h:387:9
+    ## Generated based on boringssl/include/openssl/dsa.h:392:9
 else:
   let DSA_R_DECODE_ERROR* = 105
-    ## Generated based on boringssl/include/openssl/dsa.h:387:9
+    ## Generated based on boringssl/include/openssl/dsa.h:392:9
 when 106 is static:
   const DSA_R_ENCODE_ERROR* = 106
-    ## Generated based on boringssl/include/openssl/dsa.h:388:9
+    ## Generated based on boringssl/include/openssl/dsa.h:393:9
 else:
   let DSA_R_ENCODE_ERROR* = 106
-    ## Generated based on boringssl/include/openssl/dsa.h:388:9
+    ## Generated based on boringssl/include/openssl/dsa.h:393:9
 when 107 is static:
   const DSA_R_INVALID_PARAMETERS* = 107
-    ## Generated based on boringssl/include/openssl/dsa.h:389:9
+    ## Generated based on boringssl/include/openssl/dsa.h:394:9
 else:
   let DSA_R_INVALID_PARAMETERS* = 107
-    ## Generated based on boringssl/include/openssl/dsa.h:389:9
+    ## Generated based on boringssl/include/openssl/dsa.h:394:9
 when 108 is static:
   const DSA_R_TOO_MANY_ITERATIONS* = 108
-    ## Generated based on boringssl/include/openssl/dsa.h:390:9
+    ## Generated based on boringssl/include/openssl/dsa.h:395:9
 else:
   let DSA_R_TOO_MANY_ITERATIONS* = 108
-    ## Generated based on boringssl/include/openssl/dsa.h:390:9
+    ## Generated based on boringssl/include/openssl/dsa.h:395:9
 when 0 is static:
   const OPENSSL_EC_EXPLICIT_CURVE* = 0
-    ## Generated based on boringssl/include/openssl/ec.h:410:9
+    ## Generated based on boringssl/include/openssl/ec.h:434:9
 else:
   let OPENSSL_EC_EXPLICIT_CURVE* = 0
-    ## Generated based on boringssl/include/openssl/ec.h:410:9
+    ## Generated based on boringssl/include/openssl/ec.h:434:9
 when 1 is static:
   const OPENSSL_EC_NAMED_CURVE* = 1
-    ## Generated based on boringssl/include/openssl/ec.h:411:9
+    ## Generated based on boringssl/include/openssl/ec.h:435:9
 else:
   let OPENSSL_EC_NAMED_CURVE* = 1
-    ## Generated based on boringssl/include/openssl/ec.h:411:9
+    ## Generated based on boringssl/include/openssl/ec.h:435:9
 when 100 is static:
   const ENGINE_R_OPERATION_NOT_SUPPORTED* = 100
     ## Generated based on boringssl/include/openssl/engine.h:107:9
@@ -18099,220 +18214,220 @@ else:
     ## Generated based on boringssl/include/openssl/engine.h:107:9
 when 1 is static:
   const EC_PKEY_NO_PARAMETERS* = 1
-    ## Generated based on boringssl/include/openssl/ec_key.h:93:9
+    ## Generated based on boringssl/include/openssl/ec_key.h:98:9
 else:
   let EC_PKEY_NO_PARAMETERS* = 1
-    ## Generated based on boringssl/include/openssl/ec_key.h:93:9
+    ## Generated based on boringssl/include/openssl/ec_key.h:98:9
 when 2 is static:
   const EC_PKEY_NO_PUBKEY* = 2
-    ## Generated based on boringssl/include/openssl/ec_key.h:94:9
+    ## Generated based on boringssl/include/openssl/ec_key.h:99:9
 else:
   let EC_PKEY_NO_PUBKEY* = 2
-    ## Generated based on boringssl/include/openssl/ec_key.h:94:9
+    ## Generated based on boringssl/include/openssl/ec_key.h:99:9
 when 1 is static:
   const ECDSA_FLAG_OPAQUE* = 1
-    ## Generated based on boringssl/include/openssl/ec_key.h:257:9
+    ## Generated based on boringssl/include/openssl/ec_key.h:262:9
 else:
   let ECDSA_FLAG_OPAQUE* = 1
-    ## Generated based on boringssl/include/openssl/ec_key.h:257:9
+    ## Generated based on boringssl/include/openssl/ec_key.h:262:9
 when 100 is static:
   const EC_R_BUFFER_TOO_SMALL* = 100
-    ## Generated based on boringssl/include/openssl/ec.h:471:9
+    ## Generated based on boringssl/include/openssl/ec.h:495:9
 else:
   let EC_R_BUFFER_TOO_SMALL* = 100
-    ## Generated based on boringssl/include/openssl/ec.h:471:9
+    ## Generated based on boringssl/include/openssl/ec.h:495:9
 when 101 is static:
   const EC_R_COORDINATES_OUT_OF_RANGE* = 101
-    ## Generated based on boringssl/include/openssl/ec.h:472:9
-else:
-  let EC_R_COORDINATES_OUT_OF_RANGE* = 101
-    ## Generated based on boringssl/include/openssl/ec.h:472:9
-when 102 is static:
-  const EC_R_D2I_ECPKPARAMETERS_FAILURE* = 102
-    ## Generated based on boringssl/include/openssl/ec.h:473:9
-else:
-  let EC_R_D2I_ECPKPARAMETERS_FAILURE* = 102
-    ## Generated based on boringssl/include/openssl/ec.h:473:9
-when 103 is static:
-  const EC_R_EC_GROUP_NEW_BY_NAME_FAILURE* = 103
-    ## Generated based on boringssl/include/openssl/ec.h:474:9
-else:
-  let EC_R_EC_GROUP_NEW_BY_NAME_FAILURE* = 103
-    ## Generated based on boringssl/include/openssl/ec.h:474:9
-when 104 is static:
-  const EC_R_GROUP2PKPARAMETERS_FAILURE* = 104
-    ## Generated based on boringssl/include/openssl/ec.h:475:9
-else:
-  let EC_R_GROUP2PKPARAMETERS_FAILURE* = 104
-    ## Generated based on boringssl/include/openssl/ec.h:475:9
-when 105 is static:
-  const EC_R_I2D_ECPKPARAMETERS_FAILURE* = 105
-    ## Generated based on boringssl/include/openssl/ec.h:476:9
-else:
-  let EC_R_I2D_ECPKPARAMETERS_FAILURE* = 105
-    ## Generated based on boringssl/include/openssl/ec.h:476:9
-when 106 is static:
-  const EC_R_INCOMPATIBLE_OBJECTS* = 106
-    ## Generated based on boringssl/include/openssl/ec.h:477:9
-else:
-  let EC_R_INCOMPATIBLE_OBJECTS* = 106
-    ## Generated based on boringssl/include/openssl/ec.h:477:9
-when 107 is static:
-  const EC_R_INVALID_COMPRESSED_POINT* = 107
-    ## Generated based on boringssl/include/openssl/ec.h:478:9
-else:
-  let EC_R_INVALID_COMPRESSED_POINT* = 107
-    ## Generated based on boringssl/include/openssl/ec.h:478:9
-when 108 is static:
-  const EC_R_INVALID_COMPRESSION_BIT* = 108
-    ## Generated based on boringssl/include/openssl/ec.h:479:9
-else:
-  let EC_R_INVALID_COMPRESSION_BIT* = 108
-    ## Generated based on boringssl/include/openssl/ec.h:479:9
-when 109 is static:
-  const EC_R_INVALID_ENCODING* = 109
-    ## Generated based on boringssl/include/openssl/ec.h:480:9
-else:
-  let EC_R_INVALID_ENCODING* = 109
-    ## Generated based on boringssl/include/openssl/ec.h:480:9
-when 110 is static:
-  const EC_R_INVALID_FIELD* = 110
-    ## Generated based on boringssl/include/openssl/ec.h:481:9
-else:
-  let EC_R_INVALID_FIELD* = 110
-    ## Generated based on boringssl/include/openssl/ec.h:481:9
-when 111 is static:
-  const EC_R_INVALID_FORM* = 111
-    ## Generated based on boringssl/include/openssl/ec.h:482:9
-else:
-  let EC_R_INVALID_FORM* = 111 ## Generated based on boringssl/include/openssl/ec.h:482:9
-when 112 is static:
-  const EC_R_INVALID_GROUP_ORDER* = 112
-    ## Generated based on boringssl/include/openssl/ec.h:483:9
-else:
-  let EC_R_INVALID_GROUP_ORDER* = 112
-    ## Generated based on boringssl/include/openssl/ec.h:483:9
-when 113 is static:
-  const EC_R_INVALID_PRIVATE_KEY* = 113
-    ## Generated based on boringssl/include/openssl/ec.h:484:9
-else:
-  let EC_R_INVALID_PRIVATE_KEY* = 113
-    ## Generated based on boringssl/include/openssl/ec.h:484:9
-when 114 is static:
-  const EC_R_MISSING_PARAMETERS* = 114
-    ## Generated based on boringssl/include/openssl/ec.h:485:9
-else:
-  let EC_R_MISSING_PARAMETERS* = 114
-    ## Generated based on boringssl/include/openssl/ec.h:485:9
-when 115 is static:
-  const EC_R_MISSING_PRIVATE_KEY* = 115
-    ## Generated based on boringssl/include/openssl/ec.h:486:9
-else:
-  let EC_R_MISSING_PRIVATE_KEY* = 115
-    ## Generated based on boringssl/include/openssl/ec.h:486:9
-when 116 is static:
-  const EC_R_NON_NAMED_CURVE* = 116
-    ## Generated based on boringssl/include/openssl/ec.h:487:9
-else:
-  let EC_R_NON_NAMED_CURVE* = 116
-    ## Generated based on boringssl/include/openssl/ec.h:487:9
-when 117 is static:
-  const EC_R_NOT_INITIALIZED* = 117
-    ## Generated based on boringssl/include/openssl/ec.h:488:9
-else:
-  let EC_R_NOT_INITIALIZED* = 117
-    ## Generated based on boringssl/include/openssl/ec.h:488:9
-when 118 is static:
-  const EC_R_PKPARAMETERS2GROUP_FAILURE* = 118
-    ## Generated based on boringssl/include/openssl/ec.h:489:9
-else:
-  let EC_R_PKPARAMETERS2GROUP_FAILURE* = 118
-    ## Generated based on boringssl/include/openssl/ec.h:489:9
-when 119 is static:
-  const EC_R_POINT_AT_INFINITY* = 119
-    ## Generated based on boringssl/include/openssl/ec.h:490:9
-else:
-  let EC_R_POINT_AT_INFINITY* = 119
-    ## Generated based on boringssl/include/openssl/ec.h:490:9
-when 120 is static:
-  const EC_R_POINT_IS_NOT_ON_CURVE* = 120
-    ## Generated based on boringssl/include/openssl/ec.h:491:9
-else:
-  let EC_R_POINT_IS_NOT_ON_CURVE* = 120
-    ## Generated based on boringssl/include/openssl/ec.h:491:9
-when 121 is static:
-  const EC_R_SLOT_FULL* = 121 ## Generated based on boringssl/include/openssl/ec.h:492:9
-else:
-  let EC_R_SLOT_FULL* = 121 ## Generated based on boringssl/include/openssl/ec.h:492:9
-when 122 is static:
-  const EC_R_UNDEFINED_GENERATOR* = 122
-    ## Generated based on boringssl/include/openssl/ec.h:493:9
-else:
-  let EC_R_UNDEFINED_GENERATOR* = 122
-    ## Generated based on boringssl/include/openssl/ec.h:493:9
-when 123 is static:
-  const EC_R_UNKNOWN_GROUP* = 123
-    ## Generated based on boringssl/include/openssl/ec.h:494:9
-else:
-  let EC_R_UNKNOWN_GROUP* = 123
-    ## Generated based on boringssl/include/openssl/ec.h:494:9
-when 124 is static:
-  const EC_R_UNKNOWN_ORDER* = 124
-    ## Generated based on boringssl/include/openssl/ec.h:495:9
-else:
-  let EC_R_UNKNOWN_ORDER* = 124
-    ## Generated based on boringssl/include/openssl/ec.h:495:9
-when 125 is static:
-  const EC_R_WRONG_ORDER* = 125
     ## Generated based on boringssl/include/openssl/ec.h:496:9
 else:
-  let EC_R_WRONG_ORDER* = 125 ## Generated based on boringssl/include/openssl/ec.h:496:9
-when 126 is static:
-  const EC_R_BIGNUM_OUT_OF_RANGE* = 126
+  let EC_R_COORDINATES_OUT_OF_RANGE* = 101
+    ## Generated based on boringssl/include/openssl/ec.h:496:9
+when 102 is static:
+  const EC_R_D2I_ECPKPARAMETERS_FAILURE* = 102
     ## Generated based on boringssl/include/openssl/ec.h:497:9
 else:
-  let EC_R_BIGNUM_OUT_OF_RANGE* = 126
+  let EC_R_D2I_ECPKPARAMETERS_FAILURE* = 102
     ## Generated based on boringssl/include/openssl/ec.h:497:9
-when 127 is static:
-  const EC_R_WRONG_CURVE_PARAMETERS* = 127
+when 103 is static:
+  const EC_R_EC_GROUP_NEW_BY_NAME_FAILURE* = 103
     ## Generated based on boringssl/include/openssl/ec.h:498:9
 else:
-  let EC_R_WRONG_CURVE_PARAMETERS* = 127
+  let EC_R_EC_GROUP_NEW_BY_NAME_FAILURE* = 103
     ## Generated based on boringssl/include/openssl/ec.h:498:9
-when 128 is static:
-  const EC_R_DECODE_ERROR* = 128
+when 104 is static:
+  const EC_R_GROUP2PKPARAMETERS_FAILURE* = 104
     ## Generated based on boringssl/include/openssl/ec.h:499:9
 else:
-  let EC_R_DECODE_ERROR* = 128 ## Generated based on boringssl/include/openssl/ec.h:499:9
-when 129 is static:
-  const EC_R_ENCODE_ERROR* = 129
+  let EC_R_GROUP2PKPARAMETERS_FAILURE* = 104
+    ## Generated based on boringssl/include/openssl/ec.h:499:9
+when 105 is static:
+  const EC_R_I2D_ECPKPARAMETERS_FAILURE* = 105
     ## Generated based on boringssl/include/openssl/ec.h:500:9
 else:
-  let EC_R_ENCODE_ERROR* = 129 ## Generated based on boringssl/include/openssl/ec.h:500:9
+  let EC_R_I2D_ECPKPARAMETERS_FAILURE* = 105
+    ## Generated based on boringssl/include/openssl/ec.h:500:9
+when 106 is static:
+  const EC_R_INCOMPATIBLE_OBJECTS* = 106
+    ## Generated based on boringssl/include/openssl/ec.h:501:9
+else:
+  let EC_R_INCOMPATIBLE_OBJECTS* = 106
+    ## Generated based on boringssl/include/openssl/ec.h:501:9
+when 107 is static:
+  const EC_R_INVALID_COMPRESSED_POINT* = 107
+    ## Generated based on boringssl/include/openssl/ec.h:502:9
+else:
+  let EC_R_INVALID_COMPRESSED_POINT* = 107
+    ## Generated based on boringssl/include/openssl/ec.h:502:9
+when 108 is static:
+  const EC_R_INVALID_COMPRESSION_BIT* = 108
+    ## Generated based on boringssl/include/openssl/ec.h:503:9
+else:
+  let EC_R_INVALID_COMPRESSION_BIT* = 108
+    ## Generated based on boringssl/include/openssl/ec.h:503:9
+when 109 is static:
+  const EC_R_INVALID_ENCODING* = 109
+    ## Generated based on boringssl/include/openssl/ec.h:504:9
+else:
+  let EC_R_INVALID_ENCODING* = 109
+    ## Generated based on boringssl/include/openssl/ec.h:504:9
+when 110 is static:
+  const EC_R_INVALID_FIELD* = 110
+    ## Generated based on boringssl/include/openssl/ec.h:505:9
+else:
+  let EC_R_INVALID_FIELD* = 110
+    ## Generated based on boringssl/include/openssl/ec.h:505:9
+when 111 is static:
+  const EC_R_INVALID_FORM* = 111
+    ## Generated based on boringssl/include/openssl/ec.h:506:9
+else:
+  let EC_R_INVALID_FORM* = 111 ## Generated based on boringssl/include/openssl/ec.h:506:9
+when 112 is static:
+  const EC_R_INVALID_GROUP_ORDER* = 112
+    ## Generated based on boringssl/include/openssl/ec.h:507:9
+else:
+  let EC_R_INVALID_GROUP_ORDER* = 112
+    ## Generated based on boringssl/include/openssl/ec.h:507:9
+when 113 is static:
+  const EC_R_INVALID_PRIVATE_KEY* = 113
+    ## Generated based on boringssl/include/openssl/ec.h:508:9
+else:
+  let EC_R_INVALID_PRIVATE_KEY* = 113
+    ## Generated based on boringssl/include/openssl/ec.h:508:9
+when 114 is static:
+  const EC_R_MISSING_PARAMETERS* = 114
+    ## Generated based on boringssl/include/openssl/ec.h:509:9
+else:
+  let EC_R_MISSING_PARAMETERS* = 114
+    ## Generated based on boringssl/include/openssl/ec.h:509:9
+when 115 is static:
+  const EC_R_MISSING_PRIVATE_KEY* = 115
+    ## Generated based on boringssl/include/openssl/ec.h:510:9
+else:
+  let EC_R_MISSING_PRIVATE_KEY* = 115
+    ## Generated based on boringssl/include/openssl/ec.h:510:9
+when 116 is static:
+  const EC_R_NON_NAMED_CURVE* = 116
+    ## Generated based on boringssl/include/openssl/ec.h:511:9
+else:
+  let EC_R_NON_NAMED_CURVE* = 116
+    ## Generated based on boringssl/include/openssl/ec.h:511:9
+when 117 is static:
+  const EC_R_NOT_INITIALIZED* = 117
+    ## Generated based on boringssl/include/openssl/ec.h:512:9
+else:
+  let EC_R_NOT_INITIALIZED* = 117
+    ## Generated based on boringssl/include/openssl/ec.h:512:9
+when 118 is static:
+  const EC_R_PKPARAMETERS2GROUP_FAILURE* = 118
+    ## Generated based on boringssl/include/openssl/ec.h:513:9
+else:
+  let EC_R_PKPARAMETERS2GROUP_FAILURE* = 118
+    ## Generated based on boringssl/include/openssl/ec.h:513:9
+when 119 is static:
+  const EC_R_POINT_AT_INFINITY* = 119
+    ## Generated based on boringssl/include/openssl/ec.h:514:9
+else:
+  let EC_R_POINT_AT_INFINITY* = 119
+    ## Generated based on boringssl/include/openssl/ec.h:514:9
+when 120 is static:
+  const EC_R_POINT_IS_NOT_ON_CURVE* = 120
+    ## Generated based on boringssl/include/openssl/ec.h:515:9
+else:
+  let EC_R_POINT_IS_NOT_ON_CURVE* = 120
+    ## Generated based on boringssl/include/openssl/ec.h:515:9
+when 121 is static:
+  const EC_R_SLOT_FULL* = 121 ## Generated based on boringssl/include/openssl/ec.h:516:9
+else:
+  let EC_R_SLOT_FULL* = 121 ## Generated based on boringssl/include/openssl/ec.h:516:9
+when 122 is static:
+  const EC_R_UNDEFINED_GENERATOR* = 122
+    ## Generated based on boringssl/include/openssl/ec.h:517:9
+else:
+  let EC_R_UNDEFINED_GENERATOR* = 122
+    ## Generated based on boringssl/include/openssl/ec.h:517:9
+when 123 is static:
+  const EC_R_UNKNOWN_GROUP* = 123
+    ## Generated based on boringssl/include/openssl/ec.h:518:9
+else:
+  let EC_R_UNKNOWN_GROUP* = 123
+    ## Generated based on boringssl/include/openssl/ec.h:518:9
+when 124 is static:
+  const EC_R_UNKNOWN_ORDER* = 124
+    ## Generated based on boringssl/include/openssl/ec.h:519:9
+else:
+  let EC_R_UNKNOWN_ORDER* = 124
+    ## Generated based on boringssl/include/openssl/ec.h:519:9
+when 125 is static:
+  const EC_R_WRONG_ORDER* = 125
+    ## Generated based on boringssl/include/openssl/ec.h:520:9
+else:
+  let EC_R_WRONG_ORDER* = 125 ## Generated based on boringssl/include/openssl/ec.h:520:9
+when 126 is static:
+  const EC_R_BIGNUM_OUT_OF_RANGE* = 126
+    ## Generated based on boringssl/include/openssl/ec.h:521:9
+else:
+  let EC_R_BIGNUM_OUT_OF_RANGE* = 126
+    ## Generated based on boringssl/include/openssl/ec.h:521:9
+when 127 is static:
+  const EC_R_WRONG_CURVE_PARAMETERS* = 127
+    ## Generated based on boringssl/include/openssl/ec.h:522:9
+else:
+  let EC_R_WRONG_CURVE_PARAMETERS* = 127
+    ## Generated based on boringssl/include/openssl/ec.h:522:9
+when 128 is static:
+  const EC_R_DECODE_ERROR* = 128
+    ## Generated based on boringssl/include/openssl/ec.h:523:9
+else:
+  let EC_R_DECODE_ERROR* = 128 ## Generated based on boringssl/include/openssl/ec.h:523:9
+when 129 is static:
+  const EC_R_ENCODE_ERROR* = 129
+    ## Generated based on boringssl/include/openssl/ec.h:524:9
+else:
+  let EC_R_ENCODE_ERROR* = 129 ## Generated based on boringssl/include/openssl/ec.h:524:9
 when 130 is static:
   const EC_R_GROUP_MISMATCH* = 130
-    ## Generated based on boringssl/include/openssl/ec.h:501:9
+    ## Generated based on boringssl/include/openssl/ec.h:525:9
 else:
   let EC_R_GROUP_MISMATCH* = 130
-    ## Generated based on boringssl/include/openssl/ec.h:501:9
+    ## Generated based on boringssl/include/openssl/ec.h:525:9
 when 131 is static:
   const EC_R_INVALID_COFACTOR* = 131
-    ## Generated based on boringssl/include/openssl/ec.h:502:9
+    ## Generated based on boringssl/include/openssl/ec.h:526:9
 else:
   let EC_R_INVALID_COFACTOR* = 131
-    ## Generated based on boringssl/include/openssl/ec.h:502:9
+    ## Generated based on boringssl/include/openssl/ec.h:526:9
 when 132 is static:
   const EC_R_PUBLIC_KEY_VALIDATION_FAILED* = 132
-    ## Generated based on boringssl/include/openssl/ec.h:503:9
+    ## Generated based on boringssl/include/openssl/ec.h:527:9
 else:
   let EC_R_PUBLIC_KEY_VALIDATION_FAILED* = 132
-    ## Generated based on boringssl/include/openssl/ec.h:503:9
+    ## Generated based on boringssl/include/openssl/ec.h:527:9
 when 133 is static:
   const EC_R_INVALID_SCALAR* = 133
-    ## Generated based on boringssl/include/openssl/ec.h:504:9
+    ## Generated based on boringssl/include/openssl/ec.h:528:9
 else:
   let EC_R_INVALID_SCALAR* = 133
-    ## Generated based on boringssl/include/openssl/ec.h:504:9
+    ## Generated based on boringssl/include/openssl/ec.h:528:9
 when 100 is static:
   const ECDH_R_KDF_FAILED* = 100
     ## Generated based on boringssl/include/openssl/ecdh.h:62:9
@@ -18433,78 +18548,84 @@ when cast[cuint](12'i64) is static:
 else:
   let CBS_ASN1_UTF8STRING* = cast[cuint](12'i64)
     ## Generated based on boringssl/include/openssl/bytestring.h:240:9
+when cast[cuint](13'i64) is static:
+  const CBS_ASN1_RELATIVE_OID* = cast[cuint](13'i64)
+    ## Generated based on boringssl/include/openssl/bytestring.h:241:9
+else:
+  let CBS_ASN1_RELATIVE_OID* = cast[cuint](13'i64)
+    ## Generated based on boringssl/include/openssl/bytestring.h:241:9
 when cast[cuint](18'i64) is static:
   const CBS_ASN1_NUMERICSTRING* = cast[cuint](18'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:243:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:244:9
 else:
   let CBS_ASN1_NUMERICSTRING* = cast[cuint](18'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:243:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:244:9
 when cast[cuint](19'i64) is static:
   const CBS_ASN1_PRINTABLESTRING* = cast[cuint](19'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:244:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:245:9
 else:
   let CBS_ASN1_PRINTABLESTRING* = cast[cuint](19'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:244:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:245:9
 when cast[cuint](20'i64) is static:
   const CBS_ASN1_T61STRING* = cast[cuint](20'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:245:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:246:9
 else:
   let CBS_ASN1_T61STRING* = cast[cuint](20'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:245:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:246:9
 when cast[cuint](21'i64) is static:
   const CBS_ASN1_VIDEOTEXSTRING* = cast[cuint](21'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:246:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:247:9
 else:
   let CBS_ASN1_VIDEOTEXSTRING* = cast[cuint](21'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:246:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:247:9
 when cast[cuint](22'i64) is static:
   const CBS_ASN1_IA5STRING* = cast[cuint](22'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:247:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:248:9
 else:
   let CBS_ASN1_IA5STRING* = cast[cuint](22'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:247:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:248:9
 when cast[cuint](23'i64) is static:
   const CBS_ASN1_UTCTIME* = cast[cuint](23'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:248:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:249:9
 else:
   let CBS_ASN1_UTCTIME* = cast[cuint](23'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:248:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:249:9
 when cast[cuint](24'i64) is static:
   const CBS_ASN1_GENERALIZEDTIME* = cast[cuint](24'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:249:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:250:9
 else:
   let CBS_ASN1_GENERALIZEDTIME* = cast[cuint](24'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:249:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:250:9
 when cast[cuint](25'i64) is static:
   const CBS_ASN1_GRAPHICSTRING* = cast[cuint](25'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:250:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:251:9
 else:
   let CBS_ASN1_GRAPHICSTRING* = cast[cuint](25'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:250:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:251:9
 when cast[cuint](26'i64) is static:
   const CBS_ASN1_VISIBLESTRING* = cast[cuint](26'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:251:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:252:9
 else:
   let CBS_ASN1_VISIBLESTRING* = cast[cuint](26'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:251:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:252:9
 when cast[cuint](27'i64) is static:
   const CBS_ASN1_GENERALSTRING* = cast[cuint](27'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:252:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:253:9
 else:
   let CBS_ASN1_GENERALSTRING* = cast[cuint](27'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:252:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:253:9
 when cast[cuint](28'i64) is static:
   const CBS_ASN1_UNIVERSALSTRING* = cast[cuint](28'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:253:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:254:9
 else:
   let CBS_ASN1_UNIVERSALSTRING* = cast[cuint](28'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:253:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:254:9
 when cast[cuint](30'i64) is static:
   const CBS_ASN1_BMPSTRING* = cast[cuint](30'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:254:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:255:9
 else:
   let CBS_ASN1_BMPSTRING* = cast[cuint](30'i64)
-    ## Generated based on boringssl/include/openssl/bytestring.h:254:9
+    ## Generated based on boringssl/include/openssl/bytestring.h:255:9
 when 1 is static:
   const OBJ_NAME_TYPE_MD_METH* = 1
     ## Generated based on boringssl/include/openssl/obj.h:196:9
@@ -18531,427 +18652,381 @@ else:
     ## Generated based on boringssl/include/openssl/obj.h:223:9
 when 16384 is static:
   const OPENSSL_RSA_MAX_MODULUS_BITS* = 16384
-    ## Generated based on boringssl/include/openssl/rsa.h:81:9
+    ## Generated based on boringssl/include/openssl/rsa.h:86:9
 else:
   let OPENSSL_RSA_MAX_MODULUS_BITS* = 16384
-    ## Generated based on boringssl/include/openssl/rsa.h:81:9
+    ## Generated based on boringssl/include/openssl/rsa.h:86:9
 when 1 is static:
   const RSA_PKCS1_PADDING* = 1
-    ## Generated based on boringssl/include/openssl/rsa.h:215:9
+    ## Generated based on boringssl/include/openssl/rsa.h:220:9
 else:
-  let RSA_PKCS1_PADDING* = 1 ## Generated based on boringssl/include/openssl/rsa.h:215:9
+  let RSA_PKCS1_PADDING* = 1 ## Generated based on boringssl/include/openssl/rsa.h:220:9
 when 3 is static:
-  const RSA_NO_PADDING* = 3 ## Generated based on boringssl/include/openssl/rsa.h:218:9
+  const RSA_NO_PADDING* = 3 ## Generated based on boringssl/include/openssl/rsa.h:223:9
 else:
-  let RSA_NO_PADDING* = 3 ## Generated based on boringssl/include/openssl/rsa.h:218:9
+  let RSA_NO_PADDING* = 3 ## Generated based on boringssl/include/openssl/rsa.h:223:9
 when 4 is static:
   const RSA_PKCS1_OAEP_PADDING* = 4
-    ## Generated based on boringssl/include/openssl/rsa.h:221:9
+    ## Generated based on boringssl/include/openssl/rsa.h:226:9
 else:
   let RSA_PKCS1_OAEP_PADDING* = 4
-    ## Generated based on boringssl/include/openssl/rsa.h:221:9
+    ## Generated based on boringssl/include/openssl/rsa.h:226:9
 when 6 is static:
   const RSA_PKCS1_PSS_PADDING* = 6
-    ## Generated based on boringssl/include/openssl/rsa.h:226:9
+    ## Generated based on boringssl/include/openssl/rsa.h:231:9
 else:
   let RSA_PKCS1_PSS_PADDING* = 6
-    ## Generated based on boringssl/include/openssl/rsa.h:226:9
+    ## Generated based on boringssl/include/openssl/rsa.h:231:9
 when -1 is static:
   const RSA_PSS_SALTLEN_DIGEST* = -1
-    ## Generated based on boringssl/include/openssl/rsa.h:331:9
+    ## Generated based on boringssl/include/openssl/rsa.h:336:9
 else:
   let RSA_PSS_SALTLEN_DIGEST* = -1
-    ## Generated based on boringssl/include/openssl/rsa.h:331:9
+    ## Generated based on boringssl/include/openssl/rsa.h:336:9
 when -2 is static:
   const RSA_PSS_SALTLEN_AUTO* = -2
-    ## Generated based on boringssl/include/openssl/rsa.h:336:9
+    ## Generated based on boringssl/include/openssl/rsa.h:341:9
 else:
   let RSA_PSS_SALTLEN_AUTO* = -2
-    ## Generated based on boringssl/include/openssl/rsa.h:336:9
+    ## Generated based on boringssl/include/openssl/rsa.h:341:9
 when 1 is static:
-  const RSA_FLAG_OPAQUE* = 1 ## Generated based on boringssl/include/openssl/rsa.h:667:9
+  const RSA_FLAG_OPAQUE* = 1 ## Generated based on boringssl/include/openssl/rsa.h:672:9
 else:
-  let RSA_FLAG_OPAQUE* = 1 ## Generated based on boringssl/include/openssl/rsa.h:667:9
+  let RSA_FLAG_OPAQUE* = 1 ## Generated based on boringssl/include/openssl/rsa.h:672:9
 when 8 is static:
   const RSA_FLAG_NO_BLINDING* = 8
-    ## Generated based on boringssl/include/openssl/rsa.h:670:9
+    ## Generated based on boringssl/include/openssl/rsa.h:675:9
 else:
   let RSA_FLAG_NO_BLINDING* = 8
-    ## Generated based on boringssl/include/openssl/rsa.h:670:9
+    ## Generated based on boringssl/include/openssl/rsa.h:675:9
 when 32 is static:
   const RSA_FLAG_EXT_PKEY* = 32
-    ## Generated based on boringssl/include/openssl/rsa.h:673:9
+    ## Generated based on boringssl/include/openssl/rsa.h:678:9
 else:
-  let RSA_FLAG_EXT_PKEY* = 32 ## Generated based on boringssl/include/openssl/rsa.h:673:9
+  let RSA_FLAG_EXT_PKEY* = 32 ## Generated based on boringssl/include/openssl/rsa.h:678:9
 when 64 is static:
   const RSA_FLAG_NO_PUBLIC_EXPONENT* = 64
-    ## Generated based on boringssl/include/openssl/rsa.h:678:9
+    ## Generated based on boringssl/include/openssl/rsa.h:683:9
 else:
   let RSA_FLAG_NO_PUBLIC_EXPONENT* = 64
-    ## Generated based on boringssl/include/openssl/rsa.h:678:9
+    ## Generated based on boringssl/include/openssl/rsa.h:683:9
 when 128 is static:
   const RSA_FLAG_LARGE_PUBLIC_EXPONENT* = 128
-    ## Generated based on boringssl/include/openssl/rsa.h:684:9
+    ## Generated based on boringssl/include/openssl/rsa.h:689:9
 else:
   let RSA_FLAG_LARGE_PUBLIC_EXPONENT* = 128
-    ## Generated based on boringssl/include/openssl/rsa.h:684:9
+    ## Generated based on boringssl/include/openssl/rsa.h:689:9
 when 3 is static:
-  const RSA_3* = 3 ## Generated based on boringssl/include/openssl/rsa.h:689:9
+  const RSA_3* = 3 ## Generated based on boringssl/include/openssl/rsa.h:694:9
 else:
-  let RSA_3* = 3 ## Generated based on boringssl/include/openssl/rsa.h:689:9
+  let RSA_3* = 3 ## Generated based on boringssl/include/openssl/rsa.h:694:9
 when 65537 is static:
-  const RSA_F4* = 65537 ## Generated based on boringssl/include/openssl/rsa.h:690:9
+  const RSA_F4* = 65537 ## Generated based on boringssl/include/openssl/rsa.h:695:9
 else:
-  let RSA_F4* = 65537 ## Generated based on boringssl/include/openssl/rsa.h:690:9
+  let RSA_F4* = 65537 ## Generated based on boringssl/include/openssl/rsa.h:695:9
 when RSA_FLAG_OPAQUE is typedesc:
   type RSA_METHOD_FLAG_NO_CHECK* = RSA_FLAG_OPAQUE
-    ## Generated based on boringssl/include/openssl/rsa.h:695:9
+    ## Generated based on boringssl/include/openssl/rsa.h:700:9
 
 else:
   when RSA_FLAG_OPAQUE is static:
     const RSA_METHOD_FLAG_NO_CHECK* = RSA_FLAG_OPAQUE
-      ## Generated based on boringssl/include/openssl/rsa.h:695:9
+      ## Generated based on boringssl/include/openssl/rsa.h:700:9
   else:
     let RSA_METHOD_FLAG_NO_CHECK* = RSA_FLAG_OPAQUE
-      ## Generated based on boringssl/include/openssl/rsa.h:695:9
+      ## Generated based on boringssl/include/openssl/rsa.h:700:9
 when 100 is static:
   const RSA_R_BAD_ENCODING* = 100
-    ## Generated based on boringssl/include/openssl/rsa.h:843:9
+    ## Generated based on boringssl/include/openssl/rsa.h:848:9
 else:
   let RSA_R_BAD_ENCODING* = 100
-    ## Generated based on boringssl/include/openssl/rsa.h:843:9
+    ## Generated based on boringssl/include/openssl/rsa.h:848:9
 when 101 is static:
   const RSA_R_BAD_E_VALUE* = 101
-    ## Generated based on boringssl/include/openssl/rsa.h:844:9
+    ## Generated based on boringssl/include/openssl/rsa.h:849:9
 else:
   let RSA_R_BAD_E_VALUE* = 101
-    ## Generated based on boringssl/include/openssl/rsa.h:844:9
+    ## Generated based on boringssl/include/openssl/rsa.h:849:9
 when 102 is static:
   const RSA_R_BAD_FIXED_HEADER_DECRYPT* = 102
-    ## Generated based on boringssl/include/openssl/rsa.h:845:9
+    ## Generated based on boringssl/include/openssl/rsa.h:850:9
 else:
   let RSA_R_BAD_FIXED_HEADER_DECRYPT* = 102
-    ## Generated based on boringssl/include/openssl/rsa.h:845:9
+    ## Generated based on boringssl/include/openssl/rsa.h:850:9
 when 103 is static:
   const RSA_R_BAD_PAD_BYTE_COUNT* = 103
-    ## Generated based on boringssl/include/openssl/rsa.h:846:9
+    ## Generated based on boringssl/include/openssl/rsa.h:851:9
 else:
   let RSA_R_BAD_PAD_BYTE_COUNT* = 103
-    ## Generated based on boringssl/include/openssl/rsa.h:846:9
+    ## Generated based on boringssl/include/openssl/rsa.h:851:9
 when 104 is static:
   const RSA_R_BAD_RSA_PARAMETERS* = 104
-    ## Generated based on boringssl/include/openssl/rsa.h:847:9
+    ## Generated based on boringssl/include/openssl/rsa.h:852:9
 else:
   let RSA_R_BAD_RSA_PARAMETERS* = 104
-    ## Generated based on boringssl/include/openssl/rsa.h:847:9
+    ## Generated based on boringssl/include/openssl/rsa.h:852:9
 when 105 is static:
   const RSA_R_BAD_SIGNATURE* = 105
-    ## Generated based on boringssl/include/openssl/rsa.h:848:9
+    ## Generated based on boringssl/include/openssl/rsa.h:853:9
 else:
   let RSA_R_BAD_SIGNATURE* = 105
-    ## Generated based on boringssl/include/openssl/rsa.h:848:9
+    ## Generated based on boringssl/include/openssl/rsa.h:853:9
 when 106 is static:
   const RSA_R_BAD_VERSION* = 106
-    ## Generated based on boringssl/include/openssl/rsa.h:849:9
+    ## Generated based on boringssl/include/openssl/rsa.h:854:9
 else:
   let RSA_R_BAD_VERSION* = 106
-    ## Generated based on boringssl/include/openssl/rsa.h:849:9
+    ## Generated based on boringssl/include/openssl/rsa.h:854:9
 when 107 is static:
   const RSA_R_BLOCK_TYPE_IS_NOT_01* = 107
-    ## Generated based on boringssl/include/openssl/rsa.h:850:9
+    ## Generated based on boringssl/include/openssl/rsa.h:855:9
 else:
   let RSA_R_BLOCK_TYPE_IS_NOT_01* = 107
-    ## Generated based on boringssl/include/openssl/rsa.h:850:9
+    ## Generated based on boringssl/include/openssl/rsa.h:855:9
 when 108 is static:
   const RSA_R_BN_NOT_INITIALIZED* = 108
-    ## Generated based on boringssl/include/openssl/rsa.h:851:9
+    ## Generated based on boringssl/include/openssl/rsa.h:856:9
 else:
   let RSA_R_BN_NOT_INITIALIZED* = 108
-    ## Generated based on boringssl/include/openssl/rsa.h:851:9
+    ## Generated based on boringssl/include/openssl/rsa.h:856:9
 when 109 is static:
   const RSA_R_CANNOT_RECOVER_MULTI_PRIME_KEY* = 109
-    ## Generated based on boringssl/include/openssl/rsa.h:852:9
+    ## Generated based on boringssl/include/openssl/rsa.h:857:9
 else:
   let RSA_R_CANNOT_RECOVER_MULTI_PRIME_KEY* = 109
-    ## Generated based on boringssl/include/openssl/rsa.h:852:9
+    ## Generated based on boringssl/include/openssl/rsa.h:857:9
 when 110 is static:
   const RSA_R_CRT_PARAMS_ALREADY_GIVEN* = 110
-    ## Generated based on boringssl/include/openssl/rsa.h:853:9
+    ## Generated based on boringssl/include/openssl/rsa.h:858:9
 else:
   let RSA_R_CRT_PARAMS_ALREADY_GIVEN* = 110
-    ## Generated based on boringssl/include/openssl/rsa.h:853:9
+    ## Generated based on boringssl/include/openssl/rsa.h:858:9
 when 111 is static:
   const RSA_R_CRT_VALUES_INCORRECT* = 111
-    ## Generated based on boringssl/include/openssl/rsa.h:854:9
+    ## Generated based on boringssl/include/openssl/rsa.h:859:9
 else:
   let RSA_R_CRT_VALUES_INCORRECT* = 111
-    ## Generated based on boringssl/include/openssl/rsa.h:854:9
+    ## Generated based on boringssl/include/openssl/rsa.h:859:9
 when 112 is static:
   const RSA_R_DATA_LEN_NOT_EQUAL_TO_MOD_LEN* = 112
-    ## Generated based on boringssl/include/openssl/rsa.h:855:9
+    ## Generated based on boringssl/include/openssl/rsa.h:860:9
 else:
   let RSA_R_DATA_LEN_NOT_EQUAL_TO_MOD_LEN* = 112
-    ## Generated based on boringssl/include/openssl/rsa.h:855:9
+    ## Generated based on boringssl/include/openssl/rsa.h:860:9
 when 113 is static:
   const RSA_R_DATA_TOO_LARGE* = 113
-    ## Generated based on boringssl/include/openssl/rsa.h:856:9
+    ## Generated based on boringssl/include/openssl/rsa.h:861:9
 else:
   let RSA_R_DATA_TOO_LARGE* = 113
-    ## Generated based on boringssl/include/openssl/rsa.h:856:9
+    ## Generated based on boringssl/include/openssl/rsa.h:861:9
 when 114 is static:
   const RSA_R_DATA_TOO_LARGE_FOR_KEY_SIZE* = 114
-    ## Generated based on boringssl/include/openssl/rsa.h:857:9
+    ## Generated based on boringssl/include/openssl/rsa.h:862:9
 else:
   let RSA_R_DATA_TOO_LARGE_FOR_KEY_SIZE* = 114
-    ## Generated based on boringssl/include/openssl/rsa.h:857:9
+    ## Generated based on boringssl/include/openssl/rsa.h:862:9
 when 115 is static:
   const RSA_R_DATA_TOO_LARGE_FOR_MODULUS* = 115
-    ## Generated based on boringssl/include/openssl/rsa.h:858:9
+    ## Generated based on boringssl/include/openssl/rsa.h:863:9
 else:
   let RSA_R_DATA_TOO_LARGE_FOR_MODULUS* = 115
-    ## Generated based on boringssl/include/openssl/rsa.h:858:9
+    ## Generated based on boringssl/include/openssl/rsa.h:863:9
 when 116 is static:
   const RSA_R_DATA_TOO_SMALL* = 116
-    ## Generated based on boringssl/include/openssl/rsa.h:859:9
+    ## Generated based on boringssl/include/openssl/rsa.h:864:9
 else:
   let RSA_R_DATA_TOO_SMALL* = 116
-    ## Generated based on boringssl/include/openssl/rsa.h:859:9
+    ## Generated based on boringssl/include/openssl/rsa.h:864:9
 when 117 is static:
   const RSA_R_DATA_TOO_SMALL_FOR_KEY_SIZE* = 117
-    ## Generated based on boringssl/include/openssl/rsa.h:860:9
+    ## Generated based on boringssl/include/openssl/rsa.h:865:9
 else:
   let RSA_R_DATA_TOO_SMALL_FOR_KEY_SIZE* = 117
-    ## Generated based on boringssl/include/openssl/rsa.h:860:9
+    ## Generated based on boringssl/include/openssl/rsa.h:865:9
 when 118 is static:
   const RSA_R_DIGEST_TOO_BIG_FOR_RSA_KEY* = 118
-    ## Generated based on boringssl/include/openssl/rsa.h:861:9
+    ## Generated based on boringssl/include/openssl/rsa.h:866:9
 else:
   let RSA_R_DIGEST_TOO_BIG_FOR_RSA_KEY* = 118
-    ## Generated based on boringssl/include/openssl/rsa.h:861:9
+    ## Generated based on boringssl/include/openssl/rsa.h:866:9
 when 119 is static:
   const RSA_R_D_E_NOT_CONGRUENT_TO_1* = 119
-    ## Generated based on boringssl/include/openssl/rsa.h:862:9
+    ## Generated based on boringssl/include/openssl/rsa.h:867:9
 else:
   let RSA_R_D_E_NOT_CONGRUENT_TO_1* = 119
-    ## Generated based on boringssl/include/openssl/rsa.h:862:9
+    ## Generated based on boringssl/include/openssl/rsa.h:867:9
 when 120 is static:
   const RSA_R_EMPTY_PUBLIC_KEY* = 120
-    ## Generated based on boringssl/include/openssl/rsa.h:863:9
+    ## Generated based on boringssl/include/openssl/rsa.h:868:9
 else:
   let RSA_R_EMPTY_PUBLIC_KEY* = 120
-    ## Generated based on boringssl/include/openssl/rsa.h:863:9
+    ## Generated based on boringssl/include/openssl/rsa.h:868:9
 when 121 is static:
   const RSA_R_ENCODE_ERROR* = 121
-    ## Generated based on boringssl/include/openssl/rsa.h:864:9
+    ## Generated based on boringssl/include/openssl/rsa.h:869:9
 else:
   let RSA_R_ENCODE_ERROR* = 121
-    ## Generated based on boringssl/include/openssl/rsa.h:864:9
+    ## Generated based on boringssl/include/openssl/rsa.h:869:9
 when 122 is static:
   const RSA_R_FIRST_OCTET_INVALID* = 122
-    ## Generated based on boringssl/include/openssl/rsa.h:865:9
+    ## Generated based on boringssl/include/openssl/rsa.h:870:9
 else:
   let RSA_R_FIRST_OCTET_INVALID* = 122
-    ## Generated based on boringssl/include/openssl/rsa.h:865:9
+    ## Generated based on boringssl/include/openssl/rsa.h:870:9
 when 123 is static:
   const RSA_R_INCONSISTENT_SET_OF_CRT_VALUES* = 123
-    ## Generated based on boringssl/include/openssl/rsa.h:866:9
+    ## Generated based on boringssl/include/openssl/rsa.h:871:9
 else:
   let RSA_R_INCONSISTENT_SET_OF_CRT_VALUES* = 123
-    ## Generated based on boringssl/include/openssl/rsa.h:866:9
+    ## Generated based on boringssl/include/openssl/rsa.h:871:9
 when 124 is static:
   const RSA_R_INTERNAL_ERROR* = 124
-    ## Generated based on boringssl/include/openssl/rsa.h:867:9
+    ## Generated based on boringssl/include/openssl/rsa.h:872:9
 else:
   let RSA_R_INTERNAL_ERROR* = 124
-    ## Generated based on boringssl/include/openssl/rsa.h:867:9
+    ## Generated based on boringssl/include/openssl/rsa.h:872:9
 when 125 is static:
   const RSA_R_INVALID_MESSAGE_LENGTH* = 125
-    ## Generated based on boringssl/include/openssl/rsa.h:868:9
+    ## Generated based on boringssl/include/openssl/rsa.h:873:9
 else:
   let RSA_R_INVALID_MESSAGE_LENGTH* = 125
-    ## Generated based on boringssl/include/openssl/rsa.h:868:9
+    ## Generated based on boringssl/include/openssl/rsa.h:873:9
 when 126 is static:
   const RSA_R_KEY_SIZE_TOO_SMALL* = 126
-    ## Generated based on boringssl/include/openssl/rsa.h:869:9
+    ## Generated based on boringssl/include/openssl/rsa.h:874:9
 else:
   let RSA_R_KEY_SIZE_TOO_SMALL* = 126
-    ## Generated based on boringssl/include/openssl/rsa.h:869:9
+    ## Generated based on boringssl/include/openssl/rsa.h:874:9
 when 127 is static:
   const RSA_R_LAST_OCTET_INVALID* = 127
-    ## Generated based on boringssl/include/openssl/rsa.h:870:9
+    ## Generated based on boringssl/include/openssl/rsa.h:875:9
 else:
   let RSA_R_LAST_OCTET_INVALID* = 127
-    ## Generated based on boringssl/include/openssl/rsa.h:870:9
+    ## Generated based on boringssl/include/openssl/rsa.h:875:9
 when 128 is static:
   const RSA_R_MODULUS_TOO_LARGE* = 128
-    ## Generated based on boringssl/include/openssl/rsa.h:871:9
+    ## Generated based on boringssl/include/openssl/rsa.h:876:9
 else:
   let RSA_R_MODULUS_TOO_LARGE* = 128
-    ## Generated based on boringssl/include/openssl/rsa.h:871:9
+    ## Generated based on boringssl/include/openssl/rsa.h:876:9
 when 129 is static:
   const RSA_R_MUST_HAVE_AT_LEAST_TWO_PRIMES* = 129
-    ## Generated based on boringssl/include/openssl/rsa.h:872:9
+    ## Generated based on boringssl/include/openssl/rsa.h:877:9
 else:
   let RSA_R_MUST_HAVE_AT_LEAST_TWO_PRIMES* = 129
-    ## Generated based on boringssl/include/openssl/rsa.h:872:9
+    ## Generated based on boringssl/include/openssl/rsa.h:877:9
 when 130 is static:
   const RSA_R_NO_PUBLIC_EXPONENT* = 130
-    ## Generated based on boringssl/include/openssl/rsa.h:873:9
+    ## Generated based on boringssl/include/openssl/rsa.h:878:9
 else:
   let RSA_R_NO_PUBLIC_EXPONENT* = 130
-    ## Generated based on boringssl/include/openssl/rsa.h:873:9
+    ## Generated based on boringssl/include/openssl/rsa.h:878:9
 when 131 is static:
   const RSA_R_NULL_BEFORE_BLOCK_MISSING* = 131
-    ## Generated based on boringssl/include/openssl/rsa.h:874:9
+    ## Generated based on boringssl/include/openssl/rsa.h:879:9
 else:
   let RSA_R_NULL_BEFORE_BLOCK_MISSING* = 131
-    ## Generated based on boringssl/include/openssl/rsa.h:874:9
+    ## Generated based on boringssl/include/openssl/rsa.h:879:9
 when 132 is static:
   const RSA_R_N_NOT_EQUAL_P_Q* = 132
-    ## Generated based on boringssl/include/openssl/rsa.h:875:9
+    ## Generated based on boringssl/include/openssl/rsa.h:880:9
 else:
   let RSA_R_N_NOT_EQUAL_P_Q* = 132
-    ## Generated based on boringssl/include/openssl/rsa.h:875:9
+    ## Generated based on boringssl/include/openssl/rsa.h:880:9
 when 133 is static:
   const RSA_R_OAEP_DECODING_ERROR* = 133
-    ## Generated based on boringssl/include/openssl/rsa.h:876:9
+    ## Generated based on boringssl/include/openssl/rsa.h:881:9
 else:
   let RSA_R_OAEP_DECODING_ERROR* = 133
-    ## Generated based on boringssl/include/openssl/rsa.h:876:9
+    ## Generated based on boringssl/include/openssl/rsa.h:881:9
 when 134 is static:
   const RSA_R_ONLY_ONE_OF_P_Q_GIVEN* = 134
-    ## Generated based on boringssl/include/openssl/rsa.h:877:9
+    ## Generated based on boringssl/include/openssl/rsa.h:882:9
 else:
   let RSA_R_ONLY_ONE_OF_P_Q_GIVEN* = 134
-    ## Generated based on boringssl/include/openssl/rsa.h:877:9
+    ## Generated based on boringssl/include/openssl/rsa.h:882:9
 when 135 is static:
   const RSA_R_OUTPUT_BUFFER_TOO_SMALL* = 135
-    ## Generated based on boringssl/include/openssl/rsa.h:878:9
+    ## Generated based on boringssl/include/openssl/rsa.h:883:9
 else:
   let RSA_R_OUTPUT_BUFFER_TOO_SMALL* = 135
-    ## Generated based on boringssl/include/openssl/rsa.h:878:9
+    ## Generated based on boringssl/include/openssl/rsa.h:883:9
 when 136 is static:
   const RSA_R_PADDING_CHECK_FAILED* = 136
-    ## Generated based on boringssl/include/openssl/rsa.h:879:9
+    ## Generated based on boringssl/include/openssl/rsa.h:884:9
 else:
   let RSA_R_PADDING_CHECK_FAILED* = 136
-    ## Generated based on boringssl/include/openssl/rsa.h:879:9
+    ## Generated based on boringssl/include/openssl/rsa.h:884:9
 when 137 is static:
   const RSA_R_PKCS_DECODING_ERROR* = 137
-    ## Generated based on boringssl/include/openssl/rsa.h:880:9
+    ## Generated based on boringssl/include/openssl/rsa.h:885:9
 else:
   let RSA_R_PKCS_DECODING_ERROR* = 137
-    ## Generated based on boringssl/include/openssl/rsa.h:880:9
+    ## Generated based on boringssl/include/openssl/rsa.h:885:9
 when 138 is static:
   const RSA_R_SLEN_CHECK_FAILED* = 138
-    ## Generated based on boringssl/include/openssl/rsa.h:881:9
+    ## Generated based on boringssl/include/openssl/rsa.h:886:9
 else:
   let RSA_R_SLEN_CHECK_FAILED* = 138
-    ## Generated based on boringssl/include/openssl/rsa.h:881:9
+    ## Generated based on boringssl/include/openssl/rsa.h:886:9
 when 139 is static:
   const RSA_R_SLEN_RECOVERY_FAILED* = 139
-    ## Generated based on boringssl/include/openssl/rsa.h:882:9
+    ## Generated based on boringssl/include/openssl/rsa.h:887:9
 else:
   let RSA_R_SLEN_RECOVERY_FAILED* = 139
-    ## Generated based on boringssl/include/openssl/rsa.h:882:9
+    ## Generated based on boringssl/include/openssl/rsa.h:887:9
 when 140 is static:
-  const RSA_R_TOO_LONG* = 140 ## Generated based on boringssl/include/openssl/rsa.h:883:9
+  const RSA_R_TOO_LONG* = 140 ## Generated based on boringssl/include/openssl/rsa.h:888:9
 else:
-  let RSA_R_TOO_LONG* = 140 ## Generated based on boringssl/include/openssl/rsa.h:883:9
+  let RSA_R_TOO_LONG* = 140 ## Generated based on boringssl/include/openssl/rsa.h:888:9
 when 141 is static:
   const RSA_R_TOO_MANY_ITERATIONS* = 141
-    ## Generated based on boringssl/include/openssl/rsa.h:884:9
+    ## Generated based on boringssl/include/openssl/rsa.h:889:9
 else:
   let RSA_R_TOO_MANY_ITERATIONS* = 141
-    ## Generated based on boringssl/include/openssl/rsa.h:884:9
+    ## Generated based on boringssl/include/openssl/rsa.h:889:9
 when 142 is static:
   const RSA_R_UNKNOWN_ALGORITHM_TYPE* = 142
-    ## Generated based on boringssl/include/openssl/rsa.h:885:9
+    ## Generated based on boringssl/include/openssl/rsa.h:890:9
 else:
   let RSA_R_UNKNOWN_ALGORITHM_TYPE* = 142
-    ## Generated based on boringssl/include/openssl/rsa.h:885:9
+    ## Generated based on boringssl/include/openssl/rsa.h:890:9
 when 143 is static:
   const RSA_R_UNKNOWN_PADDING_TYPE* = 143
-    ## Generated based on boringssl/include/openssl/rsa.h:886:9
+    ## Generated based on boringssl/include/openssl/rsa.h:891:9
 else:
   let RSA_R_UNKNOWN_PADDING_TYPE* = 143
-    ## Generated based on boringssl/include/openssl/rsa.h:886:9
+    ## Generated based on boringssl/include/openssl/rsa.h:891:9
 when 144 is static:
   const RSA_R_VALUE_MISSING* = 144
-    ## Generated based on boringssl/include/openssl/rsa.h:887:9
+    ## Generated based on boringssl/include/openssl/rsa.h:892:9
 else:
   let RSA_R_VALUE_MISSING* = 144
-    ## Generated based on boringssl/include/openssl/rsa.h:887:9
+    ## Generated based on boringssl/include/openssl/rsa.h:892:9
 when 145 is static:
   const RSA_R_WRONG_SIGNATURE_LENGTH* = 145
-    ## Generated based on boringssl/include/openssl/rsa.h:888:9
+    ## Generated based on boringssl/include/openssl/rsa.h:893:9
 else:
   let RSA_R_WRONG_SIGNATURE_LENGTH* = 145
-    ## Generated based on boringssl/include/openssl/rsa.h:888:9
+    ## Generated based on boringssl/include/openssl/rsa.h:893:9
 when 146 is static:
   const RSA_R_PUBLIC_KEY_VALIDATION_FAILED* = 146
-    ## Generated based on boringssl/include/openssl/rsa.h:889:9
+    ## Generated based on boringssl/include/openssl/rsa.h:894:9
 else:
   let RSA_R_PUBLIC_KEY_VALIDATION_FAILED* = 146
-    ## Generated based on boringssl/include/openssl/rsa.h:889:9
+    ## Generated based on boringssl/include/openssl/rsa.h:894:9
 when 147 is static:
   const RSA_R_D_OUT_OF_RANGE* = 147
-    ## Generated based on boringssl/include/openssl/rsa.h:890:9
+    ## Generated based on boringssl/include/openssl/rsa.h:895:9
 else:
   let RSA_R_D_OUT_OF_RANGE* = 147
-    ## Generated based on boringssl/include/openssl/rsa.h:890:9
+    ## Generated based on boringssl/include/openssl/rsa.h:895:9
 when 148 is static:
   const RSA_R_BLOCK_TYPE_IS_NOT_02* = 148
-    ## Generated based on boringssl/include/openssl/rsa.h:891:9
+    ## Generated based on boringssl/include/openssl/rsa.h:896:9
 else:
   let RSA_R_BLOCK_TYPE_IS_NOT_02* = 148
-    ## Generated based on boringssl/include/openssl/rsa.h:891:9
-when 64 is static:
-  const SHA224_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:31:9
-else:
-  let SHA224_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:31:9
-when 28 is static:
-  const SHA224_DIGEST_LENGTH* = 28
-    ## Generated based on boringssl/include/openssl/sha2.h:34:9
-else:
-  let SHA224_DIGEST_LENGTH* = 28
-    ## Generated based on boringssl/include/openssl/sha2.h:34:9
-when 64 is static:
-  const SHA256_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:58:9
-else:
-  let SHA256_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha2.h:58:9
-when 32 is static:
-  const SHA256_DIGEST_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/sha2.h:61:9
-else:
-  let SHA256_DIGEST_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/sha2.h:61:9
-when 128 is static:
-  const SHA384_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:106:9
-else:
-  let SHA384_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:106:9
-when 48 is static:
-  const SHA384_DIGEST_LENGTH* = 48
-    ## Generated based on boringssl/include/openssl/sha2.h:109:9
-else:
-  let SHA384_DIGEST_LENGTH* = 48
-    ## Generated based on boringssl/include/openssl/sha2.h:109:9
-when 128 is static:
-  const SHA512_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:133:9
-else:
-  let SHA512_CBLOCK* = 128 ## Generated based on boringssl/include/openssl/sha2.h:133:9
-when 64 is static:
-  const SHA512_DIGEST_LENGTH* = 64
-    ## Generated based on boringssl/include/openssl/sha2.h:136:9
-else:
-  let SHA512_DIGEST_LENGTH* = 64
-    ## Generated based on boringssl/include/openssl/sha2.h:136:9
-when 32 is static:
-  const SHA512_256_DIGEST_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/sha2.h:175:9
-else:
-  let SHA512_256_DIGEST_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/sha2.h:175:9
+    ## Generated based on boringssl/include/openssl/rsa.h:896:9
 when 100 is static:
   const X509V3_R_BAD_IP_ADDRESS* = 100
     ## Generated based on boringssl/include/openssl/x509v3_errors.h:18:9
@@ -19488,795 +19563,795 @@ else:
   let XKU_ANYEKU* = 256 ## Generated based on boringssl/include/openssl/x509.h:273:9
 when 0 is static:
   const X509_CRL_VERSION_1* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:715:9
+    ## Generated based on boringssl/include/openssl/x509.h:722:9
 else:
   let X509_CRL_VERSION_1* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:715:9
+    ## Generated based on boringssl/include/openssl/x509.h:722:9
 when 1 is static:
   const X509_CRL_VERSION_2* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:716:9
+    ## Generated based on boringssl/include/openssl/x509.h:723:9
 else:
   let X509_CRL_VERSION_2* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:716:9
+    ## Generated based on boringssl/include/openssl/x509.h:723:9
 when 0 is static:
   const X509_REQ_VERSION_1* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:1094:9
+    ## Generated based on boringssl/include/openssl/x509.h:1101:9
 else:
   let X509_REQ_VERSION_1* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:1094:9
+    ## Generated based on boringssl/include/openssl/x509.h:1101:9
 when cast[clong](15'i64) is static:
   const X509V3_ADD_OP_MASK* = cast[clong](15'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1884:9
+    ## Generated based on boringssl/include/openssl/x509.h:1891:9
 else:
   let X509V3_ADD_OP_MASK* = cast[clong](15'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1884:9
+    ## Generated based on boringssl/include/openssl/x509.h:1891:9
 when cast[clong](0'i64) is static:
   const X509V3_ADD_DEFAULT* = cast[clong](0'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1888:9
+    ## Generated based on boringssl/include/openssl/x509.h:1895:9
 else:
   let X509V3_ADD_DEFAULT* = cast[clong](0'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1888:9
+    ## Generated based on boringssl/include/openssl/x509.h:1895:9
 when cast[clong](1'i64) is static:
   const X509V3_ADD_APPEND* = cast[clong](1'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1892:9
+    ## Generated based on boringssl/include/openssl/x509.h:1899:9
 else:
   let X509V3_ADD_APPEND* = cast[clong](1'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1892:9
+    ## Generated based on boringssl/include/openssl/x509.h:1899:9
 when cast[clong](2'i64) is static:
   const X509V3_ADD_REPLACE* = cast[clong](2'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1896:9
+    ## Generated based on boringssl/include/openssl/x509.h:1903:9
 else:
   let X509V3_ADD_REPLACE* = cast[clong](2'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1896:9
+    ## Generated based on boringssl/include/openssl/x509.h:1903:9
 when cast[clong](3'i64) is static:
   const X509V3_ADD_REPLACE_EXISTING* = cast[clong](3'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1900:9
+    ## Generated based on boringssl/include/openssl/x509.h:1907:9
 else:
   let X509V3_ADD_REPLACE_EXISTING* = cast[clong](3'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1900:9
+    ## Generated based on boringssl/include/openssl/x509.h:1907:9
 when cast[clong](4'i64) is static:
   const X509V3_ADD_KEEP_EXISTING* = cast[clong](4'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1904:9
+    ## Generated based on boringssl/include/openssl/x509.h:1911:9
 else:
   let X509V3_ADD_KEEP_EXISTING* = cast[clong](4'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1904:9
+    ## Generated based on boringssl/include/openssl/x509.h:1911:9
 when cast[clong](5'i64) is static:
   const X509V3_ADD_DELETE* = cast[clong](5'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1909:9
+    ## Generated based on boringssl/include/openssl/x509.h:1916:9
 else:
   let X509V3_ADD_DELETE* = cast[clong](5'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:1909:9
+    ## Generated based on boringssl/include/openssl/x509.h:1916:9
 when 16 is static:
   const X509V3_ADD_SILENT* = 16
-    ## Generated based on boringssl/include/openssl/x509.h:1915:9
+    ## Generated based on boringssl/include/openssl/x509.h:1922:9
 else:
   let X509V3_ADD_SILENT* = 16
-    ## Generated based on boringssl/include/openssl/x509.h:1915:9
+    ## Generated based on boringssl/include/openssl/x509.h:1922:9
 when 0 is static:
-  const GEN_OTHERNAME* = 0 ## Generated based on boringssl/include/openssl/x509.h:2023:9
+  const GEN_OTHERNAME* = 0 ## Generated based on boringssl/include/openssl/x509.h:2030:9
 else:
-  let GEN_OTHERNAME* = 0 ## Generated based on boringssl/include/openssl/x509.h:2023:9
+  let GEN_OTHERNAME* = 0 ## Generated based on boringssl/include/openssl/x509.h:2030:9
 when 1 is static:
-  const GEN_EMAIL* = 1 ## Generated based on boringssl/include/openssl/x509.h:2024:9
+  const GEN_EMAIL* = 1 ## Generated based on boringssl/include/openssl/x509.h:2031:9
 else:
-  let GEN_EMAIL* = 1 ## Generated based on boringssl/include/openssl/x509.h:2024:9
+  let GEN_EMAIL* = 1 ## Generated based on boringssl/include/openssl/x509.h:2031:9
 when 2 is static:
-  const GEN_DNS* = 2 ## Generated based on boringssl/include/openssl/x509.h:2025:9
+  const GEN_DNS* = 2 ## Generated based on boringssl/include/openssl/x509.h:2032:9
 else:
-  let GEN_DNS* = 2 ## Generated based on boringssl/include/openssl/x509.h:2025:9
+  let GEN_DNS* = 2 ## Generated based on boringssl/include/openssl/x509.h:2032:9
 when 3 is static:
-  const GEN_X400* = 3 ## Generated based on boringssl/include/openssl/x509.h:2026:9
+  const GEN_X400* = 3 ## Generated based on boringssl/include/openssl/x509.h:2033:9
 else:
-  let GEN_X400* = 3 ## Generated based on boringssl/include/openssl/x509.h:2026:9
+  let GEN_X400* = 3 ## Generated based on boringssl/include/openssl/x509.h:2033:9
 when 4 is static:
-  const GEN_DIRNAME* = 4 ## Generated based on boringssl/include/openssl/x509.h:2027:9
+  const GEN_DIRNAME* = 4 ## Generated based on boringssl/include/openssl/x509.h:2034:9
 else:
-  let GEN_DIRNAME* = 4 ## Generated based on boringssl/include/openssl/x509.h:2027:9
+  let GEN_DIRNAME* = 4 ## Generated based on boringssl/include/openssl/x509.h:2034:9
 when 5 is static:
-  const GEN_EDIPARTY* = 5 ## Generated based on boringssl/include/openssl/x509.h:2028:9
+  const GEN_EDIPARTY* = 5 ## Generated based on boringssl/include/openssl/x509.h:2035:9
 else:
-  let GEN_EDIPARTY* = 5 ## Generated based on boringssl/include/openssl/x509.h:2028:9
+  let GEN_EDIPARTY* = 5 ## Generated based on boringssl/include/openssl/x509.h:2035:9
 when 6 is static:
-  const GEN_URI* = 6 ## Generated based on boringssl/include/openssl/x509.h:2029:9
+  const GEN_URI* = 6 ## Generated based on boringssl/include/openssl/x509.h:2036:9
 else:
-  let GEN_URI* = 6 ## Generated based on boringssl/include/openssl/x509.h:2029:9
+  let GEN_URI* = 6 ## Generated based on boringssl/include/openssl/x509.h:2036:9
 when 7 is static:
-  const GEN_IPADD* = 7 ## Generated based on boringssl/include/openssl/x509.h:2030:9
+  const GEN_IPADD* = 7 ## Generated based on boringssl/include/openssl/x509.h:2037:9
 else:
-  let GEN_IPADD* = 7 ## Generated based on boringssl/include/openssl/x509.h:2030:9
+  let GEN_IPADD* = 7 ## Generated based on boringssl/include/openssl/x509.h:2037:9
 when 8 is static:
-  const GEN_RID* = 8 ## Generated based on boringssl/include/openssl/x509.h:2031:9
+  const GEN_RID* = 8 ## Generated based on boringssl/include/openssl/x509.h:2038:9
 else:
-  let GEN_RID* = 8 ## Generated based on boringssl/include/openssl/x509.h:2031:9
+  let GEN_RID* = 8 ## Generated based on boringssl/include/openssl/x509.h:2038:9
 when 0 is static:
-  const X509_LU_NONE* = 0 ## Generated based on boringssl/include/openssl/x509.h:2885:9
+  const X509_LU_NONE* = 0 ## Generated based on boringssl/include/openssl/x509.h:2895:9
 else:
-  let X509_LU_NONE* = 0 ## Generated based on boringssl/include/openssl/x509.h:2885:9
+  let X509_LU_NONE* = 0 ## Generated based on boringssl/include/openssl/x509.h:2895:9
 when 1 is static:
-  const X509_LU_X509* = 1 ## Generated based on boringssl/include/openssl/x509.h:2886:9
+  const X509_LU_X509* = 1 ## Generated based on boringssl/include/openssl/x509.h:2896:9
 else:
-  let X509_LU_X509* = 1 ## Generated based on boringssl/include/openssl/x509.h:2886:9
+  let X509_LU_X509* = 1 ## Generated based on boringssl/include/openssl/x509.h:2896:9
 when 2 is static:
-  const X509_LU_CRL* = 2 ## Generated based on boringssl/include/openssl/x509.h:2887:9
+  const X509_LU_CRL* = 2 ## Generated based on boringssl/include/openssl/x509.h:2897:9
 else:
-  let X509_LU_CRL* = 2 ## Generated based on boringssl/include/openssl/x509.h:2887:9
+  let X509_LU_CRL* = 2 ## Generated based on boringssl/include/openssl/x509.h:2897:9
 when 3 is static:
-  const X509_LU_PKEY* = 3 ## Generated based on boringssl/include/openssl/x509.h:2888:9
+  const X509_LU_PKEY* = 3 ## Generated based on boringssl/include/openssl/x509.h:2898:9
 else:
-  let X509_LU_PKEY* = 3 ## Generated based on boringssl/include/openssl/x509.h:2888:9
+  let X509_LU_PKEY* = 3 ## Generated based on boringssl/include/openssl/x509.h:2898:9
 when 0 is static:
-  const X509_V_OK* = 0 ## Generated based on boringssl/include/openssl/x509.h:2975:9
+  const X509_V_OK* = 0 ## Generated based on boringssl/include/openssl/x509.h:2985:9
 else:
-  let X509_V_OK* = 0 ## Generated based on boringssl/include/openssl/x509.h:2975:9
+  let X509_V_OK* = 0 ## Generated based on boringssl/include/openssl/x509.h:2985:9
 when 1 is static:
   const X509_V_ERR_UNSPECIFIED* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:2976:9
+    ## Generated based on boringssl/include/openssl/x509.h:2986:9
 else:
   let X509_V_ERR_UNSPECIFIED* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:2976:9
+    ## Generated based on boringssl/include/openssl/x509.h:2986:9
 when 2 is static:
   const X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:2977:9
+    ## Generated based on boringssl/include/openssl/x509.h:2987:9
 else:
   let X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:2977:9
+    ## Generated based on boringssl/include/openssl/x509.h:2987:9
 when 3 is static:
   const X509_V_ERR_UNABLE_TO_GET_CRL* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:2978:9
+    ## Generated based on boringssl/include/openssl/x509.h:2988:9
 else:
   let X509_V_ERR_UNABLE_TO_GET_CRL* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:2978:9
+    ## Generated based on boringssl/include/openssl/x509.h:2988:9
 when 4 is static:
   const X509_V_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:2979:9
+    ## Generated based on boringssl/include/openssl/x509.h:2989:9
 else:
   let X509_V_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:2979:9
+    ## Generated based on boringssl/include/openssl/x509.h:2989:9
 when 5 is static:
   const X509_V_ERR_UNABLE_TO_DECRYPT_CRL_SIGNATURE* = 5
-    ## Generated based on boringssl/include/openssl/x509.h:2980:9
+    ## Generated based on boringssl/include/openssl/x509.h:2990:9
 else:
   let X509_V_ERR_UNABLE_TO_DECRYPT_CRL_SIGNATURE* = 5
-    ## Generated based on boringssl/include/openssl/x509.h:2980:9
+    ## Generated based on boringssl/include/openssl/x509.h:2990:9
 when 6 is static:
   const X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY* = 6
-    ## Generated based on boringssl/include/openssl/x509.h:2981:9
+    ## Generated based on boringssl/include/openssl/x509.h:2991:9
 else:
   let X509_V_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY* = 6
-    ## Generated based on boringssl/include/openssl/x509.h:2981:9
+    ## Generated based on boringssl/include/openssl/x509.h:2991:9
 when 7 is static:
   const X509_V_ERR_CERT_SIGNATURE_FAILURE* = 7
-    ## Generated based on boringssl/include/openssl/x509.h:2982:9
+    ## Generated based on boringssl/include/openssl/x509.h:2992:9
 else:
   let X509_V_ERR_CERT_SIGNATURE_FAILURE* = 7
-    ## Generated based on boringssl/include/openssl/x509.h:2982:9
+    ## Generated based on boringssl/include/openssl/x509.h:2992:9
 when 8 is static:
   const X509_V_ERR_CRL_SIGNATURE_FAILURE* = 8
-    ## Generated based on boringssl/include/openssl/x509.h:2983:9
+    ## Generated based on boringssl/include/openssl/x509.h:2993:9
 else:
   let X509_V_ERR_CRL_SIGNATURE_FAILURE* = 8
-    ## Generated based on boringssl/include/openssl/x509.h:2983:9
+    ## Generated based on boringssl/include/openssl/x509.h:2993:9
 when 9 is static:
   const X509_V_ERR_CERT_NOT_YET_VALID* = 9
-    ## Generated based on boringssl/include/openssl/x509.h:2984:9
+    ## Generated based on boringssl/include/openssl/x509.h:2994:9
 else:
   let X509_V_ERR_CERT_NOT_YET_VALID* = 9
-    ## Generated based on boringssl/include/openssl/x509.h:2984:9
+    ## Generated based on boringssl/include/openssl/x509.h:2994:9
 when 10 is static:
   const X509_V_ERR_CERT_HAS_EXPIRED* = 10
-    ## Generated based on boringssl/include/openssl/x509.h:2985:9
+    ## Generated based on boringssl/include/openssl/x509.h:2995:9
 else:
   let X509_V_ERR_CERT_HAS_EXPIRED* = 10
-    ## Generated based on boringssl/include/openssl/x509.h:2985:9
+    ## Generated based on boringssl/include/openssl/x509.h:2995:9
 when 11 is static:
   const X509_V_ERR_CRL_NOT_YET_VALID* = 11
-    ## Generated based on boringssl/include/openssl/x509.h:2986:9
+    ## Generated based on boringssl/include/openssl/x509.h:2996:9
 else:
   let X509_V_ERR_CRL_NOT_YET_VALID* = 11
-    ## Generated based on boringssl/include/openssl/x509.h:2986:9
+    ## Generated based on boringssl/include/openssl/x509.h:2996:9
 when 12 is static:
   const X509_V_ERR_CRL_HAS_EXPIRED* = 12
-    ## Generated based on boringssl/include/openssl/x509.h:2987:9
+    ## Generated based on boringssl/include/openssl/x509.h:2997:9
 else:
   let X509_V_ERR_CRL_HAS_EXPIRED* = 12
-    ## Generated based on boringssl/include/openssl/x509.h:2987:9
+    ## Generated based on boringssl/include/openssl/x509.h:2997:9
 when 13 is static:
   const X509_V_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD* = 13
-    ## Generated based on boringssl/include/openssl/x509.h:2988:9
+    ## Generated based on boringssl/include/openssl/x509.h:2998:9
 else:
   let X509_V_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD* = 13
-    ## Generated based on boringssl/include/openssl/x509.h:2988:9
+    ## Generated based on boringssl/include/openssl/x509.h:2998:9
 when 14 is static:
   const X509_V_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD* = 14
-    ## Generated based on boringssl/include/openssl/x509.h:2989:9
+    ## Generated based on boringssl/include/openssl/x509.h:2999:9
 else:
   let X509_V_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD* = 14
-    ## Generated based on boringssl/include/openssl/x509.h:2989:9
+    ## Generated based on boringssl/include/openssl/x509.h:2999:9
 when 15 is static:
   const X509_V_ERR_ERROR_IN_CRL_LAST_UPDATE_FIELD* = 15
-    ## Generated based on boringssl/include/openssl/x509.h:2990:9
+    ## Generated based on boringssl/include/openssl/x509.h:3000:9
 else:
   let X509_V_ERR_ERROR_IN_CRL_LAST_UPDATE_FIELD* = 15
-    ## Generated based on boringssl/include/openssl/x509.h:2990:9
+    ## Generated based on boringssl/include/openssl/x509.h:3000:9
 when 16 is static:
   const X509_V_ERR_ERROR_IN_CRL_NEXT_UPDATE_FIELD* = 16
-    ## Generated based on boringssl/include/openssl/x509.h:2991:9
+    ## Generated based on boringssl/include/openssl/x509.h:3001:9
 else:
   let X509_V_ERR_ERROR_IN_CRL_NEXT_UPDATE_FIELD* = 16
-    ## Generated based on boringssl/include/openssl/x509.h:2991:9
+    ## Generated based on boringssl/include/openssl/x509.h:3001:9
 when 17 is static:
   const X509_V_ERR_OUT_OF_MEM* = 17
-    ## Generated based on boringssl/include/openssl/x509.h:2992:9
+    ## Generated based on boringssl/include/openssl/x509.h:3002:9
 else:
   let X509_V_ERR_OUT_OF_MEM* = 17
-    ## Generated based on boringssl/include/openssl/x509.h:2992:9
+    ## Generated based on boringssl/include/openssl/x509.h:3002:9
 when 18 is static:
   const X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT* = 18
-    ## Generated based on boringssl/include/openssl/x509.h:2993:9
+    ## Generated based on boringssl/include/openssl/x509.h:3003:9
 else:
   let X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT* = 18
-    ## Generated based on boringssl/include/openssl/x509.h:2993:9
+    ## Generated based on boringssl/include/openssl/x509.h:3003:9
 when 19 is static:
   const X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN* = 19
-    ## Generated based on boringssl/include/openssl/x509.h:2994:9
+    ## Generated based on boringssl/include/openssl/x509.h:3004:9
 else:
   let X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN* = 19
-    ## Generated based on boringssl/include/openssl/x509.h:2994:9
+    ## Generated based on boringssl/include/openssl/x509.h:3004:9
 when 20 is static:
   const X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY* = 20
-    ## Generated based on boringssl/include/openssl/x509.h:2995:9
+    ## Generated based on boringssl/include/openssl/x509.h:3005:9
 else:
   let X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY* = 20
-    ## Generated based on boringssl/include/openssl/x509.h:2995:9
+    ## Generated based on boringssl/include/openssl/x509.h:3005:9
 when 21 is static:
   const X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE* = 21
-    ## Generated based on boringssl/include/openssl/x509.h:2996:9
+    ## Generated based on boringssl/include/openssl/x509.h:3006:9
 else:
   let X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE* = 21
-    ## Generated based on boringssl/include/openssl/x509.h:2996:9
+    ## Generated based on boringssl/include/openssl/x509.h:3006:9
 when 22 is static:
   const X509_V_ERR_CERT_CHAIN_TOO_LONG* = 22
-    ## Generated based on boringssl/include/openssl/x509.h:2997:9
+    ## Generated based on boringssl/include/openssl/x509.h:3007:9
 else:
   let X509_V_ERR_CERT_CHAIN_TOO_LONG* = 22
-    ## Generated based on boringssl/include/openssl/x509.h:2997:9
+    ## Generated based on boringssl/include/openssl/x509.h:3007:9
 when 23 is static:
   const X509_V_ERR_CERT_REVOKED* = 23
-    ## Generated based on boringssl/include/openssl/x509.h:2998:9
+    ## Generated based on boringssl/include/openssl/x509.h:3008:9
 else:
   let X509_V_ERR_CERT_REVOKED* = 23
-    ## Generated based on boringssl/include/openssl/x509.h:2998:9
+    ## Generated based on boringssl/include/openssl/x509.h:3008:9
 when 24 is static:
   const X509_V_ERR_INVALID_CA* = 24
-    ## Generated based on boringssl/include/openssl/x509.h:2999:9
+    ## Generated based on boringssl/include/openssl/x509.h:3009:9
 else:
   let X509_V_ERR_INVALID_CA* = 24
-    ## Generated based on boringssl/include/openssl/x509.h:2999:9
+    ## Generated based on boringssl/include/openssl/x509.h:3009:9
 when 25 is static:
   const X509_V_ERR_PATH_LENGTH_EXCEEDED* = 25
-    ## Generated based on boringssl/include/openssl/x509.h:3000:9
+    ## Generated based on boringssl/include/openssl/x509.h:3010:9
 else:
   let X509_V_ERR_PATH_LENGTH_EXCEEDED* = 25
-    ## Generated based on boringssl/include/openssl/x509.h:3000:9
+    ## Generated based on boringssl/include/openssl/x509.h:3010:9
 when 26 is static:
   const X509_V_ERR_INVALID_PURPOSE* = 26
-    ## Generated based on boringssl/include/openssl/x509.h:3001:9
+    ## Generated based on boringssl/include/openssl/x509.h:3011:9
 else:
   let X509_V_ERR_INVALID_PURPOSE* = 26
-    ## Generated based on boringssl/include/openssl/x509.h:3001:9
+    ## Generated based on boringssl/include/openssl/x509.h:3011:9
 when 27 is static:
   const X509_V_ERR_CERT_UNTRUSTED* = 27
-    ## Generated based on boringssl/include/openssl/x509.h:3002:9
+    ## Generated based on boringssl/include/openssl/x509.h:3012:9
 else:
   let X509_V_ERR_CERT_UNTRUSTED* = 27
-    ## Generated based on boringssl/include/openssl/x509.h:3002:9
+    ## Generated based on boringssl/include/openssl/x509.h:3012:9
 when 28 is static:
   const X509_V_ERR_CERT_REJECTED* = 28
-    ## Generated based on boringssl/include/openssl/x509.h:3003:9
+    ## Generated based on boringssl/include/openssl/x509.h:3013:9
 else:
   let X509_V_ERR_CERT_REJECTED* = 28
-    ## Generated based on boringssl/include/openssl/x509.h:3003:9
+    ## Generated based on boringssl/include/openssl/x509.h:3013:9
 when 29 is static:
   const X509_V_ERR_SUBJECT_ISSUER_MISMATCH* = 29
-    ## Generated based on boringssl/include/openssl/x509.h:3004:9
+    ## Generated based on boringssl/include/openssl/x509.h:3014:9
 else:
   let X509_V_ERR_SUBJECT_ISSUER_MISMATCH* = 29
-    ## Generated based on boringssl/include/openssl/x509.h:3004:9
+    ## Generated based on boringssl/include/openssl/x509.h:3014:9
 when 30 is static:
   const X509_V_ERR_AKID_SKID_MISMATCH* = 30
-    ## Generated based on boringssl/include/openssl/x509.h:3005:9
+    ## Generated based on boringssl/include/openssl/x509.h:3015:9
 else:
   let X509_V_ERR_AKID_SKID_MISMATCH* = 30
-    ## Generated based on boringssl/include/openssl/x509.h:3005:9
+    ## Generated based on boringssl/include/openssl/x509.h:3015:9
 when 31 is static:
   const X509_V_ERR_AKID_ISSUER_SERIAL_MISMATCH* = 31
-    ## Generated based on boringssl/include/openssl/x509.h:3006:9
+    ## Generated based on boringssl/include/openssl/x509.h:3016:9
 else:
   let X509_V_ERR_AKID_ISSUER_SERIAL_MISMATCH* = 31
-    ## Generated based on boringssl/include/openssl/x509.h:3006:9
+    ## Generated based on boringssl/include/openssl/x509.h:3016:9
 when 32 is static:
   const X509_V_ERR_KEYUSAGE_NO_CERTSIGN* = 32
-    ## Generated based on boringssl/include/openssl/x509.h:3007:9
+    ## Generated based on boringssl/include/openssl/x509.h:3017:9
 else:
   let X509_V_ERR_KEYUSAGE_NO_CERTSIGN* = 32
-    ## Generated based on boringssl/include/openssl/x509.h:3007:9
+    ## Generated based on boringssl/include/openssl/x509.h:3017:9
 when 33 is static:
   const X509_V_ERR_UNABLE_TO_GET_CRL_ISSUER* = 33
-    ## Generated based on boringssl/include/openssl/x509.h:3008:9
+    ## Generated based on boringssl/include/openssl/x509.h:3018:9
 else:
   let X509_V_ERR_UNABLE_TO_GET_CRL_ISSUER* = 33
-    ## Generated based on boringssl/include/openssl/x509.h:3008:9
+    ## Generated based on boringssl/include/openssl/x509.h:3018:9
 when 34 is static:
   const X509_V_ERR_UNHANDLED_CRITICAL_EXTENSION* = 34
-    ## Generated based on boringssl/include/openssl/x509.h:3009:9
+    ## Generated based on boringssl/include/openssl/x509.h:3019:9
 else:
   let X509_V_ERR_UNHANDLED_CRITICAL_EXTENSION* = 34
-    ## Generated based on boringssl/include/openssl/x509.h:3009:9
+    ## Generated based on boringssl/include/openssl/x509.h:3019:9
 when 35 is static:
   const X509_V_ERR_KEYUSAGE_NO_CRL_SIGN* = 35
-    ## Generated based on boringssl/include/openssl/x509.h:3010:9
+    ## Generated based on boringssl/include/openssl/x509.h:3020:9
 else:
   let X509_V_ERR_KEYUSAGE_NO_CRL_SIGN* = 35
-    ## Generated based on boringssl/include/openssl/x509.h:3010:9
+    ## Generated based on boringssl/include/openssl/x509.h:3020:9
 when 36 is static:
   const X509_V_ERR_UNHANDLED_CRITICAL_CRL_EXTENSION* = 36
-    ## Generated based on boringssl/include/openssl/x509.h:3011:9
+    ## Generated based on boringssl/include/openssl/x509.h:3021:9
 else:
   let X509_V_ERR_UNHANDLED_CRITICAL_CRL_EXTENSION* = 36
-    ## Generated based on boringssl/include/openssl/x509.h:3011:9
+    ## Generated based on boringssl/include/openssl/x509.h:3021:9
 when 37 is static:
   const X509_V_ERR_INVALID_NON_CA* = 37
-    ## Generated based on boringssl/include/openssl/x509.h:3012:9
+    ## Generated based on boringssl/include/openssl/x509.h:3022:9
 else:
   let X509_V_ERR_INVALID_NON_CA* = 37
-    ## Generated based on boringssl/include/openssl/x509.h:3012:9
+    ## Generated based on boringssl/include/openssl/x509.h:3022:9
 when 38 is static:
   const X509_V_ERR_PROXY_PATH_LENGTH_EXCEEDED* = 38
-    ## Generated based on boringssl/include/openssl/x509.h:3013:9
+    ## Generated based on boringssl/include/openssl/x509.h:3023:9
 else:
   let X509_V_ERR_PROXY_PATH_LENGTH_EXCEEDED* = 38
-    ## Generated based on boringssl/include/openssl/x509.h:3013:9
+    ## Generated based on boringssl/include/openssl/x509.h:3023:9
 when 39 is static:
   const X509_V_ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE* = 39
-    ## Generated based on boringssl/include/openssl/x509.h:3014:9
+    ## Generated based on boringssl/include/openssl/x509.h:3024:9
 else:
   let X509_V_ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE* = 39
-    ## Generated based on boringssl/include/openssl/x509.h:3014:9
+    ## Generated based on boringssl/include/openssl/x509.h:3024:9
 when 40 is static:
   const X509_V_ERR_PROXY_CERTIFICATES_NOT_ALLOWED* = 40
-    ## Generated based on boringssl/include/openssl/x509.h:3015:9
+    ## Generated based on boringssl/include/openssl/x509.h:3025:9
 else:
   let X509_V_ERR_PROXY_CERTIFICATES_NOT_ALLOWED* = 40
-    ## Generated based on boringssl/include/openssl/x509.h:3015:9
+    ## Generated based on boringssl/include/openssl/x509.h:3025:9
 when 41 is static:
   const X509_V_ERR_INVALID_EXTENSION* = 41
-    ## Generated based on boringssl/include/openssl/x509.h:3016:9
+    ## Generated based on boringssl/include/openssl/x509.h:3026:9
 else:
   let X509_V_ERR_INVALID_EXTENSION* = 41
-    ## Generated based on boringssl/include/openssl/x509.h:3016:9
+    ## Generated based on boringssl/include/openssl/x509.h:3026:9
 when 42 is static:
   const X509_V_ERR_INVALID_POLICY_EXTENSION* = 42
-    ## Generated based on boringssl/include/openssl/x509.h:3017:9
+    ## Generated based on boringssl/include/openssl/x509.h:3027:9
 else:
   let X509_V_ERR_INVALID_POLICY_EXTENSION* = 42
-    ## Generated based on boringssl/include/openssl/x509.h:3017:9
+    ## Generated based on boringssl/include/openssl/x509.h:3027:9
 when 43 is static:
   const X509_V_ERR_NO_EXPLICIT_POLICY* = 43
-    ## Generated based on boringssl/include/openssl/x509.h:3018:9
+    ## Generated based on boringssl/include/openssl/x509.h:3028:9
 else:
   let X509_V_ERR_NO_EXPLICIT_POLICY* = 43
-    ## Generated based on boringssl/include/openssl/x509.h:3018:9
+    ## Generated based on boringssl/include/openssl/x509.h:3028:9
 when 44 is static:
   const X509_V_ERR_DIFFERENT_CRL_SCOPE* = 44
-    ## Generated based on boringssl/include/openssl/x509.h:3019:9
+    ## Generated based on boringssl/include/openssl/x509.h:3029:9
 else:
   let X509_V_ERR_DIFFERENT_CRL_SCOPE* = 44
-    ## Generated based on boringssl/include/openssl/x509.h:3019:9
+    ## Generated based on boringssl/include/openssl/x509.h:3029:9
 when 45 is static:
   const X509_V_ERR_UNSUPPORTED_EXTENSION_FEATURE* = 45
-    ## Generated based on boringssl/include/openssl/x509.h:3020:9
+    ## Generated based on boringssl/include/openssl/x509.h:3030:9
 else:
   let X509_V_ERR_UNSUPPORTED_EXTENSION_FEATURE* = 45
-    ## Generated based on boringssl/include/openssl/x509.h:3020:9
+    ## Generated based on boringssl/include/openssl/x509.h:3030:9
 when 46 is static:
   const X509_V_ERR_UNNESTED_RESOURCE* = 46
-    ## Generated based on boringssl/include/openssl/x509.h:3021:9
+    ## Generated based on boringssl/include/openssl/x509.h:3031:9
 else:
   let X509_V_ERR_UNNESTED_RESOURCE* = 46
-    ## Generated based on boringssl/include/openssl/x509.h:3021:9
+    ## Generated based on boringssl/include/openssl/x509.h:3031:9
 when 47 is static:
   const X509_V_ERR_PERMITTED_VIOLATION* = 47
-    ## Generated based on boringssl/include/openssl/x509.h:3022:9
+    ## Generated based on boringssl/include/openssl/x509.h:3032:9
 else:
   let X509_V_ERR_PERMITTED_VIOLATION* = 47
-    ## Generated based on boringssl/include/openssl/x509.h:3022:9
+    ## Generated based on boringssl/include/openssl/x509.h:3032:9
 when 48 is static:
   const X509_V_ERR_EXCLUDED_VIOLATION* = 48
-    ## Generated based on boringssl/include/openssl/x509.h:3023:9
+    ## Generated based on boringssl/include/openssl/x509.h:3033:9
 else:
   let X509_V_ERR_EXCLUDED_VIOLATION* = 48
-    ## Generated based on boringssl/include/openssl/x509.h:3023:9
+    ## Generated based on boringssl/include/openssl/x509.h:3033:9
 when 49 is static:
   const X509_V_ERR_SUBTREE_MINMAX* = 49
-    ## Generated based on boringssl/include/openssl/x509.h:3024:9
+    ## Generated based on boringssl/include/openssl/x509.h:3034:9
 else:
   let X509_V_ERR_SUBTREE_MINMAX* = 49
-    ## Generated based on boringssl/include/openssl/x509.h:3024:9
+    ## Generated based on boringssl/include/openssl/x509.h:3034:9
 when 50 is static:
   const X509_V_ERR_APPLICATION_VERIFICATION* = 50
-    ## Generated based on boringssl/include/openssl/x509.h:3025:9
+    ## Generated based on boringssl/include/openssl/x509.h:3035:9
 else:
   let X509_V_ERR_APPLICATION_VERIFICATION* = 50
-    ## Generated based on boringssl/include/openssl/x509.h:3025:9
+    ## Generated based on boringssl/include/openssl/x509.h:3035:9
 when 51 is static:
   const X509_V_ERR_UNSUPPORTED_CONSTRAINT_TYPE* = 51
-    ## Generated based on boringssl/include/openssl/x509.h:3026:9
+    ## Generated based on boringssl/include/openssl/x509.h:3036:9
 else:
   let X509_V_ERR_UNSUPPORTED_CONSTRAINT_TYPE* = 51
-    ## Generated based on boringssl/include/openssl/x509.h:3026:9
+    ## Generated based on boringssl/include/openssl/x509.h:3036:9
 when 52 is static:
   const X509_V_ERR_UNSUPPORTED_CONSTRAINT_SYNTAX* = 52
-    ## Generated based on boringssl/include/openssl/x509.h:3027:9
+    ## Generated based on boringssl/include/openssl/x509.h:3037:9
 else:
   let X509_V_ERR_UNSUPPORTED_CONSTRAINT_SYNTAX* = 52
-    ## Generated based on boringssl/include/openssl/x509.h:3027:9
+    ## Generated based on boringssl/include/openssl/x509.h:3037:9
 when 53 is static:
   const X509_V_ERR_UNSUPPORTED_NAME_SYNTAX* = 53
-    ## Generated based on boringssl/include/openssl/x509.h:3028:9
+    ## Generated based on boringssl/include/openssl/x509.h:3038:9
 else:
   let X509_V_ERR_UNSUPPORTED_NAME_SYNTAX* = 53
-    ## Generated based on boringssl/include/openssl/x509.h:3028:9
+    ## Generated based on boringssl/include/openssl/x509.h:3038:9
 when 54 is static:
   const X509_V_ERR_CRL_PATH_VALIDATION_ERROR* = 54
-    ## Generated based on boringssl/include/openssl/x509.h:3029:9
+    ## Generated based on boringssl/include/openssl/x509.h:3039:9
 else:
   let X509_V_ERR_CRL_PATH_VALIDATION_ERROR* = 54
-    ## Generated based on boringssl/include/openssl/x509.h:3029:9
+    ## Generated based on boringssl/include/openssl/x509.h:3039:9
 when 62 is static:
   const X509_V_ERR_HOSTNAME_MISMATCH* = 62
-    ## Generated based on boringssl/include/openssl/x509.h:3030:9
+    ## Generated based on boringssl/include/openssl/x509.h:3040:9
 else:
   let X509_V_ERR_HOSTNAME_MISMATCH* = 62
-    ## Generated based on boringssl/include/openssl/x509.h:3030:9
+    ## Generated based on boringssl/include/openssl/x509.h:3040:9
 when 63 is static:
   const X509_V_ERR_EMAIL_MISMATCH* = 63
-    ## Generated based on boringssl/include/openssl/x509.h:3031:9
+    ## Generated based on boringssl/include/openssl/x509.h:3041:9
 else:
   let X509_V_ERR_EMAIL_MISMATCH* = 63
-    ## Generated based on boringssl/include/openssl/x509.h:3031:9
+    ## Generated based on boringssl/include/openssl/x509.h:3041:9
 when 64 is static:
   const X509_V_ERR_IP_ADDRESS_MISMATCH* = 64
-    ## Generated based on boringssl/include/openssl/x509.h:3032:9
+    ## Generated based on boringssl/include/openssl/x509.h:3042:9
 else:
   let X509_V_ERR_IP_ADDRESS_MISMATCH* = 64
-    ## Generated based on boringssl/include/openssl/x509.h:3032:9
+    ## Generated based on boringssl/include/openssl/x509.h:3042:9
 when 65 is static:
   const X509_V_ERR_INVALID_CALL* = 65
-    ## Generated based on boringssl/include/openssl/x509.h:3033:9
+    ## Generated based on boringssl/include/openssl/x509.h:3043:9
 else:
   let X509_V_ERR_INVALID_CALL* = 65
-    ## Generated based on boringssl/include/openssl/x509.h:3033:9
+    ## Generated based on boringssl/include/openssl/x509.h:3043:9
 when 66 is static:
   const X509_V_ERR_STORE_LOOKUP* = 66
-    ## Generated based on boringssl/include/openssl/x509.h:3034:9
+    ## Generated based on boringssl/include/openssl/x509.h:3044:9
 else:
   let X509_V_ERR_STORE_LOOKUP* = 66
-    ## Generated based on boringssl/include/openssl/x509.h:3034:9
+    ## Generated based on boringssl/include/openssl/x509.h:3044:9
 when 67 is static:
   const X509_V_ERR_NAME_CONSTRAINTS_WITHOUT_SANS* = 67
-    ## Generated based on boringssl/include/openssl/x509.h:3035:9
+    ## Generated based on boringssl/include/openssl/x509.h:3045:9
 else:
   let X509_V_ERR_NAME_CONSTRAINTS_WITHOUT_SANS* = 67
-    ## Generated based on boringssl/include/openssl/x509.h:3035:9
+    ## Generated based on boringssl/include/openssl/x509.h:3045:9
 when 1 is static:
   const X509_V_FLAG_CB_ISSUER_CHECK* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3234:9
+    ## Generated based on boringssl/include/openssl/x509.h:3239:9
 else:
   let X509_V_FLAG_CB_ISSUER_CHECK* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3234:9
+    ## Generated based on boringssl/include/openssl/x509.h:3239:9
 when 2 is static:
   const X509_V_FLAG_USE_CHECK_TIME* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3238:9
+    ## Generated based on boringssl/include/openssl/x509.h:3243:9
 else:
   let X509_V_FLAG_USE_CHECK_TIME* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3238:9
+    ## Generated based on boringssl/include/openssl/x509.h:3243:9
 when 4 is static:
   const X509_V_FLAG_CRL_CHECK* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:3240:9
+    ## Generated based on boringssl/include/openssl/x509.h:3245:9
 else:
   let X509_V_FLAG_CRL_CHECK* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:3240:9
+    ## Generated based on boringssl/include/openssl/x509.h:3245:9
 when 8 is static:
   const X509_V_FLAG_CRL_CHECK_ALL* = 8
-    ## Generated based on boringssl/include/openssl/x509.h:3244:9
+    ## Generated based on boringssl/include/openssl/x509.h:3249:9
 else:
   let X509_V_FLAG_CRL_CHECK_ALL* = 8
-    ## Generated based on boringssl/include/openssl/x509.h:3244:9
+    ## Generated based on boringssl/include/openssl/x509.h:3249:9
 when 16 is static:
   const X509_V_FLAG_IGNORE_CRITICAL* = 16
-    ## Generated based on boringssl/include/openssl/x509.h:3248:9
+    ## Generated based on boringssl/include/openssl/x509.h:3253:9
 else:
   let X509_V_FLAG_IGNORE_CRITICAL* = 16
-    ## Generated based on boringssl/include/openssl/x509.h:3248:9
+    ## Generated based on boringssl/include/openssl/x509.h:3253:9
 when 0 is static:
   const X509_V_FLAG_X509_STRICT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3251:9
+    ## Generated based on boringssl/include/openssl/x509.h:3256:9
 else:
   let X509_V_FLAG_X509_STRICT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3251:9
+    ## Generated based on boringssl/include/openssl/x509.h:3256:9
 when 64 is static:
   const X509_V_FLAG_ALLOW_PROXY_CERTS* = 64
-    ## Generated based on boringssl/include/openssl/x509.h:3254:9
+    ## Generated based on boringssl/include/openssl/x509.h:3259:9
 else:
   let X509_V_FLAG_ALLOW_PROXY_CERTS* = 64
-    ## Generated based on boringssl/include/openssl/x509.h:3254:9
+    ## Generated based on boringssl/include/openssl/x509.h:3259:9
 when 128 is static:
   const X509_V_FLAG_POLICY_CHECK* = 128
-    ## Generated based on boringssl/include/openssl/x509.h:3256:9
+    ## Generated based on boringssl/include/openssl/x509.h:3261:9
 else:
   let X509_V_FLAG_POLICY_CHECK* = 128
-    ## Generated based on boringssl/include/openssl/x509.h:3256:9
+    ## Generated based on boringssl/include/openssl/x509.h:3261:9
 when 256 is static:
   const X509_V_FLAG_EXPLICIT_POLICY* = 256
-    ## Generated based on boringssl/include/openssl/x509.h:3260:9
+    ## Generated based on boringssl/include/openssl/x509.h:3265:9
 else:
   let X509_V_FLAG_EXPLICIT_POLICY* = 256
-    ## Generated based on boringssl/include/openssl/x509.h:3260:9
+    ## Generated based on boringssl/include/openssl/x509.h:3265:9
 when 512 is static:
   const X509_V_FLAG_INHIBIT_ANY* = 512
-    ## Generated based on boringssl/include/openssl/x509.h:3263:9
+    ## Generated based on boringssl/include/openssl/x509.h:3268:9
 else:
   let X509_V_FLAG_INHIBIT_ANY* = 512
-    ## Generated based on boringssl/include/openssl/x509.h:3263:9
+    ## Generated based on boringssl/include/openssl/x509.h:3268:9
 when 1024 is static:
   const X509_V_FLAG_INHIBIT_MAP* = 1024
-    ## Generated based on boringssl/include/openssl/x509.h:3266:9
+    ## Generated based on boringssl/include/openssl/x509.h:3271:9
 else:
   let X509_V_FLAG_INHIBIT_MAP* = 1024
-    ## Generated based on boringssl/include/openssl/x509.h:3266:9
+    ## Generated based on boringssl/include/openssl/x509.h:3271:9
 when 2048 is static:
   const X509_V_FLAG_NOTIFY_POLICY* = 2048
-    ## Generated based on boringssl/include/openssl/x509.h:3268:9
+    ## Generated based on boringssl/include/openssl/x509.h:3273:9
 else:
   let X509_V_FLAG_NOTIFY_POLICY* = 2048
-    ## Generated based on boringssl/include/openssl/x509.h:3268:9
+    ## Generated based on boringssl/include/openssl/x509.h:3273:9
 when 4096 is static:
   const X509_V_FLAG_EXTENDED_CRL_SUPPORT* = 4096
-    ## Generated based on boringssl/include/openssl/x509.h:3271:9
+    ## Generated based on boringssl/include/openssl/x509.h:3276:9
 else:
   let X509_V_FLAG_EXTENDED_CRL_SUPPORT* = 4096
-    ## Generated based on boringssl/include/openssl/x509.h:3271:9
+    ## Generated based on boringssl/include/openssl/x509.h:3276:9
 when 8192 is static:
   const X509_V_FLAG_USE_DELTAS* = 8192
-    ## Generated based on boringssl/include/openssl/x509.h:3274:9
+    ## Generated based on boringssl/include/openssl/x509.h:3279:9
 else:
   let X509_V_FLAG_USE_DELTAS* = 8192
-    ## Generated based on boringssl/include/openssl/x509.h:3274:9
-when 16384 is static:
-  const X509_V_FLAG_CHECK_SS_SIGNATURE* = 16384
-    ## Generated based on boringssl/include/openssl/x509.h:3277:9
+    ## Generated based on boringssl/include/openssl/x509.h:3279:9
+when 0 is static:
+  const X509_V_FLAG_CHECK_SS_SIGNATURE* = 0
+    ## Generated based on boringssl/include/openssl/x509.h:3283:9
 else:
-  let X509_V_FLAG_CHECK_SS_SIGNATURE* = 16384
-    ## Generated based on boringssl/include/openssl/x509.h:3277:9
+  let X509_V_FLAG_CHECK_SS_SIGNATURE* = 0
+    ## Generated based on boringssl/include/openssl/x509.h:3283:9
 when 0 is static:
   const X509_V_FLAG_TRUSTED_FIRST* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3280:9
+    ## Generated based on boringssl/include/openssl/x509.h:3286:9
 else:
   let X509_V_FLAG_TRUSTED_FIRST* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3280:9
+    ## Generated based on boringssl/include/openssl/x509.h:3286:9
 when 524288 is static:
   const X509_V_FLAG_PARTIAL_CHAIN* = 524288
-    ## Generated based on boringssl/include/openssl/x509.h:3283:9
+    ## Generated based on boringssl/include/openssl/x509.h:3289:9
 else:
   let X509_V_FLAG_PARTIAL_CHAIN* = 524288
-    ## Generated based on boringssl/include/openssl/x509.h:3283:9
+    ## Generated based on boringssl/include/openssl/x509.h:3289:9
 when 0 is static:
   const X509_V_FLAG_NO_ALT_CHAINS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3285:9
+    ## Generated based on boringssl/include/openssl/x509.h:3291:9
 else:
   let X509_V_FLAG_NO_ALT_CHAINS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3285:9
+    ## Generated based on boringssl/include/openssl/x509.h:3291:9
 when 2097152 is static:
   const X509_V_FLAG_NO_CHECK_TIME* = 2097152
-    ## Generated based on boringssl/include/openssl/x509.h:3288:9
+    ## Generated based on boringssl/include/openssl/x509.h:3294:9
 else:
   let X509_V_FLAG_NO_CHECK_TIME* = 2097152
-    ## Generated based on boringssl/include/openssl/x509.h:3288:9
+    ## Generated based on boringssl/include/openssl/x509.h:3294:9
 when 16777216 is static:
   const X509_V_FLAG_ALLOW_TIMEZONE_OFFSET* = 16777216
-    ## Generated based on boringssl/include/openssl/x509.h:3291:9
+    ## Generated based on boringssl/include/openssl/x509.h:3297:9
 else:
   let X509_V_FLAG_ALLOW_TIMEZONE_OFFSET* = 16777216
-    ## Generated based on boringssl/include/openssl/x509.h:3291:9
+    ## Generated based on boringssl/include/openssl/x509.h:3297:9
 when 4194304 is static:
-  const X509_V_FLAG_USE_MTC_DRAFT_PLANTS_05* = 4194304
-    ## Generated based on boringssl/include/openssl/x509.h:3294:9
+  const X509_V_FLAG_USE_MTC_DRAFT_PLANTS_07* = 4194304
+    ## Generated based on boringssl/include/openssl/x509.h:3300:9
 else:
-  let X509_V_FLAG_USE_MTC_DRAFT_PLANTS_05* = 4194304
-    ## Generated based on boringssl/include/openssl/x509.h:3294:9
+  let X509_V_FLAG_USE_MTC_DRAFT_PLANTS_07* = 4194304
+    ## Generated based on boringssl/include/openssl/x509.h:3300:9
 when 2 is static:
   const X509_CHECK_FLAG_NO_WILDCARDS* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3372:9
+    ## Generated based on boringssl/include/openssl/x509.h:3378:9
 else:
   let X509_CHECK_FLAG_NO_WILDCARDS* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3372:9
+    ## Generated based on boringssl/include/openssl/x509.h:3378:9
 when 32 is static:
   const X509_CHECK_FLAG_NEVER_CHECK_SUBJECT* = 32
-    ## Generated based on boringssl/include/openssl/x509.h:3376:9
+    ## Generated based on boringssl/include/openssl/x509.h:3382:9
 else:
   let X509_CHECK_FLAG_NEVER_CHECK_SUBJECT* = 32
-    ## Generated based on boringssl/include/openssl/x509.h:3376:9
+    ## Generated based on boringssl/include/openssl/x509.h:3382:9
 when 1 is static:
   const X509_PURPOSE_SSL_CLIENT* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3410:9
+    ## Generated based on boringssl/include/openssl/x509.h:3416:9
 else:
   let X509_PURPOSE_SSL_CLIENT* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3410:9
+    ## Generated based on boringssl/include/openssl/x509.h:3416:9
 when 2 is static:
   const X509_PURPOSE_SSL_SERVER* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3415:9
+    ## Generated based on boringssl/include/openssl/x509.h:3421:9
 else:
   let X509_PURPOSE_SSL_SERVER* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3415:9
+    ## Generated based on boringssl/include/openssl/x509.h:3421:9
 when 3 is static:
   const X509_PURPOSE_NS_SSL_SERVER* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:3419:9
+    ## Generated based on boringssl/include/openssl/x509.h:3425:9
 else:
   let X509_PURPOSE_NS_SSL_SERVER* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:3419:9
+    ## Generated based on boringssl/include/openssl/x509.h:3425:9
 when 4 is static:
   const X509_PURPOSE_SMIME_SIGN* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:3423:9
+    ## Generated based on boringssl/include/openssl/x509.h:3429:9
 else:
   let X509_PURPOSE_SMIME_SIGN* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:3423:9
+    ## Generated based on boringssl/include/openssl/x509.h:3429:9
 when 5 is static:
   const X509_PURPOSE_SMIME_ENCRYPT* = 5
-    ## Generated based on boringssl/include/openssl/x509.h:3426:9
+    ## Generated based on boringssl/include/openssl/x509.h:3432:9
 else:
   let X509_PURPOSE_SMIME_ENCRYPT* = 5
-    ## Generated based on boringssl/include/openssl/x509.h:3426:9
+    ## Generated based on boringssl/include/openssl/x509.h:3432:9
 when 6 is static:
   const X509_PURPOSE_CRL_SIGN* = 6
-    ## Generated based on boringssl/include/openssl/x509.h:3430:9
+    ## Generated based on boringssl/include/openssl/x509.h:3436:9
 else:
   let X509_PURPOSE_CRL_SIGN* = 6
-    ## Generated based on boringssl/include/openssl/x509.h:3430:9
+    ## Generated based on boringssl/include/openssl/x509.h:3436:9
 when 7 is static:
   const X509_PURPOSE_ANY* = 7
-    ## Generated based on boringssl/include/openssl/x509.h:3433:9
+    ## Generated based on boringssl/include/openssl/x509.h:3439:9
 else:
-  let X509_PURPOSE_ANY* = 7 ## Generated based on boringssl/include/openssl/x509.h:3433:9
+  let X509_PURPOSE_ANY* = 7 ## Generated based on boringssl/include/openssl/x509.h:3439:9
 when 8 is static:
   const X509_PURPOSE_OCSP_HELPER* = 8
-    ## Generated based on boringssl/include/openssl/x509.h:3437:9
+    ## Generated based on boringssl/include/openssl/x509.h:3443:9
 else:
   let X509_PURPOSE_OCSP_HELPER* = 8
-    ## Generated based on boringssl/include/openssl/x509.h:3437:9
+    ## Generated based on boringssl/include/openssl/x509.h:3443:9
 when 9 is static:
   const X509_PURPOSE_TIMESTAMP_SIGN* = 9
-    ## Generated based on boringssl/include/openssl/x509.h:3443:9
+    ## Generated based on boringssl/include/openssl/x509.h:3449:9
 else:
   let X509_PURPOSE_TIMESTAMP_SIGN* = 9
-    ## Generated based on boringssl/include/openssl/x509.h:3443:9
+    ## Generated based on boringssl/include/openssl/x509.h:3449:9
 when 1 is static:
   const X509_TRUST_COMPAT* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3477:9
+    ## Generated based on boringssl/include/openssl/x509.h:3483:9
 else:
   let X509_TRUST_COMPAT* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3477:9
+    ## Generated based on boringssl/include/openssl/x509.h:3483:9
 when 2 is static:
   const X509_TRUST_SSL_CLIENT* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3480:9
-else:
-  let X509_TRUST_SSL_CLIENT* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3480:9
-when 3 is static:
-  const X509_TRUST_SSL_SERVER* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:3483:9
-else:
-  let X509_TRUST_SSL_SERVER* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:3483:9
-when 4 is static:
-  const X509_TRUST_EMAIL* = 4
     ## Generated based on boringssl/include/openssl/x509.h:3486:9
 else:
-  let X509_TRUST_EMAIL* = 4 ## Generated based on boringssl/include/openssl/x509.h:3486:9
+  let X509_TRUST_SSL_CLIENT* = 2
+    ## Generated based on boringssl/include/openssl/x509.h:3486:9
+when 3 is static:
+  const X509_TRUST_SSL_SERVER* = 3
+    ## Generated based on boringssl/include/openssl/x509.h:3489:9
+else:
+  let X509_TRUST_SSL_SERVER* = 3
+    ## Generated based on boringssl/include/openssl/x509.h:3489:9
+when 4 is static:
+  const X509_TRUST_EMAIL* = 4
+    ## Generated based on boringssl/include/openssl/x509.h:3492:9
+else:
+  let X509_TRUST_EMAIL* = 4 ## Generated based on boringssl/include/openssl/x509.h:3492:9
 when 5 is static:
   const X509_TRUST_OBJECT_SIGN* = 5
-    ## Generated based on boringssl/include/openssl/x509.h:3489:9
+    ## Generated based on boringssl/include/openssl/x509.h:3495:9
 else:
   let X509_TRUST_OBJECT_SIGN* = 5
-    ## Generated based on boringssl/include/openssl/x509.h:3489:9
+    ## Generated based on boringssl/include/openssl/x509.h:3495:9
 when 8 is static:
-  const X509_TRUST_TSA* = 8 ## Generated based on boringssl/include/openssl/x509.h:3492:9
+  const X509_TRUST_TSA* = 8 ## Generated based on boringssl/include/openssl/x509.h:3498:9
 else:
-  let X509_TRUST_TSA* = 8 ## Generated based on boringssl/include/openssl/x509.h:3492:9
+  let X509_TRUST_TSA* = 8 ## Generated based on boringssl/include/openssl/x509.h:3498:9
 when 1 is static:
   const X509_FILETYPE_PEM* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3579:9
+    ## Generated based on boringssl/include/openssl/x509.h:3585:9
 else:
   let X509_FILETYPE_PEM* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3579:9
+    ## Generated based on boringssl/include/openssl/x509.h:3585:9
 when 2 is static:
   const X509_FILETYPE_ASN1* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3580:9
+    ## Generated based on boringssl/include/openssl/x509.h:3586:9
 else:
   let X509_FILETYPE_ASN1* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:3580:9
+    ## Generated based on boringssl/include/openssl/x509.h:3586:9
 when 3 is static:
   const X509_FILETYPE_DEFAULT* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:3581:9
+    ## Generated based on boringssl/include/openssl/x509.h:3587:9
 else:
   let X509_FILETYPE_DEFAULT* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:3581:9
+    ## Generated based on boringssl/include/openssl/x509.h:3587:9
 when 1 is static:
   const X509_L_FILE_LOAD* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:3628:9
+    ## Generated based on boringssl/include/openssl/x509.h:3634:9
 else:
-  let X509_L_FILE_LOAD* = 1 ## Generated based on boringssl/include/openssl/x509.h:3628:9
+  let X509_L_FILE_LOAD* = 1 ## Generated based on boringssl/include/openssl/x509.h:3634:9
 when 2 is static:
-  const X509_L_ADD_DIR* = 2 ## Generated based on boringssl/include/openssl/x509.h:3629:9
+  const X509_L_ADD_DIR* = 2 ## Generated based on boringssl/include/openssl/x509.h:3635:9
 else:
-  let X509_L_ADD_DIR* = 2 ## Generated based on boringssl/include/openssl/x509.h:3629:9
+  let X509_L_ADD_DIR* = 2 ## Generated based on boringssl/include/openssl/x509.h:3635:9
 when 0 is static:
   const X509_FLAG_COMPAT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:3944:9
+    ## Generated based on boringssl/include/openssl/x509.h:3950:9
 else:
-  let X509_FLAG_COMPAT* = 0 ## Generated based on boringssl/include/openssl/x509.h:3944:9
+  let X509_FLAG_COMPAT* = 0 ## Generated based on boringssl/include/openssl/x509.h:3950:9
 when cast[clong](1'i64) is static:
   const X509_FLAG_NO_HEADER* = cast[clong](1'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:3947:9
+    ## Generated based on boringssl/include/openssl/x509.h:3953:9
 else:
   let X509_FLAG_NO_HEADER* = cast[clong](1'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:3947:9
+    ## Generated based on boringssl/include/openssl/x509.h:3953:9
 when 0 is static:
   const X509V3_EXT_DEFAULT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:4004:9
+    ## Generated based on boringssl/include/openssl/x509.h:4010:9
 else:
   let X509V3_EXT_DEFAULT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:4004:9
+    ## Generated based on boringssl/include/openssl/x509.h:4010:9
 when cast[culong](0'i64) is static:
   const XN_FLAG_COMPAT* = cast[culong](0'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:4065:9
+    ## Generated based on boringssl/include/openssl/x509.h:4071:9
 else:
   let XN_FLAG_COMPAT* = cast[culong](0'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:4065:9
+    ## Generated based on boringssl/include/openssl/x509.h:4071:9
 when cast[culong](0'i64) is static:
   const XN_FLAG_FN_SN* = cast[culong](0'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:4093:9
+    ## Generated based on boringssl/include/openssl/x509.h:4099:9
 else:
   let XN_FLAG_FN_SN* = cast[culong](0'i64)
-    ## Generated based on boringssl/include/openssl/x509.h:4093:9
+    ## Generated based on boringssl/include/openssl/x509.h:4099:9
 when 1 is static:
   const X509_TRUST_TRUSTED* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:4672:9
+    ## Generated based on boringssl/include/openssl/x509.h:4678:9
 else:
   let X509_TRUST_TRUSTED* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:4672:9
+    ## Generated based on boringssl/include/openssl/x509.h:4678:9
 when 2 is static:
   const X509_TRUST_REJECTED* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:4673:9
+    ## Generated based on boringssl/include/openssl/x509.h:4679:9
 else:
   let X509_TRUST_REJECTED* = 2
-    ## Generated based on boringssl/include/openssl/x509.h:4673:9
+    ## Generated based on boringssl/include/openssl/x509.h:4679:9
 when 3 is static:
   const X509_TRUST_UNTRUSTED* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:4674:9
+    ## Generated based on boringssl/include/openssl/x509.h:4680:9
 else:
   let X509_TRUST_UNTRUSTED* = 3
-    ## Generated based on boringssl/include/openssl/x509.h:4674:9
+    ## Generated based on boringssl/include/openssl/x509.h:4680:9
 when 4 is static:
   const X509V3_EXT_MULTILINE* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:4813:9
+    ## Generated based on boringssl/include/openssl/x509.h:4823:9
 else:
   let X509V3_EXT_MULTILINE* = 4
-    ## Generated based on boringssl/include/openssl/x509.h:4813:9
+    ## Generated based on boringssl/include/openssl/x509.h:4823:9
 when 1 is static:
   const X509V3_CTX_TEST* = 1
-    ## Generated based on boringssl/include/openssl/x509.h:4888:9
+    ## Generated based on boringssl/include/openssl/x509.h:4898:9
 else:
-  let X509V3_CTX_TEST* = 1 ## Generated based on boringssl/include/openssl/x509.h:4888:9
+  let X509V3_CTX_TEST* = 1 ## Generated based on boringssl/include/openssl/x509.h:4898:9
 proc X509_CRL_set1_lastUpdate*(
   crl: ptr X509_CRL, tm: ptr ASN1_TIME
 ): cint {.cdecl, importc: "X509_CRL_set1_lastUpdate".}
@@ -20299,339 +20374,339 @@ proc X509_STORE_CTX_get1_crls*(
 
 when 0 is static:
   const X509_CHECK_FLAG_ALWAYS_CHECK_SUBJECT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5230:9
+    ## Generated based on boringssl/include/openssl/x509.h:5240:9
 else:
   let X509_CHECK_FLAG_ALWAYS_CHECK_SUBJECT* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5230:9
+    ## Generated based on boringssl/include/openssl/x509.h:5240:9
 when 0 is static:
   const X509_CHECK_FLAG_MULTI_LABEL_WILDCARDS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5231:9
+    ## Generated based on boringssl/include/openssl/x509.h:5241:9
 else:
   let X509_CHECK_FLAG_MULTI_LABEL_WILDCARDS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5231:9
+    ## Generated based on boringssl/include/openssl/x509.h:5241:9
 when 0 is static:
   const X509_CHECK_FLAG_SINGLE_LABEL_SUBDOMAINS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5232:9
+    ## Generated based on boringssl/include/openssl/x509.h:5242:9
 else:
   let X509_CHECK_FLAG_SINGLE_LABEL_SUBDOMAINS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5232:9
+    ## Generated based on boringssl/include/openssl/x509.h:5242:9
 when 0 is static:
   const X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5237:9
+    ## Generated based on boringssl/include/openssl/x509.h:5247:9
 else:
   let X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS* = 0
-    ## Generated based on boringssl/include/openssl/x509.h:5237:9
+    ## Generated based on boringssl/include/openssl/x509.h:5247:9
 when 128 is static:
   const NS_SSL_CLIENT* = 128
-    ## Generated based on boringssl/include/openssl/x509.h:5286:9
+    ## Generated based on boringssl/include/openssl/x509.h:5296:9
 else:
-  let NS_SSL_CLIENT* = 128 ## Generated based on boringssl/include/openssl/x509.h:5286:9
+  let NS_SSL_CLIENT* = 128 ## Generated based on boringssl/include/openssl/x509.h:5296:9
 when 64 is static:
-  const NS_SSL_SERVER* = 64 ## Generated based on boringssl/include/openssl/x509.h:5287:9
+  const NS_SSL_SERVER* = 64 ## Generated based on boringssl/include/openssl/x509.h:5297:9
 else:
-  let NS_SSL_SERVER* = 64 ## Generated based on boringssl/include/openssl/x509.h:5287:9
+  let NS_SSL_SERVER* = 64 ## Generated based on boringssl/include/openssl/x509.h:5297:9
 when 32 is static:
-  const NS_SMIME* = 32 ## Generated based on boringssl/include/openssl/x509.h:5288:9
+  const NS_SMIME* = 32 ## Generated based on boringssl/include/openssl/x509.h:5298:9
 else:
-  let NS_SMIME* = 32 ## Generated based on boringssl/include/openssl/x509.h:5288:9
+  let NS_SMIME* = 32 ## Generated based on boringssl/include/openssl/x509.h:5298:9
 when 16 is static:
-  const NS_OBJSIGN* = 16 ## Generated based on boringssl/include/openssl/x509.h:5289:9
+  const NS_OBJSIGN* = 16 ## Generated based on boringssl/include/openssl/x509.h:5299:9
 else:
-  let NS_OBJSIGN* = 16 ## Generated based on boringssl/include/openssl/x509.h:5289:9
+  let NS_OBJSIGN* = 16 ## Generated based on boringssl/include/openssl/x509.h:5299:9
 when 4 is static:
-  const NS_SSL_CA* = 4 ## Generated based on boringssl/include/openssl/x509.h:5290:9
+  const NS_SSL_CA* = 4 ## Generated based on boringssl/include/openssl/x509.h:5300:9
 else:
-  let NS_SSL_CA* = 4 ## Generated based on boringssl/include/openssl/x509.h:5290:9
+  let NS_SSL_CA* = 4 ## Generated based on boringssl/include/openssl/x509.h:5300:9
 when 2 is static:
-  const NS_SMIME_CA* = 2 ## Generated based on boringssl/include/openssl/x509.h:5291:9
+  const NS_SMIME_CA* = 2 ## Generated based on boringssl/include/openssl/x509.h:5301:9
 else:
-  let NS_SMIME_CA* = 2 ## Generated based on boringssl/include/openssl/x509.h:5291:9
+  let NS_SMIME_CA* = 2 ## Generated based on boringssl/include/openssl/x509.h:5301:9
 when 1 is static:
-  const NS_OBJSIGN_CA* = 1 ## Generated based on boringssl/include/openssl/x509.h:5292:9
+  const NS_OBJSIGN_CA* = 1 ## Generated based on boringssl/include/openssl/x509.h:5302:9
 else:
-  let NS_OBJSIGN_CA* = 1 ## Generated based on boringssl/include/openssl/x509.h:5292:9
+  let NS_OBJSIGN_CA* = 1 ## Generated based on boringssl/include/openssl/x509.h:5302:9
 when 100 is static:
   const X509_R_AKID_MISMATCH* = 100
-    ## Generated based on boringssl/include/openssl/x509.h:5356:9
+    ## Generated based on boringssl/include/openssl/x509.h:5368:9
 else:
   let X509_R_AKID_MISMATCH* = 100
-    ## Generated based on boringssl/include/openssl/x509.h:5356:9
+    ## Generated based on boringssl/include/openssl/x509.h:5368:9
 when 101 is static:
   const X509_R_BAD_PKCS7_VERSION* = 101
-    ## Generated based on boringssl/include/openssl/x509.h:5357:9
+    ## Generated based on boringssl/include/openssl/x509.h:5369:9
 else:
   let X509_R_BAD_PKCS7_VERSION* = 101
-    ## Generated based on boringssl/include/openssl/x509.h:5357:9
+    ## Generated based on boringssl/include/openssl/x509.h:5369:9
 when 102 is static:
   const X509_R_BAD_X509_FILETYPE* = 102
-    ## Generated based on boringssl/include/openssl/x509.h:5358:9
+    ## Generated based on boringssl/include/openssl/x509.h:5370:9
 else:
   let X509_R_BAD_X509_FILETYPE* = 102
-    ## Generated based on boringssl/include/openssl/x509.h:5358:9
+    ## Generated based on boringssl/include/openssl/x509.h:5370:9
 when 103 is static:
   const X509_R_BASE64_DECODE_ERROR* = 103
-    ## Generated based on boringssl/include/openssl/x509.h:5359:9
+    ## Generated based on boringssl/include/openssl/x509.h:5371:9
 else:
   let X509_R_BASE64_DECODE_ERROR* = 103
-    ## Generated based on boringssl/include/openssl/x509.h:5359:9
+    ## Generated based on boringssl/include/openssl/x509.h:5371:9
 when 104 is static:
   const X509_R_CANT_CHECK_DH_KEY* = 104
-    ## Generated based on boringssl/include/openssl/x509.h:5360:9
+    ## Generated based on boringssl/include/openssl/x509.h:5372:9
 else:
   let X509_R_CANT_CHECK_DH_KEY* = 104
-    ## Generated based on boringssl/include/openssl/x509.h:5360:9
+    ## Generated based on boringssl/include/openssl/x509.h:5372:9
 when 105 is static:
   const X509_R_CERT_ALREADY_IN_HASH_TABLE* = 105
-    ## Generated based on boringssl/include/openssl/x509.h:5361:9
+    ## Generated based on boringssl/include/openssl/x509.h:5373:9
 else:
   let X509_R_CERT_ALREADY_IN_HASH_TABLE* = 105
-    ## Generated based on boringssl/include/openssl/x509.h:5361:9
+    ## Generated based on boringssl/include/openssl/x509.h:5373:9
 when 106 is static:
   const X509_R_CRL_ALREADY_DELTA* = 106
-    ## Generated based on boringssl/include/openssl/x509.h:5362:9
+    ## Generated based on boringssl/include/openssl/x509.h:5374:9
 else:
   let X509_R_CRL_ALREADY_DELTA* = 106
-    ## Generated based on boringssl/include/openssl/x509.h:5362:9
+    ## Generated based on boringssl/include/openssl/x509.h:5374:9
 when 107 is static:
   const X509_R_CRL_VERIFY_FAILURE* = 107
-    ## Generated based on boringssl/include/openssl/x509.h:5363:9
+    ## Generated based on boringssl/include/openssl/x509.h:5375:9
 else:
   let X509_R_CRL_VERIFY_FAILURE* = 107
-    ## Generated based on boringssl/include/openssl/x509.h:5363:9
+    ## Generated based on boringssl/include/openssl/x509.h:5375:9
 when 108 is static:
   const X509_R_IDP_MISMATCH* = 108
-    ## Generated based on boringssl/include/openssl/x509.h:5364:9
+    ## Generated based on boringssl/include/openssl/x509.h:5376:9
 else:
   let X509_R_IDP_MISMATCH* = 108
-    ## Generated based on boringssl/include/openssl/x509.h:5364:9
+    ## Generated based on boringssl/include/openssl/x509.h:5376:9
 when 109 is static:
   const X509_R_INVALID_BIT_STRING_BITS_LEFT* = 109
-    ## Generated based on boringssl/include/openssl/x509.h:5365:9
+    ## Generated based on boringssl/include/openssl/x509.h:5377:9
 else:
   let X509_R_INVALID_BIT_STRING_BITS_LEFT* = 109
-    ## Generated based on boringssl/include/openssl/x509.h:5365:9
+    ## Generated based on boringssl/include/openssl/x509.h:5377:9
 when 110 is static:
   const X509_R_INVALID_DIRECTORY* = 110
-    ## Generated based on boringssl/include/openssl/x509.h:5366:9
+    ## Generated based on boringssl/include/openssl/x509.h:5378:9
 else:
   let X509_R_INVALID_DIRECTORY* = 110
-    ## Generated based on boringssl/include/openssl/x509.h:5366:9
+    ## Generated based on boringssl/include/openssl/x509.h:5378:9
 when 111 is static:
   const X509_R_INVALID_FIELD_NAME* = 111
-    ## Generated based on boringssl/include/openssl/x509.h:5367:9
+    ## Generated based on boringssl/include/openssl/x509.h:5379:9
 else:
   let X509_R_INVALID_FIELD_NAME* = 111
-    ## Generated based on boringssl/include/openssl/x509.h:5367:9
+    ## Generated based on boringssl/include/openssl/x509.h:5379:9
 when 112 is static:
   const X509_R_INVALID_PSS_PARAMETERS* = 112
-    ## Generated based on boringssl/include/openssl/x509.h:5368:9
+    ## Generated based on boringssl/include/openssl/x509.h:5380:9
 else:
   let X509_R_INVALID_PSS_PARAMETERS* = 112
-    ## Generated based on boringssl/include/openssl/x509.h:5368:9
+    ## Generated based on boringssl/include/openssl/x509.h:5380:9
 when 113 is static:
   const X509_R_INVALID_TRUST* = 113
-    ## Generated based on boringssl/include/openssl/x509.h:5369:9
+    ## Generated based on boringssl/include/openssl/x509.h:5381:9
 else:
   let X509_R_INVALID_TRUST* = 113
-    ## Generated based on boringssl/include/openssl/x509.h:5369:9
+    ## Generated based on boringssl/include/openssl/x509.h:5381:9
 when 114 is static:
   const X509_R_ISSUER_MISMATCH* = 114
-    ## Generated based on boringssl/include/openssl/x509.h:5370:9
+    ## Generated based on boringssl/include/openssl/x509.h:5382:9
 else:
   let X509_R_ISSUER_MISMATCH* = 114
-    ## Generated based on boringssl/include/openssl/x509.h:5370:9
+    ## Generated based on boringssl/include/openssl/x509.h:5382:9
 when 115 is static:
   const X509_R_KEY_TYPE_MISMATCH* = 115
-    ## Generated based on boringssl/include/openssl/x509.h:5371:9
+    ## Generated based on boringssl/include/openssl/x509.h:5383:9
 else:
   let X509_R_KEY_TYPE_MISMATCH* = 115
-    ## Generated based on boringssl/include/openssl/x509.h:5371:9
+    ## Generated based on boringssl/include/openssl/x509.h:5383:9
 when 116 is static:
   const X509_R_KEY_VALUES_MISMATCH* = 116
-    ## Generated based on boringssl/include/openssl/x509.h:5372:9
+    ## Generated based on boringssl/include/openssl/x509.h:5384:9
 else:
   let X509_R_KEY_VALUES_MISMATCH* = 116
-    ## Generated based on boringssl/include/openssl/x509.h:5372:9
+    ## Generated based on boringssl/include/openssl/x509.h:5384:9
 when 117 is static:
   const X509_R_LOADING_CERT_DIR* = 117
-    ## Generated based on boringssl/include/openssl/x509.h:5373:9
+    ## Generated based on boringssl/include/openssl/x509.h:5385:9
 else:
   let X509_R_LOADING_CERT_DIR* = 117
-    ## Generated based on boringssl/include/openssl/x509.h:5373:9
+    ## Generated based on boringssl/include/openssl/x509.h:5385:9
 when 118 is static:
   const X509_R_LOADING_DEFAULTS* = 118
-    ## Generated based on boringssl/include/openssl/x509.h:5374:9
+    ## Generated based on boringssl/include/openssl/x509.h:5386:9
 else:
   let X509_R_LOADING_DEFAULTS* = 118
-    ## Generated based on boringssl/include/openssl/x509.h:5374:9
+    ## Generated based on boringssl/include/openssl/x509.h:5386:9
 when 119 is static:
   const X509_R_NEWER_CRL_NOT_NEWER* = 119
-    ## Generated based on boringssl/include/openssl/x509.h:5375:9
+    ## Generated based on boringssl/include/openssl/x509.h:5387:9
 else:
   let X509_R_NEWER_CRL_NOT_NEWER* = 119
-    ## Generated based on boringssl/include/openssl/x509.h:5375:9
+    ## Generated based on boringssl/include/openssl/x509.h:5387:9
 when 120 is static:
   const X509_R_NOT_PKCS7_SIGNED_DATA* = 120
-    ## Generated based on boringssl/include/openssl/x509.h:5376:9
+    ## Generated based on boringssl/include/openssl/x509.h:5388:9
 else:
   let X509_R_NOT_PKCS7_SIGNED_DATA* = 120
-    ## Generated based on boringssl/include/openssl/x509.h:5376:9
+    ## Generated based on boringssl/include/openssl/x509.h:5388:9
 when 121 is static:
   const X509_R_NO_CERTIFICATES_INCLUDED* = 121
-    ## Generated based on boringssl/include/openssl/x509.h:5377:9
+    ## Generated based on boringssl/include/openssl/x509.h:5389:9
 else:
   let X509_R_NO_CERTIFICATES_INCLUDED* = 121
-    ## Generated based on boringssl/include/openssl/x509.h:5377:9
+    ## Generated based on boringssl/include/openssl/x509.h:5389:9
 when 122 is static:
   const X509_R_NO_CERT_SET_FOR_US_TO_VERIFY* = 122
-    ## Generated based on boringssl/include/openssl/x509.h:5378:9
+    ## Generated based on boringssl/include/openssl/x509.h:5390:9
 else:
   let X509_R_NO_CERT_SET_FOR_US_TO_VERIFY* = 122
-    ## Generated based on boringssl/include/openssl/x509.h:5378:9
+    ## Generated based on boringssl/include/openssl/x509.h:5390:9
 when 123 is static:
   const X509_R_NO_CRLS_INCLUDED* = 123
-    ## Generated based on boringssl/include/openssl/x509.h:5379:9
+    ## Generated based on boringssl/include/openssl/x509.h:5391:9
 else:
   let X509_R_NO_CRLS_INCLUDED* = 123
-    ## Generated based on boringssl/include/openssl/x509.h:5379:9
+    ## Generated based on boringssl/include/openssl/x509.h:5391:9
 when 124 is static:
   const X509_R_NO_CRL_NUMBER* = 124
-    ## Generated based on boringssl/include/openssl/x509.h:5380:9
+    ## Generated based on boringssl/include/openssl/x509.h:5392:9
 else:
   let X509_R_NO_CRL_NUMBER* = 124
-    ## Generated based on boringssl/include/openssl/x509.h:5380:9
+    ## Generated based on boringssl/include/openssl/x509.h:5392:9
 when 125 is static:
   const X509_R_PUBLIC_KEY_DECODE_ERROR* = 125
-    ## Generated based on boringssl/include/openssl/x509.h:5381:9
+    ## Generated based on boringssl/include/openssl/x509.h:5393:9
 else:
   let X509_R_PUBLIC_KEY_DECODE_ERROR* = 125
-    ## Generated based on boringssl/include/openssl/x509.h:5381:9
+    ## Generated based on boringssl/include/openssl/x509.h:5393:9
 when 126 is static:
   const X509_R_PUBLIC_KEY_ENCODE_ERROR* = 126
-    ## Generated based on boringssl/include/openssl/x509.h:5382:9
+    ## Generated based on boringssl/include/openssl/x509.h:5394:9
 else:
   let X509_R_PUBLIC_KEY_ENCODE_ERROR* = 126
-    ## Generated based on boringssl/include/openssl/x509.h:5382:9
+    ## Generated based on boringssl/include/openssl/x509.h:5394:9
 when 127 is static:
   const X509_R_SHOULD_RETRY* = 127
-    ## Generated based on boringssl/include/openssl/x509.h:5383:9
+    ## Generated based on boringssl/include/openssl/x509.h:5395:9
 else:
   let X509_R_SHOULD_RETRY* = 127
-    ## Generated based on boringssl/include/openssl/x509.h:5383:9
+    ## Generated based on boringssl/include/openssl/x509.h:5395:9
 when 128 is static:
   const X509_R_UNKNOWN_KEY_TYPE* = 128
-    ## Generated based on boringssl/include/openssl/x509.h:5384:9
+    ## Generated based on boringssl/include/openssl/x509.h:5396:9
 else:
   let X509_R_UNKNOWN_KEY_TYPE* = 128
-    ## Generated based on boringssl/include/openssl/x509.h:5384:9
+    ## Generated based on boringssl/include/openssl/x509.h:5396:9
 when 129 is static:
   const X509_R_UNKNOWN_NID* = 129
-    ## Generated based on boringssl/include/openssl/x509.h:5385:9
+    ## Generated based on boringssl/include/openssl/x509.h:5397:9
 else:
   let X509_R_UNKNOWN_NID* = 129
-    ## Generated based on boringssl/include/openssl/x509.h:5385:9
+    ## Generated based on boringssl/include/openssl/x509.h:5397:9
 when 130 is static:
   const X509_R_UNKNOWN_PURPOSE_ID* = 130
-    ## Generated based on boringssl/include/openssl/x509.h:5386:9
+    ## Generated based on boringssl/include/openssl/x509.h:5398:9
 else:
   let X509_R_UNKNOWN_PURPOSE_ID* = 130
-    ## Generated based on boringssl/include/openssl/x509.h:5386:9
+    ## Generated based on boringssl/include/openssl/x509.h:5398:9
 when 131 is static:
   const X509_R_UNKNOWN_TRUST_ID* = 131
-    ## Generated based on boringssl/include/openssl/x509.h:5387:9
+    ## Generated based on boringssl/include/openssl/x509.h:5399:9
 else:
   let X509_R_UNKNOWN_TRUST_ID* = 131
-    ## Generated based on boringssl/include/openssl/x509.h:5387:9
+    ## Generated based on boringssl/include/openssl/x509.h:5399:9
 when 132 is static:
   const X509_R_UNSUPPORTED_ALGORITHM* = 132
-    ## Generated based on boringssl/include/openssl/x509.h:5388:9
+    ## Generated based on boringssl/include/openssl/x509.h:5400:9
 else:
   let X509_R_UNSUPPORTED_ALGORITHM* = 132
-    ## Generated based on boringssl/include/openssl/x509.h:5388:9
+    ## Generated based on boringssl/include/openssl/x509.h:5400:9
 when 133 is static:
   const X509_R_WRONG_LOOKUP_TYPE* = 133
-    ## Generated based on boringssl/include/openssl/x509.h:5389:9
+    ## Generated based on boringssl/include/openssl/x509.h:5401:9
 else:
   let X509_R_WRONG_LOOKUP_TYPE* = 133
-    ## Generated based on boringssl/include/openssl/x509.h:5389:9
+    ## Generated based on boringssl/include/openssl/x509.h:5401:9
 when 134 is static:
   const X509_R_WRONG_TYPE* = 134
-    ## Generated based on boringssl/include/openssl/x509.h:5390:9
+    ## Generated based on boringssl/include/openssl/x509.h:5402:9
 else:
   let X509_R_WRONG_TYPE* = 134
-    ## Generated based on boringssl/include/openssl/x509.h:5390:9
+    ## Generated based on boringssl/include/openssl/x509.h:5402:9
 when 135 is static:
   const X509_R_NAME_TOO_LONG* = 135
-    ## Generated based on boringssl/include/openssl/x509.h:5391:9
+    ## Generated based on boringssl/include/openssl/x509.h:5403:9
 else:
   let X509_R_NAME_TOO_LONG* = 135
-    ## Generated based on boringssl/include/openssl/x509.h:5391:9
+    ## Generated based on boringssl/include/openssl/x509.h:5403:9
 when 136 is static:
   const X509_R_INVALID_PARAMETER* = 136
-    ## Generated based on boringssl/include/openssl/x509.h:5392:9
+    ## Generated based on boringssl/include/openssl/x509.h:5404:9
 else:
   let X509_R_INVALID_PARAMETER* = 136
-    ## Generated based on boringssl/include/openssl/x509.h:5392:9
+    ## Generated based on boringssl/include/openssl/x509.h:5404:9
 when 137 is static:
   const X509_R_SIGNATURE_ALGORITHM_MISMATCH* = 137
-    ## Generated based on boringssl/include/openssl/x509.h:5393:9
+    ## Generated based on boringssl/include/openssl/x509.h:5405:9
 else:
   let X509_R_SIGNATURE_ALGORITHM_MISMATCH* = 137
-    ## Generated based on boringssl/include/openssl/x509.h:5393:9
+    ## Generated based on boringssl/include/openssl/x509.h:5405:9
 when 138 is static:
   const X509_R_DELTA_CRL_WITHOUT_CRL_NUMBER* = 138
-    ## Generated based on boringssl/include/openssl/x509.h:5394:9
+    ## Generated based on boringssl/include/openssl/x509.h:5406:9
 else:
   let X509_R_DELTA_CRL_WITHOUT_CRL_NUMBER* = 138
-    ## Generated based on boringssl/include/openssl/x509.h:5394:9
+    ## Generated based on boringssl/include/openssl/x509.h:5406:9
 when 139 is static:
   const X509_R_INVALID_FIELD_FOR_VERSION* = 139
-    ## Generated based on boringssl/include/openssl/x509.h:5395:9
+    ## Generated based on boringssl/include/openssl/x509.h:5407:9
 else:
   let X509_R_INVALID_FIELD_FOR_VERSION* = 139
-    ## Generated based on boringssl/include/openssl/x509.h:5395:9
+    ## Generated based on boringssl/include/openssl/x509.h:5407:9
 when 140 is static:
   const X509_R_INVALID_VERSION* = 140
-    ## Generated based on boringssl/include/openssl/x509.h:5396:9
+    ## Generated based on boringssl/include/openssl/x509.h:5408:9
 else:
   let X509_R_INVALID_VERSION* = 140
-    ## Generated based on boringssl/include/openssl/x509.h:5396:9
+    ## Generated based on boringssl/include/openssl/x509.h:5408:9
 when 141 is static:
   const X509_R_NO_CERTIFICATE_FOUND* = 141
-    ## Generated based on boringssl/include/openssl/x509.h:5397:9
+    ## Generated based on boringssl/include/openssl/x509.h:5409:9
 else:
   let X509_R_NO_CERTIFICATE_FOUND* = 141
-    ## Generated based on boringssl/include/openssl/x509.h:5397:9
+    ## Generated based on boringssl/include/openssl/x509.h:5409:9
 when 142 is static:
   const X509_R_NO_CERTIFICATE_OR_CRL_FOUND* = 142
-    ## Generated based on boringssl/include/openssl/x509.h:5398:9
+    ## Generated based on boringssl/include/openssl/x509.h:5410:9
 else:
   let X509_R_NO_CERTIFICATE_OR_CRL_FOUND* = 142
-    ## Generated based on boringssl/include/openssl/x509.h:5398:9
+    ## Generated based on boringssl/include/openssl/x509.h:5410:9
 when 143 is static:
   const X509_R_NO_CRL_FOUND* = 143
-    ## Generated based on boringssl/include/openssl/x509.h:5399:9
+    ## Generated based on boringssl/include/openssl/x509.h:5411:9
 else:
   let X509_R_NO_CRL_FOUND* = 143
-    ## Generated based on boringssl/include/openssl/x509.h:5399:9
+    ## Generated based on boringssl/include/openssl/x509.h:5411:9
 when 144 is static:
   const X509_R_INVALID_POLICY_EXTENSION* = 144
-    ## Generated based on boringssl/include/openssl/x509.h:5400:9
+    ## Generated based on boringssl/include/openssl/x509.h:5412:9
 else:
   let X509_R_INVALID_POLICY_EXTENSION* = 144
-    ## Generated based on boringssl/include/openssl/x509.h:5400:9
+    ## Generated based on boringssl/include/openssl/x509.h:5412:9
 when 145 is static:
   const X509_R_INVALID_MTC_CA* = 145
-    ## Generated based on boringssl/include/openssl/x509.h:5401:9
+    ## Generated based on boringssl/include/openssl/x509.h:5413:9
 else:
   let X509_R_INVALID_MTC_CA* = 145
-    ## Generated based on boringssl/include/openssl/x509.h:5401:9
+    ## Generated based on boringssl/include/openssl/x509.h:5413:9
 when 146 is static:
   const X509_R_INVALID_MTC_PROOF* = 146
-    ## Generated based on boringssl/include/openssl/x509.h:5402:9
+    ## Generated based on boringssl/include/openssl/x509.h:5414:9
 else:
   let X509_R_INVALID_MTC_PROOF* = 146
-    ## Generated based on boringssl/include/openssl/x509.h:5402:9
+    ## Generated based on boringssl/include/openssl/x509.h:5414:9
 when 64 is static:
   const SHA_CBLOCK* = 64 ## Generated based on boringssl/include/openssl/sha.h:36:9
 else:
@@ -22279,2393 +22354,1849 @@ else:
     ## Generated based on boringssl/include/openssl/tls1.h:256:9
 when 1 is static:
   const SSL_KEY_UPDATE_REQUESTED* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:312:9
+    ## Generated based on boringssl/include/openssl/ssl.h:340:9
 else:
   let SSL_KEY_UPDATE_REQUESTED* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:312:9
+    ## Generated based on boringssl/include/openssl/ssl.h:340:9
 when 0 is static:
   const SSL_KEY_UPDATE_NOT_REQUESTED* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:316:9
+    ## Generated based on boringssl/include/openssl/ssl.h:344:9
 else:
   let SSL_KEY_UPDATE_NOT_REQUESTED* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:316:9
+    ## Generated based on boringssl/include/openssl/ssl.h:344:9
 when 0 is static:
-  const SSL_ERROR_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:372:9
+  const SSL_ERROR_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:400:9
 else:
-  let SSL_ERROR_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:372:9
+  let SSL_ERROR_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:400:9
 when 1 is static:
-  const SSL_ERROR_SSL* = 1 ## Generated based on boringssl/include/openssl/ssl.h:376:9
+  const SSL_ERROR_SSL* = 1 ## Generated based on boringssl/include/openssl/ssl.h:404:9
 else:
-  let SSL_ERROR_SSL* = 1 ## Generated based on boringssl/include/openssl/ssl.h:376:9
+  let SSL_ERROR_SSL* = 1 ## Generated based on boringssl/include/openssl/ssl.h:404:9
 when 2 is static:
   const SSL_ERROR_WANT_READ* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:381:9
+    ## Generated based on boringssl/include/openssl/ssl.h:409:9
 else:
   let SSL_ERROR_WANT_READ* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:381:9
+    ## Generated based on boringssl/include/openssl/ssl.h:409:9
 when 3 is static:
   const SSL_ERROR_WANT_WRITE* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:386:9
+    ## Generated based on boringssl/include/openssl/ssl.h:414:9
 else:
   let SSL_ERROR_WANT_WRITE* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:386:9
+    ## Generated based on boringssl/include/openssl/ssl.h:414:9
 when 4 is static:
   const SSL_ERROR_WANT_X509_LOOKUP* = 4
-    ## Generated based on boringssl/include/openssl/ssl.h:394:9
+    ## Generated based on boringssl/include/openssl/ssl.h:422:9
 else:
   let SSL_ERROR_WANT_X509_LOOKUP* = 4
-    ## Generated based on boringssl/include/openssl/ssl.h:394:9
+    ## Generated based on boringssl/include/openssl/ssl.h:422:9
 when 5 is static:
   const SSL_ERROR_SYSCALL* = 5
-    ## Generated based on boringssl/include/openssl/ssl.h:401:9
+    ## Generated based on boringssl/include/openssl/ssl.h:429:9
 else:
-  let SSL_ERROR_SYSCALL* = 5 ## Generated based on boringssl/include/openssl/ssl.h:401:9
+  let SSL_ERROR_SYSCALL* = 5 ## Generated based on boringssl/include/openssl/ssl.h:429:9
 when 6 is static:
   const SSL_ERROR_ZERO_RETURN* = 6
-    ## Generated based on boringssl/include/openssl/ssl.h:405:9
+    ## Generated based on boringssl/include/openssl/ssl.h:433:9
 else:
   let SSL_ERROR_ZERO_RETURN* = 6
-    ## Generated based on boringssl/include/openssl/ssl.h:405:9
+    ## Generated based on boringssl/include/openssl/ssl.h:433:9
 when 7 is static:
   const SSL_ERROR_WANT_CONNECT* = 7
-    ## Generated based on boringssl/include/openssl/ssl.h:410:9
+    ## Generated based on boringssl/include/openssl/ssl.h:438:9
 else:
   let SSL_ERROR_WANT_CONNECT* = 7
-    ## Generated based on boringssl/include/openssl/ssl.h:410:9
+    ## Generated based on boringssl/include/openssl/ssl.h:438:9
 when 8 is static:
   const SSL_ERROR_WANT_ACCEPT* = 8
-    ## Generated based on boringssl/include/openssl/ssl.h:417:9
+    ## Generated based on boringssl/include/openssl/ssl.h:445:9
 else:
   let SSL_ERROR_WANT_ACCEPT* = 8
-    ## Generated based on boringssl/include/openssl/ssl.h:417:9
+    ## Generated based on boringssl/include/openssl/ssl.h:445:9
 when 9 is static:
   const SSL_ERROR_WANT_CHANNEL_ID_LOOKUP* = 9
-    ## Generated based on boringssl/include/openssl/ssl.h:423:9
+    ## Generated based on boringssl/include/openssl/ssl.h:451:9
 else:
   let SSL_ERROR_WANT_CHANNEL_ID_LOOKUP* = 9
-    ## Generated based on boringssl/include/openssl/ssl.h:423:9
+    ## Generated based on boringssl/include/openssl/ssl.h:451:9
 when 11 is static:
   const SSL_ERROR_PENDING_SESSION* = 11
-    ## Generated based on boringssl/include/openssl/ssl.h:430:9
+    ## Generated based on boringssl/include/openssl/ssl.h:458:9
 else:
   let SSL_ERROR_PENDING_SESSION* = 11
-    ## Generated based on boringssl/include/openssl/ssl.h:430:9
+    ## Generated based on boringssl/include/openssl/ssl.h:458:9
 when 12 is static:
   const SSL_ERROR_PENDING_CERTIFICATE* = 12
-    ## Generated based on boringssl/include/openssl/ssl.h:437:9
+    ## Generated based on boringssl/include/openssl/ssl.h:465:9
 else:
   let SSL_ERROR_PENDING_CERTIFICATE* = 12
-    ## Generated based on boringssl/include/openssl/ssl.h:437:9
+    ## Generated based on boringssl/include/openssl/ssl.h:465:9
 when 13 is static:
   const SSL_ERROR_WANT_PRIVATE_KEY_OPERATION* = 13
-    ## Generated based on boringssl/include/openssl/ssl.h:445:9
+    ## Generated based on boringssl/include/openssl/ssl.h:473:9
 else:
   let SSL_ERROR_WANT_PRIVATE_KEY_OPERATION* = 13
-    ## Generated based on boringssl/include/openssl/ssl.h:445:9
+    ## Generated based on boringssl/include/openssl/ssl.h:473:9
 when 14 is static:
   const SSL_ERROR_PENDING_TICKET* = 14
-    ## Generated based on boringssl/include/openssl/ssl.h:451:9
+    ## Generated based on boringssl/include/openssl/ssl.h:479:9
 else:
   let SSL_ERROR_PENDING_TICKET* = 14
-    ## Generated based on boringssl/include/openssl/ssl.h:451:9
+    ## Generated based on boringssl/include/openssl/ssl.h:479:9
 when 15 is static:
   const SSL_ERROR_EARLY_DATA_REJECTED* = 15
-    ## Generated based on boringssl/include/openssl/ssl.h:457:9
+    ## Generated based on boringssl/include/openssl/ssl.h:485:9
 else:
   let SSL_ERROR_EARLY_DATA_REJECTED* = 15
-    ## Generated based on boringssl/include/openssl/ssl.h:457:9
+    ## Generated based on boringssl/include/openssl/ssl.h:485:9
 when 16 is static:
   const SSL_ERROR_WANT_CERTIFICATE_VERIFY* = 16
-    ## Generated based on boringssl/include/openssl/ssl.h:464:9
+    ## Generated based on boringssl/include/openssl/ssl.h:492:9
 else:
   let SSL_ERROR_WANT_CERTIFICATE_VERIFY* = 16
-    ## Generated based on boringssl/include/openssl/ssl.h:464:9
-when 17 is static:
-  const SSL_ERROR_HANDOFF* = 17
-    ## Generated based on boringssl/include/openssl/ssl.h:466:9
-else:
-  let SSL_ERROR_HANDOFF* = 17 ## Generated based on boringssl/include/openssl/ssl.h:466:9
-when 18 is static:
-  const SSL_ERROR_HANDBACK* = 18
-    ## Generated based on boringssl/include/openssl/ssl.h:467:9
-else:
-  let SSL_ERROR_HANDBACK* = 18
-    ## Generated based on boringssl/include/openssl/ssl.h:467:9
+    ## Generated based on boringssl/include/openssl/ssl.h:492:9
 when 19 is static:
   const SSL_ERROR_WANT_RENEGOTIATE* = 19
-    ## Generated based on boringssl/include/openssl/ssl.h:474:9
+    ## Generated based on boringssl/include/openssl/ssl.h:499:9
 else:
   let SSL_ERROR_WANT_RENEGOTIATE* = 19
-    ## Generated based on boringssl/include/openssl/ssl.h:474:9
+    ## Generated based on boringssl/include/openssl/ssl.h:499:9
 when 20 is static:
   const SSL_ERROR_HANDSHAKE_HINTS_READY* = 20
-    ## Generated based on boringssl/include/openssl/ssl.h:479:9
+    ## Generated based on boringssl/include/openssl/ssl.h:504:9
 else:
   let SSL_ERROR_HANDSHAKE_HINTS_READY* = 20
-    ## Generated based on boringssl/include/openssl/ssl.h:479:9
+    ## Generated based on boringssl/include/openssl/ssl.h:504:9
 when 254 is static:
   const DTLS1_VERSION_MAJOR* = 254
-    ## Generated based on boringssl/include/openssl/ssl.h:542:9
+    ## Generated based on boringssl/include/openssl/ssl.h:567:9
 else:
   let DTLS1_VERSION_MAJOR* = 254
-    ## Generated based on boringssl/include/openssl/ssl.h:542:9
+    ## Generated based on boringssl/include/openssl/ssl.h:567:9
 when 3 is static:
   const SSL3_VERSION_MAJOR* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:543:9
+    ## Generated based on boringssl/include/openssl/ssl.h:568:9
 else:
-  let SSL3_VERSION_MAJOR* = 3 ## Generated based on boringssl/include/openssl/ssl.h:543:9
+  let SSL3_VERSION_MAJOR* = 3 ## Generated based on boringssl/include/openssl/ssl.h:568:9
 when 768 is static:
-  const SSL3_VERSION* = 768 ## Generated based on boringssl/include/openssl/ssl.h:545:9
+  const SSL3_VERSION* = 768 ## Generated based on boringssl/include/openssl/ssl.h:570:9
 else:
-  let SSL3_VERSION* = 768 ## Generated based on boringssl/include/openssl/ssl.h:545:9
+  let SSL3_VERSION* = 768 ## Generated based on boringssl/include/openssl/ssl.h:570:9
 when 769 is static:
-  const TLS1_VERSION* = 769 ## Generated based on boringssl/include/openssl/ssl.h:546:9
+  const TLS1_VERSION* = 769 ## Generated based on boringssl/include/openssl/ssl.h:571:9
 else:
-  let TLS1_VERSION* = 769 ## Generated based on boringssl/include/openssl/ssl.h:546:9
+  let TLS1_VERSION* = 769 ## Generated based on boringssl/include/openssl/ssl.h:571:9
 when 770 is static:
-  const TLS1_1_VERSION* = 770 ## Generated based on boringssl/include/openssl/ssl.h:547:9
+  const TLS1_1_VERSION* = 770 ## Generated based on boringssl/include/openssl/ssl.h:572:9
 else:
-  let TLS1_1_VERSION* = 770 ## Generated based on boringssl/include/openssl/ssl.h:547:9
+  let TLS1_1_VERSION* = 770 ## Generated based on boringssl/include/openssl/ssl.h:572:9
 when 771 is static:
-  const TLS1_2_VERSION* = 771 ## Generated based on boringssl/include/openssl/ssl.h:548:9
+  const TLS1_2_VERSION* = 771 ## Generated based on boringssl/include/openssl/ssl.h:573:9
 else:
-  let TLS1_2_VERSION* = 771 ## Generated based on boringssl/include/openssl/ssl.h:548:9
+  let TLS1_2_VERSION* = 771 ## Generated based on boringssl/include/openssl/ssl.h:573:9
 when 772 is static:
-  const TLS1_3_VERSION* = 772 ## Generated based on boringssl/include/openssl/ssl.h:549:9
+  const TLS1_3_VERSION* = 772 ## Generated based on boringssl/include/openssl/ssl.h:574:9
 else:
-  let TLS1_3_VERSION* = 772 ## Generated based on boringssl/include/openssl/ssl.h:549:9
+  let TLS1_3_VERSION* = 772 ## Generated based on boringssl/include/openssl/ssl.h:574:9
 when 65279 is static:
   const DTLS1_VERSION* = 65279
-    ## Generated based on boringssl/include/openssl/ssl.h:551:9
+    ## Generated based on boringssl/include/openssl/ssl.h:576:9
 else:
-  let DTLS1_VERSION* = 65279 ## Generated based on boringssl/include/openssl/ssl.h:551:9
+  let DTLS1_VERSION* = 65279 ## Generated based on boringssl/include/openssl/ssl.h:576:9
 when 65277 is static:
   const DTLS1_2_VERSION* = 65277
-    ## Generated based on boringssl/include/openssl/ssl.h:552:9
+    ## Generated based on boringssl/include/openssl/ssl.h:577:9
 else:
   let DTLS1_2_VERSION* = 65277
-    ## Generated based on boringssl/include/openssl/ssl.h:552:9
+    ## Generated based on boringssl/include/openssl/ssl.h:577:9
 when 65276 is static:
   const DTLS1_3_VERSION* = 65276
-    ## Generated based on boringssl/include/openssl/ssl.h:553:9
+    ## Generated based on boringssl/include/openssl/ssl.h:578:9
 else:
   let DTLS1_3_VERSION* = 65276
-    ## Generated based on boringssl/include/openssl/ssl.h:553:9
+    ## Generated based on boringssl/include/openssl/ssl.h:578:9
 when cast[clong](4'i64) is static:
   const SSL_OP_LEGACY_SERVER_CONNECT* = cast[clong](4'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:605:9
+    ## Generated based on boringssl/include/openssl/ssl.h:630:9
 else:
   let SSL_OP_LEGACY_SERVER_CONNECT* = cast[clong](4'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:605:9
+    ## Generated based on boringssl/include/openssl/ssl.h:630:9
 when cast[clong](4096'i64) is static:
   const SSL_OP_NO_QUERY_MTU* = cast[clong](4096'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:609:9
+    ## Generated based on boringssl/include/openssl/ssl.h:634:9
 else:
   let SSL_OP_NO_QUERY_MTU* = cast[clong](4096'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:609:9
+    ## Generated based on boringssl/include/openssl/ssl.h:634:9
 when cast[clong](16384'i64) is static:
   const SSL_OP_NO_TICKET* = cast[clong](16384'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:612:9
+    ## Generated based on boringssl/include/openssl/ssl.h:637:9
 else:
   let SSL_OP_NO_TICKET* = cast[clong](16384'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:612:9
+    ## Generated based on boringssl/include/openssl/ssl.h:637:9
 when cast[clong](4194304'i64) is static:
   const SSL_OP_CIPHER_SERVER_PREFERENCE* = cast[clong](4194304'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:617:9
+    ## Generated based on boringssl/include/openssl/ssl.h:642:9
 else:
   let SSL_OP_CIPHER_SERVER_PREFERENCE* = cast[clong](4194304'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:617:9
+    ## Generated based on boringssl/include/openssl/ssl.h:642:9
 when SSL_OP_LEGACY_SERVER_CONNECT is typedesc:
   type SSL_OP_ALL* = SSL_OP_LEGACY_SERVER_CONNECT
-    ## Generated based on boringssl/include/openssl/ssl.h:622:9
+    ## Generated based on boringssl/include/openssl/ssl.h:647:9
 
 else:
   when SSL_OP_LEGACY_SERVER_CONNECT is static:
     const SSL_OP_ALL* = SSL_OP_LEGACY_SERVER_CONNECT
-      ## Generated based on boringssl/include/openssl/ssl.h:622:9
+      ## Generated based on boringssl/include/openssl/ssl.h:647:9
   else:
     let SSL_OP_ALL* = SSL_OP_LEGACY_SERVER_CONNECT
-      ## Generated based on boringssl/include/openssl/ssl.h:622:9
+      ## Generated based on boringssl/include/openssl/ssl.h:647:9
 when cast[clong](67108864'i64) is static:
   const SSL_OP_NO_TLSv1* = cast[clong](67108864'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:627:9
+    ## Generated based on boringssl/include/openssl/ssl.h:652:9
 else:
   let SSL_OP_NO_TLSv1* = cast[clong](67108864'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:627:9
+    ## Generated based on boringssl/include/openssl/ssl.h:652:9
 when cast[clong](134217728'i64) is static:
   const SSL_OP_NO_TLSv1_2* = cast[clong](134217728'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:628:9
+    ## Generated based on boringssl/include/openssl/ssl.h:653:9
 else:
   let SSL_OP_NO_TLSv1_2* = cast[clong](134217728'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:628:9
+    ## Generated based on boringssl/include/openssl/ssl.h:653:9
 when cast[clong](268435456'i64) is static:
   const SSL_OP_NO_TLSv1_1* = cast[clong](268435456'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:629:9
+    ## Generated based on boringssl/include/openssl/ssl.h:654:9
 else:
   let SSL_OP_NO_TLSv1_1* = cast[clong](268435456'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:629:9
+    ## Generated based on boringssl/include/openssl/ssl.h:654:9
 when cast[clong](536870912'i64) is static:
   const SSL_OP_NO_TLSv1_3* = cast[clong](536870912'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:630:9
+    ## Generated based on boringssl/include/openssl/ssl.h:655:9
 else:
   let SSL_OP_NO_TLSv1_3* = cast[clong](536870912'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:630:9
+    ## Generated based on boringssl/include/openssl/ssl.h:655:9
 when SSL_OP_NO_TLSv1 is typedesc:
   type SSL_OP_NO_DTLSv1* = SSL_OP_NO_TLSv1
-    ## Generated based on boringssl/include/openssl/ssl.h:631:9
+    ## Generated based on boringssl/include/openssl/ssl.h:656:9
 
 else:
   when SSL_OP_NO_TLSv1 is static:
     const SSL_OP_NO_DTLSv1* = SSL_OP_NO_TLSv1
-      ## Generated based on boringssl/include/openssl/ssl.h:631:9
+      ## Generated based on boringssl/include/openssl/ssl.h:656:9
   else:
     let SSL_OP_NO_DTLSv1* = SSL_OP_NO_TLSv1
-      ## Generated based on boringssl/include/openssl/ssl.h:631:9
+      ## Generated based on boringssl/include/openssl/ssl.h:656:9
 when SSL_OP_NO_TLSv1_2 is typedesc:
   type SSL_OP_NO_DTLSv1_2* = SSL_OP_NO_TLSv1_2
-    ## Generated based on boringssl/include/openssl/ssl.h:632:9
+    ## Generated based on boringssl/include/openssl/ssl.h:657:9
 
 else:
   when SSL_OP_NO_TLSv1_2 is static:
     const SSL_OP_NO_DTLSv1_2* = SSL_OP_NO_TLSv1_2
-      ## Generated based on boringssl/include/openssl/ssl.h:632:9
+      ## Generated based on boringssl/include/openssl/ssl.h:657:9
   else:
     let SSL_OP_NO_DTLSv1_2* = SSL_OP_NO_TLSv1_2
-      ## Generated based on boringssl/include/openssl/ssl.h:632:9
+      ## Generated based on boringssl/include/openssl/ssl.h:657:9
 when cast[clong](1'i64) is static:
   const SSL_MODE_ENABLE_PARTIAL_WRITE* = cast[clong](1'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:670:9
+    ## Generated based on boringssl/include/openssl/ssl.h:695:9
 else:
   let SSL_MODE_ENABLE_PARTIAL_WRITE* = cast[clong](1'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:670:9
+    ## Generated based on boringssl/include/openssl/ssl.h:695:9
 when cast[clong](2'i64) is static:
   const SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER* = cast[clong](2'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:677:9
+    ## Generated based on boringssl/include/openssl/ssl.h:702:9
 else:
   let SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER* = cast[clong](2'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:677:9
+    ## Generated based on boringssl/include/openssl/ssl.h:702:9
 when cast[clong](8'i64) is static:
   const SSL_MODE_NO_AUTO_CHAIN* = cast[clong](8'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:683:9
+    ## Generated based on boringssl/include/openssl/ssl.h:708:9
 else:
   let SSL_MODE_NO_AUTO_CHAIN* = cast[clong](8'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:683:9
+    ## Generated based on boringssl/include/openssl/ssl.h:708:9
 when cast[clong](128'i64) is static:
   const SSL_MODE_ENABLE_FALSE_START* = cast[clong](128'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:695:9
+    ## Generated based on boringssl/include/openssl/ssl.h:720:9
 else:
   let SSL_MODE_ENABLE_FALSE_START* = cast[clong](128'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:695:9
+    ## Generated based on boringssl/include/openssl/ssl.h:720:9
 when cast[clong](256'i64) is static:
   const SSL_MODE_CBC_RECORD_SPLITTING* = cast[clong](256'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:701:9
+    ## Generated based on boringssl/include/openssl/ssl.h:726:9
 else:
   let SSL_MODE_CBC_RECORD_SPLITTING* = cast[clong](256'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:701:9
+    ## Generated based on boringssl/include/openssl/ssl.h:726:9
 when cast[clong](512'i64) is static:
   const SSL_MODE_NO_SESSION_CREATION* = cast[clong](512'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:706:9
+    ## Generated based on boringssl/include/openssl/ssl.h:731:9
 else:
   let SSL_MODE_NO_SESSION_CREATION* = cast[clong](512'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:706:9
+    ## Generated based on boringssl/include/openssl/ssl.h:731:9
 when cast[clong](1024'i64) is static:
   const SSL_MODE_SEND_FALLBACK_SCSV* = cast[clong](1024'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:714:9
+    ## Generated based on boringssl/include/openssl/ssl.h:739:9
 else:
   let SSL_MODE_SEND_FALLBACK_SCSV* = cast[clong](1024'i64)
-    ## Generated based on boringssl/include/openssl/ssl.h:714:9
+    ## Generated based on boringssl/include/openssl/ssl.h:739:9
 when 513 is static:
   const SSL_SIGN_RSA_PKCS1_SHA1* = 513
-    ## Generated based on boringssl/include/openssl/ssl.h:1162:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1227:9
 else:
   let SSL_SIGN_RSA_PKCS1_SHA1* = 513
-    ## Generated based on boringssl/include/openssl/ssl.h:1162:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1227:9
 when 1025 is static:
   const SSL_SIGN_RSA_PKCS1_SHA256* = 1025
-    ## Generated based on boringssl/include/openssl/ssl.h:1163:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1228:9
 else:
   let SSL_SIGN_RSA_PKCS1_SHA256* = 1025
-    ## Generated based on boringssl/include/openssl/ssl.h:1163:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1228:9
 when 1281 is static:
   const SSL_SIGN_RSA_PKCS1_SHA384* = 1281
-    ## Generated based on boringssl/include/openssl/ssl.h:1164:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1229:9
 else:
   let SSL_SIGN_RSA_PKCS1_SHA384* = 1281
-    ## Generated based on boringssl/include/openssl/ssl.h:1164:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1229:9
 when 1537 is static:
   const SSL_SIGN_RSA_PKCS1_SHA512* = 1537
-    ## Generated based on boringssl/include/openssl/ssl.h:1165:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1230:9
 else:
   let SSL_SIGN_RSA_PKCS1_SHA512* = 1537
-    ## Generated based on boringssl/include/openssl/ssl.h:1165:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1230:9
 when 515 is static:
   const SSL_SIGN_ECDSA_SHA1* = 515
-    ## Generated based on boringssl/include/openssl/ssl.h:1166:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1231:9
 else:
   let SSL_SIGN_ECDSA_SHA1* = 515
-    ## Generated based on boringssl/include/openssl/ssl.h:1166:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1231:9
 when 1027 is static:
   const SSL_SIGN_ECDSA_SECP256R1_SHA256* = 1027
-    ## Generated based on boringssl/include/openssl/ssl.h:1167:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1232:9
 else:
   let SSL_SIGN_ECDSA_SECP256R1_SHA256* = 1027
-    ## Generated based on boringssl/include/openssl/ssl.h:1167:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1232:9
 when 1283 is static:
   const SSL_SIGN_ECDSA_SECP384R1_SHA384* = 1283
-    ## Generated based on boringssl/include/openssl/ssl.h:1168:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1233:9
 else:
   let SSL_SIGN_ECDSA_SECP384R1_SHA384* = 1283
-    ## Generated based on boringssl/include/openssl/ssl.h:1168:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1233:9
 when 1539 is static:
   const SSL_SIGN_ECDSA_SECP521R1_SHA512* = 1539
-    ## Generated based on boringssl/include/openssl/ssl.h:1169:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1234:9
 else:
   let SSL_SIGN_ECDSA_SECP521R1_SHA512* = 1539
-    ## Generated based on boringssl/include/openssl/ssl.h:1169:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1234:9
 when 2052 is static:
   const SSL_SIGN_RSA_PSS_RSAE_SHA256* = 2052
-    ## Generated based on boringssl/include/openssl/ssl.h:1170:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1235:9
 else:
   let SSL_SIGN_RSA_PSS_RSAE_SHA256* = 2052
-    ## Generated based on boringssl/include/openssl/ssl.h:1170:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1235:9
 when 2053 is static:
   const SSL_SIGN_RSA_PSS_RSAE_SHA384* = 2053
-    ## Generated based on boringssl/include/openssl/ssl.h:1171:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1236:9
 else:
   let SSL_SIGN_RSA_PSS_RSAE_SHA384* = 2053
-    ## Generated based on boringssl/include/openssl/ssl.h:1171:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1236:9
 when 2054 is static:
   const SSL_SIGN_RSA_PSS_RSAE_SHA512* = 2054
-    ## Generated based on boringssl/include/openssl/ssl.h:1172:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1237:9
 else:
   let SSL_SIGN_RSA_PSS_RSAE_SHA512* = 2054
-    ## Generated based on boringssl/include/openssl/ssl.h:1172:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1237:9
 when 2055 is static:
   const SSL_SIGN_ED25519* = 2055
-    ## Generated based on boringssl/include/openssl/ssl.h:1173:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1238:9
 else:
   let SSL_SIGN_ED25519* = 2055
-    ## Generated based on boringssl/include/openssl/ssl.h:1173:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1238:9
 when 2308 is static:
   const SSL_SIGN_ML_DSA_44* = 2308
-    ## Generated based on boringssl/include/openssl/ssl.h:1174:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1239:9
 else:
   let SSL_SIGN_ML_DSA_44* = 2308
-    ## Generated based on boringssl/include/openssl/ssl.h:1174:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1239:9
 when 2309 is static:
   const SSL_SIGN_ML_DSA_65* = 2309
-    ## Generated based on boringssl/include/openssl/ssl.h:1175:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1240:9
 else:
   let SSL_SIGN_ML_DSA_65* = 2309
-    ## Generated based on boringssl/include/openssl/ssl.h:1175:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1240:9
 when 2310 is static:
   const SSL_SIGN_ML_DSA_87* = 2310
-    ## Generated based on boringssl/include/openssl/ssl.h:1176:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1241:9
 else:
   let SSL_SIGN_ML_DSA_87* = 2310
-    ## Generated based on boringssl/include/openssl/ssl.h:1176:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1241:9
 when 1056 is static:
   const SSL_SIGN_RSA_PKCS1_SHA256_LEGACY* = 1056
-    ## Generated based on boringssl/include/openssl/ssl.h:1181:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1246:9
 else:
   let SSL_SIGN_RSA_PKCS1_SHA256_LEGACY* = 1056
-    ## Generated based on boringssl/include/openssl/ssl.h:1181:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1246:9
 when 65281 is static:
   const SSL_SIGN_RSA_PKCS1_MD5_SHA1* = 65281
-    ## Generated based on boringssl/include/openssl/ssl.h:1186:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1251:9
 else:
   let SSL_SIGN_RSA_PKCS1_MD5_SHA1* = 65281
-    ## Generated based on boringssl/include/openssl/ssl.h:1186:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1251:9
 when 1 is static:
   const SSL_FILETYPE_PEM* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:1329:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1396:9
 else:
-  let SSL_FILETYPE_PEM* = 1 ## Generated based on boringssl/include/openssl/ssl.h:1329:9
+  let SSL_FILETYPE_PEM* = 1 ## Generated based on boringssl/include/openssl/ssl.h:1396:9
 when 2 is static:
   const SSL_FILETYPE_ASN1* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:1330:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1397:9
 else:
-  let SSL_FILETYPE_ASN1* = 2 ## Generated based on boringssl/include/openssl/ssl.h:1330:9
+  let SSL_FILETYPE_ASN1* = 2 ## Generated based on boringssl/include/openssl/ssl.h:1397:9
 when 4865 is static:
   const SSL_CIPHER_AES_128_GCM_SHA256* = 4865
-    ## Generated based on boringssl/include/openssl/ssl.h:1494:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1561:9
 else:
   let SSL_CIPHER_AES_128_GCM_SHA256* = 4865
-    ## Generated based on boringssl/include/openssl/ssl.h:1494:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1561:9
 when 4866 is static:
   const SSL_CIPHER_AES_256_GCM_SHA384* = 4866
-    ## Generated based on boringssl/include/openssl/ssl.h:1495:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1562:9
 else:
   let SSL_CIPHER_AES_256_GCM_SHA384* = 4866
-    ## Generated based on boringssl/include/openssl/ssl.h:1495:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1562:9
 when 4867 is static:
   const SSL_CIPHER_CHACHA20_POLY1305_SHA256* = 4867
-    ## Generated based on boringssl/include/openssl/ssl.h:1496:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1563:9
 else:
   let SSL_CIPHER_CHACHA20_POLY1305_SHA256* = 4867
-    ## Generated based on boringssl/include/openssl/ssl.h:1496:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1563:9
 when 49195 is static:
   const SSL_CIPHER_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256* = 49195
-    ## Generated based on boringssl/include/openssl/ssl.h:1497:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1564:9
 else:
   let SSL_CIPHER_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256* = 49195
-    ## Generated based on boringssl/include/openssl/ssl.h:1497:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1564:9
 when 49196 is static:
   const SSL_CIPHER_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384* = 49196
-    ## Generated based on boringssl/include/openssl/ssl.h:1498:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1565:9
 else:
   let SSL_CIPHER_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384* = 49196
-    ## Generated based on boringssl/include/openssl/ssl.h:1498:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1565:9
 when 49199 is static:
   const SSL_CIPHER_ECDHE_RSA_WITH_AES_128_GCM_SHA256* = 49199
-    ## Generated based on boringssl/include/openssl/ssl.h:1499:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1566:9
 else:
   let SSL_CIPHER_ECDHE_RSA_WITH_AES_128_GCM_SHA256* = 49199
-    ## Generated based on boringssl/include/openssl/ssl.h:1499:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1566:9
 when 49200 is static:
   const SSL_CIPHER_ECDHE_RSA_WITH_AES_256_GCM_SHA384* = 49200
-    ## Generated based on boringssl/include/openssl/ssl.h:1500:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1567:9
 else:
   let SSL_CIPHER_ECDHE_RSA_WITH_AES_256_GCM_SHA384* = 49200
-    ## Generated based on boringssl/include/openssl/ssl.h:1500:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1567:9
 when 52392 is static:
   const SSL_CIPHER_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256* = 52392
-    ## Generated based on boringssl/include/openssl/ssl.h:1501:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1568:9
 else:
   let SSL_CIPHER_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256* = 52392
-    ## Generated based on boringssl/include/openssl/ssl.h:1501:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1568:9
 when 52393 is static:
   const SSL_CIPHER_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256* = 52393
-    ## Generated based on boringssl/include/openssl/ssl.h:1502:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1569:9
 else:
   let SSL_CIPHER_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256* = 52393
-    ## Generated based on boringssl/include/openssl/ssl.h:1502:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1569:9
 when 52396 is static:
   const SSL_CIPHER_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256* = 52396
-    ## Generated based on boringssl/include/openssl/ssl.h:1503:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1570:9
 else:
   let SSL_CIPHER_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256* = 52396
-    ## Generated based on boringssl/include/openssl/ssl.h:1503:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1570:9
 when 49161 is static:
   const SSL_CIPHER_ECDHE_ECDSA_WITH_AES_128_CBC_SHA* = 49161
-    ## Generated based on boringssl/include/openssl/ssl.h:1504:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1571:9
 else:
   let SSL_CIPHER_ECDHE_ECDSA_WITH_AES_128_CBC_SHA* = 49161
-    ## Generated based on boringssl/include/openssl/ssl.h:1504:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1571:9
 when 49162 is static:
   const SSL_CIPHER_ECDHE_ECDSA_WITH_AES_256_CBC_SHA* = 49162
-    ## Generated based on boringssl/include/openssl/ssl.h:1505:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1572:9
 else:
   let SSL_CIPHER_ECDHE_ECDSA_WITH_AES_256_CBC_SHA* = 49162
-    ## Generated based on boringssl/include/openssl/ssl.h:1505:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1572:9
 when 49171 is static:
   const SSL_CIPHER_ECDHE_RSA_WITH_AES_128_CBC_SHA* = 49171
-    ## Generated based on boringssl/include/openssl/ssl.h:1506:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1573:9
 else:
   let SSL_CIPHER_ECDHE_RSA_WITH_AES_128_CBC_SHA* = 49171
-    ## Generated based on boringssl/include/openssl/ssl.h:1506:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1573:9
 when 49172 is static:
   const SSL_CIPHER_ECDHE_RSA_WITH_AES_256_CBC_SHA* = 49172
-    ## Generated based on boringssl/include/openssl/ssl.h:1507:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1574:9
 else:
   let SSL_CIPHER_ECDHE_RSA_WITH_AES_256_CBC_SHA* = 49172
-    ## Generated based on boringssl/include/openssl/ssl.h:1507:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1574:9
 when 49205 is static:
   const SSL_CIPHER_ECDHE_PSK_WITH_AES_128_CBC_SHA* = 49205
-    ## Generated based on boringssl/include/openssl/ssl.h:1508:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1575:9
 else:
   let SSL_CIPHER_ECDHE_PSK_WITH_AES_128_CBC_SHA* = 49205
-    ## Generated based on boringssl/include/openssl/ssl.h:1508:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1575:9
 when 49206 is static:
   const SSL_CIPHER_ECDHE_PSK_WITH_AES_256_CBC_SHA* = 49206
-    ## Generated based on boringssl/include/openssl/ssl.h:1509:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1576:9
 else:
   let SSL_CIPHER_ECDHE_PSK_WITH_AES_256_CBC_SHA* = 49206
-    ## Generated based on boringssl/include/openssl/ssl.h:1509:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1576:9
 when 49187 is static:
   const SSL_CIPHER_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256* = 49187
-    ## Generated based on boringssl/include/openssl/ssl.h:1510:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1577:9
 else:
   let SSL_CIPHER_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256* = 49187
-    ## Generated based on boringssl/include/openssl/ssl.h:1510:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1577:9
 when 49191 is static:
   const SSL_CIPHER_ECDHE_RSA_WITH_AES_128_CBC_SHA256* = 49191
-    ## Generated based on boringssl/include/openssl/ssl.h:1511:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1578:9
 else:
   let SSL_CIPHER_ECDHE_RSA_WITH_AES_128_CBC_SHA256* = 49191
-    ## Generated based on boringssl/include/openssl/ssl.h:1511:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1578:9
 when 156 is static:
   const SSL_CIPHER_RSA_WITH_AES_128_GCM_SHA256* = 156
-    ## Generated based on boringssl/include/openssl/ssl.h:1512:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1579:9
 else:
   let SSL_CIPHER_RSA_WITH_AES_128_GCM_SHA256* = 156
-    ## Generated based on boringssl/include/openssl/ssl.h:1512:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1579:9
 when 157 is static:
   const SSL_CIPHER_RSA_WITH_AES_256_GCM_SHA384* = 157
-    ## Generated based on boringssl/include/openssl/ssl.h:1513:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1580:9
 else:
   let SSL_CIPHER_RSA_WITH_AES_256_GCM_SHA384* = 157
-    ## Generated based on boringssl/include/openssl/ssl.h:1513:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1580:9
 when 47 is static:
   const SSL_CIPHER_RSA_WITH_AES_128_CBC_SHA* = 47
-    ## Generated based on boringssl/include/openssl/ssl.h:1514:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1581:9
 else:
   let SSL_CIPHER_RSA_WITH_AES_128_CBC_SHA* = 47
-    ## Generated based on boringssl/include/openssl/ssl.h:1514:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1581:9
 when 53 is static:
   const SSL_CIPHER_RSA_WITH_AES_256_CBC_SHA* = 53
-    ## Generated based on boringssl/include/openssl/ssl.h:1515:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1582:9
 else:
   let SSL_CIPHER_RSA_WITH_AES_256_CBC_SHA* = 53
-    ## Generated based on boringssl/include/openssl/ssl.h:1515:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1582:9
 when 140 is static:
   const SSL_CIPHER_PSK_WITH_AES_128_CBC_SHA* = 140
-    ## Generated based on boringssl/include/openssl/ssl.h:1516:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1583:9
 else:
   let SSL_CIPHER_PSK_WITH_AES_128_CBC_SHA* = 140
-    ## Generated based on boringssl/include/openssl/ssl.h:1516:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1583:9
 when 141 is static:
   const SSL_CIPHER_PSK_WITH_AES_256_CBC_SHA* = 141
-    ## Generated based on boringssl/include/openssl/ssl.h:1517:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1584:9
 else:
   let SSL_CIPHER_PSK_WITH_AES_256_CBC_SHA* = 141
-    ## Generated based on boringssl/include/openssl/ssl.h:1517:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1584:9
 when 10 is static:
   const SSL_CIPHER_RSA_WITH_3DES_EDE_CBC_SHA* = 10
-    ## Generated based on boringssl/include/openssl/ssl.h:1518:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1585:9
 else:
   let SSL_CIPHER_RSA_WITH_3DES_EDE_CBC_SHA* = 10
-    ## Generated based on boringssl/include/openssl/ssl.h:1518:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1585:9
 when 255 is static:
   const SSL_CIPHER_EMPTY_RENEGOTIATION_INFO_SCSV* = 255
-    ## Generated based on boringssl/include/openssl/ssl.h:1522:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1589:9
 else:
   let SSL_CIPHER_EMPTY_RENEGOTIATION_INFO_SCSV* = 255
-    ## Generated based on boringssl/include/openssl/ssl.h:1522:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1589:9
 when 22016 is static:
   const SSL_CIPHER_FALLBACK_SCSV* = 22016
-    ## Generated based on boringssl/include/openssl/ssl.h:1523:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1590:9
 else:
   let SSL_CIPHER_FALLBACK_SCSV* = 22016
-    ## Generated based on boringssl/include/openssl/ssl.h:1523:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1590:9
 when "ALL" is static:
   const SSL_DEFAULT_CIPHER_LIST* = "ALL"
-    ## Generated based on boringssl/include/openssl/ssl.h:1727:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1799:9
 else:
   let SSL_DEFAULT_CIPHER_LIST* = "ALL"
-    ## Generated based on boringssl/include/openssl/ssl.h:1727:9
+    ## Generated based on boringssl/include/openssl/ssl.h:1799:9
+when 1 is static:
+  const SSL_CIPHER_FLAG_EQUAL_PREFERENCE_WITH_NEXT* = 1
+    ## Generated based on boringssl/include/openssl/ssl.h:1851:9
+else:
+  let SSL_CIPHER_FLAG_EQUAL_PREFERENCE_WITH_NEXT* = 1
+    ## Generated based on boringssl/include/openssl/ssl.h:1851:9
 when 32 is static:
   const SSL_MAX_SSL_SESSION_ID_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/ssl.h:1980:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2092:9
 else:
   let SSL_MAX_SSL_SESSION_ID_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/ssl.h:1980:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2092:9
 when 48 is static:
   const SSL_MAX_MASTER_KEY_LENGTH* = 48
-    ## Generated based on boringssl/include/openssl/ssl.h:2051:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2163:9
 else:
   let SSL_MAX_MASTER_KEY_LENGTH* = 48
-    ## Generated based on boringssl/include/openssl/ssl.h:2051:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2163:9
 when 0 is static:
   const SSL_SESS_CACHE_OFF* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:2195:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2308:9
 else:
   let SSL_SESS_CACHE_OFF* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:2195:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2308:9
 when 1 is static:
   const SSL_SESS_CACHE_CLIENT* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:2199:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2312:9
 else:
   let SSL_SESS_CACHE_CLIENT* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:2199:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2312:9
 when 2 is static:
   const SSL_SESS_CACHE_SERVER* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:2202:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2315:9
 else:
   let SSL_SESS_CACHE_SERVER* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:2202:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2315:9
 when 128 is static:
   const SSL_SESS_CACHE_NO_AUTO_CLEAR* = 128
-    ## Generated based on boringssl/include/openssl/ssl.h:2209:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2322:9
 else:
   let SSL_SESS_CACHE_NO_AUTO_CLEAR* = 128
-    ## Generated based on boringssl/include/openssl/ssl.h:2209:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2322:9
 when 256 is static:
   const SSL_SESS_CACHE_NO_INTERNAL_LOOKUP* = 256
-    ## Generated based on boringssl/include/openssl/ssl.h:2213:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2326:9
 else:
   let SSL_SESS_CACHE_NO_INTERNAL_LOOKUP* = 256
-    ## Generated based on boringssl/include/openssl/ssl.h:2213:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2326:9
 when 512 is static:
   const SSL_SESS_CACHE_NO_INTERNAL_STORE* = 512
-    ## Generated based on boringssl/include/openssl/ssl.h:2217:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2330:9
 else:
   let SSL_SESS_CACHE_NO_INTERNAL_STORE* = 512
-    ## Generated based on boringssl/include/openssl/ssl.h:2217:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2330:9
 when 32 is static:
   const SSL_MAX_SID_CTX_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/ssl.h:2272:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2385:9
 else:
   let SSL_MAX_SID_CTX_LENGTH* = 32
-    ## Generated based on boringssl/include/openssl/ssl.h:2272:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2385:9
 when 16 is static:
   const SSL_TICKET_KEY_NAME_LEN* = 16
-    ## Generated based on boringssl/include/openssl/ssl.h:2490:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2603:9
 else:
   let SSL_TICKET_KEY_NAME_LEN* = 16
-    ## Generated based on boringssl/include/openssl/ssl.h:2490:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2603:9
 when 23 is static:
   const SSL_GROUP_SECP256R1* = 23
-    ## Generated based on boringssl/include/openssl/ssl.h:2616:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2729:9
 else:
   let SSL_GROUP_SECP256R1* = 23
-    ## Generated based on boringssl/include/openssl/ssl.h:2616:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2729:9
 when 24 is static:
   const SSL_GROUP_SECP384R1* = 24
-    ## Generated based on boringssl/include/openssl/ssl.h:2617:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2730:9
 else:
   let SSL_GROUP_SECP384R1* = 24
-    ## Generated based on boringssl/include/openssl/ssl.h:2617:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2730:9
 when 25 is static:
   const SSL_GROUP_SECP521R1* = 25
-    ## Generated based on boringssl/include/openssl/ssl.h:2618:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2731:9
 else:
   let SSL_GROUP_SECP521R1* = 25
-    ## Generated based on boringssl/include/openssl/ssl.h:2618:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2731:9
 when 29 is static:
   const SSL_GROUP_X25519* = 29
-    ## Generated based on boringssl/include/openssl/ssl.h:2619:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2732:9
 else:
-  let SSL_GROUP_X25519* = 29 ## Generated based on boringssl/include/openssl/ssl.h:2619:9
+  let SSL_GROUP_X25519* = 29 ## Generated based on boringssl/include/openssl/ssl.h:2732:9
 when 4588 is static:
   const SSL_GROUP_X25519_MLKEM768* = 4588
-    ## Generated based on boringssl/include/openssl/ssl.h:2620:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2733:9
 else:
   let SSL_GROUP_X25519_MLKEM768* = 4588
-    ## Generated based on boringssl/include/openssl/ssl.h:2620:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2733:9
 when 514 is static:
   const SSL_GROUP_MLKEM1024* = 514
-    ## Generated based on boringssl/include/openssl/ssl.h:2621:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2734:9
 else:
   let SSL_GROUP_MLKEM1024* = 514
-    ## Generated based on boringssl/include/openssl/ssl.h:2621:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2734:9
 when 1 is static:
   const SSL_GROUP_FLAG_EQUAL_PREFERENCE_WITH_NEXT* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:2646:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2759:9
 else:
   let SSL_GROUP_FLAG_EQUAL_PREFERENCE_WITH_NEXT* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:2646:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2759:9
 when 0 is static:
-  const SSL_VERIFY_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:2822:9
+  const SSL_VERIFY_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:2937:9
 else:
-  let SSL_VERIFY_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:2822:9
+  let SSL_VERIFY_NONE* = 0 ## Generated based on boringssl/include/openssl/ssl.h:2937:9
 when 1 is static:
-  const SSL_VERIFY_PEER* = 1 ## Generated based on boringssl/include/openssl/ssl.h:2828:9
+  const SSL_VERIFY_PEER* = 1 ## Generated based on boringssl/include/openssl/ssl.h:2943:9
 else:
-  let SSL_VERIFY_PEER* = 1 ## Generated based on boringssl/include/openssl/ssl.h:2828:9
+  let SSL_VERIFY_PEER* = 1 ## Generated based on boringssl/include/openssl/ssl.h:2943:9
 when 2 is static:
   const SSL_VERIFY_FAIL_IF_NO_PEER_CERT* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:2833:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2948:9
 else:
   let SSL_VERIFY_FAIL_IF_NO_PEER_CERT* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:2833:9
+    ## Generated based on boringssl/include/openssl/ssl.h:2948:9
 when 0 is static:
   const TLSEXT_NAMETYPE_host_name* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:3362:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3478:9
 else:
   let TLSEXT_NAMETYPE_host_name* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:3362:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3478:9
 when 0 is static:
   const SSL_TLSEXT_ERR_OK* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:3396:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3512:9
 else:
-  let SSL_TLSEXT_ERR_OK* = 0 ## Generated based on boringssl/include/openssl/ssl.h:3396:9
+  let SSL_TLSEXT_ERR_OK* = 0 ## Generated based on boringssl/include/openssl/ssl.h:3512:9
 when 1 is static:
   const SSL_TLSEXT_ERR_ALERT_WARNING* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:3397:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3513:9
 else:
   let SSL_TLSEXT_ERR_ALERT_WARNING* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:3397:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3513:9
 when 2 is static:
   const SSL_TLSEXT_ERR_ALERT_FATAL* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:3398:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3514:9
 else:
   let SSL_TLSEXT_ERR_ALERT_FATAL* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:3398:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3514:9
 when 3 is static:
   const SSL_TLSEXT_ERR_NOACK* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:3399:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3515:9
 else:
   let SSL_TLSEXT_ERR_NOACK* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:3399:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3515:9
 when 0 is static:
   const OPENSSL_NPN_UNSUPPORTED* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:3716:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3832:9
 else:
   let OPENSSL_NPN_UNSUPPORTED* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:3716:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3832:9
 when 1 is static:
   const OPENSSL_NPN_NEGOTIATED* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:3717:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3833:9
 else:
   let OPENSSL_NPN_NEGOTIATED* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:3717:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3833:9
 when 2 is static:
   const OPENSSL_NPN_NO_OVERLAP* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:3718:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3834:9
 else:
   let OPENSSL_NPN_NO_OVERLAP* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:3718:9
+    ## Generated based on boringssl/include/openssl/ssl.h:3834:9
 when 1 is static:
   const SRTP_AES128_CM_SHA1_80* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:3770:9
-else:
-  let SRTP_AES128_CM_SHA1_80* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:3770:9
-when 2 is static:
-  const SRTP_AES128_CM_SHA1_32* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:3771:9
-else:
-  let SRTP_AES128_CM_SHA1_32* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:3771:9
-when 3 is static:
-  const SRTP_AES128_F8_SHA1_80* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:3772:9
-else:
-  let SRTP_AES128_F8_SHA1_80* = 3
-    ## Generated based on boringssl/include/openssl/ssl.h:3772:9
-when 4 is static:
-  const SRTP_AES128_F8_SHA1_32* = 4
-    ## Generated based on boringssl/include/openssl/ssl.h:3773:9
-else:
-  let SRTP_AES128_F8_SHA1_32* = 4
-    ## Generated based on boringssl/include/openssl/ssl.h:3773:9
-when 5 is static:
-  const SRTP_NULL_SHA1_80* = 5
-    ## Generated based on boringssl/include/openssl/ssl.h:3774:9
-else:
-  let SRTP_NULL_SHA1_80* = 5 ## Generated based on boringssl/include/openssl/ssl.h:3774:9
-when 6 is static:
-  const SRTP_NULL_SHA1_32* = 6
-    ## Generated based on boringssl/include/openssl/ssl.h:3775:9
-else:
-  let SRTP_NULL_SHA1_32* = 6 ## Generated based on boringssl/include/openssl/ssl.h:3775:9
-when 7 is static:
-  const SRTP_AEAD_AES_128_GCM* = 7
-    ## Generated based on boringssl/include/openssl/ssl.h:3776:9
-else:
-  let SRTP_AEAD_AES_128_GCM* = 7
-    ## Generated based on boringssl/include/openssl/ssl.h:3776:9
-when 8 is static:
-  const SRTP_AEAD_AES_256_GCM* = 8
-    ## Generated based on boringssl/include/openssl/ssl.h:3777:9
-else:
-  let SRTP_AEAD_AES_256_GCM* = 8
-    ## Generated based on boringssl/include/openssl/ssl.h:3777:9
-when 128 is static:
-  const PSK_MAX_IDENTITY_LEN* = 128
-    ## Generated based on boringssl/include/openssl/ssl.h:3884:9
-else:
-  let PSK_MAX_IDENTITY_LEN* = 128
-    ## Generated based on boringssl/include/openssl/ssl.h:3884:9
-when 256 is static:
-  const PSK_MAX_PSK_LEN* = 256
     ## Generated based on boringssl/include/openssl/ssl.h:3887:9
 else:
-  let PSK_MAX_PSK_LEN* = 256 ## Generated based on boringssl/include/openssl/ssl.h:3887:9
+  let SRTP_AES128_CM_SHA1_80* = 1
+    ## Generated based on boringssl/include/openssl/ssl.h:3887:9
+when 2 is static:
+  const SRTP_AES128_CM_SHA1_32* = 2
+    ## Generated based on boringssl/include/openssl/ssl.h:3888:9
+else:
+  let SRTP_AES128_CM_SHA1_32* = 2
+    ## Generated based on boringssl/include/openssl/ssl.h:3888:9
+when 3 is static:
+  const SRTP_AES128_F8_SHA1_80* = 3
+    ## Generated based on boringssl/include/openssl/ssl.h:3889:9
+else:
+  let SRTP_AES128_F8_SHA1_80* = 3
+    ## Generated based on boringssl/include/openssl/ssl.h:3889:9
+when 4 is static:
+  const SRTP_AES128_F8_SHA1_32* = 4
+    ## Generated based on boringssl/include/openssl/ssl.h:3890:9
+else:
+  let SRTP_AES128_F8_SHA1_32* = 4
+    ## Generated based on boringssl/include/openssl/ssl.h:3890:9
+when 5 is static:
+  const SRTP_NULL_SHA1_80* = 5
+    ## Generated based on boringssl/include/openssl/ssl.h:3891:9
+else:
+  let SRTP_NULL_SHA1_80* = 5 ## Generated based on boringssl/include/openssl/ssl.h:3891:9
+when 6 is static:
+  const SRTP_NULL_SHA1_32* = 6
+    ## Generated based on boringssl/include/openssl/ssl.h:3892:9
+else:
+  let SRTP_NULL_SHA1_32* = 6 ## Generated based on boringssl/include/openssl/ssl.h:3892:9
+when 7 is static:
+  const SRTP_AEAD_AES_128_GCM* = 7
+    ## Generated based on boringssl/include/openssl/ssl.h:3893:9
+else:
+  let SRTP_AEAD_AES_128_GCM* = 7
+    ## Generated based on boringssl/include/openssl/ssl.h:3893:9
+when 8 is static:
+  const SRTP_AEAD_AES_256_GCM* = 8
+    ## Generated based on boringssl/include/openssl/ssl.h:3894:9
+else:
+  let SRTP_AEAD_AES_256_GCM* = 8
+    ## Generated based on boringssl/include/openssl/ssl.h:3894:9
+when 128 is static:
+  const PSK_MAX_IDENTITY_LEN* = 128
+    ## Generated based on boringssl/include/openssl/ssl.h:4001:9
+else:
+  let PSK_MAX_IDENTITY_LEN* = 128
+    ## Generated based on boringssl/include/openssl/ssl.h:4001:9
+when 256 is static:
+  const PSK_MAX_PSK_LEN* = 256
+    ## Generated based on boringssl/include/openssl/ssl.h:4004:9
+else:
+  let PSK_MAX_PSK_LEN* = 256 ## Generated based on boringssl/include/openssl/ssl.h:4004:9
 when 0 is static:
   const TLSEXT_cert_type_x509* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:4006:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4123:9
 else:
   let TLSEXT_cert_type_x509* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:4006:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4123:9
 when 2 is static:
   const TLSEXT_cert_type_rpk* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:4007:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4124:9
 else:
   let TLSEXT_cert_type_rpk* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:4007:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4124:9
 when 32150 is static:
   const SSL_PAKE_SPAKE2PLUSV1* = 32150
-    ## Generated based on boringssl/include/openssl/ssl.h:4121:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4238:9
 else:
   let SSL_PAKE_SPAKE2PLUSV1* = 32150
-    ## Generated based on boringssl/include/openssl/ssl.h:4121:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4238:9
 when 1000 is static:
   const SSL_AD_REASON_OFFSET* = 1000
-    ## Generated based on boringssl/include/openssl/ssl.h:4785:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4908:9
 else:
   let SSL_AD_REASON_OFFSET* = 1000
-    ## Generated based on boringssl/include/openssl/ssl.h:4785:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4908:9
 when SSL3_AD_CLOSE_NOTIFY is typedesc:
   type SSL_AD_CLOSE_NOTIFY* = SSL3_AD_CLOSE_NOTIFY
-    ## Generated based on boringssl/include/openssl/ssl.h:4788:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4911:9
 
 else:
   when SSL3_AD_CLOSE_NOTIFY is static:
     const SSL_AD_CLOSE_NOTIFY* = SSL3_AD_CLOSE_NOTIFY
-      ## Generated based on boringssl/include/openssl/ssl.h:4788:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4911:9
   else:
     let SSL_AD_CLOSE_NOTIFY* = SSL3_AD_CLOSE_NOTIFY
-      ## Generated based on boringssl/include/openssl/ssl.h:4788:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4911:9
 when SSL3_AD_UNEXPECTED_MESSAGE is typedesc:
   type SSL_AD_UNEXPECTED_MESSAGE* = SSL3_AD_UNEXPECTED_MESSAGE
-    ## Generated based on boringssl/include/openssl/ssl.h:4789:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4912:9
 
 else:
   when SSL3_AD_UNEXPECTED_MESSAGE is static:
     const SSL_AD_UNEXPECTED_MESSAGE* = SSL3_AD_UNEXPECTED_MESSAGE
-      ## Generated based on boringssl/include/openssl/ssl.h:4789:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4912:9
   else:
     let SSL_AD_UNEXPECTED_MESSAGE* = SSL3_AD_UNEXPECTED_MESSAGE
-      ## Generated based on boringssl/include/openssl/ssl.h:4789:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4912:9
 when SSL3_AD_BAD_RECORD_MAC is typedesc:
   type SSL_AD_BAD_RECORD_MAC* = SSL3_AD_BAD_RECORD_MAC
-    ## Generated based on boringssl/include/openssl/ssl.h:4790:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4913:9
 
 else:
   when SSL3_AD_BAD_RECORD_MAC is static:
     const SSL_AD_BAD_RECORD_MAC* = SSL3_AD_BAD_RECORD_MAC
-      ## Generated based on boringssl/include/openssl/ssl.h:4790:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4913:9
   else:
     let SSL_AD_BAD_RECORD_MAC* = SSL3_AD_BAD_RECORD_MAC
-      ## Generated based on boringssl/include/openssl/ssl.h:4790:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4913:9
 when TLS1_AD_DECRYPTION_FAILED is typedesc:
   type SSL_AD_DECRYPTION_FAILED* = TLS1_AD_DECRYPTION_FAILED
-    ## Generated based on boringssl/include/openssl/ssl.h:4791:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4914:9
 
 else:
   when TLS1_AD_DECRYPTION_FAILED is static:
     const SSL_AD_DECRYPTION_FAILED* = TLS1_AD_DECRYPTION_FAILED
-      ## Generated based on boringssl/include/openssl/ssl.h:4791:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4914:9
   else:
     let SSL_AD_DECRYPTION_FAILED* = TLS1_AD_DECRYPTION_FAILED
-      ## Generated based on boringssl/include/openssl/ssl.h:4791:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4914:9
 when TLS1_AD_RECORD_OVERFLOW is typedesc:
   type SSL_AD_RECORD_OVERFLOW* = TLS1_AD_RECORD_OVERFLOW
-    ## Generated based on boringssl/include/openssl/ssl.h:4792:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4915:9
 
 else:
   when TLS1_AD_RECORD_OVERFLOW is static:
     const SSL_AD_RECORD_OVERFLOW* = TLS1_AD_RECORD_OVERFLOW
-      ## Generated based on boringssl/include/openssl/ssl.h:4792:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4915:9
   else:
     let SSL_AD_RECORD_OVERFLOW* = TLS1_AD_RECORD_OVERFLOW
-      ## Generated based on boringssl/include/openssl/ssl.h:4792:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4915:9
 when SSL3_AD_DECOMPRESSION_FAILURE is typedesc:
   type SSL_AD_DECOMPRESSION_FAILURE* = SSL3_AD_DECOMPRESSION_FAILURE
-    ## Generated based on boringssl/include/openssl/ssl.h:4793:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4916:9
 
 else:
   when SSL3_AD_DECOMPRESSION_FAILURE is static:
     const SSL_AD_DECOMPRESSION_FAILURE* = SSL3_AD_DECOMPRESSION_FAILURE
-      ## Generated based on boringssl/include/openssl/ssl.h:4793:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4916:9
   else:
     let SSL_AD_DECOMPRESSION_FAILURE* = SSL3_AD_DECOMPRESSION_FAILURE
-      ## Generated based on boringssl/include/openssl/ssl.h:4793:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4916:9
 when SSL3_AD_HANDSHAKE_FAILURE is typedesc:
   type SSL_AD_HANDSHAKE_FAILURE* = SSL3_AD_HANDSHAKE_FAILURE
-    ## Generated based on boringssl/include/openssl/ssl.h:4794:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4917:9
 
 else:
   when SSL3_AD_HANDSHAKE_FAILURE is static:
     const SSL_AD_HANDSHAKE_FAILURE* = SSL3_AD_HANDSHAKE_FAILURE
-      ## Generated based on boringssl/include/openssl/ssl.h:4794:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4917:9
   else:
     let SSL_AD_HANDSHAKE_FAILURE* = SSL3_AD_HANDSHAKE_FAILURE
-      ## Generated based on boringssl/include/openssl/ssl.h:4794:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4917:9
 when SSL3_AD_NO_CERTIFICATE is typedesc:
   type SSL_AD_NO_CERTIFICATE* = SSL3_AD_NO_CERTIFICATE
-    ## Generated based on boringssl/include/openssl/ssl.h:4795:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4918:9
 
 else:
   when SSL3_AD_NO_CERTIFICATE is static:
     const SSL_AD_NO_CERTIFICATE* = SSL3_AD_NO_CERTIFICATE
-      ## Generated based on boringssl/include/openssl/ssl.h:4795:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4918:9
   else:
     let SSL_AD_NO_CERTIFICATE* = SSL3_AD_NO_CERTIFICATE
-      ## Generated based on boringssl/include/openssl/ssl.h:4795:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4918:9
 when SSL3_AD_BAD_CERTIFICATE is typedesc:
   type SSL_AD_BAD_CERTIFICATE* = SSL3_AD_BAD_CERTIFICATE
-    ## Generated based on boringssl/include/openssl/ssl.h:4796:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4919:9
 
 else:
   when SSL3_AD_BAD_CERTIFICATE is static:
     const SSL_AD_BAD_CERTIFICATE* = SSL3_AD_BAD_CERTIFICATE
-      ## Generated based on boringssl/include/openssl/ssl.h:4796:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4919:9
   else:
     let SSL_AD_BAD_CERTIFICATE* = SSL3_AD_BAD_CERTIFICATE
-      ## Generated based on boringssl/include/openssl/ssl.h:4796:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4919:9
 when SSL3_AD_UNSUPPORTED_CERTIFICATE is typedesc:
   type SSL_AD_UNSUPPORTED_CERTIFICATE* = SSL3_AD_UNSUPPORTED_CERTIFICATE
-    ## Generated based on boringssl/include/openssl/ssl.h:4797:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4920:9
 
 else:
   when SSL3_AD_UNSUPPORTED_CERTIFICATE is static:
     const SSL_AD_UNSUPPORTED_CERTIFICATE* = SSL3_AD_UNSUPPORTED_CERTIFICATE
-      ## Generated based on boringssl/include/openssl/ssl.h:4797:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4920:9
   else:
     let SSL_AD_UNSUPPORTED_CERTIFICATE* = SSL3_AD_UNSUPPORTED_CERTIFICATE
-      ## Generated based on boringssl/include/openssl/ssl.h:4797:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4920:9
 when SSL3_AD_CERTIFICATE_REVOKED is typedesc:
   type SSL_AD_CERTIFICATE_REVOKED* = SSL3_AD_CERTIFICATE_REVOKED
-    ## Generated based on boringssl/include/openssl/ssl.h:4798:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4921:9
 
 else:
   when SSL3_AD_CERTIFICATE_REVOKED is static:
     const SSL_AD_CERTIFICATE_REVOKED* = SSL3_AD_CERTIFICATE_REVOKED
-      ## Generated based on boringssl/include/openssl/ssl.h:4798:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4921:9
   else:
     let SSL_AD_CERTIFICATE_REVOKED* = SSL3_AD_CERTIFICATE_REVOKED
-      ## Generated based on boringssl/include/openssl/ssl.h:4798:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4921:9
 when SSL3_AD_CERTIFICATE_EXPIRED is typedesc:
   type SSL_AD_CERTIFICATE_EXPIRED* = SSL3_AD_CERTIFICATE_EXPIRED
-    ## Generated based on boringssl/include/openssl/ssl.h:4799:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4922:9
 
 else:
   when SSL3_AD_CERTIFICATE_EXPIRED is static:
     const SSL_AD_CERTIFICATE_EXPIRED* = SSL3_AD_CERTIFICATE_EXPIRED
-      ## Generated based on boringssl/include/openssl/ssl.h:4799:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4922:9
   else:
     let SSL_AD_CERTIFICATE_EXPIRED* = SSL3_AD_CERTIFICATE_EXPIRED
-      ## Generated based on boringssl/include/openssl/ssl.h:4799:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4922:9
 when SSL3_AD_CERTIFICATE_UNKNOWN is typedesc:
   type SSL_AD_CERTIFICATE_UNKNOWN* = SSL3_AD_CERTIFICATE_UNKNOWN
-    ## Generated based on boringssl/include/openssl/ssl.h:4800:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4923:9
 
 else:
   when SSL3_AD_CERTIFICATE_UNKNOWN is static:
     const SSL_AD_CERTIFICATE_UNKNOWN* = SSL3_AD_CERTIFICATE_UNKNOWN
-      ## Generated based on boringssl/include/openssl/ssl.h:4800:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4923:9
   else:
     let SSL_AD_CERTIFICATE_UNKNOWN* = SSL3_AD_CERTIFICATE_UNKNOWN
-      ## Generated based on boringssl/include/openssl/ssl.h:4800:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4923:9
 when SSL3_AD_ILLEGAL_PARAMETER is typedesc:
   type SSL_AD_ILLEGAL_PARAMETER* = SSL3_AD_ILLEGAL_PARAMETER
-    ## Generated based on boringssl/include/openssl/ssl.h:4801:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4924:9
 
 else:
   when SSL3_AD_ILLEGAL_PARAMETER is static:
     const SSL_AD_ILLEGAL_PARAMETER* = SSL3_AD_ILLEGAL_PARAMETER
-      ## Generated based on boringssl/include/openssl/ssl.h:4801:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4924:9
   else:
     let SSL_AD_ILLEGAL_PARAMETER* = SSL3_AD_ILLEGAL_PARAMETER
-      ## Generated based on boringssl/include/openssl/ssl.h:4801:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4924:9
 when TLS1_AD_UNKNOWN_CA is typedesc:
   type SSL_AD_UNKNOWN_CA* = TLS1_AD_UNKNOWN_CA
-    ## Generated based on boringssl/include/openssl/ssl.h:4802:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4925:9
 
 else:
   when TLS1_AD_UNKNOWN_CA is static:
     const SSL_AD_UNKNOWN_CA* = TLS1_AD_UNKNOWN_CA
-      ## Generated based on boringssl/include/openssl/ssl.h:4802:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4925:9
   else:
     let SSL_AD_UNKNOWN_CA* = TLS1_AD_UNKNOWN_CA
-      ## Generated based on boringssl/include/openssl/ssl.h:4802:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4925:9
 when TLS1_AD_ACCESS_DENIED is typedesc:
   type SSL_AD_ACCESS_DENIED* = TLS1_AD_ACCESS_DENIED
-    ## Generated based on boringssl/include/openssl/ssl.h:4803:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4926:9
 
 else:
   when TLS1_AD_ACCESS_DENIED is static:
     const SSL_AD_ACCESS_DENIED* = TLS1_AD_ACCESS_DENIED
-      ## Generated based on boringssl/include/openssl/ssl.h:4803:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4926:9
   else:
     let SSL_AD_ACCESS_DENIED* = TLS1_AD_ACCESS_DENIED
-      ## Generated based on boringssl/include/openssl/ssl.h:4803:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4926:9
 when TLS1_AD_DECODE_ERROR is typedesc:
   type SSL_AD_DECODE_ERROR* = TLS1_AD_DECODE_ERROR
-    ## Generated based on boringssl/include/openssl/ssl.h:4804:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4927:9
 
 else:
   when TLS1_AD_DECODE_ERROR is static:
     const SSL_AD_DECODE_ERROR* = TLS1_AD_DECODE_ERROR
-      ## Generated based on boringssl/include/openssl/ssl.h:4804:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4927:9
   else:
     let SSL_AD_DECODE_ERROR* = TLS1_AD_DECODE_ERROR
-      ## Generated based on boringssl/include/openssl/ssl.h:4804:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4927:9
 when TLS1_AD_DECRYPT_ERROR is typedesc:
   type SSL_AD_DECRYPT_ERROR* = TLS1_AD_DECRYPT_ERROR
-    ## Generated based on boringssl/include/openssl/ssl.h:4805:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4928:9
 
 else:
   when TLS1_AD_DECRYPT_ERROR is static:
     const SSL_AD_DECRYPT_ERROR* = TLS1_AD_DECRYPT_ERROR
-      ## Generated based on boringssl/include/openssl/ssl.h:4805:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4928:9
   else:
     let SSL_AD_DECRYPT_ERROR* = TLS1_AD_DECRYPT_ERROR
-      ## Generated based on boringssl/include/openssl/ssl.h:4805:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4928:9
 when TLS1_AD_EXPORT_RESTRICTION is typedesc:
   type SSL_AD_EXPORT_RESTRICTION* = TLS1_AD_EXPORT_RESTRICTION
-    ## Generated based on boringssl/include/openssl/ssl.h:4806:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4929:9
 
 else:
   when TLS1_AD_EXPORT_RESTRICTION is static:
     const SSL_AD_EXPORT_RESTRICTION* = TLS1_AD_EXPORT_RESTRICTION
-      ## Generated based on boringssl/include/openssl/ssl.h:4806:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4929:9
   else:
     let SSL_AD_EXPORT_RESTRICTION* = TLS1_AD_EXPORT_RESTRICTION
-      ## Generated based on boringssl/include/openssl/ssl.h:4806:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4929:9
 when TLS1_AD_PROTOCOL_VERSION is typedesc:
   type SSL_AD_PROTOCOL_VERSION* = TLS1_AD_PROTOCOL_VERSION
-    ## Generated based on boringssl/include/openssl/ssl.h:4807:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4930:9
 
 else:
   when TLS1_AD_PROTOCOL_VERSION is static:
     const SSL_AD_PROTOCOL_VERSION* = TLS1_AD_PROTOCOL_VERSION
-      ## Generated based on boringssl/include/openssl/ssl.h:4807:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4930:9
   else:
     let SSL_AD_PROTOCOL_VERSION* = TLS1_AD_PROTOCOL_VERSION
-      ## Generated based on boringssl/include/openssl/ssl.h:4807:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4930:9
 when TLS1_AD_INSUFFICIENT_SECURITY is typedesc:
   type SSL_AD_INSUFFICIENT_SECURITY* = TLS1_AD_INSUFFICIENT_SECURITY
-    ## Generated based on boringssl/include/openssl/ssl.h:4808:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4931:9
 
 else:
   when TLS1_AD_INSUFFICIENT_SECURITY is static:
     const SSL_AD_INSUFFICIENT_SECURITY* = TLS1_AD_INSUFFICIENT_SECURITY
-      ## Generated based on boringssl/include/openssl/ssl.h:4808:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4931:9
   else:
     let SSL_AD_INSUFFICIENT_SECURITY* = TLS1_AD_INSUFFICIENT_SECURITY
-      ## Generated based on boringssl/include/openssl/ssl.h:4808:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4931:9
 when TLS1_AD_INTERNAL_ERROR is typedesc:
   type SSL_AD_INTERNAL_ERROR* = TLS1_AD_INTERNAL_ERROR
-    ## Generated based on boringssl/include/openssl/ssl.h:4809:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4932:9
 
 else:
   when TLS1_AD_INTERNAL_ERROR is static:
     const SSL_AD_INTERNAL_ERROR* = TLS1_AD_INTERNAL_ERROR
-      ## Generated based on boringssl/include/openssl/ssl.h:4809:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4932:9
   else:
     let SSL_AD_INTERNAL_ERROR* = TLS1_AD_INTERNAL_ERROR
-      ## Generated based on boringssl/include/openssl/ssl.h:4809:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4932:9
 when SSL3_AD_INAPPROPRIATE_FALLBACK is typedesc:
   type SSL_AD_INAPPROPRIATE_FALLBACK* = SSL3_AD_INAPPROPRIATE_FALLBACK
-    ## Generated based on boringssl/include/openssl/ssl.h:4810:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4933:9
 
 else:
   when SSL3_AD_INAPPROPRIATE_FALLBACK is static:
     const SSL_AD_INAPPROPRIATE_FALLBACK* = SSL3_AD_INAPPROPRIATE_FALLBACK
-      ## Generated based on boringssl/include/openssl/ssl.h:4810:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4933:9
   else:
     let SSL_AD_INAPPROPRIATE_FALLBACK* = SSL3_AD_INAPPROPRIATE_FALLBACK
-      ## Generated based on boringssl/include/openssl/ssl.h:4810:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4933:9
 when TLS1_AD_USER_CANCELLED is typedesc:
   type SSL_AD_USER_CANCELLED* = TLS1_AD_USER_CANCELLED
-    ## Generated based on boringssl/include/openssl/ssl.h:4811:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4934:9
 
 else:
   when TLS1_AD_USER_CANCELLED is static:
     const SSL_AD_USER_CANCELLED* = TLS1_AD_USER_CANCELLED
-      ## Generated based on boringssl/include/openssl/ssl.h:4811:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4934:9
   else:
     let SSL_AD_USER_CANCELLED* = TLS1_AD_USER_CANCELLED
-      ## Generated based on boringssl/include/openssl/ssl.h:4811:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4934:9
 when TLS1_AD_NO_RENEGOTIATION is typedesc:
   type SSL_AD_NO_RENEGOTIATION* = TLS1_AD_NO_RENEGOTIATION
-    ## Generated based on boringssl/include/openssl/ssl.h:4812:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4935:9
 
 else:
   when TLS1_AD_NO_RENEGOTIATION is static:
     const SSL_AD_NO_RENEGOTIATION* = TLS1_AD_NO_RENEGOTIATION
-      ## Generated based on boringssl/include/openssl/ssl.h:4812:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4935:9
   else:
     let SSL_AD_NO_RENEGOTIATION* = TLS1_AD_NO_RENEGOTIATION
-      ## Generated based on boringssl/include/openssl/ssl.h:4812:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4935:9
 when TLS1_AD_MISSING_EXTENSION is typedesc:
   type SSL_AD_MISSING_EXTENSION* = TLS1_AD_MISSING_EXTENSION
-    ## Generated based on boringssl/include/openssl/ssl.h:4813:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4936:9
 
 else:
   when TLS1_AD_MISSING_EXTENSION is static:
     const SSL_AD_MISSING_EXTENSION* = TLS1_AD_MISSING_EXTENSION
-      ## Generated based on boringssl/include/openssl/ssl.h:4813:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4936:9
   else:
     let SSL_AD_MISSING_EXTENSION* = TLS1_AD_MISSING_EXTENSION
-      ## Generated based on boringssl/include/openssl/ssl.h:4813:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4936:9
 when TLS1_AD_UNSUPPORTED_EXTENSION is typedesc:
   type SSL_AD_UNSUPPORTED_EXTENSION* = TLS1_AD_UNSUPPORTED_EXTENSION
-    ## Generated based on boringssl/include/openssl/ssl.h:4814:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4937:9
 
 else:
   when TLS1_AD_UNSUPPORTED_EXTENSION is static:
     const SSL_AD_UNSUPPORTED_EXTENSION* = TLS1_AD_UNSUPPORTED_EXTENSION
-      ## Generated based on boringssl/include/openssl/ssl.h:4814:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4937:9
   else:
     let SSL_AD_UNSUPPORTED_EXTENSION* = TLS1_AD_UNSUPPORTED_EXTENSION
-      ## Generated based on boringssl/include/openssl/ssl.h:4814:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4937:9
 when TLS1_AD_CERTIFICATE_UNOBTAINABLE is typedesc:
   type SSL_AD_CERTIFICATE_UNOBTAINABLE* = TLS1_AD_CERTIFICATE_UNOBTAINABLE
-    ## Generated based on boringssl/include/openssl/ssl.h:4815:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4938:9
 
 else:
   when TLS1_AD_CERTIFICATE_UNOBTAINABLE is static:
     const SSL_AD_CERTIFICATE_UNOBTAINABLE* = TLS1_AD_CERTIFICATE_UNOBTAINABLE
-      ## Generated based on boringssl/include/openssl/ssl.h:4815:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4938:9
   else:
     let SSL_AD_CERTIFICATE_UNOBTAINABLE* = TLS1_AD_CERTIFICATE_UNOBTAINABLE
-      ## Generated based on boringssl/include/openssl/ssl.h:4815:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4938:9
 when TLS1_AD_UNRECOGNIZED_NAME is typedesc:
   type SSL_AD_UNRECOGNIZED_NAME* = TLS1_AD_UNRECOGNIZED_NAME
-    ## Generated based on boringssl/include/openssl/ssl.h:4816:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4939:9
 
 else:
   when TLS1_AD_UNRECOGNIZED_NAME is static:
     const SSL_AD_UNRECOGNIZED_NAME* = TLS1_AD_UNRECOGNIZED_NAME
-      ## Generated based on boringssl/include/openssl/ssl.h:4816:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4939:9
   else:
     let SSL_AD_UNRECOGNIZED_NAME* = TLS1_AD_UNRECOGNIZED_NAME
-      ## Generated based on boringssl/include/openssl/ssl.h:4816:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4939:9
 when TLS1_AD_BAD_CERTIFICATE_HASH_VALUE is typedesc:
   type SSL_AD_BAD_CERTIFICATE_HASH_VALUE* = TLS1_AD_BAD_CERTIFICATE_HASH_VALUE
-    ## Generated based on boringssl/include/openssl/ssl.h:4819:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4942:9
 
 else:
   when TLS1_AD_BAD_CERTIFICATE_HASH_VALUE is static:
     const SSL_AD_BAD_CERTIFICATE_HASH_VALUE* = TLS1_AD_BAD_CERTIFICATE_HASH_VALUE
-      ## Generated based on boringssl/include/openssl/ssl.h:4819:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4942:9
   else:
     let SSL_AD_BAD_CERTIFICATE_HASH_VALUE* = TLS1_AD_BAD_CERTIFICATE_HASH_VALUE
-      ## Generated based on boringssl/include/openssl/ssl.h:4819:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4942:9
 when TLS1_AD_UNKNOWN_PSK_IDENTITY is typedesc:
   type SSL_AD_UNKNOWN_PSK_IDENTITY* = TLS1_AD_UNKNOWN_PSK_IDENTITY
-    ## Generated based on boringssl/include/openssl/ssl.h:4820:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4943:9
 
 else:
   when TLS1_AD_UNKNOWN_PSK_IDENTITY is static:
     const SSL_AD_UNKNOWN_PSK_IDENTITY* = TLS1_AD_UNKNOWN_PSK_IDENTITY
-      ## Generated based on boringssl/include/openssl/ssl.h:4820:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4943:9
   else:
     let SSL_AD_UNKNOWN_PSK_IDENTITY* = TLS1_AD_UNKNOWN_PSK_IDENTITY
-      ## Generated based on boringssl/include/openssl/ssl.h:4820:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4943:9
 when TLS1_AD_CERTIFICATE_REQUIRED is typedesc:
   type SSL_AD_CERTIFICATE_REQUIRED* = TLS1_AD_CERTIFICATE_REQUIRED
-    ## Generated based on boringssl/include/openssl/ssl.h:4821:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4944:9
 
 else:
   when TLS1_AD_CERTIFICATE_REQUIRED is static:
     const SSL_AD_CERTIFICATE_REQUIRED* = TLS1_AD_CERTIFICATE_REQUIRED
-      ## Generated based on boringssl/include/openssl/ssl.h:4821:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4944:9
   else:
     let SSL_AD_CERTIFICATE_REQUIRED* = TLS1_AD_CERTIFICATE_REQUIRED
-      ## Generated based on boringssl/include/openssl/ssl.h:4821:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4944:9
 when TLS1_AD_NO_APPLICATION_PROTOCOL is typedesc:
   type SSL_AD_NO_APPLICATION_PROTOCOL* = TLS1_AD_NO_APPLICATION_PROTOCOL
-    ## Generated based on boringssl/include/openssl/ssl.h:4822:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4945:9
 
 else:
   when TLS1_AD_NO_APPLICATION_PROTOCOL is static:
     const SSL_AD_NO_APPLICATION_PROTOCOL* = TLS1_AD_NO_APPLICATION_PROTOCOL
-      ## Generated based on boringssl/include/openssl/ssl.h:4822:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4945:9
   else:
     let SSL_AD_NO_APPLICATION_PROTOCOL* = TLS1_AD_NO_APPLICATION_PROTOCOL
-      ## Generated based on boringssl/include/openssl/ssl.h:4822:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4945:9
 when TLS1_AD_ECH_REQUIRED is typedesc:
   type SSL_AD_ECH_REQUIRED* = TLS1_AD_ECH_REQUIRED
-    ## Generated based on boringssl/include/openssl/ssl.h:4823:9
+    ## Generated based on boringssl/include/openssl/ssl.h:4946:9
 
 else:
   when TLS1_AD_ECH_REQUIRED is static:
     const SSL_AD_ECH_REQUIRED* = TLS1_AD_ECH_REQUIRED
-      ## Generated based on boringssl/include/openssl/ssl.h:4823:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4946:9
   else:
     let SSL_AD_ECH_REQUIRED* = TLS1_AD_ECH_REQUIRED
-      ## Generated based on boringssl/include/openssl/ssl.h:4823:9
+      ## Generated based on boringssl/include/openssl/ssl.h:4946:9
 when 4096 is static:
   const SSL_ST_CONNECT* = 4096
-    ## Generated based on boringssl/include/openssl/ssl.h:5409:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5534:9
 else:
-  let SSL_ST_CONNECT* = 4096 ## Generated based on boringssl/include/openssl/ssl.h:5409:9
+  let SSL_ST_CONNECT* = 4096 ## Generated based on boringssl/include/openssl/ssl.h:5534:9
 when 8192 is static:
   const SSL_ST_ACCEPT* = 8192
-    ## Generated based on boringssl/include/openssl/ssl.h:5410:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5535:9
 else:
-  let SSL_ST_ACCEPT* = 8192 ## Generated based on boringssl/include/openssl/ssl.h:5410:9
+  let SSL_ST_ACCEPT* = 8192 ## Generated based on boringssl/include/openssl/ssl.h:5535:9
 when 4095 is static:
-  const SSL_ST_MASK* = 4095 ## Generated based on boringssl/include/openssl/ssl.h:5411:9
+  const SSL_ST_MASK* = 4095 ## Generated based on boringssl/include/openssl/ssl.h:5536:9
 else:
-  let SSL_ST_MASK* = 4095 ## Generated based on boringssl/include/openssl/ssl.h:5411:9
+  let SSL_ST_MASK* = 4095 ## Generated based on boringssl/include/openssl/ssl.h:5536:9
 when 3 is static:
-  const SSL_ST_OK* = 3 ## Generated based on boringssl/include/openssl/ssl.h:5413:9
+  const SSL_ST_OK* = 3 ## Generated based on boringssl/include/openssl/ssl.h:5538:9
 else:
-  let SSL_ST_OK* = 3 ## Generated based on boringssl/include/openssl/ssl.h:5413:9
+  let SSL_ST_OK* = 3 ## Generated based on boringssl/include/openssl/ssl.h:5538:9
 when SSL_ST_OK is typedesc:
   type TLS_ST_OK* = SSL_ST_OK
-    ## Generated based on boringssl/include/openssl/ssl.h:5418:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5543:9
 
 else:
   when SSL_ST_OK is static:
     const TLS_ST_OK* = SSL_ST_OK
-      ## Generated based on boringssl/include/openssl/ssl.h:5418:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5543:9
   else:
     let TLS_ST_OK* = SSL_ST_OK
-      ## Generated based on boringssl/include/openssl/ssl.h:5418:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5543:9
 when SSL_ST_BEFORE is typedesc:
   type TLS_ST_BEFORE* = SSL_ST_BEFORE
-    ## Generated based on boringssl/include/openssl/ssl.h:5419:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5544:9
 
 else:
   when SSL_ST_BEFORE is static:
     const TLS_ST_BEFORE* = SSL_ST_BEFORE
-      ## Generated based on boringssl/include/openssl/ssl.h:5419:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5544:9
   else:
     let TLS_ST_BEFORE* = SSL_ST_BEFORE
-      ## Generated based on boringssl/include/openssl/ssl.h:5419:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5544:9
 when 1 is static:
-  const SSL_CB_LOOP* = 1 ## Generated based on boringssl/include/openssl/ssl.h:5423:9
+  const SSL_CB_LOOP* = 1 ## Generated based on boringssl/include/openssl/ssl.h:5548:9
 else:
-  let SSL_CB_LOOP* = 1 ## Generated based on boringssl/include/openssl/ssl.h:5423:9
+  let SSL_CB_LOOP* = 1 ## Generated based on boringssl/include/openssl/ssl.h:5548:9
 when 2 is static:
-  const SSL_CB_EXIT* = 2 ## Generated based on boringssl/include/openssl/ssl.h:5424:9
+  const SSL_CB_EXIT* = 2 ## Generated based on boringssl/include/openssl/ssl.h:5549:9
 else:
-  let SSL_CB_EXIT* = 2 ## Generated based on boringssl/include/openssl/ssl.h:5424:9
+  let SSL_CB_EXIT* = 2 ## Generated based on boringssl/include/openssl/ssl.h:5549:9
 when 4 is static:
-  const SSL_CB_READ* = 4 ## Generated based on boringssl/include/openssl/ssl.h:5425:9
+  const SSL_CB_READ* = 4 ## Generated based on boringssl/include/openssl/ssl.h:5550:9
 else:
-  let SSL_CB_READ* = 4 ## Generated based on boringssl/include/openssl/ssl.h:5425:9
+  let SSL_CB_READ* = 4 ## Generated based on boringssl/include/openssl/ssl.h:5550:9
 when 8 is static:
-  const SSL_CB_WRITE* = 8 ## Generated based on boringssl/include/openssl/ssl.h:5426:9
+  const SSL_CB_WRITE* = 8 ## Generated based on boringssl/include/openssl/ssl.h:5551:9
 else:
-  let SSL_CB_WRITE* = 8 ## Generated based on boringssl/include/openssl/ssl.h:5426:9
+  let SSL_CB_WRITE* = 8 ## Generated based on boringssl/include/openssl/ssl.h:5551:9
 when 16384 is static:
   const SSL_CB_ALERT* = 16384
-    ## Generated based on boringssl/include/openssl/ssl.h:5427:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5552:9
 else:
-  let SSL_CB_ALERT* = 16384 ## Generated based on boringssl/include/openssl/ssl.h:5427:9
+  let SSL_CB_ALERT* = 16384 ## Generated based on boringssl/include/openssl/ssl.h:5552:9
 when 16 is static:
   const SSL_CB_HANDSHAKE_START* = 16
-    ## Generated based on boringssl/include/openssl/ssl.h:5434:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5559:9
 else:
   let SSL_CB_HANDSHAKE_START* = 16
-    ## Generated based on boringssl/include/openssl/ssl.h:5434:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5559:9
 when 32 is static:
   const SSL_CB_HANDSHAKE_DONE* = 32
-    ## Generated based on boringssl/include/openssl/ssl.h:5435:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5560:9
 else:
   let SSL_CB_HANDSHAKE_DONE* = 32
-    ## Generated based on boringssl/include/openssl/ssl.h:5435:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5560:9
 when 1 is static:
   const SSL_SENT_SHUTDOWN* = 1
-    ## Generated based on boringssl/include/openssl/ssl.h:5493:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5619:9
 else:
-  let SSL_SENT_SHUTDOWN* = 1 ## Generated based on boringssl/include/openssl/ssl.h:5493:9
+  let SSL_SENT_SHUTDOWN* = 1 ## Generated based on boringssl/include/openssl/ssl.h:5619:9
 when 2 is static:
   const SSL_RECEIVED_SHUTDOWN* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:5494:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5620:9
 else:
   let SSL_RECEIVED_SHUTDOWN* = 2
-    ## Generated based on boringssl/include/openssl/ssl.h:5494:9
-when SSL_MODE_ENABLE_FALSE_START is typedesc:
-  type SSL_MODE_HANDSHAKE_CUTTHROUGH* = SSL_MODE_ENABLE_FALSE_START
-    ## Generated based on boringssl/include/openssl/ssl.h:5783:9
-
-else:
-  when SSL_MODE_ENABLE_FALSE_START is static:
-    const SSL_MODE_HANDSHAKE_CUTTHROUGH* = SSL_MODE_ENABLE_FALSE_START
-      ## Generated based on boringssl/include/openssl/ssl.h:5783:9
-  else:
-    let SSL_MODE_HANDSHAKE_CUTTHROUGH* = SSL_MODE_ENABLE_FALSE_START
-      ## Generated based on boringssl/include/openssl/ssl.h:5783:9
-when 0 is static:
-  const SSL_MODE_AUTO_RETRY* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5937:9
-else:
-  let SSL_MODE_AUTO_RETRY* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5937:9
-when 0 is static:
-  const SSL_MODE_RELEASE_BUFFERS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5938:9
-else:
-  let SSL_MODE_RELEASE_BUFFERS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5938:9
-when 0 is static:
-  const SSL_MODE_SEND_CLIENTHELLO_TIME* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5939:9
-else:
-  let SSL_MODE_SEND_CLIENTHELLO_TIME* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5939:9
-when 0 is static:
-  const SSL_MODE_SEND_SERVERHELLO_TIME* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5940:9
-else:
-  let SSL_MODE_SEND_SERVERHELLO_TIME* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5940:9
-when 0 is static:
-  const SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5941:9
-else:
-  let SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5941:9
-when 0 is static:
-  const SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5942:9
-else:
-  let SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5942:9
-when 0 is static:
-  const SSL_OP_EPHEMERAL_RSA* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5943:9
-else:
-  let SSL_OP_EPHEMERAL_RSA* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5943:9
-when 0 is static:
-  const SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5944:9
-else:
-  let SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5944:9
-when 0 is static:
-  const SSL_OP_MICROSOFT_SESS_ID_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5945:9
-else:
-  let SSL_OP_MICROSOFT_SESS_ID_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5945:9
-when 0 is static:
-  const SSL_OP_MSIE_SSLV2_RSA_PADDING* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5946:9
-else:
-  let SSL_OP_MSIE_SSLV2_RSA_PADDING* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5946:9
-when 0 is static:
-  const SSL_OP_NETSCAPE_CA_DN_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5947:9
-else:
-  let SSL_OP_NETSCAPE_CA_DN_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5947:9
-when 0 is static:
-  const SSL_OP_NETSCAPE_CHALLENGE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5948:9
-else:
-  let SSL_OP_NETSCAPE_CHALLENGE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5948:9
-when 0 is static:
-  const SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5949:9
-else:
-  let SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5949:9
-when 0 is static:
-  const SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5950:9
-else:
-  let SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5950:9
-when 0 is static:
-  const SSL_OP_NO_COMPRESSION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5951:9
-else:
-  let SSL_OP_NO_COMPRESSION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5951:9
-when 0 is static:
-  const SSL_OP_NO_RENEGOTIATION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5952:9
-else:
-  let SSL_OP_NO_RENEGOTIATION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5952:9
-when 0 is static:
-  const SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5953:9
-else:
-  let SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5953:9
-when 0 is static:
-  const SSL_OP_NO_SSLv2* = 0 ## Generated based on boringssl/include/openssl/ssl.h:5954:9
-else:
-  let SSL_OP_NO_SSLv2* = 0 ## Generated based on boringssl/include/openssl/ssl.h:5954:9
-when 0 is static:
-  const SSL_OP_NO_SSLv3* = 0 ## Generated based on boringssl/include/openssl/ssl.h:5955:9
-else:
-  let SSL_OP_NO_SSLv3* = 0 ## Generated based on boringssl/include/openssl/ssl.h:5955:9
-when 0 is static:
-  const SSL_OP_PKCS1_CHECK_1* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5956:9
-else:
-  let SSL_OP_PKCS1_CHECK_1* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5956:9
-when 0 is static:
-  const SSL_OP_PKCS1_CHECK_2* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5957:9
-else:
-  let SSL_OP_PKCS1_CHECK_2* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5957:9
-when 0 is static:
-  const SSL_OP_SINGLE_DH_USE* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5958:9
-else:
-  let SSL_OP_SINGLE_DH_USE* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5958:9
-when 0 is static:
-  const SSL_OP_SINGLE_ECDH_USE* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5959:9
-else:
-  let SSL_OP_SINGLE_ECDH_USE* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5959:9
-when 0 is static:
-  const SSL_OP_SSLEAY_080_CLIENT_DH_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5960:9
-else:
-  let SSL_OP_SSLEAY_080_CLIENT_DH_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5960:9
-when 0 is static:
-  const SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5961:9
-else:
-  let SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5961:9
-when 0 is static:
-  const SSL_OP_TLS_BLOCK_PADDING_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5962:9
-else:
-  let SSL_OP_TLS_BLOCK_PADDING_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5962:9
-when 0 is static:
-  const SSL_OP_TLS_D5_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5963:9
-else:
-  let SSL_OP_TLS_D5_BUG* = 0 ## Generated based on boringssl/include/openssl/ssl.h:5963:9
-when 0 is static:
-  const SSL_OP_TLS_ROLLBACK_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5964:9
-else:
-  let SSL_OP_TLS_ROLLBACK_BUG* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5964:9
-when 0 is static:
-  const SSL_VERIFY_CLIENT_ONCE* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5965:9
-else:
-  let SSL_VERIFY_CLIENT_ONCE* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:5965:9
-when SSL_ERROR_NONE is typedesc:
-  type SSL_NOTHING* = SSL_ERROR_NONE
-    ## Generated based on boringssl/include/openssl/ssl.h:6013:9
-
-else:
-  when SSL_ERROR_NONE is static:
-    const SSL_NOTHING* = SSL_ERROR_NONE
-      ## Generated based on boringssl/include/openssl/ssl.h:6013:9
-  else:
-    let SSL_NOTHING* = SSL_ERROR_NONE
-      ## Generated based on boringssl/include/openssl/ssl.h:6013:9
-when SSL_ERROR_WANT_WRITE is typedesc:
-  type SSL_WRITING* = SSL_ERROR_WANT_WRITE
-    ## Generated based on boringssl/include/openssl/ssl.h:6014:9
-
-else:
-  when SSL_ERROR_WANT_WRITE is static:
-    const SSL_WRITING* = SSL_ERROR_WANT_WRITE
-      ## Generated based on boringssl/include/openssl/ssl.h:6014:9
-  else:
-    let SSL_WRITING* = SSL_ERROR_WANT_WRITE
-      ## Generated based on boringssl/include/openssl/ssl.h:6014:9
-when SSL_ERROR_WANT_READ is typedesc:
-  type SSL_READING* = SSL_ERROR_WANT_READ
-    ## Generated based on boringssl/include/openssl/ssl.h:6015:9
-
-else:
-  when SSL_ERROR_WANT_READ is static:
-    const SSL_READING* = SSL_ERROR_WANT_READ
-      ## Generated based on boringssl/include/openssl/ssl.h:6015:9
-  else:
-    let SSL_READING* = SSL_ERROR_WANT_READ
-      ## Generated based on boringssl/include/openssl/ssl.h:6015:9
-when "MEDIUM" is static:
-  const SSL_TXT_MEDIUM* = "MEDIUM"
-    ## Generated based on boringssl/include/openssl/ssl.h:6053:9
-else:
-  let SSL_TXT_MEDIUM* = "MEDIUM"
-    ## Generated based on boringssl/include/openssl/ssl.h:6053:9
-when "HIGH" is static:
-  const SSL_TXT_HIGH* = "HIGH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6054:9
-else:
-  let SSL_TXT_HIGH* = "HIGH" ## Generated based on boringssl/include/openssl/ssl.h:6054:9
-when "FIPS" is static:
-  const SSL_TXT_FIPS* = "FIPS"
-    ## Generated based on boringssl/include/openssl/ssl.h:6055:9
-else:
-  let SSL_TXT_FIPS* = "FIPS" ## Generated based on boringssl/include/openssl/ssl.h:6055:9
-when "kRSA" is static:
-  const SSL_TXT_kRSA* = "kRSA"
-    ## Generated based on boringssl/include/openssl/ssl.h:6056:9
-else:
-  let SSL_TXT_kRSA* = "kRSA" ## Generated based on boringssl/include/openssl/ssl.h:6056:9
-when "kDHE" is static:
-  const SSL_TXT_kDHE* = "kDHE"
-    ## Generated based on boringssl/include/openssl/ssl.h:6057:9
-else:
-  let SSL_TXT_kDHE* = "kDHE" ## Generated based on boringssl/include/openssl/ssl.h:6057:9
-when "kEDH" is static:
-  const SSL_TXT_kEDH* = "kEDH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6058:9
-else:
-  let SSL_TXT_kEDH* = "kEDH" ## Generated based on boringssl/include/openssl/ssl.h:6058:9
-when "kECDHE" is static:
-  const SSL_TXT_kECDHE* = "kECDHE"
-    ## Generated based on boringssl/include/openssl/ssl.h:6059:9
-else:
-  let SSL_TXT_kECDHE* = "kECDHE"
-    ## Generated based on boringssl/include/openssl/ssl.h:6059:9
-when "kEECDH" is static:
-  const SSL_TXT_kEECDH* = "kEECDH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6060:9
-else:
-  let SSL_TXT_kEECDH* = "kEECDH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6060:9
-when "kPSK" is static:
-  const SSL_TXT_kPSK* = "kPSK"
-    ## Generated based on boringssl/include/openssl/ssl.h:6061:9
-else:
-  let SSL_TXT_kPSK* = "kPSK" ## Generated based on boringssl/include/openssl/ssl.h:6061:9
-when "aRSA" is static:
-  const SSL_TXT_aRSA* = "aRSA"
-    ## Generated based on boringssl/include/openssl/ssl.h:6062:9
-else:
-  let SSL_TXT_aRSA* = "aRSA" ## Generated based on boringssl/include/openssl/ssl.h:6062:9
-when "aECDSA" is static:
-  const SSL_TXT_aECDSA* = "aECDSA"
-    ## Generated based on boringssl/include/openssl/ssl.h:6063:9
-else:
-  let SSL_TXT_aECDSA* = "aECDSA"
-    ## Generated based on boringssl/include/openssl/ssl.h:6063:9
-when "aPSK" is static:
-  const SSL_TXT_aPSK* = "aPSK"
-    ## Generated based on boringssl/include/openssl/ssl.h:6064:9
-else:
-  let SSL_TXT_aPSK* = "aPSK" ## Generated based on boringssl/include/openssl/ssl.h:6064:9
-when "DH" is static:
-  const SSL_TXT_DH* = "DH" ## Generated based on boringssl/include/openssl/ssl.h:6065:9
-else:
-  let SSL_TXT_DH* = "DH" ## Generated based on boringssl/include/openssl/ssl.h:6065:9
-when "DHE" is static:
-  const SSL_TXT_DHE* = "DHE" ## Generated based on boringssl/include/openssl/ssl.h:6066:9
-else:
-  let SSL_TXT_DHE* = "DHE" ## Generated based on boringssl/include/openssl/ssl.h:6066:9
-when "EDH" is static:
-  const SSL_TXT_EDH* = "EDH" ## Generated based on boringssl/include/openssl/ssl.h:6067:9
-else:
-  let SSL_TXT_EDH* = "EDH" ## Generated based on boringssl/include/openssl/ssl.h:6067:9
-when "RSA" is static:
-  const SSL_TXT_RSA* = "RSA" ## Generated based on boringssl/include/openssl/ssl.h:6068:9
-else:
-  let SSL_TXT_RSA* = "RSA" ## Generated based on boringssl/include/openssl/ssl.h:6068:9
-when "ECDH" is static:
-  const SSL_TXT_ECDH* = "ECDH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6069:9
-else:
-  let SSL_TXT_ECDH* = "ECDH" ## Generated based on boringssl/include/openssl/ssl.h:6069:9
-when "ECDHE" is static:
-  const SSL_TXT_ECDHE* = "ECDHE"
-    ## Generated based on boringssl/include/openssl/ssl.h:6070:9
-else:
-  let SSL_TXT_ECDHE* = "ECDHE"
-    ## Generated based on boringssl/include/openssl/ssl.h:6070:9
-when "EECDH" is static:
-  const SSL_TXT_EECDH* = "EECDH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6071:9
-else:
-  let SSL_TXT_EECDH* = "EECDH"
-    ## Generated based on boringssl/include/openssl/ssl.h:6071:9
-when "ECDSA" is static:
-  const SSL_TXT_ECDSA* = "ECDSA"
-    ## Generated based on boringssl/include/openssl/ssl.h:6072:9
-else:
-  let SSL_TXT_ECDSA* = "ECDSA"
-    ## Generated based on boringssl/include/openssl/ssl.h:6072:9
-when "PSK" is static:
-  const SSL_TXT_PSK* = "PSK" ## Generated based on boringssl/include/openssl/ssl.h:6073:9
-else:
-  let SSL_TXT_PSK* = "PSK" ## Generated based on boringssl/include/openssl/ssl.h:6073:9
-when "3DES" is static:
-  const SSL_TXT_3DES* = "3DES"
-    ## Generated based on boringssl/include/openssl/ssl.h:6074:9
-else:
-  let SSL_TXT_3DES* = "3DES" ## Generated based on boringssl/include/openssl/ssl.h:6074:9
-when "RC4" is static:
-  const SSL_TXT_RC4* = "RC4" ## Generated based on boringssl/include/openssl/ssl.h:6075:9
-else:
-  let SSL_TXT_RC4* = "RC4" ## Generated based on boringssl/include/openssl/ssl.h:6075:9
-when "AES128" is static:
-  const SSL_TXT_AES128* = "AES128"
-    ## Generated based on boringssl/include/openssl/ssl.h:6076:9
-else:
-  let SSL_TXT_AES128* = "AES128"
-    ## Generated based on boringssl/include/openssl/ssl.h:6076:9
-when "AES256" is static:
-  const SSL_TXT_AES256* = "AES256"
-    ## Generated based on boringssl/include/openssl/ssl.h:6077:9
-else:
-  let SSL_TXT_AES256* = "AES256"
-    ## Generated based on boringssl/include/openssl/ssl.h:6077:9
-when "AES" is static:
-  const SSL_TXT_AES* = "AES" ## Generated based on boringssl/include/openssl/ssl.h:6078:9
-else:
-  let SSL_TXT_AES* = "AES" ## Generated based on boringssl/include/openssl/ssl.h:6078:9
-when "AESGCM" is static:
-  const SSL_TXT_AES_GCM* = "AESGCM"
-    ## Generated based on boringssl/include/openssl/ssl.h:6079:9
-else:
-  let SSL_TXT_AES_GCM* = "AESGCM"
-    ## Generated based on boringssl/include/openssl/ssl.h:6079:9
-when "CHACHA20" is static:
-  const SSL_TXT_CHACHA20* = "CHACHA20"
-    ## Generated based on boringssl/include/openssl/ssl.h:6080:9
-else:
-  let SSL_TXT_CHACHA20* = "CHACHA20"
-    ## Generated based on boringssl/include/openssl/ssl.h:6080:9
-when "MD5" is static:
-  const SSL_TXT_MD5* = "MD5" ## Generated based on boringssl/include/openssl/ssl.h:6081:9
-else:
-  let SSL_TXT_MD5* = "MD5" ## Generated based on boringssl/include/openssl/ssl.h:6081:9
-when "SHA1" is static:
-  const SSL_TXT_SHA1* = "SHA1"
-    ## Generated based on boringssl/include/openssl/ssl.h:6082:9
-else:
-  let SSL_TXT_SHA1* = "SHA1" ## Generated based on boringssl/include/openssl/ssl.h:6082:9
-when "SHA" is static:
-  const SSL_TXT_SHA* = "SHA" ## Generated based on boringssl/include/openssl/ssl.h:6083:9
-else:
-  let SSL_TXT_SHA* = "SHA" ## Generated based on boringssl/include/openssl/ssl.h:6083:9
-when "SHA256" is static:
-  const SSL_TXT_SHA256* = "SHA256"
-    ## Generated based on boringssl/include/openssl/ssl.h:6084:9
-else:
-  let SSL_TXT_SHA256* = "SHA256"
-    ## Generated based on boringssl/include/openssl/ssl.h:6084:9
-when "SHA384" is static:
-  const SSL_TXT_SHA384* = "SHA384"
-    ## Generated based on boringssl/include/openssl/ssl.h:6085:9
-else:
-  let SSL_TXT_SHA384* = "SHA384"
-    ## Generated based on boringssl/include/openssl/ssl.h:6085:9
-when "SSLv3" is static:
-  const SSL_TXT_SSLV3* = "SSLv3"
-    ## Generated based on boringssl/include/openssl/ssl.h:6086:9
-else:
-  let SSL_TXT_SSLV3* = "SSLv3"
-    ## Generated based on boringssl/include/openssl/ssl.h:6086:9
-when "TLSv1" is static:
-  const SSL_TXT_TLSV1* = "TLSv1"
-    ## Generated based on boringssl/include/openssl/ssl.h:6087:9
-else:
-  let SSL_TXT_TLSV1* = "TLSv1"
-    ## Generated based on boringssl/include/openssl/ssl.h:6087:9
-when "TLSv1.1" is static:
-  const SSL_TXT_TLSV1_1* = "TLSv1.1"
-    ## Generated based on boringssl/include/openssl/ssl.h:6088:9
-else:
-  let SSL_TXT_TLSV1_1* = "TLSv1.1"
-    ## Generated based on boringssl/include/openssl/ssl.h:6088:9
-when "TLSv1.2" is static:
-  const SSL_TXT_TLSV1_2* = "TLSv1.2"
-    ## Generated based on boringssl/include/openssl/ssl.h:6089:9
-else:
-  let SSL_TXT_TLSV1_2* = "TLSv1.2"
-    ## Generated based on boringssl/include/openssl/ssl.h:6089:9
-when "TLSv1.3" is static:
-  const SSL_TXT_TLSV1_3* = "TLSv1.3"
-    ## Generated based on boringssl/include/openssl/ssl.h:6090:9
-else:
-  let SSL_TXT_TLSV1_3* = "TLSv1.3"
-    ## Generated based on boringssl/include/openssl/ssl.h:6090:9
-when "ALL" is static:
-  const SSL_TXT_ALL* = "ALL" ## Generated based on boringssl/include/openssl/ssl.h:6091:9
-else:
-  let SSL_TXT_ALL* = "ALL" ## Generated based on boringssl/include/openssl/ssl.h:6091:9
-when "COMPLEMENTOFDEFAULT" is static:
-  const SSL_TXT_CMPDEF* = "COMPLEMENTOFDEFAULT"
-    ## Generated based on boringssl/include/openssl/ssl.h:6092:9
-else:
-  let SSL_TXT_CMPDEF* = "COMPLEMENTOFDEFAULT"
-    ## Generated based on boringssl/include/openssl/ssl.h:6092:9
-proc SSL_get_session*(
-  ssl: ptr SSL
-): ptr SSL_SESSION {.cdecl, importc: "SSL_get_session".}
-
-when 0 is static:
-  const OPENSSL_INIT_NO_LOAD_SSL_STRINGS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:6181:9
-else:
-  let OPENSSL_INIT_NO_LOAD_SSL_STRINGS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:6181:9
-when 0 is static:
-  const OPENSSL_INIT_LOAD_SSL_STRINGS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:6182:9
-else:
-  let OPENSSL_INIT_LOAD_SSL_STRINGS* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:6182:9
-when 0 is static:
-  const OPENSSL_INIT_SSL_DEFAULT* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:6183:9
-else:
-  let OPENSSL_INIT_SSL_DEFAULT* = 0
-    ## Generated based on boringssl/include/openssl/ssl.h:6183:9
-when SSL_SIGN_RSA_PSS_RSAE_SHA256 is typedesc:
-  type SSL_SIGN_RSA_PSS_SHA256* = SSL_SIGN_RSA_PSS_RSAE_SHA256
-    ## Generated based on boringssl/include/openssl/ssl.h:6191:9
-
-else:
-  when SSL_SIGN_RSA_PSS_RSAE_SHA256 is static:
-    const SSL_SIGN_RSA_PSS_SHA256* = SSL_SIGN_RSA_PSS_RSAE_SHA256
-      ## Generated based on boringssl/include/openssl/ssl.h:6191:9
-  else:
-    let SSL_SIGN_RSA_PSS_SHA256* = SSL_SIGN_RSA_PSS_RSAE_SHA256
-      ## Generated based on boringssl/include/openssl/ssl.h:6191:9
-when SSL_SIGN_RSA_PSS_RSAE_SHA384 is typedesc:
-  type SSL_SIGN_RSA_PSS_SHA384* = SSL_SIGN_RSA_PSS_RSAE_SHA384
-    ## Generated based on boringssl/include/openssl/ssl.h:6192:9
-
-else:
-  when SSL_SIGN_RSA_PSS_RSAE_SHA384 is static:
-    const SSL_SIGN_RSA_PSS_SHA384* = SSL_SIGN_RSA_PSS_RSAE_SHA384
-      ## Generated based on boringssl/include/openssl/ssl.h:6192:9
-  else:
-    let SSL_SIGN_RSA_PSS_SHA384* = SSL_SIGN_RSA_PSS_RSAE_SHA384
-      ## Generated based on boringssl/include/openssl/ssl.h:6192:9
-when SSL_SIGN_RSA_PSS_RSAE_SHA512 is typedesc:
-  type SSL_SIGN_RSA_PSS_SHA512* = SSL_SIGN_RSA_PSS_RSAE_SHA512
-    ## Generated based on boringssl/include/openssl/ssl.h:6193:9
-
-else:
-  when SSL_SIGN_RSA_PSS_RSAE_SHA512 is static:
-    const SSL_SIGN_RSA_PSS_SHA512* = SSL_SIGN_RSA_PSS_RSAE_SHA512
-      ## Generated based on boringssl/include/openssl/ssl.h:6193:9
-  else:
-    let SSL_SIGN_RSA_PSS_SHA512* = SSL_SIGN_RSA_PSS_RSAE_SHA512
-      ## Generated based on boringssl/include/openssl/ssl.h:6193:9
-when 1112 is static:
-  const SSL_R_TLSV1_ALERT_UNRECOGNIZED_NAME* = 1112
-    ## Generated based on boringssl/include/openssl/ssl.h:7143:9
-else:
-  let SSL_R_TLSV1_ALERT_UNRECOGNIZED_NAME* = 1112
-    ## Generated based on boringssl/include/openssl/ssl.h:7143:9
-when 1116 is static:
-  const SSL_R_TLSV1_ALERT_CERTIFICATE_REQUIRED* = 1116
-    ## Generated based on boringssl/include/openssl/ssl.h:7147:9
-else:
-  let SSL_R_TLSV1_ALERT_CERTIFICATE_REQUIRED* = 1116
-    ## Generated based on boringssl/include/openssl/ssl.h:7147:9
-when SSL_GROUP_SECP256R1 is typedesc:
-  type SSL_CURVE_SECP256R1* = SSL_GROUP_SECP256R1
-    ## Generated based on boringssl/include/openssl/ssl.h:6273:9
-
-else:
-  when SSL_GROUP_SECP256R1 is static:
-    const SSL_CURVE_SECP256R1* = SSL_GROUP_SECP256R1
-      ## Generated based on boringssl/include/openssl/ssl.h:6273:9
-  else:
-    let SSL_CURVE_SECP256R1* = SSL_GROUP_SECP256R1
-      ## Generated based on boringssl/include/openssl/ssl.h:6273:9
-when SSL_GROUP_SECP384R1 is typedesc:
-  type SSL_CURVE_SECP384R1* = SSL_GROUP_SECP384R1
-    ## Generated based on boringssl/include/openssl/ssl.h:6274:9
-
-else:
-  when SSL_GROUP_SECP384R1 is static:
-    const SSL_CURVE_SECP384R1* = SSL_GROUP_SECP384R1
-      ## Generated based on boringssl/include/openssl/ssl.h:6274:9
-  else:
-    let SSL_CURVE_SECP384R1* = SSL_GROUP_SECP384R1
-      ## Generated based on boringssl/include/openssl/ssl.h:6274:9
-when SSL_GROUP_SECP521R1 is typedesc:
-  type SSL_CURVE_SECP521R1* = SSL_GROUP_SECP521R1
-    ## Generated based on boringssl/include/openssl/ssl.h:6275:9
-
-else:
-  when SSL_GROUP_SECP521R1 is static:
-    const SSL_CURVE_SECP521R1* = SSL_GROUP_SECP521R1
-      ## Generated based on boringssl/include/openssl/ssl.h:6275:9
-  else:
-    let SSL_CURVE_SECP521R1* = SSL_GROUP_SECP521R1
-      ## Generated based on boringssl/include/openssl/ssl.h:6275:9
-when SSL_GROUP_X25519 is typedesc:
-  type SSL_CURVE_X25519* = SSL_GROUP_X25519
-    ## Generated based on boringssl/include/openssl/ssl.h:6276:9
-
-else:
-  when SSL_GROUP_X25519 is static:
-    const SSL_CURVE_X25519* = SSL_GROUP_X25519
-      ## Generated based on boringssl/include/openssl/ssl.h:6276:9
-  else:
-    let SSL_CURVE_X25519* = SSL_GROUP_X25519
-      ## Generated based on boringssl/include/openssl/ssl.h:6276:9
-when 16777216 is static:
-  const TLSEXT_nid_unknown* = 16777216
-    ## Generated based on boringssl/include/openssl/ssl.h:6304:9
-else:
-  let TLSEXT_nid_unknown* = 16777216
-    ## Generated based on boringssl/include/openssl/ssl.h:6304:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5620:9
 when doesnt_exist is typedesc:
   type DTLS_CTRL_GET_TIMEOUT* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6506:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5890:9
 
 else:
   when doesnt_exist is static:
     const DTLS_CTRL_GET_TIMEOUT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6506:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5890:9
   else:
     let DTLS_CTRL_GET_TIMEOUT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6506:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5890:9
 when doesnt_exist is typedesc:
   type DTLS_CTRL_HANDLE_TIMEOUT* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6507:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5891:9
 
 else:
   when doesnt_exist is static:
     const DTLS_CTRL_HANDLE_TIMEOUT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6507:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5891:9
   else:
     let DTLS_CTRL_HANDLE_TIMEOUT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6507:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5891:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_CHAIN* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6508:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5892:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_CHAIN* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6508:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5892:9
   else:
     let SSL_CTRL_CHAIN* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6508:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5892:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_CHAIN_CERT* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6509:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5893:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_CHAIN_CERT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6509:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5893:9
   else:
     let SSL_CTRL_CHAIN_CERT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6509:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5893:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_CHANNEL_ID* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6510:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5894:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_CHANNEL_ID* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6510:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5894:9
   else:
     let SSL_CTRL_CHANNEL_ID* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6510:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5894:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_CLEAR_EXTRA_CHAIN_CERTS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6511:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5895:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_CLEAR_EXTRA_CHAIN_CERTS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6511:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5895:9
   else:
     let SSL_CTRL_CLEAR_EXTRA_CHAIN_CERTS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6511:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5895:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_CLEAR_MODE* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6512:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5896:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_CLEAR_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6512:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5896:9
   else:
     let SSL_CTRL_CLEAR_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6512:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5896:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_CLEAR_OPTIONS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6513:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5897:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_CLEAR_OPTIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6513:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5897:9
   else:
     let SSL_CTRL_CLEAR_OPTIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6513:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5897:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_EXTRA_CHAIN_CERT* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6514:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5898:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_EXTRA_CHAIN_CERT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6514:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5898:9
   else:
     let SSL_CTRL_EXTRA_CHAIN_CERT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6514:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5898:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_CHAIN_CERTS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6515:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5899:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_CHAIN_CERTS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6515:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5899:9
   else:
     let SSL_CTRL_GET_CHAIN_CERTS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6515:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5899:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_CHANNEL_ID* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6516:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5900:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_CHANNEL_ID* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6516:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5900:9
   else:
     let SSL_CTRL_GET_CHANNEL_ID* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6516:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5900:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_CLIENT_CERT_TYPES* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6517:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5901:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_CLIENT_CERT_TYPES* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6517:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5901:9
   else:
     let SSL_CTRL_GET_CLIENT_CERT_TYPES* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6517:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5901:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_EXTRA_CHAIN_CERTS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6518:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5902:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_EXTRA_CHAIN_CERTS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6518:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5902:9
   else:
     let SSL_CTRL_GET_EXTRA_CHAIN_CERTS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6518:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5902:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_MAX_CERT_LIST* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6519:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5903:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_MAX_CERT_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6519:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5903:9
   else:
     let SSL_CTRL_GET_MAX_CERT_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6519:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5903:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_NEGOTIATED_GROUP* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6520:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5904:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_NEGOTIATED_GROUP* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6520:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5904:9
   else:
     let SSL_CTRL_GET_NEGOTIATED_GROUP* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6520:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5904:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_NUM_RENEGOTIATIONS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6521:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5905:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_NUM_RENEGOTIATIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6521:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5905:9
   else:
     let SSL_CTRL_GET_NUM_RENEGOTIATIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6521:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5905:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_READ_AHEAD* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6522:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5906:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_READ_AHEAD* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6522:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5906:9
   else:
     let SSL_CTRL_GET_READ_AHEAD* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6522:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5906:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_RI_SUPPORT* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6523:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5907:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_RI_SUPPORT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6523:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5907:9
   else:
     let SSL_CTRL_GET_RI_SUPPORT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6523:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5907:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_SERVER_TMP_KEY* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6524:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5908:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_SERVER_TMP_KEY* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6524:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5908:9
   else:
     let SSL_CTRL_GET_SERVER_TMP_KEY* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6524:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5908:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_SESSION_REUSED* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6525:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5909:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_SESSION_REUSED* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6525:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5909:9
   else:
     let SSL_CTRL_GET_SESSION_REUSED* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6525:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5909:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_SESS_CACHE_MODE* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6526:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5910:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_SESS_CACHE_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6526:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5910:9
   else:
     let SSL_CTRL_GET_SESS_CACHE_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6526:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5910:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_SESS_CACHE_SIZE* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6527:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5911:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_SESS_CACHE_SIZE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6527:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5911:9
   else:
     let SSL_CTRL_GET_SESS_CACHE_SIZE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6527:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5911:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_TLSEXT_TICKET_KEYS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6528:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5912:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_TLSEXT_TICKET_KEYS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6528:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5912:9
   else:
     let SSL_CTRL_GET_TLSEXT_TICKET_KEYS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6528:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5912:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_GET_TOTAL_RENEGOTIATIONS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6529:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5913:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_GET_TOTAL_RENEGOTIATIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6529:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5913:9
   else:
     let SSL_CTRL_GET_TOTAL_RENEGOTIATIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6529:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5913:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_MODE* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6530:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5914:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6530:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5914:9
   else:
     let SSL_CTRL_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6530:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5914:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_NEED_TMP_RSA* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6531:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5915:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_NEED_TMP_RSA* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6531:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5915:9
   else:
     let SSL_CTRL_NEED_TMP_RSA* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6531:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5915:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_OPTIONS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6532:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5916:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_OPTIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6532:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5916:9
   else:
     let SSL_CTRL_OPTIONS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6532:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5916:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SESS_NUMBER* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6533:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5917:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SESS_NUMBER* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6533:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5917:9
   else:
     let SSL_CTRL_SESS_NUMBER* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6533:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5917:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_CURVES* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6534:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5918:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_CURVES* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6534:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5918:9
   else:
     let SSL_CTRL_SET_CURVES* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6534:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5918:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_CURVES_LIST* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6535:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5919:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_CURVES_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6535:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5919:9
   else:
     let SSL_CTRL_SET_CURVES_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6535:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5919:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_ECDH_AUTO* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6536:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5920:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_ECDH_AUTO* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6536:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5920:9
   else:
     let SSL_CTRL_SET_ECDH_AUTO* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6536:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5920:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_GROUPS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6537:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5921:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_GROUPS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6537:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5921:9
   else:
     let SSL_CTRL_SET_GROUPS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6537:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5921:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_GROUPS_LIST* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6538:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5922:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_GROUPS_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6538:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5922:9
   else:
     let SSL_CTRL_SET_GROUPS_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6538:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5922:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_MAX_CERT_LIST* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6539:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5923:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_MAX_CERT_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6539:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5923:9
   else:
     let SSL_CTRL_SET_MAX_CERT_LIST* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6539:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5923:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_MAX_SEND_FRAGMENT* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6540:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5924:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_MAX_SEND_FRAGMENT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6540:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5924:9
   else:
     let SSL_CTRL_SET_MAX_SEND_FRAGMENT* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6540:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5924:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_MSG_CALLBACK* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6541:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5925:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_MSG_CALLBACK* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6541:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5925:9
   else:
     let SSL_CTRL_SET_MSG_CALLBACK* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6541:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5925:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_MSG_CALLBACK_ARG* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6542:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5926:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_MSG_CALLBACK_ARG* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6542:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5926:9
   else:
     let SSL_CTRL_SET_MSG_CALLBACK_ARG* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6542:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5926:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_MTU* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6543:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5927:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_MTU* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6543:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5927:9
   else:
     let SSL_CTRL_SET_MTU* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6543:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5927:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_READ_AHEAD* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6544:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5928:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_READ_AHEAD* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6544:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5928:9
   else:
     let SSL_CTRL_SET_READ_AHEAD* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6544:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5928:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_SESS_CACHE_MODE* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6545:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5929:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_SESS_CACHE_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6545:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5929:9
   else:
     let SSL_CTRL_SET_SESS_CACHE_MODE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6545:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5929:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_SESS_CACHE_SIZE* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6546:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5930:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_SESS_CACHE_SIZE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6546:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5930:9
   else:
     let SSL_CTRL_SET_SESS_CACHE_SIZE* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6546:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5930:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TLSEXT_HOSTNAME* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6547:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5931:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TLSEXT_HOSTNAME* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6547:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5931:9
   else:
     let SSL_CTRL_SET_TLSEXT_HOSTNAME* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6547:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5931:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6548:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5932:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6548:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5932:9
   else:
     let SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6548:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5932:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TLSEXT_SERVERNAME_CB* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6549:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5933:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TLSEXT_SERVERNAME_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6549:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5933:9
   else:
     let SSL_CTRL_SET_TLSEXT_SERVERNAME_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6549:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5933:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TLSEXT_TICKET_KEYS* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6550:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5934:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TLSEXT_TICKET_KEYS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6550:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5934:9
   else:
     let SSL_CTRL_SET_TLSEXT_TICKET_KEYS* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6550:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5934:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6551:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5935:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6551:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5935:9
   else:
     let SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6551:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5935:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TMP_DH* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6552:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5936:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TMP_DH* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6552:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5936:9
   else:
     let SSL_CTRL_SET_TMP_DH* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6552:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5936:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TMP_DH_CB* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6553:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5937:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TMP_DH_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6553:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5937:9
   else:
     let SSL_CTRL_SET_TMP_DH_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6553:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5937:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TMP_ECDH* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6554:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5938:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TMP_ECDH* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6554:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5938:9
   else:
     let SSL_CTRL_SET_TMP_ECDH* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6554:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5938:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TMP_ECDH_CB* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6555:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5939:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TMP_ECDH_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6555:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5939:9
   else:
     let SSL_CTRL_SET_TMP_ECDH_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6555:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5939:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TMP_RSA* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6556:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5940:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TMP_RSA* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6556:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5940:9
   else:
     let SSL_CTRL_SET_TMP_RSA* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6556:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5940:9
 when doesnt_exist is typedesc:
   type SSL_CTRL_SET_TMP_RSA_CB* = doesnt_exist
-    ## Generated based on boringssl/include/openssl/ssl.h:6557:9
+    ## Generated based on boringssl/include/openssl/ssl.h:5941:9
 
 else:
   when doesnt_exist is static:
     const SSL_CTRL_SET_TMP_RSA_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6557:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5941:9
   else:
     let SSL_CTRL_SET_TMP_RSA_CB* = doesnt_exist
-      ## Generated based on boringssl/include/openssl/ssl.h:6557:9
+      ## Generated based on boringssl/include/openssl/ssl.h:5941:9
 proc DTLSv1_get_timeout*(
   ssl: ptr SSL, out_arg: ptr struct_timeval
 ): cint {.cdecl, importc: "DTLSv1_get_timeout".}
@@ -24924,1604 +24455,2197 @@ proc SSL_total_renegotiations*(
   ssl: ptr SSL
 ): cint {.cdecl, importc: "SSL_total_renegotiations".}
 
+when SSL_MODE_ENABLE_FALSE_START is typedesc:
+  type SSL_MODE_HANDSHAKE_CUTTHROUGH* = SSL_MODE_ENABLE_FALSE_START
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:211:9
+
+else:
+  when SSL_MODE_ENABLE_FALSE_START is static:
+    const SSL_MODE_HANDSHAKE_CUTTHROUGH* = SSL_MODE_ENABLE_FALSE_START
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:211:9
+  else:
+    let SSL_MODE_HANDSHAKE_CUTTHROUGH* = SSL_MODE_ENABLE_FALSE_START
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:211:9
+when 0 is static:
+  const SSL_MODE_AUTO_RETRY* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:365:9
+else:
+  let SSL_MODE_AUTO_RETRY* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:365:9
+when 0 is static:
+  const SSL_MODE_RELEASE_BUFFERS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:366:9
+else:
+  let SSL_MODE_RELEASE_BUFFERS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:366:9
+when 0 is static:
+  const SSL_MODE_SEND_CLIENTHELLO_TIME* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:367:9
+else:
+  let SSL_MODE_SEND_CLIENTHELLO_TIME* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:367:9
+when 0 is static:
+  const SSL_MODE_SEND_SERVERHELLO_TIME* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:368:9
+else:
+  let SSL_MODE_SEND_SERVERHELLO_TIME* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:368:9
+when 0 is static:
+  const SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:369:9
+else:
+  let SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:369:9
+when 0 is static:
+  const SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:370:9
+else:
+  let SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:370:9
+when 0 is static:
+  const SSL_OP_EPHEMERAL_RSA* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:371:9
+else:
+  let SSL_OP_EPHEMERAL_RSA* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:371:9
+when 0 is static:
+  const SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:372:9
+else:
+  let SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:372:9
+when 0 is static:
+  const SSL_OP_MICROSOFT_SESS_ID_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:373:9
+else:
+  let SSL_OP_MICROSOFT_SESS_ID_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:373:9
+when 0 is static:
+  const SSL_OP_MSIE_SSLV2_RSA_PADDING* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:374:9
+else:
+  let SSL_OP_MSIE_SSLV2_RSA_PADDING* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:374:9
+when 0 is static:
+  const SSL_OP_NETSCAPE_CA_DN_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:375:9
+else:
+  let SSL_OP_NETSCAPE_CA_DN_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:375:9
+when 0 is static:
+  const SSL_OP_NETSCAPE_CHALLENGE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:376:9
+else:
+  let SSL_OP_NETSCAPE_CHALLENGE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:376:9
+when 0 is static:
+  const SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:377:9
+else:
+  let SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:377:9
+when 0 is static:
+  const SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:378:9
+else:
+  let SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:378:9
+when 0 is static:
+  const SSL_OP_NO_COMPRESSION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:379:9
+else:
+  let SSL_OP_NO_COMPRESSION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:379:9
+when 0 is static:
+  const SSL_OP_NO_RENEGOTIATION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:380:9
+else:
+  let SSL_OP_NO_RENEGOTIATION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:380:9
+when 0 is static:
+  const SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:381:9
+else:
+  let SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:381:9
+when 0 is static:
+  const SSL_OP_NO_SSLv2* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:382:9
+else:
+  let SSL_OP_NO_SSLv2* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:382:9
+when 0 is static:
+  const SSL_OP_NO_SSLv3* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:383:9
+else:
+  let SSL_OP_NO_SSLv3* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:383:9
+when 0 is static:
+  const SSL_OP_PKCS1_CHECK_1* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:384:9
+else:
+  let SSL_OP_PKCS1_CHECK_1* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:384:9
+when 0 is static:
+  const SSL_OP_PKCS1_CHECK_2* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:385:9
+else:
+  let SSL_OP_PKCS1_CHECK_2* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:385:9
+when 0 is static:
+  const SSL_OP_SINGLE_DH_USE* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:386:9
+else:
+  let SSL_OP_SINGLE_DH_USE* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:386:9
+when 0 is static:
+  const SSL_OP_SINGLE_ECDH_USE* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:387:9
+else:
+  let SSL_OP_SINGLE_ECDH_USE* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:387:9
+when 0 is static:
+  const SSL_OP_SSLEAY_080_CLIENT_DH_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:388:9
+else:
+  let SSL_OP_SSLEAY_080_CLIENT_DH_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:388:9
+when 0 is static:
+  const SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:389:9
+else:
+  let SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:389:9
+when 0 is static:
+  const SSL_OP_TLS_BLOCK_PADDING_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:390:9
+else:
+  let SSL_OP_TLS_BLOCK_PADDING_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:390:9
+when 0 is static:
+  const SSL_OP_TLS_D5_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:391:9
+else:
+  let SSL_OP_TLS_D5_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:391:9
+when 0 is static:
+  const SSL_OP_TLS_ROLLBACK_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:392:9
+else:
+  let SSL_OP_TLS_ROLLBACK_BUG* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:392:9
+when 0 is static:
+  const SSL_VERIFY_CLIENT_ONCE* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:393:9
+else:
+  let SSL_VERIFY_CLIENT_ONCE* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:393:9
+when SSL_ERROR_NONE is typedesc:
+  type SSL_NOTHING* = SSL_ERROR_NONE
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:441:9
+
+else:
+  when SSL_ERROR_NONE is static:
+    const SSL_NOTHING* = SSL_ERROR_NONE
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:441:9
+  else:
+    let SSL_NOTHING* = SSL_ERROR_NONE
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:441:9
+when SSL_ERROR_WANT_WRITE is typedesc:
+  type SSL_WRITING* = SSL_ERROR_WANT_WRITE
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:442:9
+
+else:
+  when SSL_ERROR_WANT_WRITE is static:
+    const SSL_WRITING* = SSL_ERROR_WANT_WRITE
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:442:9
+  else:
+    let SSL_WRITING* = SSL_ERROR_WANT_WRITE
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:442:9
+when SSL_ERROR_WANT_READ is typedesc:
+  type SSL_READING* = SSL_ERROR_WANT_READ
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:443:9
+
+else:
+  when SSL_ERROR_WANT_READ is static:
+    const SSL_READING* = SSL_ERROR_WANT_READ
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:443:9
+  else:
+    let SSL_READING* = SSL_ERROR_WANT_READ
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:443:9
+when "MEDIUM" is static:
+  const SSL_TXT_MEDIUM* = "MEDIUM"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:481:9
+else:
+  let SSL_TXT_MEDIUM* = "MEDIUM"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:481:9
+when "HIGH" is static:
+  const SSL_TXT_HIGH* = "HIGH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:482:9
+else:
+  let SSL_TXT_HIGH* = "HIGH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:482:9
+when "FIPS" is static:
+  const SSL_TXT_FIPS* = "FIPS"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:483:9
+else:
+  let SSL_TXT_FIPS* = "FIPS"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:483:9
+when "kRSA" is static:
+  const SSL_TXT_kRSA* = "kRSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:484:9
+else:
+  let SSL_TXT_kRSA* = "kRSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:484:9
+when "kDHE" is static:
+  const SSL_TXT_kDHE* = "kDHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:485:9
+else:
+  let SSL_TXT_kDHE* = "kDHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:485:9
+when "kEDH" is static:
+  const SSL_TXT_kEDH* = "kEDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:486:9
+else:
+  let SSL_TXT_kEDH* = "kEDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:486:9
+when "kECDHE" is static:
+  const SSL_TXT_kECDHE* = "kECDHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:487:9
+else:
+  let SSL_TXT_kECDHE* = "kECDHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:487:9
+when "kEECDH" is static:
+  const SSL_TXT_kEECDH* = "kEECDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:488:9
+else:
+  let SSL_TXT_kEECDH* = "kEECDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:488:9
+when "kPSK" is static:
+  const SSL_TXT_kPSK* = "kPSK"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:489:9
+else:
+  let SSL_TXT_kPSK* = "kPSK"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:489:9
+when "aRSA" is static:
+  const SSL_TXT_aRSA* = "aRSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:490:9
+else:
+  let SSL_TXT_aRSA* = "aRSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:490:9
+when "aECDSA" is static:
+  const SSL_TXT_aECDSA* = "aECDSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:491:9
+else:
+  let SSL_TXT_aECDSA* = "aECDSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:491:9
+when "aPSK" is static:
+  const SSL_TXT_aPSK* = "aPSK"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:492:9
+else:
+  let SSL_TXT_aPSK* = "aPSK"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:492:9
+when "DH" is static:
+  const SSL_TXT_DH* = "DH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:493:9
+else:
+  let SSL_TXT_DH* = "DH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:493:9
+when "DHE" is static:
+  const SSL_TXT_DHE* = "DHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:494:9
+else:
+  let SSL_TXT_DHE* = "DHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:494:9
+when "EDH" is static:
+  const SSL_TXT_EDH* = "EDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:495:9
+else:
+  let SSL_TXT_EDH* = "EDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:495:9
+when "RSA" is static:
+  const SSL_TXT_RSA* = "RSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:496:9
+else:
+  let SSL_TXT_RSA* = "RSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:496:9
+when "ECDH" is static:
+  const SSL_TXT_ECDH* = "ECDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:497:9
+else:
+  let SSL_TXT_ECDH* = "ECDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:497:9
+when "ECDHE" is static:
+  const SSL_TXT_ECDHE* = "ECDHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:498:9
+else:
+  let SSL_TXT_ECDHE* = "ECDHE"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:498:9
+when "EECDH" is static:
+  const SSL_TXT_EECDH* = "EECDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:499:9
+else:
+  let SSL_TXT_EECDH* = "EECDH"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:499:9
+when "ECDSA" is static:
+  const SSL_TXT_ECDSA* = "ECDSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:500:9
+else:
+  let SSL_TXT_ECDSA* = "ECDSA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:500:9
+when "PSK" is static:
+  const SSL_TXT_PSK* = "PSK"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:501:9
+else:
+  let SSL_TXT_PSK* = "PSK"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:501:9
+when "3DES" is static:
+  const SSL_TXT_3DES* = "3DES"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:502:9
+else:
+  let SSL_TXT_3DES* = "3DES"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:502:9
+when "RC4" is static:
+  const SSL_TXT_RC4* = "RC4"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:503:9
+else:
+  let SSL_TXT_RC4* = "RC4"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:503:9
+when "AES128" is static:
+  const SSL_TXT_AES128* = "AES128"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:504:9
+else:
+  let SSL_TXT_AES128* = "AES128"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:504:9
+when "AES256" is static:
+  const SSL_TXT_AES256* = "AES256"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:505:9
+else:
+  let SSL_TXT_AES256* = "AES256"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:505:9
+when "AES" is static:
+  const SSL_TXT_AES* = "AES"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:506:9
+else:
+  let SSL_TXT_AES* = "AES"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:506:9
+when "AESGCM" is static:
+  const SSL_TXT_AES_GCM* = "AESGCM"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:507:9
+else:
+  let SSL_TXT_AES_GCM* = "AESGCM"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:507:9
+when "CHACHA20" is static:
+  const SSL_TXT_CHACHA20* = "CHACHA20"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:508:9
+else:
+  let SSL_TXT_CHACHA20* = "CHACHA20"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:508:9
+when "MD5" is static:
+  const SSL_TXT_MD5* = "MD5"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:509:9
+else:
+  let SSL_TXT_MD5* = "MD5"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:509:9
+when "SHA1" is static:
+  const SSL_TXT_SHA1* = "SHA1"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:510:9
+else:
+  let SSL_TXT_SHA1* = "SHA1"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:510:9
+when "SHA" is static:
+  const SSL_TXT_SHA* = "SHA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:511:9
+else:
+  let SSL_TXT_SHA* = "SHA"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:511:9
+when "SHA256" is static:
+  const SSL_TXT_SHA256* = "SHA256"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:512:9
+else:
+  let SSL_TXT_SHA256* = "SHA256"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:512:9
+when "SHA384" is static:
+  const SSL_TXT_SHA384* = "SHA384"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:513:9
+else:
+  let SSL_TXT_SHA384* = "SHA384"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:513:9
+when "SSLv3" is static:
+  const SSL_TXT_SSLV3* = "SSLv3"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:514:9
+else:
+  let SSL_TXT_SSLV3* = "SSLv3"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:514:9
+when "TLSv1" is static:
+  const SSL_TXT_TLSV1* = "TLSv1"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:515:9
+else:
+  let SSL_TXT_TLSV1* = "TLSv1"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:515:9
+when "TLSv1.1" is static:
+  const SSL_TXT_TLSV1_1* = "TLSv1.1"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:516:9
+else:
+  let SSL_TXT_TLSV1_1* = "TLSv1.1"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:516:9
+when "TLSv1.2" is static:
+  const SSL_TXT_TLSV1_2* = "TLSv1.2"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:517:9
+else:
+  let SSL_TXT_TLSV1_2* = "TLSv1.2"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:517:9
+when "TLSv1.3" is static:
+  const SSL_TXT_TLSV1_3* = "TLSv1.3"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:518:9
+else:
+  let SSL_TXT_TLSV1_3* = "TLSv1.3"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:518:9
+when "ALL" is static:
+  const SSL_TXT_ALL* = "ALL"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:519:9
+else:
+  let SSL_TXT_ALL* = "ALL"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:519:9
+when "COMPLEMENTOFDEFAULT" is static:
+  const SSL_TXT_CMPDEF* = "COMPLEMENTOFDEFAULT"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:520:9
+else:
+  let SSL_TXT_CMPDEF* = "COMPLEMENTOFDEFAULT"
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:520:9
+proc SSL_get_session*(
+  ssl: ptr SSL
+): ptr SSL_SESSION {.cdecl, importc: "SSL_get_session".}
+
+when 0 is static:
+  const OPENSSL_INIT_NO_LOAD_SSL_STRINGS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:609:9
+else:
+  let OPENSSL_INIT_NO_LOAD_SSL_STRINGS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:609:9
+when 0 is static:
+  const OPENSSL_INIT_LOAD_SSL_STRINGS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:610:9
+else:
+  let OPENSSL_INIT_LOAD_SSL_STRINGS* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:610:9
+when 0 is static:
+  const OPENSSL_INIT_SSL_DEFAULT* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:611:9
+else:
+  let OPENSSL_INIT_SSL_DEFAULT* = 0
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:611:9
+when SSL_SIGN_RSA_PSS_RSAE_SHA256 is typedesc:
+  type SSL_SIGN_RSA_PSS_SHA256* = SSL_SIGN_RSA_PSS_RSAE_SHA256
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:619:9
+
+else:
+  when SSL_SIGN_RSA_PSS_RSAE_SHA256 is static:
+    const SSL_SIGN_RSA_PSS_SHA256* = SSL_SIGN_RSA_PSS_RSAE_SHA256
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:619:9
+  else:
+    let SSL_SIGN_RSA_PSS_SHA256* = SSL_SIGN_RSA_PSS_RSAE_SHA256
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:619:9
+when SSL_SIGN_RSA_PSS_RSAE_SHA384 is typedesc:
+  type SSL_SIGN_RSA_PSS_SHA384* = SSL_SIGN_RSA_PSS_RSAE_SHA384
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:620:9
+
+else:
+  when SSL_SIGN_RSA_PSS_RSAE_SHA384 is static:
+    const SSL_SIGN_RSA_PSS_SHA384* = SSL_SIGN_RSA_PSS_RSAE_SHA384
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:620:9
+  else:
+    let SSL_SIGN_RSA_PSS_SHA384* = SSL_SIGN_RSA_PSS_RSAE_SHA384
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:620:9
+when SSL_SIGN_RSA_PSS_RSAE_SHA512 is typedesc:
+  type SSL_SIGN_RSA_PSS_SHA512* = SSL_SIGN_RSA_PSS_RSAE_SHA512
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:621:9
+
+else:
+  when SSL_SIGN_RSA_PSS_RSAE_SHA512 is static:
+    const SSL_SIGN_RSA_PSS_SHA512* = SSL_SIGN_RSA_PSS_RSAE_SHA512
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:621:9
+  else:
+    let SSL_SIGN_RSA_PSS_SHA512* = SSL_SIGN_RSA_PSS_RSAE_SHA512
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:621:9
+when 1112 is static:
+  const SSL_R_TLSV1_ALERT_UNRECOGNIZED_NAME* = 1112
+    ## Generated based on boringssl/include/openssl/ssl.h:6465:9
+else:
+  let SSL_R_TLSV1_ALERT_UNRECOGNIZED_NAME* = 1112
+    ## Generated based on boringssl/include/openssl/ssl.h:6465:9
+when 1116 is static:
+  const SSL_R_TLSV1_ALERT_CERTIFICATE_REQUIRED* = 1116
+    ## Generated based on boringssl/include/openssl/ssl.h:6469:9
+else:
+  let SSL_R_TLSV1_ALERT_CERTIFICATE_REQUIRED* = 1116
+    ## Generated based on boringssl/include/openssl/ssl.h:6469:9
+when SSL_GROUP_SECP256R1 is typedesc:
+  type SSL_CURVE_SECP256R1* = SSL_GROUP_SECP256R1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:701:9
+
+else:
+  when SSL_GROUP_SECP256R1 is static:
+    const SSL_CURVE_SECP256R1* = SSL_GROUP_SECP256R1
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:701:9
+  else:
+    let SSL_CURVE_SECP256R1* = SSL_GROUP_SECP256R1
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:701:9
+when SSL_GROUP_SECP384R1 is typedesc:
+  type SSL_CURVE_SECP384R1* = SSL_GROUP_SECP384R1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:702:9
+
+else:
+  when SSL_GROUP_SECP384R1 is static:
+    const SSL_CURVE_SECP384R1* = SSL_GROUP_SECP384R1
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:702:9
+  else:
+    let SSL_CURVE_SECP384R1* = SSL_GROUP_SECP384R1
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:702:9
+when SSL_GROUP_SECP521R1 is typedesc:
+  type SSL_CURVE_SECP521R1* = SSL_GROUP_SECP521R1
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:703:9
+
+else:
+  when SSL_GROUP_SECP521R1 is static:
+    const SSL_CURVE_SECP521R1* = SSL_GROUP_SECP521R1
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:703:9
+  else:
+    let SSL_CURVE_SECP521R1* = SSL_GROUP_SECP521R1
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:703:9
+when SSL_GROUP_X25519 is typedesc:
+  type SSL_CURVE_X25519* = SSL_GROUP_X25519
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:704:9
+
+else:
+  when SSL_GROUP_X25519 is static:
+    const SSL_CURVE_X25519* = SSL_GROUP_X25519
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:704:9
+  else:
+    let SSL_CURVE_X25519* = SSL_GROUP_X25519
+      ## Generated based on boringssl/include/openssl/ssl_deprecated.h:704:9
+when 16777216 is static:
+  const TLSEXT_nid_unknown* = 16777216
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:732:9
+else:
+  let TLSEXT_nid_unknown* = 16777216
+    ## Generated based on boringssl/include/openssl/ssl_deprecated.h:732:9
 when 100 is static:
   const SSL_R_APP_DATA_IN_HANDSHAKE* = 100
-    ## Generated based on boringssl/include/openssl/ssl.h:6881:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6200:9
 else:
   let SSL_R_APP_DATA_IN_HANDSHAKE* = 100
-    ## Generated based on boringssl/include/openssl/ssl.h:6881:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6200:9
 when 101 is static:
   const SSL_R_ATTEMPT_TO_REUSE_SESSION_IN_DIFFERENT_CONTEXT* = 101
-    ## Generated based on boringssl/include/openssl/ssl.h:6882:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6201:9
 else:
   let SSL_R_ATTEMPT_TO_REUSE_SESSION_IN_DIFFERENT_CONTEXT* = 101
-    ## Generated based on boringssl/include/openssl/ssl.h:6882:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6201:9
 when 102 is static:
   const SSL_R_BAD_ALERT* = 102
-    ## Generated based on boringssl/include/openssl/ssl.h:6883:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6202:9
 else:
-  let SSL_R_BAD_ALERT* = 102 ## Generated based on boringssl/include/openssl/ssl.h:6883:9
+  let SSL_R_BAD_ALERT* = 102 ## Generated based on boringssl/include/openssl/ssl.h:6202:9
 when 103 is static:
   const SSL_R_BAD_CHANGE_CIPHER_SPEC* = 103
-    ## Generated based on boringssl/include/openssl/ssl.h:6884:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6203:9
 else:
   let SSL_R_BAD_CHANGE_CIPHER_SPEC* = 103
-    ## Generated based on boringssl/include/openssl/ssl.h:6884:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6203:9
 when 104 is static:
   const SSL_R_BAD_DATA_RETURNED_BY_CALLBACK* = 104
-    ## Generated based on boringssl/include/openssl/ssl.h:6885:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6204:9
 else:
   let SSL_R_BAD_DATA_RETURNED_BY_CALLBACK* = 104
-    ## Generated based on boringssl/include/openssl/ssl.h:6885:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6204:9
 when 105 is static:
   const SSL_R_BAD_DH_P_LENGTH* = 105
-    ## Generated based on boringssl/include/openssl/ssl.h:6886:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6205:9
 else:
   let SSL_R_BAD_DH_P_LENGTH* = 105
-    ## Generated based on boringssl/include/openssl/ssl.h:6886:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6205:9
 when 106 is static:
   const SSL_R_BAD_DIGEST_LENGTH* = 106
-    ## Generated based on boringssl/include/openssl/ssl.h:6887:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6206:9
 else:
   let SSL_R_BAD_DIGEST_LENGTH* = 106
-    ## Generated based on boringssl/include/openssl/ssl.h:6887:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6206:9
 when 107 is static:
   const SSL_R_BAD_ECC_CERT* = 107
-    ## Generated based on boringssl/include/openssl/ssl.h:6888:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6207:9
 else:
   let SSL_R_BAD_ECC_CERT* = 107
-    ## Generated based on boringssl/include/openssl/ssl.h:6888:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6207:9
 when 108 is static:
   const SSL_R_BAD_ECPOINT* = 108
-    ## Generated based on boringssl/include/openssl/ssl.h:6889:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6208:9
 else:
   let SSL_R_BAD_ECPOINT* = 108
-    ## Generated based on boringssl/include/openssl/ssl.h:6889:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6208:9
 when 109 is static:
   const SSL_R_BAD_HANDSHAKE_RECORD* = 109
-    ## Generated based on boringssl/include/openssl/ssl.h:6890:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6209:9
 else:
   let SSL_R_BAD_HANDSHAKE_RECORD* = 109
-    ## Generated based on boringssl/include/openssl/ssl.h:6890:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6209:9
 when 110 is static:
   const SSL_R_BAD_HELLO_REQUEST* = 110
-    ## Generated based on boringssl/include/openssl/ssl.h:6891:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6210:9
 else:
   let SSL_R_BAD_HELLO_REQUEST* = 110
-    ## Generated based on boringssl/include/openssl/ssl.h:6891:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6210:9
 when 111 is static:
   const SSL_R_BAD_LENGTH* = 111
-    ## Generated based on boringssl/include/openssl/ssl.h:6892:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6211:9
 else:
   let SSL_R_BAD_LENGTH* = 111
-    ## Generated based on boringssl/include/openssl/ssl.h:6892:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6211:9
 when 112 is static:
   const SSL_R_BAD_PACKET_LENGTH* = 112
-    ## Generated based on boringssl/include/openssl/ssl.h:6893:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6212:9
 else:
   let SSL_R_BAD_PACKET_LENGTH* = 112
-    ## Generated based on boringssl/include/openssl/ssl.h:6893:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6212:9
 when 113 is static:
   const SSL_R_BAD_RSA_ENCRYPT* = 113
-    ## Generated based on boringssl/include/openssl/ssl.h:6894:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6213:9
 else:
   let SSL_R_BAD_RSA_ENCRYPT* = 113
-    ## Generated based on boringssl/include/openssl/ssl.h:6894:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6213:9
 when 114 is static:
   const SSL_R_BAD_SIGNATURE* = 114
-    ## Generated based on boringssl/include/openssl/ssl.h:6895:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6214:9
 else:
   let SSL_R_BAD_SIGNATURE* = 114
-    ## Generated based on boringssl/include/openssl/ssl.h:6895:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6214:9
 when 115 is static:
   const SSL_R_BAD_SRTP_MKI_VALUE* = 115
-    ## Generated based on boringssl/include/openssl/ssl.h:6896:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6215:9
 else:
   let SSL_R_BAD_SRTP_MKI_VALUE* = 115
-    ## Generated based on boringssl/include/openssl/ssl.h:6896:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6215:9
 when 116 is static:
   const SSL_R_BAD_SRTP_PROTECTION_PROFILE_LIST* = 116
-    ## Generated based on boringssl/include/openssl/ssl.h:6897:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6216:9
 else:
   let SSL_R_BAD_SRTP_PROTECTION_PROFILE_LIST* = 116
-    ## Generated based on boringssl/include/openssl/ssl.h:6897:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6216:9
 when 117 is static:
   const SSL_R_BAD_SSL_FILETYPE* = 117
-    ## Generated based on boringssl/include/openssl/ssl.h:6898:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6217:9
 else:
   let SSL_R_BAD_SSL_FILETYPE* = 117
-    ## Generated based on boringssl/include/openssl/ssl.h:6898:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6217:9
 when 118 is static:
   const SSL_R_BAD_WRITE_RETRY* = 118
-    ## Generated based on boringssl/include/openssl/ssl.h:6899:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6218:9
 else:
   let SSL_R_BAD_WRITE_RETRY* = 118
-    ## Generated based on boringssl/include/openssl/ssl.h:6899:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6218:9
 when 119 is static:
   const SSL_R_BIO_NOT_SET* = 119
-    ## Generated based on boringssl/include/openssl/ssl.h:6900:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6219:9
 else:
   let SSL_R_BIO_NOT_SET* = 119
-    ## Generated based on boringssl/include/openssl/ssl.h:6900:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6219:9
 when 120 is static:
-  const SSL_R_BN_LIB* = 120 ## Generated based on boringssl/include/openssl/ssl.h:6901:9
+  const SSL_R_BN_LIB* = 120 ## Generated based on boringssl/include/openssl/ssl.h:6220:9
 else:
-  let SSL_R_BN_LIB* = 120 ## Generated based on boringssl/include/openssl/ssl.h:6901:9
+  let SSL_R_BN_LIB* = 120 ## Generated based on boringssl/include/openssl/ssl.h:6220:9
 when 121 is static:
   const SSL_R_BUFFER_TOO_SMALL* = 121
-    ## Generated based on boringssl/include/openssl/ssl.h:6902:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6221:9
 else:
   let SSL_R_BUFFER_TOO_SMALL* = 121
-    ## Generated based on boringssl/include/openssl/ssl.h:6902:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6221:9
 when 122 is static:
   const SSL_R_CA_DN_LENGTH_MISMATCH* = 122
-    ## Generated based on boringssl/include/openssl/ssl.h:6903:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6222:9
 else:
   let SSL_R_CA_DN_LENGTH_MISMATCH* = 122
-    ## Generated based on boringssl/include/openssl/ssl.h:6903:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6222:9
 when 123 is static:
   const SSL_R_CA_DN_TOO_LONG* = 123
-    ## Generated based on boringssl/include/openssl/ssl.h:6904:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6223:9
 else:
   let SSL_R_CA_DN_TOO_LONG* = 123
-    ## Generated based on boringssl/include/openssl/ssl.h:6904:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6223:9
 when 124 is static:
   const SSL_R_CCS_RECEIVED_EARLY* = 124
-    ## Generated based on boringssl/include/openssl/ssl.h:6905:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6224:9
 else:
   let SSL_R_CCS_RECEIVED_EARLY* = 124
-    ## Generated based on boringssl/include/openssl/ssl.h:6905:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6224:9
 when 125 is static:
   const SSL_R_CERTIFICATE_VERIFY_FAILED* = 125
-    ## Generated based on boringssl/include/openssl/ssl.h:6906:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6225:9
 else:
   let SSL_R_CERTIFICATE_VERIFY_FAILED* = 125
-    ## Generated based on boringssl/include/openssl/ssl.h:6906:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6225:9
 when 126 is static:
   const SSL_R_CERT_CB_ERROR* = 126
-    ## Generated based on boringssl/include/openssl/ssl.h:6907:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6226:9
 else:
   let SSL_R_CERT_CB_ERROR* = 126
-    ## Generated based on boringssl/include/openssl/ssl.h:6907:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6226:9
 when 127 is static:
   const SSL_R_CERT_LENGTH_MISMATCH* = 127
-    ## Generated based on boringssl/include/openssl/ssl.h:6908:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6227:9
 else:
   let SSL_R_CERT_LENGTH_MISMATCH* = 127
-    ## Generated based on boringssl/include/openssl/ssl.h:6908:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6227:9
 when 128 is static:
   const SSL_R_CHANNEL_ID_NOT_P256* = 128
-    ## Generated based on boringssl/include/openssl/ssl.h:6909:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6228:9
 else:
   let SSL_R_CHANNEL_ID_NOT_P256* = 128
-    ## Generated based on boringssl/include/openssl/ssl.h:6909:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6228:9
 when 129 is static:
   const SSL_R_CHANNEL_ID_SIGNATURE_INVALID* = 129
-    ## Generated based on boringssl/include/openssl/ssl.h:6910:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6229:9
 else:
   let SSL_R_CHANNEL_ID_SIGNATURE_INVALID* = 129
-    ## Generated based on boringssl/include/openssl/ssl.h:6910:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6229:9
 when 130 is static:
   const SSL_R_CIPHER_OR_HASH_UNAVAILABLE* = 130
-    ## Generated based on boringssl/include/openssl/ssl.h:6911:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6230:9
 else:
   let SSL_R_CIPHER_OR_HASH_UNAVAILABLE* = 130
-    ## Generated based on boringssl/include/openssl/ssl.h:6911:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6230:9
 when 131 is static:
   const SSL_R_CLIENTHELLO_PARSE_FAILED* = 131
-    ## Generated based on boringssl/include/openssl/ssl.h:6912:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6231:9
 else:
   let SSL_R_CLIENTHELLO_PARSE_FAILED* = 131
-    ## Generated based on boringssl/include/openssl/ssl.h:6912:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6231:9
 when 132 is static:
   const SSL_R_CLIENTHELLO_TLSEXT* = 132
-    ## Generated based on boringssl/include/openssl/ssl.h:6913:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6232:9
 else:
   let SSL_R_CLIENTHELLO_TLSEXT* = 132
-    ## Generated based on boringssl/include/openssl/ssl.h:6913:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6232:9
 when 133 is static:
   const SSL_R_CONNECTION_REJECTED* = 133
-    ## Generated based on boringssl/include/openssl/ssl.h:6914:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6233:9
 else:
   let SSL_R_CONNECTION_REJECTED* = 133
-    ## Generated based on boringssl/include/openssl/ssl.h:6914:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6233:9
 when 134 is static:
   const SSL_R_CONNECTION_TYPE_NOT_SET* = 134
-    ## Generated based on boringssl/include/openssl/ssl.h:6915:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6234:9
 else:
   let SSL_R_CONNECTION_TYPE_NOT_SET* = 134
-    ## Generated based on boringssl/include/openssl/ssl.h:6915:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6234:9
 when 135 is static:
   const SSL_R_CUSTOM_EXTENSION_ERROR* = 135
-    ## Generated based on boringssl/include/openssl/ssl.h:6916:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6235:9
 else:
   let SSL_R_CUSTOM_EXTENSION_ERROR* = 135
-    ## Generated based on boringssl/include/openssl/ssl.h:6916:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6235:9
 when 136 is static:
   const SSL_R_DATA_LENGTH_TOO_LONG* = 136
-    ## Generated based on boringssl/include/openssl/ssl.h:6917:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6236:9
 else:
   let SSL_R_DATA_LENGTH_TOO_LONG* = 136
-    ## Generated based on boringssl/include/openssl/ssl.h:6917:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6236:9
 when 137 is static:
   const SSL_R_DECODE_ERROR* = 137
-    ## Generated based on boringssl/include/openssl/ssl.h:6918:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6237:9
 else:
   let SSL_R_DECODE_ERROR* = 137
-    ## Generated based on boringssl/include/openssl/ssl.h:6918:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6237:9
 when 138 is static:
   const SSL_R_DECRYPTION_FAILED* = 138
-    ## Generated based on boringssl/include/openssl/ssl.h:6919:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6238:9
 else:
   let SSL_R_DECRYPTION_FAILED* = 138
-    ## Generated based on boringssl/include/openssl/ssl.h:6919:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6238:9
 when 139 is static:
   const SSL_R_DECRYPTION_FAILED_OR_BAD_RECORD_MAC* = 139
-    ## Generated based on boringssl/include/openssl/ssl.h:6920:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6239:9
 else:
   let SSL_R_DECRYPTION_FAILED_OR_BAD_RECORD_MAC* = 139
-    ## Generated based on boringssl/include/openssl/ssl.h:6920:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6239:9
 when 140 is static:
   const SSL_R_DH_PUBLIC_VALUE_LENGTH_IS_WRONG* = 140
-    ## Generated based on boringssl/include/openssl/ssl.h:6921:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6240:9
 else:
   let SSL_R_DH_PUBLIC_VALUE_LENGTH_IS_WRONG* = 140
-    ## Generated based on boringssl/include/openssl/ssl.h:6921:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6240:9
 when 141 is static:
   const SSL_R_DH_P_TOO_LONG* = 141
-    ## Generated based on boringssl/include/openssl/ssl.h:6922:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6241:9
 else:
   let SSL_R_DH_P_TOO_LONG* = 141
-    ## Generated based on boringssl/include/openssl/ssl.h:6922:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6241:9
 when 142 is static:
   const SSL_R_DIGEST_CHECK_FAILED* = 142
-    ## Generated based on boringssl/include/openssl/ssl.h:6923:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6242:9
 else:
   let SSL_R_DIGEST_CHECK_FAILED* = 142
-    ## Generated based on boringssl/include/openssl/ssl.h:6923:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6242:9
 when 143 is static:
   const SSL_R_DTLS_MESSAGE_TOO_BIG* = 143
-    ## Generated based on boringssl/include/openssl/ssl.h:6924:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6243:9
 else:
   let SSL_R_DTLS_MESSAGE_TOO_BIG* = 143
-    ## Generated based on boringssl/include/openssl/ssl.h:6924:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6243:9
 when 144 is static:
   const SSL_R_ECC_CERT_NOT_FOR_SIGNING* = 144
-    ## Generated based on boringssl/include/openssl/ssl.h:6925:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6244:9
 else:
   let SSL_R_ECC_CERT_NOT_FOR_SIGNING* = 144
-    ## Generated based on boringssl/include/openssl/ssl.h:6925:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6244:9
 when 145 is static:
   const SSL_R_EMS_STATE_INCONSISTENT* = 145
-    ## Generated based on boringssl/include/openssl/ssl.h:6926:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6245:9
 else:
   let SSL_R_EMS_STATE_INCONSISTENT* = 145
-    ## Generated based on boringssl/include/openssl/ssl.h:6926:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6245:9
 when 146 is static:
   const SSL_R_ENCRYPTED_LENGTH_TOO_LONG* = 146
-    ## Generated based on boringssl/include/openssl/ssl.h:6927:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6246:9
 else:
   let SSL_R_ENCRYPTED_LENGTH_TOO_LONG* = 146
-    ## Generated based on boringssl/include/openssl/ssl.h:6927:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6246:9
 when 147 is static:
   const SSL_R_ERROR_ADDING_EXTENSION* = 147
-    ## Generated based on boringssl/include/openssl/ssl.h:6928:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6247:9
 else:
   let SSL_R_ERROR_ADDING_EXTENSION* = 147
-    ## Generated based on boringssl/include/openssl/ssl.h:6928:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6247:9
 when 148 is static:
   const SSL_R_ERROR_IN_RECEIVED_CIPHER_LIST* = 148
-    ## Generated based on boringssl/include/openssl/ssl.h:6929:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6248:9
 else:
   let SSL_R_ERROR_IN_RECEIVED_CIPHER_LIST* = 148
-    ## Generated based on boringssl/include/openssl/ssl.h:6929:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6248:9
 when 149 is static:
   const SSL_R_ERROR_PARSING_EXTENSION* = 149
-    ## Generated based on boringssl/include/openssl/ssl.h:6930:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6249:9
 else:
   let SSL_R_ERROR_PARSING_EXTENSION* = 149
-    ## Generated based on boringssl/include/openssl/ssl.h:6930:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6249:9
 when 150 is static:
   const SSL_R_EXCESSIVE_MESSAGE_SIZE* = 150
-    ## Generated based on boringssl/include/openssl/ssl.h:6931:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6250:9
 else:
   let SSL_R_EXCESSIVE_MESSAGE_SIZE* = 150
-    ## Generated based on boringssl/include/openssl/ssl.h:6931:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6250:9
 when 151 is static:
   const SSL_R_EXTRA_DATA_IN_MESSAGE* = 151
-    ## Generated based on boringssl/include/openssl/ssl.h:6932:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6251:9
 else:
   let SSL_R_EXTRA_DATA_IN_MESSAGE* = 151
-    ## Generated based on boringssl/include/openssl/ssl.h:6932:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6251:9
 when 152 is static:
   const SSL_R_FRAGMENT_MISMATCH* = 152
-    ## Generated based on boringssl/include/openssl/ssl.h:6933:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6252:9
 else:
   let SSL_R_FRAGMENT_MISMATCH* = 152
-    ## Generated based on boringssl/include/openssl/ssl.h:6933:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6252:9
 when 153 is static:
   const SSL_R_GOT_NEXT_PROTO_WITHOUT_EXTENSION* = 153
-    ## Generated based on boringssl/include/openssl/ssl.h:6934:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6253:9
 else:
   let SSL_R_GOT_NEXT_PROTO_WITHOUT_EXTENSION* = 153
-    ## Generated based on boringssl/include/openssl/ssl.h:6934:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6253:9
 when 154 is static:
   const SSL_R_HANDSHAKE_FAILURE_ON_CLIENT_HELLO* = 154
-    ## Generated based on boringssl/include/openssl/ssl.h:6935:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6254:9
 else:
   let SSL_R_HANDSHAKE_FAILURE_ON_CLIENT_HELLO* = 154
-    ## Generated based on boringssl/include/openssl/ssl.h:6935:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6254:9
 when 155 is static:
   const SSL_R_HTTPS_PROXY_REQUEST* = 155
-    ## Generated based on boringssl/include/openssl/ssl.h:6936:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6255:9
 else:
   let SSL_R_HTTPS_PROXY_REQUEST* = 155
-    ## Generated based on boringssl/include/openssl/ssl.h:6936:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6255:9
 when 156 is static:
   const SSL_R_HTTP_REQUEST* = 156
-    ## Generated based on boringssl/include/openssl/ssl.h:6937:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6256:9
 else:
   let SSL_R_HTTP_REQUEST* = 156
-    ## Generated based on boringssl/include/openssl/ssl.h:6937:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6256:9
 when 157 is static:
   const SSL_R_INAPPROPRIATE_FALLBACK* = 157
-    ## Generated based on boringssl/include/openssl/ssl.h:6938:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6257:9
 else:
   let SSL_R_INAPPROPRIATE_FALLBACK* = 157
-    ## Generated based on boringssl/include/openssl/ssl.h:6938:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6257:9
 when 158 is static:
   const SSL_R_INVALID_COMMAND* = 158
-    ## Generated based on boringssl/include/openssl/ssl.h:6939:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6258:9
 else:
   let SSL_R_INVALID_COMMAND* = 158
-    ## Generated based on boringssl/include/openssl/ssl.h:6939:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6258:9
 when 159 is static:
   const SSL_R_INVALID_MESSAGE* = 159
-    ## Generated based on boringssl/include/openssl/ssl.h:6940:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6259:9
 else:
   let SSL_R_INVALID_MESSAGE* = 159
-    ## Generated based on boringssl/include/openssl/ssl.h:6940:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6259:9
 when 160 is static:
   const SSL_R_INVALID_SSL_SESSION* = 160
-    ## Generated based on boringssl/include/openssl/ssl.h:6941:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6260:9
 else:
   let SSL_R_INVALID_SSL_SESSION* = 160
-    ## Generated based on boringssl/include/openssl/ssl.h:6941:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6260:9
 when 161 is static:
   const SSL_R_INVALID_TICKET_KEYS_LENGTH* = 161
-    ## Generated based on boringssl/include/openssl/ssl.h:6942:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6261:9
 else:
   let SSL_R_INVALID_TICKET_KEYS_LENGTH* = 161
-    ## Generated based on boringssl/include/openssl/ssl.h:6942:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6261:9
 when 162 is static:
   const SSL_R_LENGTH_MISMATCH* = 162
-    ## Generated based on boringssl/include/openssl/ssl.h:6943:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6262:9
 else:
   let SSL_R_LENGTH_MISMATCH* = 162
-    ## Generated based on boringssl/include/openssl/ssl.h:6943:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6262:9
 when 164 is static:
   const SSL_R_MISSING_EXTENSION* = 164
-    ## Generated based on boringssl/include/openssl/ssl.h:6944:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6263:9
 else:
   let SSL_R_MISSING_EXTENSION* = 164
-    ## Generated based on boringssl/include/openssl/ssl.h:6944:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6263:9
 when 165 is static:
   const SSL_R_MISSING_RSA_CERTIFICATE* = 165
-    ## Generated based on boringssl/include/openssl/ssl.h:6945:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6264:9
 else:
   let SSL_R_MISSING_RSA_CERTIFICATE* = 165
-    ## Generated based on boringssl/include/openssl/ssl.h:6945:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6264:9
 when 166 is static:
   const SSL_R_MISSING_TMP_DH_KEY* = 166
-    ## Generated based on boringssl/include/openssl/ssl.h:6946:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6265:9
 else:
   let SSL_R_MISSING_TMP_DH_KEY* = 166
-    ## Generated based on boringssl/include/openssl/ssl.h:6946:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6265:9
 when 167 is static:
   const SSL_R_MISSING_TMP_ECDH_KEY* = 167
-    ## Generated based on boringssl/include/openssl/ssl.h:6947:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6266:9
 else:
   let SSL_R_MISSING_TMP_ECDH_KEY* = 167
-    ## Generated based on boringssl/include/openssl/ssl.h:6947:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6266:9
 when 168 is static:
   const SSL_R_MIXED_SPECIAL_OPERATOR_WITH_GROUPS* = 168
-    ## Generated based on boringssl/include/openssl/ssl.h:6948:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6267:9
 else:
   let SSL_R_MIXED_SPECIAL_OPERATOR_WITH_GROUPS* = 168
-    ## Generated based on boringssl/include/openssl/ssl.h:6948:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6267:9
 when 169 is static:
   const SSL_R_MTU_TOO_SMALL* = 169
-    ## Generated based on boringssl/include/openssl/ssl.h:6949:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6268:9
 else:
   let SSL_R_MTU_TOO_SMALL* = 169
-    ## Generated based on boringssl/include/openssl/ssl.h:6949:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6268:9
 when 170 is static:
   const SSL_R_NEGOTIATED_BOTH_NPN_AND_ALPN* = 170
-    ## Generated based on boringssl/include/openssl/ssl.h:6950:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6269:9
 else:
   let SSL_R_NEGOTIATED_BOTH_NPN_AND_ALPN* = 170
-    ## Generated based on boringssl/include/openssl/ssl.h:6950:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6269:9
 when 171 is static:
   const SSL_R_NESTED_GROUP* = 171
-    ## Generated based on boringssl/include/openssl/ssl.h:6951:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6270:9
 else:
   let SSL_R_NESTED_GROUP* = 171
-    ## Generated based on boringssl/include/openssl/ssl.h:6951:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6270:9
 when 172 is static:
   const SSL_R_NO_CERTIFICATES_RETURNED* = 172
-    ## Generated based on boringssl/include/openssl/ssl.h:6952:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6271:9
 else:
   let SSL_R_NO_CERTIFICATES_RETURNED* = 172
-    ## Generated based on boringssl/include/openssl/ssl.h:6952:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6271:9
 when 173 is static:
   const SSL_R_NO_CERTIFICATE_ASSIGNED* = 173
-    ## Generated based on boringssl/include/openssl/ssl.h:6953:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6272:9
 else:
   let SSL_R_NO_CERTIFICATE_ASSIGNED* = 173
-    ## Generated based on boringssl/include/openssl/ssl.h:6953:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6272:9
 when 174 is static:
   const SSL_R_NO_CERTIFICATE_SET* = 174
-    ## Generated based on boringssl/include/openssl/ssl.h:6954:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6273:9
 else:
   let SSL_R_NO_CERTIFICATE_SET* = 174
-    ## Generated based on boringssl/include/openssl/ssl.h:6954:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6273:9
 when 175 is static:
   const SSL_R_NO_CIPHERS_AVAILABLE* = 175
-    ## Generated based on boringssl/include/openssl/ssl.h:6955:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6274:9
 else:
   let SSL_R_NO_CIPHERS_AVAILABLE* = 175
-    ## Generated based on boringssl/include/openssl/ssl.h:6955:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6274:9
 when 176 is static:
   const SSL_R_NO_CIPHERS_PASSED* = 176
-    ## Generated based on boringssl/include/openssl/ssl.h:6956:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6275:9
 else:
   let SSL_R_NO_CIPHERS_PASSED* = 176
-    ## Generated based on boringssl/include/openssl/ssl.h:6956:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6275:9
 when 177 is static:
   const SSL_R_NO_CIPHER_MATCH* = 177
-    ## Generated based on boringssl/include/openssl/ssl.h:6957:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6276:9
 else:
   let SSL_R_NO_CIPHER_MATCH* = 177
-    ## Generated based on boringssl/include/openssl/ssl.h:6957:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6276:9
 when 178 is static:
   const SSL_R_NO_COMPRESSION_SPECIFIED* = 178
-    ## Generated based on boringssl/include/openssl/ssl.h:6958:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6277:9
 else:
   let SSL_R_NO_COMPRESSION_SPECIFIED* = 178
-    ## Generated based on boringssl/include/openssl/ssl.h:6958:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6277:9
 when 179 is static:
   const SSL_R_NO_METHOD_SPECIFIED* = 179
-    ## Generated based on boringssl/include/openssl/ssl.h:6959:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6278:9
 else:
   let SSL_R_NO_METHOD_SPECIFIED* = 179
-    ## Generated based on boringssl/include/openssl/ssl.h:6959:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6278:9
 when 181 is static:
   const SSL_R_NO_PRIVATE_KEY_ASSIGNED* = 181
-    ## Generated based on boringssl/include/openssl/ssl.h:6960:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6279:9
 else:
   let SSL_R_NO_PRIVATE_KEY_ASSIGNED* = 181
-    ## Generated based on boringssl/include/openssl/ssl.h:6960:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6279:9
 when 182 is static:
   const SSL_R_NO_RENEGOTIATION* = 182
-    ## Generated based on boringssl/include/openssl/ssl.h:6961:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6280:9
 else:
   let SSL_R_NO_RENEGOTIATION* = 182
-    ## Generated based on boringssl/include/openssl/ssl.h:6961:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6280:9
 when 183 is static:
   const SSL_R_NO_REQUIRED_DIGEST* = 183
-    ## Generated based on boringssl/include/openssl/ssl.h:6962:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6281:9
 else:
   let SSL_R_NO_REQUIRED_DIGEST* = 183
-    ## Generated based on boringssl/include/openssl/ssl.h:6962:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6281:9
 when 184 is static:
   const SSL_R_NO_SHARED_CIPHER* = 184
-    ## Generated based on boringssl/include/openssl/ssl.h:6963:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6282:9
 else:
   let SSL_R_NO_SHARED_CIPHER* = 184
-    ## Generated based on boringssl/include/openssl/ssl.h:6963:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6282:9
 when 185 is static:
   const SSL_R_NULL_SSL_CTX* = 185
-    ## Generated based on boringssl/include/openssl/ssl.h:6964:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6283:9
 else:
   let SSL_R_NULL_SSL_CTX* = 185
-    ## Generated based on boringssl/include/openssl/ssl.h:6964:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6283:9
 when 186 is static:
   const SSL_R_NULL_SSL_METHOD_PASSED* = 186
-    ## Generated based on boringssl/include/openssl/ssl.h:6965:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6284:9
 else:
   let SSL_R_NULL_SSL_METHOD_PASSED* = 186
-    ## Generated based on boringssl/include/openssl/ssl.h:6965:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6284:9
 when 187 is static:
   const SSL_R_OLD_SESSION_CIPHER_NOT_RETURNED* = 187
-    ## Generated based on boringssl/include/openssl/ssl.h:6966:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6285:9
 else:
   let SSL_R_OLD_SESSION_CIPHER_NOT_RETURNED* = 187
-    ## Generated based on boringssl/include/openssl/ssl.h:6966:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6285:9
 when 188 is static:
   const SSL_R_OLD_SESSION_VERSION_NOT_RETURNED* = 188
-    ## Generated based on boringssl/include/openssl/ssl.h:6967:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6286:9
 else:
   let SSL_R_OLD_SESSION_VERSION_NOT_RETURNED* = 188
-    ## Generated based on boringssl/include/openssl/ssl.h:6967:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6286:9
 when 189 is static:
   const SSL_R_OUTPUT_ALIASES_INPUT* = 189
-    ## Generated based on boringssl/include/openssl/ssl.h:6968:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6287:9
 else:
   let SSL_R_OUTPUT_ALIASES_INPUT* = 189
-    ## Generated based on boringssl/include/openssl/ssl.h:6968:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6287:9
 when 190 is static:
   const SSL_R_PARSE_TLSEXT* = 190
-    ## Generated based on boringssl/include/openssl/ssl.h:6969:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6288:9
 else:
   let SSL_R_PARSE_TLSEXT* = 190
-    ## Generated based on boringssl/include/openssl/ssl.h:6969:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6288:9
 when 191 is static:
   const SSL_R_PATH_TOO_LONG* = 191
-    ## Generated based on boringssl/include/openssl/ssl.h:6970:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6289:9
 else:
   let SSL_R_PATH_TOO_LONG* = 191
-    ## Generated based on boringssl/include/openssl/ssl.h:6970:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6289:9
 when 192 is static:
   const SSL_R_PEER_DID_NOT_RETURN_A_CERTIFICATE* = 192
-    ## Generated based on boringssl/include/openssl/ssl.h:6971:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6290:9
 else:
   let SSL_R_PEER_DID_NOT_RETURN_A_CERTIFICATE* = 192
-    ## Generated based on boringssl/include/openssl/ssl.h:6971:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6290:9
 when 193 is static:
   const SSL_R_PEER_ERROR_UNSUPPORTED_CERTIFICATE_TYPE* = 193
-    ## Generated based on boringssl/include/openssl/ssl.h:6972:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6291:9
 else:
   let SSL_R_PEER_ERROR_UNSUPPORTED_CERTIFICATE_TYPE* = 193
-    ## Generated based on boringssl/include/openssl/ssl.h:6972:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6291:9
 when 194 is static:
   const SSL_R_PROTOCOL_IS_SHUTDOWN* = 194
-    ## Generated based on boringssl/include/openssl/ssl.h:6973:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6292:9
 else:
   let SSL_R_PROTOCOL_IS_SHUTDOWN* = 194
-    ## Generated based on boringssl/include/openssl/ssl.h:6973:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6292:9
 when 195 is static:
   const SSL_R_PSK_IDENTITY_NOT_FOUND* = 195
-    ## Generated based on boringssl/include/openssl/ssl.h:6974:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6293:9
 else:
   let SSL_R_PSK_IDENTITY_NOT_FOUND* = 195
-    ## Generated based on boringssl/include/openssl/ssl.h:6974:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6293:9
 when 196 is static:
   const SSL_R_PSK_NO_CLIENT_CB* = 196
-    ## Generated based on boringssl/include/openssl/ssl.h:6975:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6294:9
 else:
   let SSL_R_PSK_NO_CLIENT_CB* = 196
-    ## Generated based on boringssl/include/openssl/ssl.h:6975:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6294:9
 when 197 is static:
   const SSL_R_PSK_NO_SERVER_CB* = 197
-    ## Generated based on boringssl/include/openssl/ssl.h:6976:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6295:9
 else:
   let SSL_R_PSK_NO_SERVER_CB* = 197
-    ## Generated based on boringssl/include/openssl/ssl.h:6976:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6295:9
 when 198 is static:
   const SSL_R_READ_TIMEOUT_EXPIRED* = 198
-    ## Generated based on boringssl/include/openssl/ssl.h:6977:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6296:9
 else:
   let SSL_R_READ_TIMEOUT_EXPIRED* = 198
-    ## Generated based on boringssl/include/openssl/ssl.h:6977:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6296:9
 when 199 is static:
   const SSL_R_RECORD_LENGTH_MISMATCH* = 199
-    ## Generated based on boringssl/include/openssl/ssl.h:6978:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6297:9
 else:
   let SSL_R_RECORD_LENGTH_MISMATCH* = 199
-    ## Generated based on boringssl/include/openssl/ssl.h:6978:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6297:9
 when 200 is static:
   const SSL_R_RECORD_TOO_LARGE* = 200
-    ## Generated based on boringssl/include/openssl/ssl.h:6979:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6298:9
 else:
   let SSL_R_RECORD_TOO_LARGE* = 200
-    ## Generated based on boringssl/include/openssl/ssl.h:6979:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6298:9
 when 201 is static:
   const SSL_R_RENEGOTIATION_ENCODING_ERR* = 201
-    ## Generated based on boringssl/include/openssl/ssl.h:6980:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6299:9
 else:
   let SSL_R_RENEGOTIATION_ENCODING_ERR* = 201
-    ## Generated based on boringssl/include/openssl/ssl.h:6980:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6299:9
 when 202 is static:
   const SSL_R_RENEGOTIATION_MISMATCH* = 202
-    ## Generated based on boringssl/include/openssl/ssl.h:6981:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6300:9
 else:
   let SSL_R_RENEGOTIATION_MISMATCH* = 202
-    ## Generated based on boringssl/include/openssl/ssl.h:6981:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6300:9
 when 203 is static:
   const SSL_R_REQUIRED_CIPHER_MISSING* = 203
-    ## Generated based on boringssl/include/openssl/ssl.h:6982:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6301:9
 else:
   let SSL_R_REQUIRED_CIPHER_MISSING* = 203
-    ## Generated based on boringssl/include/openssl/ssl.h:6982:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6301:9
 when 204 is static:
   const SSL_R_RESUMED_EMS_SESSION_WITHOUT_EMS_EXTENSION* = 204
-    ## Generated based on boringssl/include/openssl/ssl.h:6983:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6302:9
 else:
   let SSL_R_RESUMED_EMS_SESSION_WITHOUT_EMS_EXTENSION* = 204
-    ## Generated based on boringssl/include/openssl/ssl.h:6983:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6302:9
 when 205 is static:
   const SSL_R_RESUMED_NON_EMS_SESSION_WITH_EMS_EXTENSION* = 205
-    ## Generated based on boringssl/include/openssl/ssl.h:6984:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6303:9
 else:
   let SSL_R_RESUMED_NON_EMS_SESSION_WITH_EMS_EXTENSION* = 205
-    ## Generated based on boringssl/include/openssl/ssl.h:6984:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6303:9
 when 206 is static:
   const SSL_R_SCSV_RECEIVED_WHEN_RENEGOTIATING* = 206
-    ## Generated based on boringssl/include/openssl/ssl.h:6985:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6304:9
 else:
   let SSL_R_SCSV_RECEIVED_WHEN_RENEGOTIATING* = 206
-    ## Generated based on boringssl/include/openssl/ssl.h:6985:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6304:9
 when 207 is static:
   const SSL_R_SERVERHELLO_TLSEXT* = 207
-    ## Generated based on boringssl/include/openssl/ssl.h:6986:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6305:9
 else:
   let SSL_R_SERVERHELLO_TLSEXT* = 207
-    ## Generated based on boringssl/include/openssl/ssl.h:6986:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6305:9
 when 208 is static:
   const SSL_R_SESSION_ID_CONTEXT_UNINITIALIZED* = 208
-    ## Generated based on boringssl/include/openssl/ssl.h:6987:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6306:9
 else:
   let SSL_R_SESSION_ID_CONTEXT_UNINITIALIZED* = 208
-    ## Generated based on boringssl/include/openssl/ssl.h:6987:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6306:9
 when 209 is static:
   const SSL_R_SESSION_MAY_NOT_BE_CREATED* = 209
-    ## Generated based on boringssl/include/openssl/ssl.h:6988:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6307:9
 else:
   let SSL_R_SESSION_MAY_NOT_BE_CREATED* = 209
-    ## Generated based on boringssl/include/openssl/ssl.h:6988:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6307:9
 when 210 is static:
   const SSL_R_SIGNATURE_ALGORITHMS_EXTENSION_SENT_BY_SERVER* = 210
-    ## Generated based on boringssl/include/openssl/ssl.h:6989:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6308:9
 else:
   let SSL_R_SIGNATURE_ALGORITHMS_EXTENSION_SENT_BY_SERVER* = 210
-    ## Generated based on boringssl/include/openssl/ssl.h:6989:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6308:9
 when 211 is static:
   const SSL_R_SRTP_COULD_NOT_ALLOCATE_PROFILES* = 211
-    ## Generated based on boringssl/include/openssl/ssl.h:6990:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6309:9
 else:
   let SSL_R_SRTP_COULD_NOT_ALLOCATE_PROFILES* = 211
-    ## Generated based on boringssl/include/openssl/ssl.h:6990:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6309:9
 when 212 is static:
   const SSL_R_SRTP_UNKNOWN_PROTECTION_PROFILE* = 212
-    ## Generated based on boringssl/include/openssl/ssl.h:6991:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6310:9
 else:
   let SSL_R_SRTP_UNKNOWN_PROTECTION_PROFILE* = 212
-    ## Generated based on boringssl/include/openssl/ssl.h:6991:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6310:9
 when 213 is static:
   const SSL_R_SSL3_EXT_INVALID_SERVERNAME* = 213
-    ## Generated based on boringssl/include/openssl/ssl.h:6992:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6311:9
 else:
   let SSL_R_SSL3_EXT_INVALID_SERVERNAME* = 213
-    ## Generated based on boringssl/include/openssl/ssl.h:6992:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6311:9
 when 214 is static:
   const SSL_R_SSL_CTX_HAS_NO_DEFAULT_SSL_VERSION* = 214
-    ## Generated based on boringssl/include/openssl/ssl.h:6993:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6312:9
 else:
   let SSL_R_SSL_CTX_HAS_NO_DEFAULT_SSL_VERSION* = 214
-    ## Generated based on boringssl/include/openssl/ssl.h:6993:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6312:9
 when 215 is static:
   const SSL_R_SSL_HANDSHAKE_FAILURE* = 215
-    ## Generated based on boringssl/include/openssl/ssl.h:6994:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6313:9
 else:
   let SSL_R_SSL_HANDSHAKE_FAILURE* = 215
-    ## Generated based on boringssl/include/openssl/ssl.h:6994:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6313:9
 when 216 is static:
   const SSL_R_SSL_SESSION_ID_CONTEXT_TOO_LONG* = 216
-    ## Generated based on boringssl/include/openssl/ssl.h:6995:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6314:9
 else:
   let SSL_R_SSL_SESSION_ID_CONTEXT_TOO_LONG* = 216
-    ## Generated based on boringssl/include/openssl/ssl.h:6995:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6314:9
 when 217 is static:
   const SSL_R_TLS_PEER_DID_NOT_RESPOND_WITH_CERTIFICATE_LIST* = 217
-    ## Generated based on boringssl/include/openssl/ssl.h:6996:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6315:9
 else:
   let SSL_R_TLS_PEER_DID_NOT_RESPOND_WITH_CERTIFICATE_LIST* = 217
-    ## Generated based on boringssl/include/openssl/ssl.h:6996:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6315:9
 when 218 is static:
   const SSL_R_TLS_RSA_ENCRYPTED_VALUE_LENGTH_IS_WRONG* = 218
-    ## Generated based on boringssl/include/openssl/ssl.h:6997:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6316:9
 else:
   let SSL_R_TLS_RSA_ENCRYPTED_VALUE_LENGTH_IS_WRONG* = 218
-    ## Generated based on boringssl/include/openssl/ssl.h:6997:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6316:9
 when 219 is static:
   const SSL_R_TOO_MANY_EMPTY_FRAGMENTS* = 219
-    ## Generated based on boringssl/include/openssl/ssl.h:6998:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6317:9
 else:
   let SSL_R_TOO_MANY_EMPTY_FRAGMENTS* = 219
-    ## Generated based on boringssl/include/openssl/ssl.h:6998:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6317:9
 when 220 is static:
   const SSL_R_TOO_MANY_WARNING_ALERTS* = 220
-    ## Generated based on boringssl/include/openssl/ssl.h:6999:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6318:9
 else:
   let SSL_R_TOO_MANY_WARNING_ALERTS* = 220
-    ## Generated based on boringssl/include/openssl/ssl.h:6999:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6318:9
 when 221 is static:
   const SSL_R_UNABLE_TO_FIND_ECDH_PARAMETERS* = 221
-    ## Generated based on boringssl/include/openssl/ssl.h:7000:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6319:9
 else:
   let SSL_R_UNABLE_TO_FIND_ECDH_PARAMETERS* = 221
-    ## Generated based on boringssl/include/openssl/ssl.h:7000:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6319:9
 when 222 is static:
   const SSL_R_UNEXPECTED_EXTENSION* = 222
-    ## Generated based on boringssl/include/openssl/ssl.h:7001:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6320:9
 else:
   let SSL_R_UNEXPECTED_EXTENSION* = 222
-    ## Generated based on boringssl/include/openssl/ssl.h:7001:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6320:9
 when 223 is static:
   const SSL_R_UNEXPECTED_MESSAGE* = 223
-    ## Generated based on boringssl/include/openssl/ssl.h:7002:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6321:9
 else:
   let SSL_R_UNEXPECTED_MESSAGE* = 223
-    ## Generated based on boringssl/include/openssl/ssl.h:7002:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6321:9
 when 224 is static:
   const SSL_R_UNEXPECTED_OPERATOR_IN_GROUP* = 224
-    ## Generated based on boringssl/include/openssl/ssl.h:7003:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6322:9
 else:
   let SSL_R_UNEXPECTED_OPERATOR_IN_GROUP* = 224
-    ## Generated based on boringssl/include/openssl/ssl.h:7003:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6322:9
 when 225 is static:
   const SSL_R_UNEXPECTED_RECORD* = 225
-    ## Generated based on boringssl/include/openssl/ssl.h:7004:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6323:9
 else:
   let SSL_R_UNEXPECTED_RECORD* = 225
-    ## Generated based on boringssl/include/openssl/ssl.h:7004:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6323:9
 when 226 is static:
   const SSL_R_UNINITIALIZED* = 226
-    ## Generated based on boringssl/include/openssl/ssl.h:7005:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6324:9
 else:
   let SSL_R_UNINITIALIZED* = 226
-    ## Generated based on boringssl/include/openssl/ssl.h:7005:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6324:9
 when 227 is static:
   const SSL_R_UNKNOWN_ALERT_TYPE* = 227
-    ## Generated based on boringssl/include/openssl/ssl.h:7006:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6325:9
 else:
   let SSL_R_UNKNOWN_ALERT_TYPE* = 227
-    ## Generated based on boringssl/include/openssl/ssl.h:7006:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6325:9
 when 228 is static:
   const SSL_R_UNKNOWN_CERTIFICATE_TYPE* = 228
-    ## Generated based on boringssl/include/openssl/ssl.h:7007:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6326:9
 else:
   let SSL_R_UNKNOWN_CERTIFICATE_TYPE* = 228
-    ## Generated based on boringssl/include/openssl/ssl.h:7007:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6326:9
 when 229 is static:
   const SSL_R_UNKNOWN_CIPHER_RETURNED* = 229
-    ## Generated based on boringssl/include/openssl/ssl.h:7008:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6327:9
 else:
   let SSL_R_UNKNOWN_CIPHER_RETURNED* = 229
-    ## Generated based on boringssl/include/openssl/ssl.h:7008:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6327:9
 when 230 is static:
   const SSL_R_UNKNOWN_CIPHER_TYPE* = 230
-    ## Generated based on boringssl/include/openssl/ssl.h:7009:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6328:9
 else:
   let SSL_R_UNKNOWN_CIPHER_TYPE* = 230
-    ## Generated based on boringssl/include/openssl/ssl.h:7009:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6328:9
 when 231 is static:
   const SSL_R_UNKNOWN_DIGEST* = 231
-    ## Generated based on boringssl/include/openssl/ssl.h:7010:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6329:9
 else:
   let SSL_R_UNKNOWN_DIGEST* = 231
-    ## Generated based on boringssl/include/openssl/ssl.h:7010:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6329:9
 when 232 is static:
   const SSL_R_UNKNOWN_KEY_EXCHANGE_TYPE* = 232
-    ## Generated based on boringssl/include/openssl/ssl.h:7011:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6330:9
 else:
   let SSL_R_UNKNOWN_KEY_EXCHANGE_TYPE* = 232
-    ## Generated based on boringssl/include/openssl/ssl.h:7011:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6330:9
 when 233 is static:
   const SSL_R_UNKNOWN_PROTOCOL* = 233
-    ## Generated based on boringssl/include/openssl/ssl.h:7012:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6331:9
 else:
   let SSL_R_UNKNOWN_PROTOCOL* = 233
-    ## Generated based on boringssl/include/openssl/ssl.h:7012:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6331:9
 when 234 is static:
   const SSL_R_UNKNOWN_SSL_VERSION* = 234
-    ## Generated based on boringssl/include/openssl/ssl.h:7013:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6332:9
 else:
   let SSL_R_UNKNOWN_SSL_VERSION* = 234
-    ## Generated based on boringssl/include/openssl/ssl.h:7013:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6332:9
 when 235 is static:
   const SSL_R_UNKNOWN_STATE* = 235
-    ## Generated based on boringssl/include/openssl/ssl.h:7014:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6333:9
 else:
   let SSL_R_UNKNOWN_STATE* = 235
-    ## Generated based on boringssl/include/openssl/ssl.h:7014:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6333:9
 when 236 is static:
   const SSL_R_UNSAFE_LEGACY_RENEGOTIATION_DISABLED* = 236
-    ## Generated based on boringssl/include/openssl/ssl.h:7015:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6334:9
 else:
   let SSL_R_UNSAFE_LEGACY_RENEGOTIATION_DISABLED* = 236
-    ## Generated based on boringssl/include/openssl/ssl.h:7015:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6334:9
 when 237 is static:
   const SSL_R_UNSUPPORTED_CIPHER* = 237
-    ## Generated based on boringssl/include/openssl/ssl.h:7016:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6335:9
 else:
   let SSL_R_UNSUPPORTED_CIPHER* = 237
-    ## Generated based on boringssl/include/openssl/ssl.h:7016:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6335:9
 when 238 is static:
   const SSL_R_UNSUPPORTED_COMPRESSION_ALGORITHM* = 238
-    ## Generated based on boringssl/include/openssl/ssl.h:7017:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6336:9
 else:
   let SSL_R_UNSUPPORTED_COMPRESSION_ALGORITHM* = 238
-    ## Generated based on boringssl/include/openssl/ssl.h:7017:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6336:9
 when 239 is static:
   const SSL_R_UNSUPPORTED_ELLIPTIC_CURVE* = 239
-    ## Generated based on boringssl/include/openssl/ssl.h:7018:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6337:9
 else:
   let SSL_R_UNSUPPORTED_ELLIPTIC_CURVE* = 239
-    ## Generated based on boringssl/include/openssl/ssl.h:7018:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6337:9
 when 240 is static:
   const SSL_R_UNSUPPORTED_PROTOCOL* = 240
-    ## Generated based on boringssl/include/openssl/ssl.h:7019:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6338:9
 else:
   let SSL_R_UNSUPPORTED_PROTOCOL* = 240
-    ## Generated based on boringssl/include/openssl/ssl.h:7019:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6338:9
 when 241 is static:
   const SSL_R_WRONG_CERTIFICATE_TYPE* = 241
-    ## Generated based on boringssl/include/openssl/ssl.h:7020:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6339:9
 else:
   let SSL_R_WRONG_CERTIFICATE_TYPE* = 241
-    ## Generated based on boringssl/include/openssl/ssl.h:7020:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6339:9
 when 242 is static:
   const SSL_R_WRONG_CIPHER_RETURNED* = 242
-    ## Generated based on boringssl/include/openssl/ssl.h:7021:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6340:9
 else:
   let SSL_R_WRONG_CIPHER_RETURNED* = 242
-    ## Generated based on boringssl/include/openssl/ssl.h:7021:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6340:9
 when 243 is static:
   const SSL_R_WRONG_CURVE* = 243
-    ## Generated based on boringssl/include/openssl/ssl.h:7022:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6341:9
 else:
   let SSL_R_WRONG_CURVE* = 243
-    ## Generated based on boringssl/include/openssl/ssl.h:7022:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6341:9
 when 244 is static:
   const SSL_R_WRONG_MESSAGE_TYPE* = 244
-    ## Generated based on boringssl/include/openssl/ssl.h:7023:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6342:9
 else:
   let SSL_R_WRONG_MESSAGE_TYPE* = 244
-    ## Generated based on boringssl/include/openssl/ssl.h:7023:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6342:9
 when 245 is static:
   const SSL_R_WRONG_SIGNATURE_TYPE* = 245
-    ## Generated based on boringssl/include/openssl/ssl.h:7024:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6343:9
 else:
   let SSL_R_WRONG_SIGNATURE_TYPE* = 245
-    ## Generated based on boringssl/include/openssl/ssl.h:7024:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6343:9
 when 246 is static:
   const SSL_R_WRONG_SSL_VERSION* = 246
-    ## Generated based on boringssl/include/openssl/ssl.h:7025:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6344:9
 else:
   let SSL_R_WRONG_SSL_VERSION* = 246
-    ## Generated based on boringssl/include/openssl/ssl.h:7025:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6344:9
 when 247 is static:
   const SSL_R_WRONG_VERSION_NUMBER* = 247
-    ## Generated based on boringssl/include/openssl/ssl.h:7026:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6345:9
 else:
   let SSL_R_WRONG_VERSION_NUMBER* = 247
-    ## Generated based on boringssl/include/openssl/ssl.h:7026:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6345:9
 when 248 is static:
   const SSL_R_X509_LIB* = 248
-    ## Generated based on boringssl/include/openssl/ssl.h:7027:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6346:9
 else:
-  let SSL_R_X509_LIB* = 248 ## Generated based on boringssl/include/openssl/ssl.h:7027:9
+  let SSL_R_X509_LIB* = 248 ## Generated based on boringssl/include/openssl/ssl.h:6346:9
 when 249 is static:
   const SSL_R_X509_VERIFICATION_SETUP_PROBLEMS* = 249
-    ## Generated based on boringssl/include/openssl/ssl.h:7028:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6347:9
 else:
   let SSL_R_X509_VERIFICATION_SETUP_PROBLEMS* = 249
-    ## Generated based on boringssl/include/openssl/ssl.h:7028:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6347:9
 when 250 is static:
   const SSL_R_SHUTDOWN_WHILE_IN_INIT* = 250
-    ## Generated based on boringssl/include/openssl/ssl.h:7029:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6348:9
 else:
   let SSL_R_SHUTDOWN_WHILE_IN_INIT* = 250
-    ## Generated based on boringssl/include/openssl/ssl.h:7029:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6348:9
 when 251 is static:
   const SSL_R_INVALID_OUTER_RECORD_TYPE* = 251
-    ## Generated based on boringssl/include/openssl/ssl.h:7030:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6349:9
 else:
   let SSL_R_INVALID_OUTER_RECORD_TYPE* = 251
-    ## Generated based on boringssl/include/openssl/ssl.h:7030:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6349:9
 when 252 is static:
   const SSL_R_UNSUPPORTED_PROTOCOL_FOR_CUSTOM_KEY* = 252
-    ## Generated based on boringssl/include/openssl/ssl.h:7031:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6350:9
 else:
   let SSL_R_UNSUPPORTED_PROTOCOL_FOR_CUSTOM_KEY* = 252
-    ## Generated based on boringssl/include/openssl/ssl.h:7031:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6350:9
 when 253 is static:
   const SSL_R_NO_COMMON_SIGNATURE_ALGORITHMS* = 253
-    ## Generated based on boringssl/include/openssl/ssl.h:7032:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6351:9
 else:
   let SSL_R_NO_COMMON_SIGNATURE_ALGORITHMS* = 253
-    ## Generated based on boringssl/include/openssl/ssl.h:7032:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6351:9
 when 254 is static:
   const SSL_R_DOWNGRADE_DETECTED* = 254
-    ## Generated based on boringssl/include/openssl/ssl.h:7033:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6352:9
 else:
   let SSL_R_DOWNGRADE_DETECTED* = 254
-    ## Generated based on boringssl/include/openssl/ssl.h:7033:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6352:9
 when 255 is static:
   const SSL_R_EXCESS_HANDSHAKE_DATA* = 255
-    ## Generated based on boringssl/include/openssl/ssl.h:7034:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6353:9
 else:
   let SSL_R_EXCESS_HANDSHAKE_DATA* = 255
-    ## Generated based on boringssl/include/openssl/ssl.h:7034:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6353:9
 when 256 is static:
   const SSL_R_INVALID_COMPRESSION_LIST* = 256
-    ## Generated based on boringssl/include/openssl/ssl.h:7035:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6354:9
 else:
   let SSL_R_INVALID_COMPRESSION_LIST* = 256
-    ## Generated based on boringssl/include/openssl/ssl.h:7035:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6354:9
 when 257 is static:
   const SSL_R_DUPLICATE_EXTENSION* = 257
-    ## Generated based on boringssl/include/openssl/ssl.h:7036:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6355:9
 else:
   let SSL_R_DUPLICATE_EXTENSION* = 257
-    ## Generated based on boringssl/include/openssl/ssl.h:7036:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6355:9
 when 258 is static:
   const SSL_R_MISSING_KEY_SHARE* = 258
-    ## Generated based on boringssl/include/openssl/ssl.h:7037:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6356:9
 else:
   let SSL_R_MISSING_KEY_SHARE* = 258
-    ## Generated based on boringssl/include/openssl/ssl.h:7037:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6356:9
 when 259 is static:
   const SSL_R_INVALID_ALPN_PROTOCOL* = 259
-    ## Generated based on boringssl/include/openssl/ssl.h:7038:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6357:9
 else:
   let SSL_R_INVALID_ALPN_PROTOCOL* = 259
-    ## Generated based on boringssl/include/openssl/ssl.h:7038:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6357:9
 when 260 is static:
   const SSL_R_TOO_MANY_KEY_UPDATES* = 260
-    ## Generated based on boringssl/include/openssl/ssl.h:7039:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6358:9
 else:
   let SSL_R_TOO_MANY_KEY_UPDATES* = 260
-    ## Generated based on boringssl/include/openssl/ssl.h:7039:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6358:9
 when 261 is static:
   const SSL_R_BLOCK_CIPHER_PAD_IS_WRONG* = 261
-    ## Generated based on boringssl/include/openssl/ssl.h:7040:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6359:9
 else:
   let SSL_R_BLOCK_CIPHER_PAD_IS_WRONG* = 261
-    ## Generated based on boringssl/include/openssl/ssl.h:7040:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6359:9
 when 262 is static:
   const SSL_R_NO_CIPHERS_SPECIFIED* = 262
-    ## Generated based on boringssl/include/openssl/ssl.h:7041:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6360:9
 else:
   let SSL_R_NO_CIPHERS_SPECIFIED* = 262
-    ## Generated based on boringssl/include/openssl/ssl.h:7041:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6360:9
 when 263 is static:
   const SSL_R_RENEGOTIATION_EMS_MISMATCH* = 263
-    ## Generated based on boringssl/include/openssl/ssl.h:7042:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6361:9
 else:
   let SSL_R_RENEGOTIATION_EMS_MISMATCH* = 263
-    ## Generated based on boringssl/include/openssl/ssl.h:7042:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6361:9
 when 264 is static:
   const SSL_R_DUPLICATE_KEY_SHARE* = 264
-    ## Generated based on boringssl/include/openssl/ssl.h:7043:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6362:9
 else:
   let SSL_R_DUPLICATE_KEY_SHARE* = 264
-    ## Generated based on boringssl/include/openssl/ssl.h:7043:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6362:9
 when 265 is static:
   const SSL_R_NO_GROUPS_SPECIFIED* = 265
-    ## Generated based on boringssl/include/openssl/ssl.h:7044:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6363:9
 else:
   let SSL_R_NO_GROUPS_SPECIFIED* = 265
-    ## Generated based on boringssl/include/openssl/ssl.h:7044:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6363:9
 when 266 is static:
   const SSL_R_NO_SHARED_GROUP* = 266
-    ## Generated based on boringssl/include/openssl/ssl.h:7045:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6364:9
 else:
   let SSL_R_NO_SHARED_GROUP* = 266
-    ## Generated based on boringssl/include/openssl/ssl.h:7045:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6364:9
 when 267 is static:
   const SSL_R_PRE_SHARED_KEY_MUST_BE_LAST* = 267
-    ## Generated based on boringssl/include/openssl/ssl.h:7046:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6365:9
 else:
   let SSL_R_PRE_SHARED_KEY_MUST_BE_LAST* = 267
-    ## Generated based on boringssl/include/openssl/ssl.h:7046:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6365:9
 when 268 is static:
   const SSL_R_OLD_SESSION_PRF_HASH_MISMATCH* = 268
-    ## Generated based on boringssl/include/openssl/ssl.h:7047:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6366:9
 else:
   let SSL_R_OLD_SESSION_PRF_HASH_MISMATCH* = 268
-    ## Generated based on boringssl/include/openssl/ssl.h:7047:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6366:9
 when 269 is static:
   const SSL_R_INVALID_SCT_LIST* = 269
-    ## Generated based on boringssl/include/openssl/ssl.h:7048:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6367:9
 else:
   let SSL_R_INVALID_SCT_LIST* = 269
-    ## Generated based on boringssl/include/openssl/ssl.h:7048:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6367:9
 when 270 is static:
   const SSL_R_TOO_MUCH_SKIPPED_EARLY_DATA* = 270
-    ## Generated based on boringssl/include/openssl/ssl.h:7049:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6368:9
 else:
   let SSL_R_TOO_MUCH_SKIPPED_EARLY_DATA* = 270
-    ## Generated based on boringssl/include/openssl/ssl.h:7049:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6368:9
 when 271 is static:
   const SSL_R_PSK_IDENTITY_BINDER_COUNT_MISMATCH* = 271
-    ## Generated based on boringssl/include/openssl/ssl.h:7050:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6369:9
 else:
   let SSL_R_PSK_IDENTITY_BINDER_COUNT_MISMATCH* = 271
-    ## Generated based on boringssl/include/openssl/ssl.h:7050:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6369:9
 when 272 is static:
   const SSL_R_CANNOT_PARSE_LEAF_CERT* = 272
-    ## Generated based on boringssl/include/openssl/ssl.h:7051:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6370:9
 else:
   let SSL_R_CANNOT_PARSE_LEAF_CERT* = 272
-    ## Generated based on boringssl/include/openssl/ssl.h:7051:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6370:9
 when 273 is static:
   const SSL_R_SERVER_CERT_CHANGED* = 273
-    ## Generated based on boringssl/include/openssl/ssl.h:7052:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6371:9
 else:
   let SSL_R_SERVER_CERT_CHANGED* = 273
-    ## Generated based on boringssl/include/openssl/ssl.h:7052:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6371:9
 when 274 is static:
   const SSL_R_CERTIFICATE_AND_PRIVATE_KEY_MISMATCH* = 274
-    ## Generated based on boringssl/include/openssl/ssl.h:7053:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6372:9
 else:
   let SSL_R_CERTIFICATE_AND_PRIVATE_KEY_MISMATCH* = 274
-    ## Generated based on boringssl/include/openssl/ssl.h:7053:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6372:9
 when 275 is static:
   const SSL_R_CANNOT_HAVE_BOTH_PRIVKEY_AND_METHOD* = 275
-    ## Generated based on boringssl/include/openssl/ssl.h:7054:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6373:9
 else:
   let SSL_R_CANNOT_HAVE_BOTH_PRIVKEY_AND_METHOD* = 275
-    ## Generated based on boringssl/include/openssl/ssl.h:7054:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6373:9
 when 276 is static:
   const SSL_R_TICKET_ENCRYPTION_FAILED* = 276
-    ## Generated based on boringssl/include/openssl/ssl.h:7055:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6374:9
 else:
   let SSL_R_TICKET_ENCRYPTION_FAILED* = 276
-    ## Generated based on boringssl/include/openssl/ssl.h:7055:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6374:9
 when 277 is static:
   const SSL_R_ALPN_MISMATCH_ON_EARLY_DATA* = 277
-    ## Generated based on boringssl/include/openssl/ssl.h:7056:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6375:9
 else:
   let SSL_R_ALPN_MISMATCH_ON_EARLY_DATA* = 277
-    ## Generated based on boringssl/include/openssl/ssl.h:7056:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6375:9
 when 278 is static:
   const SSL_R_WRONG_VERSION_ON_EARLY_DATA* = 278
-    ## Generated based on boringssl/include/openssl/ssl.h:7057:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6376:9
 else:
   let SSL_R_WRONG_VERSION_ON_EARLY_DATA* = 278
-    ## Generated based on boringssl/include/openssl/ssl.h:7057:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6376:9
 when 279 is static:
   const SSL_R_UNEXPECTED_EXTENSION_ON_EARLY_DATA* = 279
-    ## Generated based on boringssl/include/openssl/ssl.h:7058:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6377:9
 else:
   let SSL_R_UNEXPECTED_EXTENSION_ON_EARLY_DATA* = 279
-    ## Generated based on boringssl/include/openssl/ssl.h:7058:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6377:9
 when 280 is static:
   const SSL_R_NO_SUPPORTED_VERSIONS_ENABLED* = 280
-    ## Generated based on boringssl/include/openssl/ssl.h:7059:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6378:9
 else:
   let SSL_R_NO_SUPPORTED_VERSIONS_ENABLED* = 280
-    ## Generated based on boringssl/include/openssl/ssl.h:7059:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6378:9
 when 282 is static:
   const SSL_R_EMPTY_HELLO_RETRY_REQUEST* = 282
-    ## Generated based on boringssl/include/openssl/ssl.h:7060:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6379:9
 else:
   let SSL_R_EMPTY_HELLO_RETRY_REQUEST* = 282
-    ## Generated based on boringssl/include/openssl/ssl.h:7060:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6379:9
 when 283 is static:
   const SSL_R_EARLY_DATA_NOT_IN_USE* = 283
-    ## Generated based on boringssl/include/openssl/ssl.h:7061:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6380:9
 else:
   let SSL_R_EARLY_DATA_NOT_IN_USE* = 283
-    ## Generated based on boringssl/include/openssl/ssl.h:7061:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6380:9
 when 284 is static:
   const SSL_R_HANDSHAKE_NOT_COMPLETE* = 284
-    ## Generated based on boringssl/include/openssl/ssl.h:7062:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6381:9
 else:
   let SSL_R_HANDSHAKE_NOT_COMPLETE* = 284
-    ## Generated based on boringssl/include/openssl/ssl.h:7062:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6381:9
 when 285 is static:
   const SSL_R_NEGOTIATED_TB_WITHOUT_EMS_OR_RI* = 285
-    ## Generated based on boringssl/include/openssl/ssl.h:7063:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6382:9
 else:
   let SSL_R_NEGOTIATED_TB_WITHOUT_EMS_OR_RI* = 285
-    ## Generated based on boringssl/include/openssl/ssl.h:7063:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6382:9
 when 286 is static:
   const SSL_R_SERVER_ECHOED_INVALID_SESSION_ID* = 286
-    ## Generated based on boringssl/include/openssl/ssl.h:7064:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6383:9
 else:
   let SSL_R_SERVER_ECHOED_INVALID_SESSION_ID* = 286
-    ## Generated based on boringssl/include/openssl/ssl.h:7064:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6383:9
 when 287 is static:
   const SSL_R_PRIVATE_KEY_OPERATION_FAILED* = 287
-    ## Generated based on boringssl/include/openssl/ssl.h:7065:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6384:9
 else:
   let SSL_R_PRIVATE_KEY_OPERATION_FAILED* = 287
-    ## Generated based on boringssl/include/openssl/ssl.h:7065:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6384:9
 when 288 is static:
   const SSL_R_SECOND_SERVERHELLO_VERSION_MISMATCH* = 288
-    ## Generated based on boringssl/include/openssl/ssl.h:7066:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6385:9
 else:
   let SSL_R_SECOND_SERVERHELLO_VERSION_MISMATCH* = 288
-    ## Generated based on boringssl/include/openssl/ssl.h:7066:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6385:9
 when 289 is static:
   const SSL_R_OCSP_CB_ERROR* = 289
-    ## Generated based on boringssl/include/openssl/ssl.h:7067:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6386:9
 else:
   let SSL_R_OCSP_CB_ERROR* = 289
-    ## Generated based on boringssl/include/openssl/ssl.h:7067:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6386:9
 when 290 is static:
   const SSL_R_SSL_SESSION_ID_TOO_LONG* = 290
-    ## Generated based on boringssl/include/openssl/ssl.h:7068:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6387:9
 else:
   let SSL_R_SSL_SESSION_ID_TOO_LONG* = 290
-    ## Generated based on boringssl/include/openssl/ssl.h:7068:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6387:9
 when 291 is static:
   const SSL_R_APPLICATION_DATA_ON_SHUTDOWN* = 291
-    ## Generated based on boringssl/include/openssl/ssl.h:7069:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6388:9
 else:
   let SSL_R_APPLICATION_DATA_ON_SHUTDOWN* = 291
-    ## Generated based on boringssl/include/openssl/ssl.h:7069:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6388:9
 when 292 is static:
   const SSL_R_CERT_DECOMPRESSION_FAILED* = 292
-    ## Generated based on boringssl/include/openssl/ssl.h:7070:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6389:9
 else:
   let SSL_R_CERT_DECOMPRESSION_FAILED* = 292
-    ## Generated based on boringssl/include/openssl/ssl.h:7070:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6389:9
 when 293 is static:
   const SSL_R_UNCOMPRESSED_CERT_TOO_LARGE* = 293
-    ## Generated based on boringssl/include/openssl/ssl.h:7071:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6390:9
 else:
   let SSL_R_UNCOMPRESSED_CERT_TOO_LARGE* = 293
-    ## Generated based on boringssl/include/openssl/ssl.h:7071:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6390:9
 when 294 is static:
   const SSL_R_UNKNOWN_CERT_COMPRESSION_ALG* = 294
-    ## Generated based on boringssl/include/openssl/ssl.h:7072:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6391:9
 else:
   let SSL_R_UNKNOWN_CERT_COMPRESSION_ALG* = 294
-    ## Generated based on boringssl/include/openssl/ssl.h:7072:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6391:9
 when 295 is static:
   const SSL_R_INVALID_SIGNATURE_ALGORITHM* = 295
-    ## Generated based on boringssl/include/openssl/ssl.h:7073:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6392:9
 else:
   let SSL_R_INVALID_SIGNATURE_ALGORITHM* = 295
-    ## Generated based on boringssl/include/openssl/ssl.h:7073:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6392:9
 when 296 is static:
   const SSL_R_DUPLICATE_SIGNATURE_ALGORITHM* = 296
-    ## Generated based on boringssl/include/openssl/ssl.h:7074:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6393:9
 else:
   let SSL_R_DUPLICATE_SIGNATURE_ALGORITHM* = 296
-    ## Generated based on boringssl/include/openssl/ssl.h:7074:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6393:9
 when 297 is static:
   const SSL_R_TLS13_DOWNGRADE* = 297
-    ## Generated based on boringssl/include/openssl/ssl.h:7075:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6394:9
 else:
   let SSL_R_TLS13_DOWNGRADE* = 297
-    ## Generated based on boringssl/include/openssl/ssl.h:7075:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6394:9
 when 298 is static:
   const SSL_R_QUIC_INTERNAL_ERROR* = 298
-    ## Generated based on boringssl/include/openssl/ssl.h:7076:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6395:9
 else:
   let SSL_R_QUIC_INTERNAL_ERROR* = 298
-    ## Generated based on boringssl/include/openssl/ssl.h:7076:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6395:9
 when 299 is static:
   const SSL_R_WRONG_ENCRYPTION_LEVEL_RECEIVED* = 299
-    ## Generated based on boringssl/include/openssl/ssl.h:7077:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6396:9
 else:
   let SSL_R_WRONG_ENCRYPTION_LEVEL_RECEIVED* = 299
-    ## Generated based on boringssl/include/openssl/ssl.h:7077:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6396:9
 when 300 is static:
   const SSL_R_TOO_MUCH_READ_EARLY_DATA* = 300
-    ## Generated based on boringssl/include/openssl/ssl.h:7078:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6397:9
 else:
   let SSL_R_TOO_MUCH_READ_EARLY_DATA* = 300
-    ## Generated based on boringssl/include/openssl/ssl.h:7078:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6397:9
 when 301 is static:
   const SSL_R_INVALID_DELEGATED_CREDENTIAL* = 301
-    ## Generated based on boringssl/include/openssl/ssl.h:7079:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6398:9
 else:
   let SSL_R_INVALID_DELEGATED_CREDENTIAL* = 301
-    ## Generated based on boringssl/include/openssl/ssl.h:7079:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6398:9
 when 302 is static:
   const SSL_R_KEY_USAGE_BIT_INCORRECT* = 302
-    ## Generated based on boringssl/include/openssl/ssl.h:7080:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6399:9
 else:
   let SSL_R_KEY_USAGE_BIT_INCORRECT* = 302
-    ## Generated based on boringssl/include/openssl/ssl.h:7080:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6399:9
 when 303 is static:
   const SSL_R_INCONSISTENT_CLIENT_HELLO* = 303
-    ## Generated based on boringssl/include/openssl/ssl.h:7081:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6400:9
 else:
   let SSL_R_INCONSISTENT_CLIENT_HELLO* = 303
-    ## Generated based on boringssl/include/openssl/ssl.h:7081:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6400:9
 when 304 is static:
   const SSL_R_CIPHER_MISMATCH_ON_EARLY_DATA* = 304
-    ## Generated based on boringssl/include/openssl/ssl.h:7082:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6401:9
 else:
   let SSL_R_CIPHER_MISMATCH_ON_EARLY_DATA* = 304
-    ## Generated based on boringssl/include/openssl/ssl.h:7082:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6401:9
 when 305 is static:
   const SSL_R_QUIC_TRANSPORT_PARAMETERS_MISCONFIGURED* = 305
-    ## Generated based on boringssl/include/openssl/ssl.h:7083:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6402:9
 else:
   let SSL_R_QUIC_TRANSPORT_PARAMETERS_MISCONFIGURED* = 305
-    ## Generated based on boringssl/include/openssl/ssl.h:7083:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6402:9
 when 306 is static:
   const SSL_R_UNEXPECTED_COMPATIBILITY_MODE* = 306
-    ## Generated based on boringssl/include/openssl/ssl.h:7084:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6403:9
 else:
   let SSL_R_UNEXPECTED_COMPATIBILITY_MODE* = 306
-    ## Generated based on boringssl/include/openssl/ssl.h:7084:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6403:9
 when 307 is static:
   const SSL_R_NO_APPLICATION_PROTOCOL* = 307
-    ## Generated based on boringssl/include/openssl/ssl.h:7085:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6404:9
 else:
   let SSL_R_NO_APPLICATION_PROTOCOL* = 307
-    ## Generated based on boringssl/include/openssl/ssl.h:7085:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6404:9
 when 308 is static:
   const SSL_R_NEGOTIATED_ALPS_WITHOUT_ALPN* = 308
-    ## Generated based on boringssl/include/openssl/ssl.h:7086:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6405:9
 else:
   let SSL_R_NEGOTIATED_ALPS_WITHOUT_ALPN* = 308
-    ## Generated based on boringssl/include/openssl/ssl.h:7086:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6405:9
 when 309 is static:
   const SSL_R_ALPS_MISMATCH_ON_EARLY_DATA* = 309
-    ## Generated based on boringssl/include/openssl/ssl.h:7087:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6406:9
 else:
   let SSL_R_ALPS_MISMATCH_ON_EARLY_DATA* = 309
-    ## Generated based on boringssl/include/openssl/ssl.h:7087:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6406:9
 when 310 is static:
   const SSL_R_ECH_SERVER_CONFIG_AND_PRIVATE_KEY_MISMATCH* = 310
-    ## Generated based on boringssl/include/openssl/ssl.h:7088:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6407:9
 else:
   let SSL_R_ECH_SERVER_CONFIG_AND_PRIVATE_KEY_MISMATCH* = 310
-    ## Generated based on boringssl/include/openssl/ssl.h:7088:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6407:9
 when 311 is static:
   const SSL_R_ECH_SERVER_CONFIG_UNSUPPORTED_EXTENSION* = 311
-    ## Generated based on boringssl/include/openssl/ssl.h:7089:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6408:9
 else:
   let SSL_R_ECH_SERVER_CONFIG_UNSUPPORTED_EXTENSION* = 311
-    ## Generated based on boringssl/include/openssl/ssl.h:7089:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6408:9
 when 312 is static:
   const SSL_R_UNSUPPORTED_ECH_SERVER_CONFIG* = 312
-    ## Generated based on boringssl/include/openssl/ssl.h:7090:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6409:9
 else:
   let SSL_R_UNSUPPORTED_ECH_SERVER_CONFIG* = 312
-    ## Generated based on boringssl/include/openssl/ssl.h:7090:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6409:9
 when 313 is static:
   const SSL_R_ECH_SERVER_WOULD_HAVE_NO_RETRY_CONFIGS* = 313
-    ## Generated based on boringssl/include/openssl/ssl.h:7091:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6410:9
 else:
   let SSL_R_ECH_SERVER_WOULD_HAVE_NO_RETRY_CONFIGS* = 313
-    ## Generated based on boringssl/include/openssl/ssl.h:7091:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6410:9
 when 314 is static:
   const SSL_R_INVALID_CLIENT_HELLO_INNER* = 314
-    ## Generated based on boringssl/include/openssl/ssl.h:7092:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6411:9
 else:
   let SSL_R_INVALID_CLIENT_HELLO_INNER* = 314
-    ## Generated based on boringssl/include/openssl/ssl.h:7092:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6411:9
 when 315 is static:
   const SSL_R_INVALID_ALPN_PROTOCOL_LIST* = 315
-    ## Generated based on boringssl/include/openssl/ssl.h:7093:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6412:9
 else:
   let SSL_R_INVALID_ALPN_PROTOCOL_LIST* = 315
-    ## Generated based on boringssl/include/openssl/ssl.h:7093:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6412:9
 when 316 is static:
   const SSL_R_COULD_NOT_PARSE_HINTS* = 316
-    ## Generated based on boringssl/include/openssl/ssl.h:7094:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6413:9
 else:
   let SSL_R_COULD_NOT_PARSE_HINTS* = 316
-    ## Generated based on boringssl/include/openssl/ssl.h:7094:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6413:9
 when 317 is static:
   const SSL_R_INVALID_ECH_PUBLIC_NAME* = 317
-    ## Generated based on boringssl/include/openssl/ssl.h:7095:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6414:9
 else:
   let SSL_R_INVALID_ECH_PUBLIC_NAME* = 317
-    ## Generated based on boringssl/include/openssl/ssl.h:7095:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6414:9
 when 318 is static:
   const SSL_R_INVALID_ECH_CONFIG_LIST* = 318
-    ## Generated based on boringssl/include/openssl/ssl.h:7096:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6415:9
 else:
   let SSL_R_INVALID_ECH_CONFIG_LIST* = 318
-    ## Generated based on boringssl/include/openssl/ssl.h:7096:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6415:9
 when 319 is static:
   const SSL_R_ECH_REJECTED* = 319
-    ## Generated based on boringssl/include/openssl/ssl.h:7097:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6416:9
 else:
   let SSL_R_ECH_REJECTED* = 319
-    ## Generated based on boringssl/include/openssl/ssl.h:7097:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6416:9
 when 320 is static:
   const SSL_R_INVALID_OUTER_EXTENSION* = 320
-    ## Generated based on boringssl/include/openssl/ssl.h:7098:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6417:9
 else:
   let SSL_R_INVALID_OUTER_EXTENSION* = 320
-    ## Generated based on boringssl/include/openssl/ssl.h:7098:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6417:9
 when 321 is static:
   const SSL_R_INCONSISTENT_ECH_NEGOTIATION* = 321
-    ## Generated based on boringssl/include/openssl/ssl.h:7099:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6418:9
 else:
   let SSL_R_INCONSISTENT_ECH_NEGOTIATION* = 321
-    ## Generated based on boringssl/include/openssl/ssl.h:7099:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6418:9
 when 322 is static:
   const SSL_R_INVALID_ALPS_CODEPOINT* = 322
-    ## Generated based on boringssl/include/openssl/ssl.h:7100:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6419:9
 else:
   let SSL_R_INVALID_ALPS_CODEPOINT* = 322
-    ## Generated based on boringssl/include/openssl/ssl.h:7100:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6419:9
 when 323 is static:
   const SSL_R_NO_MATCHING_ISSUER* = 323
-    ## Generated based on boringssl/include/openssl/ssl.h:7101:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6420:9
 else:
   let SSL_R_NO_MATCHING_ISSUER* = 323
-    ## Generated based on boringssl/include/openssl/ssl.h:7101:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6420:9
 when 324 is static:
   const SSL_R_INVALID_SPAKE2PLUSV1_VALUE* = 324
-    ## Generated based on boringssl/include/openssl/ssl.h:7102:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6421:9
 else:
   let SSL_R_INVALID_SPAKE2PLUSV1_VALUE* = 324
-    ## Generated based on boringssl/include/openssl/ssl.h:7102:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6421:9
 when 325 is static:
   const SSL_R_PAKE_EXHAUSTED* = 325
-    ## Generated based on boringssl/include/openssl/ssl.h:7103:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6422:9
 else:
   let SSL_R_PAKE_EXHAUSTED* = 325
-    ## Generated based on boringssl/include/openssl/ssl.h:7103:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6422:9
 when 326 is static:
   const SSL_R_PEER_PAKE_MISMATCH* = 326
-    ## Generated based on boringssl/include/openssl/ssl.h:7104:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6423:9
 else:
   let SSL_R_PEER_PAKE_MISMATCH* = 326
-    ## Generated based on boringssl/include/openssl/ssl.h:7104:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6423:9
 when 327 is static:
   const SSL_R_UNSUPPORTED_CREDENTIAL_LIST* = 327
-    ## Generated based on boringssl/include/openssl/ssl.h:7105:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6424:9
 else:
   let SSL_R_UNSUPPORTED_CREDENTIAL_LIST* = 327
-    ## Generated based on boringssl/include/openssl/ssl.h:7105:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6424:9
 when 328 is static:
   const SSL_R_INVALID_TRUST_ANCHOR_LIST* = 328
-    ## Generated based on boringssl/include/openssl/ssl.h:7106:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6425:9
 else:
   let SSL_R_INVALID_TRUST_ANCHOR_LIST* = 328
-    ## Generated based on boringssl/include/openssl/ssl.h:7106:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6425:9
 when 329 is static:
   const SSL_R_INVALID_CERTIFICATE_PROPERTY_LIST* = 329
-    ## Generated based on boringssl/include/openssl/ssl.h:7107:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6426:9
 else:
   let SSL_R_INVALID_CERTIFICATE_PROPERTY_LIST* = 329
-    ## Generated based on boringssl/include/openssl/ssl.h:7107:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6426:9
 when 330 is static:
   const SSL_R_DUPLICATE_GROUP* = 330
-    ## Generated based on boringssl/include/openssl/ssl.h:7108:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6427:9
 else:
   let SSL_R_DUPLICATE_GROUP* = 330
-    ## Generated based on boringssl/include/openssl/ssl.h:7108:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6427:9
 when 331 is static:
   const SSL_R_INVALID_PSK_FOR_CONNECTION* = 331
-    ## Generated based on boringssl/include/openssl/ssl.h:7109:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6428:9
 else:
   let SSL_R_INVALID_PSK_FOR_CONNECTION* = 331
-    ## Generated based on boringssl/include/openssl/ssl.h:7109:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6428:9
 when 332 is static:
   const SSL_R_NO_SUPPORTED_PSK_MODE* = 332
-    ## Generated based on boringssl/include/openssl/ssl.h:7110:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6429:9
 else:
   let SSL_R_NO_SUPPORTED_PSK_MODE* = 332
-    ## Generated based on boringssl/include/openssl/ssl.h:7110:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6429:9
 when 333 is static:
   const SSL_R_INVALID_CERT_TYPES_LIST* = 333
-    ## Generated based on boringssl/include/openssl/ssl.h:7111:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6430:9
 else:
   let SSL_R_INVALID_CERT_TYPES_LIST* = 333
-    ## Generated based on boringssl/include/openssl/ssl.h:7111:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6430:9
 when 334 is static:
   const SSL_R_UNSUPPORTED_CERTIFICATE* = 334
-    ## Generated based on boringssl/include/openssl/ssl.h:7112:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6431:9
 else:
   let SSL_R_UNSUPPORTED_CERTIFICATE* = 334
-    ## Generated based on boringssl/include/openssl/ssl.h:7112:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6431:9
 when 335 is static:
   const SSL_R_MISSING_KEY* = 335
-    ## Generated based on boringssl/include/openssl/ssl.h:7113:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6432:9
 else:
   let SSL_R_MISSING_KEY* = 335
-    ## Generated based on boringssl/include/openssl/ssl.h:7113:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6432:9
 when 336 is static:
   const SSL_R_INVALID_RAW_PUBLIC_KEY* = 336
-    ## Generated based on boringssl/include/openssl/ssl.h:7114:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6433:9
 else:
   let SSL_R_INVALID_RAW_PUBLIC_KEY* = 336
-    ## Generated based on boringssl/include/openssl/ssl.h:7114:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6433:9
 when 337 is static:
   const SSL_R_UNUSABLE_ECH_CONFIG_LIST* = 337
-    ## Generated based on boringssl/include/openssl/ssl.h:7115:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6434:9
 else:
   let SSL_R_UNUSABLE_ECH_CONFIG_LIST* = 337
-    ## Generated based on boringssl/include/openssl/ssl.h:7115:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6434:9
+when 338 is static:
+  const SSL_R_INVALID_CIPHER_FLAGS* = 338
+    ## Generated based on boringssl/include/openssl/ssl.h:6435:9
+else:
+  let SSL_R_INVALID_CIPHER_FLAGS* = 338
+    ## Generated based on boringssl/include/openssl/ssl.h:6435:9
+when 339 is static:
+  const SSL_R_DUPLICATE_CIPHER* = 339
+    ## Generated based on boringssl/include/openssl/ssl.h:6436:9
+else:
+  let SSL_R_DUPLICATE_CIPHER* = 339
+    ## Generated based on boringssl/include/openssl/ssl.h:6436:9
+when 340 is static:
+  const SSL_R_INVALID_TRUST_ANCHOR_ID* = 340
+    ## Generated based on boringssl/include/openssl/ssl.h:6437:9
+else:
+  let SSL_R_INVALID_TRUST_ANCHOR_ID* = 340
+    ## Generated based on boringssl/include/openssl/ssl.h:6437:9
 when 1000 is static:
   const SSL_R_SSLV3_ALERT_CLOSE_NOTIFY* = 1000
-    ## Generated based on boringssl/include/openssl/ssl.h:7116:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6438:9
 else:
   let SSL_R_SSLV3_ALERT_CLOSE_NOTIFY* = 1000
-    ## Generated based on boringssl/include/openssl/ssl.h:7116:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6438:9
 when 1010 is static:
   const SSL_R_SSLV3_ALERT_UNEXPECTED_MESSAGE* = 1010
-    ## Generated based on boringssl/include/openssl/ssl.h:7117:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6439:9
 else:
   let SSL_R_SSLV3_ALERT_UNEXPECTED_MESSAGE* = 1010
-    ## Generated based on boringssl/include/openssl/ssl.h:7117:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6439:9
 when 1020 is static:
   const SSL_R_SSLV3_ALERT_BAD_RECORD_MAC* = 1020
-    ## Generated based on boringssl/include/openssl/ssl.h:7118:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6440:9
 else:
   let SSL_R_SSLV3_ALERT_BAD_RECORD_MAC* = 1020
-    ## Generated based on boringssl/include/openssl/ssl.h:7118:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6440:9
 when 1021 is static:
   const SSL_R_TLSV1_ALERT_DECRYPTION_FAILED* = 1021
-    ## Generated based on boringssl/include/openssl/ssl.h:7119:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6441:9
 else:
   let SSL_R_TLSV1_ALERT_DECRYPTION_FAILED* = 1021
-    ## Generated based on boringssl/include/openssl/ssl.h:7119:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6441:9
 when 1022 is static:
   const SSL_R_TLSV1_ALERT_RECORD_OVERFLOW* = 1022
-    ## Generated based on boringssl/include/openssl/ssl.h:7120:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6442:9
 else:
   let SSL_R_TLSV1_ALERT_RECORD_OVERFLOW* = 1022
-    ## Generated based on boringssl/include/openssl/ssl.h:7120:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6442:9
 when 1030 is static:
   const SSL_R_SSLV3_ALERT_DECOMPRESSION_FAILURE* = 1030
-    ## Generated based on boringssl/include/openssl/ssl.h:7121:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6443:9
 else:
   let SSL_R_SSLV3_ALERT_DECOMPRESSION_FAILURE* = 1030
-    ## Generated based on boringssl/include/openssl/ssl.h:7121:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6443:9
 when 1040 is static:
   const SSL_R_SSLV3_ALERT_HANDSHAKE_FAILURE* = 1040
-    ## Generated based on boringssl/include/openssl/ssl.h:7122:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6444:9
 else:
   let SSL_R_SSLV3_ALERT_HANDSHAKE_FAILURE* = 1040
-    ## Generated based on boringssl/include/openssl/ssl.h:7122:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6444:9
 when 1041 is static:
   const SSL_R_SSLV3_ALERT_NO_CERTIFICATE* = 1041
-    ## Generated based on boringssl/include/openssl/ssl.h:7123:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6445:9
 else:
   let SSL_R_SSLV3_ALERT_NO_CERTIFICATE* = 1041
-    ## Generated based on boringssl/include/openssl/ssl.h:7123:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6445:9
 when 1042 is static:
   const SSL_R_SSLV3_ALERT_BAD_CERTIFICATE* = 1042
-    ## Generated based on boringssl/include/openssl/ssl.h:7124:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6446:9
 else:
   let SSL_R_SSLV3_ALERT_BAD_CERTIFICATE* = 1042
-    ## Generated based on boringssl/include/openssl/ssl.h:7124:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6446:9
 when 1043 is static:
   const SSL_R_SSLV3_ALERT_UNSUPPORTED_CERTIFICATE* = 1043
-    ## Generated based on boringssl/include/openssl/ssl.h:7125:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6447:9
 else:
   let SSL_R_SSLV3_ALERT_UNSUPPORTED_CERTIFICATE* = 1043
-    ## Generated based on boringssl/include/openssl/ssl.h:7125:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6447:9
 when 1044 is static:
   const SSL_R_SSLV3_ALERT_CERTIFICATE_REVOKED* = 1044
-    ## Generated based on boringssl/include/openssl/ssl.h:7126:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6448:9
 else:
   let SSL_R_SSLV3_ALERT_CERTIFICATE_REVOKED* = 1044
-    ## Generated based on boringssl/include/openssl/ssl.h:7126:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6448:9
 when 1045 is static:
   const SSL_R_SSLV3_ALERT_CERTIFICATE_EXPIRED* = 1045
-    ## Generated based on boringssl/include/openssl/ssl.h:7127:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6449:9
 else:
   let SSL_R_SSLV3_ALERT_CERTIFICATE_EXPIRED* = 1045
-    ## Generated based on boringssl/include/openssl/ssl.h:7127:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6449:9
 when 1046 is static:
   const SSL_R_SSLV3_ALERT_CERTIFICATE_UNKNOWN* = 1046
-    ## Generated based on boringssl/include/openssl/ssl.h:7128:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6450:9
 else:
   let SSL_R_SSLV3_ALERT_CERTIFICATE_UNKNOWN* = 1046
-    ## Generated based on boringssl/include/openssl/ssl.h:7128:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6450:9
 when 1047 is static:
   const SSL_R_SSLV3_ALERT_ILLEGAL_PARAMETER* = 1047
-    ## Generated based on boringssl/include/openssl/ssl.h:7129:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6451:9
 else:
   let SSL_R_SSLV3_ALERT_ILLEGAL_PARAMETER* = 1047
-    ## Generated based on boringssl/include/openssl/ssl.h:7129:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6451:9
 when 1048 is static:
   const SSL_R_TLSV1_ALERT_UNKNOWN_CA* = 1048
-    ## Generated based on boringssl/include/openssl/ssl.h:7130:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6452:9
 else:
   let SSL_R_TLSV1_ALERT_UNKNOWN_CA* = 1048
-    ## Generated based on boringssl/include/openssl/ssl.h:7130:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6452:9
 when 1049 is static:
   const SSL_R_TLSV1_ALERT_ACCESS_DENIED* = 1049
-    ## Generated based on boringssl/include/openssl/ssl.h:7131:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6453:9
 else:
   let SSL_R_TLSV1_ALERT_ACCESS_DENIED* = 1049
-    ## Generated based on boringssl/include/openssl/ssl.h:7131:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6453:9
 when 1050 is static:
   const SSL_R_TLSV1_ALERT_DECODE_ERROR* = 1050
-    ## Generated based on boringssl/include/openssl/ssl.h:7132:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6454:9
 else:
   let SSL_R_TLSV1_ALERT_DECODE_ERROR* = 1050
-    ## Generated based on boringssl/include/openssl/ssl.h:7132:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6454:9
 when 1051 is static:
   const SSL_R_TLSV1_ALERT_DECRYPT_ERROR* = 1051
-    ## Generated based on boringssl/include/openssl/ssl.h:7133:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6455:9
 else:
   let SSL_R_TLSV1_ALERT_DECRYPT_ERROR* = 1051
-    ## Generated based on boringssl/include/openssl/ssl.h:7133:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6455:9
 when 1060 is static:
   const SSL_R_TLSV1_ALERT_EXPORT_RESTRICTION* = 1060
-    ## Generated based on boringssl/include/openssl/ssl.h:7134:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6456:9
 else:
   let SSL_R_TLSV1_ALERT_EXPORT_RESTRICTION* = 1060
-    ## Generated based on boringssl/include/openssl/ssl.h:7134:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6456:9
 when 1070 is static:
   const SSL_R_TLSV1_ALERT_PROTOCOL_VERSION* = 1070
-    ## Generated based on boringssl/include/openssl/ssl.h:7135:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6457:9
 else:
   let SSL_R_TLSV1_ALERT_PROTOCOL_VERSION* = 1070
-    ## Generated based on boringssl/include/openssl/ssl.h:7135:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6457:9
 when 1071 is static:
   const SSL_R_TLSV1_ALERT_INSUFFICIENT_SECURITY* = 1071
-    ## Generated based on boringssl/include/openssl/ssl.h:7136:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6458:9
 else:
   let SSL_R_TLSV1_ALERT_INSUFFICIENT_SECURITY* = 1071
-    ## Generated based on boringssl/include/openssl/ssl.h:7136:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6458:9
 when 1080 is static:
   const SSL_R_TLSV1_ALERT_INTERNAL_ERROR* = 1080
-    ## Generated based on boringssl/include/openssl/ssl.h:7137:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6459:9
 else:
   let SSL_R_TLSV1_ALERT_INTERNAL_ERROR* = 1080
-    ## Generated based on boringssl/include/openssl/ssl.h:7137:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6459:9
 when 1086 is static:
   const SSL_R_TLSV1_ALERT_INAPPROPRIATE_FALLBACK* = 1086
-    ## Generated based on boringssl/include/openssl/ssl.h:7138:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6460:9
 else:
   let SSL_R_TLSV1_ALERT_INAPPROPRIATE_FALLBACK* = 1086
-    ## Generated based on boringssl/include/openssl/ssl.h:7138:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6460:9
 when 1090 is static:
   const SSL_R_TLSV1_ALERT_USER_CANCELLED* = 1090
-    ## Generated based on boringssl/include/openssl/ssl.h:7139:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6461:9
 else:
   let SSL_R_TLSV1_ALERT_USER_CANCELLED* = 1090
-    ## Generated based on boringssl/include/openssl/ssl.h:7139:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6461:9
 when 1100 is static:
   const SSL_R_TLSV1_ALERT_NO_RENEGOTIATION* = 1100
-    ## Generated based on boringssl/include/openssl/ssl.h:7140:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6462:9
 else:
   let SSL_R_TLSV1_ALERT_NO_RENEGOTIATION* = 1100
-    ## Generated based on boringssl/include/openssl/ssl.h:7140:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6462:9
 when 1110 is static:
   const SSL_R_TLSV1_ALERT_UNSUPPORTED_EXTENSION* = 1110
-    ## Generated based on boringssl/include/openssl/ssl.h:7141:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6463:9
 else:
   let SSL_R_TLSV1_ALERT_UNSUPPORTED_EXTENSION* = 1110
-    ## Generated based on boringssl/include/openssl/ssl.h:7141:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6463:9
 when 1111 is static:
   const SSL_R_TLSV1_ALERT_CERTIFICATE_UNOBTAINABLE* = 1111
-    ## Generated based on boringssl/include/openssl/ssl.h:7142:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6464:9
 else:
   let SSL_R_TLSV1_ALERT_CERTIFICATE_UNOBTAINABLE* = 1111
-    ## Generated based on boringssl/include/openssl/ssl.h:7142:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6464:9
 when 1113 is static:
   const SSL_R_TLSV1_ALERT_BAD_CERTIFICATE_STATUS_RESPONSE* = 1113
-    ## Generated based on boringssl/include/openssl/ssl.h:7144:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6466:9
 else:
   let SSL_R_TLSV1_ALERT_BAD_CERTIFICATE_STATUS_RESPONSE* = 1113
-    ## Generated based on boringssl/include/openssl/ssl.h:7144:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6466:9
 when 1114 is static:
   const SSL_R_TLSV1_ALERT_BAD_CERTIFICATE_HASH_VALUE* = 1114
-    ## Generated based on boringssl/include/openssl/ssl.h:7145:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6467:9
 else:
   let SSL_R_TLSV1_ALERT_BAD_CERTIFICATE_HASH_VALUE* = 1114
-    ## Generated based on boringssl/include/openssl/ssl.h:7145:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6467:9
 when 1115 is static:
   const SSL_R_TLSV1_ALERT_UNKNOWN_PSK_IDENTITY* = 1115
-    ## Generated based on boringssl/include/openssl/ssl.h:7146:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6468:9
 else:
   let SSL_R_TLSV1_ALERT_UNKNOWN_PSK_IDENTITY* = 1115
-    ## Generated based on boringssl/include/openssl/ssl.h:7146:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6468:9
 when 1120 is static:
   const SSL_R_TLSV1_ALERT_NO_APPLICATION_PROTOCOL* = 1120
-    ## Generated based on boringssl/include/openssl/ssl.h:7148:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6470:9
 else:
   let SSL_R_TLSV1_ALERT_NO_APPLICATION_PROTOCOL* = 1120
-    ## Generated based on boringssl/include/openssl/ssl.h:7148:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6470:9
 when 1121 is static:
   const SSL_R_TLSV1_ALERT_ECH_REQUIRED* = 1121
-    ## Generated based on boringssl/include/openssl/ssl.h:7149:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6471:9
 else:
   let SSL_R_TLSV1_ALERT_ECH_REQUIRED* = 1121
-    ## Generated based on boringssl/include/openssl/ssl.h:7149:9
+    ## Generated based on boringssl/include/openssl/ssl.h:6471:9
 proc EVP_aead_aes_128_gcm*(): ptr EVP_AEAD {.cdecl, importc: "EVP_aead_aes_128_gcm".}
 proc EVP_aead_aes_192_gcm*(): ptr EVP_AEAD {.cdecl, importc: "EVP_aead_aes_192_gcm".}
 proc EVP_aead_aes_256_gcm*(): ptr EVP_AEAD {.cdecl, importc: "EVP_aead_aes_256_gcm".}
@@ -26804,6 +26928,83 @@ proc HKDF_expand*(
   info_len: csize_t,
 ): cint {.cdecl, importc: "HKDF_expand".}
 
+proc SHA224_Init*(sha: ptr SHA256_CTX): cint {.cdecl, importc: "SHA224_Init".}
+proc SHA224_Update*(
+  sha: ptr SHA256_CTX, data: pointer, len: csize_t
+): cint {.cdecl, importc: "SHA224_Update".}
+
+proc SHA224_Final*(
+  out_arg: array[28'i64, uint8], sha: ptr SHA256_CTX
+): cint {.cdecl, importc: "SHA224_Final".}
+
+proc SHA224*(
+  data: ptr uint8, len: csize_t, out_arg: array[28'i64, uint8]
+): ptr uint8 {.cdecl, importc: "SHA224".}
+
+proc SHA256_Init*(sha: ptr SHA256_CTX): cint {.cdecl, importc: "SHA256_Init".}
+proc SHA256_Update*(
+  sha: ptr SHA256_CTX, data: pointer, len: csize_t
+): cint {.cdecl, importc: "SHA256_Update".}
+
+proc SHA256_Final*(
+  out_arg: array[32'i64, uint8], sha: ptr SHA256_CTX
+): cint {.cdecl, importc: "SHA256_Final".}
+
+proc SHA256*(
+  data: ptr uint8, len: csize_t, out_arg: array[32'i64, uint8]
+): ptr uint8 {.cdecl, importc: "SHA256".}
+
+proc SHA256_Transform*(
+  sha: ptr SHA256_CTX, block_arg: array[64'i64, uint8]
+): void {.cdecl, importc: "SHA256_Transform".}
+
+proc SHA256_TransformBlocks*(
+  state: array[8'i64, uint32], data: ptr uint8, num_blocks: csize_t
+): void {.cdecl, importc: "SHA256_TransformBlocks".}
+
+proc SHA384_Init*(sha: ptr SHA512_CTX): cint {.cdecl, importc: "SHA384_Init".}
+proc SHA384_Update*(
+  sha: ptr SHA512_CTX, data: pointer, len: csize_t
+): cint {.cdecl, importc: "SHA384_Update".}
+
+proc SHA384_Final*(
+  out_arg: array[48'i64, uint8], sha: ptr SHA512_CTX
+): cint {.cdecl, importc: "SHA384_Final".}
+
+proc SHA384*(
+  data: ptr uint8, len: csize_t, out_arg: array[48'i64, uint8]
+): ptr uint8 {.cdecl, importc: "SHA384".}
+
+proc SHA512_Init*(sha: ptr SHA512_CTX): cint {.cdecl, importc: "SHA512_Init".}
+proc SHA512_Update*(
+  sha: ptr SHA512_CTX, data: pointer, len: csize_t
+): cint {.cdecl, importc: "SHA512_Update".}
+
+proc SHA512_Final*(
+  out_arg: array[64'i64, uint8], sha: ptr SHA512_CTX
+): cint {.cdecl, importc: "SHA512_Final".}
+
+proc SHA512*(
+  data: ptr uint8, len: csize_t, out_arg: array[64'i64, uint8]
+): ptr uint8 {.cdecl, importc: "SHA512".}
+
+proc SHA512_Transform*(
+  sha: ptr SHA512_CTX, block_arg: array[128'i64, uint8]
+): void {.cdecl, importc: "SHA512_Transform".}
+
+proc SHA512_256_Init*(sha: ptr SHA512_CTX): cint {.cdecl, importc: "SHA512_256_Init".}
+proc SHA512_256_Update*(
+  sha: ptr SHA512_CTX, data: pointer, len: csize_t
+): cint {.cdecl, importc: "SHA512_256_Update".}
+
+proc SHA512_256_Final*(
+  out_arg: array[32'i64, uint8], sha: ptr SHA512_CTX
+): cint {.cdecl, importc: "SHA512_256_Final".}
+
+proc SHA512_256*(
+  data: ptr uint8, len: csize_t, out_arg: array[32'i64, uint8]
+): ptr uint8 {.cdecl, importc: "SHA512_256".}
+
 proc X25519_keypair*(
   out_public_value: array[32'i64, uint8], out_private_key: array[32'i64, uint8]
 ): void {.cdecl, importc: "X25519_keypair".}
@@ -26835,6 +27036,22 @@ proc ED25519_verify*(
   signature: array[64'i64, uint8],
   public_key: array[32'i64, uint8],
 ): cint {.cdecl, importc: "ED25519_verify".}
+
+proc ED25519_sign_prehashed*(
+  out_sig: array[64'i64, uint8],
+  context: ptr uint8,
+  context_len: csize_t,
+  sha512_digest: array[64'i64, uint8],
+  private_key: array[64'i64, uint8],
+): cint {.cdecl, importc: "ED25519_sign_prehashed".}
+
+proc ED25519_verify_prehashed*(
+  context: ptr uint8,
+  context_len: csize_t,
+  sha512_digest: array[64'i64, uint8],
+  signature: array[64'i64, uint8],
+  public_key: array[32'i64, uint8],
+): cint {.cdecl, importc: "ED25519_verify_prehashed".}
 
 proc ED25519_keypair_from_seed*(
   out_public_key: array[32'i64, uint8],
@@ -26868,6 +27085,32 @@ proc SPAKE2_process_msg*(
   their_msg: ptr uint8,
   their_msg_len: csize_t,
 ): cint {.cdecl, importc: "SPAKE2_process_msg".}
+
+proc CPACE_CTX_new*(
+  role: enum_cpace_role_t,
+  password: ptr uint8,
+  password_len: csize_t,
+  channel_id: ptr uint8,
+  channel_id_len: csize_t,
+  assoc_data: ptr uint8,
+  assoc_data_len: csize_t,
+  session_id: ptr uint8,
+  session_id_len: csize_t,
+): ptr CPACE_CTX {.cdecl, importc: "CPACE_CTX_new".}
+
+proc CPACE_CTX_free*(ctx: ptr CPACE_CTX): void {.cdecl, importc: "CPACE_CTX_free".}
+proc CPACE_generate_msg*(
+  ctx: ptr CPACE_CTX, out_msg: array[32'i64, uint8]
+): cint {.cdecl, importc: "CPACE_generate_msg".}
+
+proc CPACE_process_msg*(
+  ctx: ptr CPACE_CTX,
+  in_msg: array[32'i64, uint8],
+  peer_assoc_data: ptr uint8,
+  peer_assoc_data_len: csize_t,
+  shared_secret: array[64'i64, uint8],
+  sid_out: array[64'i64, uint8],
+): cint {.cdecl, importc: "CPACE_process_msg".}
 
 proc BUF_MEM_new*(): ptr BUF_MEM {.cdecl, importc: "BUF_MEM_new".}
 proc BUF_MEM_free*(buf: ptr BUF_MEM): void {.cdecl, importc: "BUF_MEM_free".}
@@ -27020,6 +27263,10 @@ proc OPENSSL_sk_value*(
   sk: ptr OPENSSL_STACK, i: csize_t
 ): pointer {.cdecl, importc: "OPENSSL_sk_value".}
 
+proc OPENSSL_sk_last*(
+  sk: ptr OPENSSL_STACK
+): pointer {.cdecl, importc: "OPENSSL_sk_last".}
+
 proc OPENSSL_sk_set*(
   sk: ptr OPENSSL_STACK, i: csize_t, p: pointer
 ): pointer {.cdecl, importc: "OPENSSL_sk_set".}
@@ -27123,6 +27370,7 @@ proc BIO_new*(method_arg: ptr BIO_METHOD): ptr BIO {.cdecl, importc: "BIO_new".}
 proc BIO_free*(bio: ptr BIO): cint {.cdecl, importc: "BIO_free".}
 proc BIO_vfree*(bio: ptr BIO): void {.cdecl, importc: "BIO_vfree".}
 proc BIO_up_ref*(bio: ptr BIO): cint {.cdecl, importc: "BIO_up_ref".}
+proc BIO_dup_ref*(bio: ptr BIO): ptr BIO {.cdecl, importc: "BIO_dup_ref".}
 proc BIO_read*(
   bio: ptr BIO, data: pointer, len: cint
 ): cint {.cdecl, importc: "BIO_read".}
@@ -27846,6 +28094,9 @@ proc EVP_sha384*(): ptr EVP_MD {.cdecl, importc: "EVP_sha384".}
 proc EVP_sha512*(): ptr EVP_MD {.cdecl, importc: "EVP_sha512".}
 proc EVP_sha512_256*(): ptr EVP_MD {.cdecl, importc: "EVP_sha512_256".}
 proc EVP_blake2b256*(): ptr EVP_MD {.cdecl, importc: "EVP_blake2b256".}
+proc EVP_sha3_256*(): ptr EVP_MD {.cdecl, importc: "EVP_sha3_256".}
+proc EVP_sha3_384*(): ptr EVP_MD {.cdecl, importc: "EVP_sha3_384".}
+proc EVP_sha3_512*(): ptr EVP_MD {.cdecl, importc: "EVP_sha3_512".}
 proc EVP_md5_sha1*(): ptr EVP_MD {.cdecl, importc: "EVP_md5_sha1".}
 proc EVP_get_digestbynid*(
   nid: cint
@@ -28559,6 +28810,10 @@ proc EVP_KEM_secret_len*(
   kem: ptr EVP_KEM
 ): csize_t {.cdecl, importc: "EVP_KEM_secret_len".}
 
+proc EVP_KEM_entropy_len_for_testing*(
+  kem: ptr EVP_KEM
+): csize_t {.cdecl, importc: "EVP_KEM_entropy_len_for_testing".}
+
 proc EVP_KEM_encap*(
   kem: ptr EVP_KEM,
   out_ciphertext: ptr uint8,
@@ -28567,6 +28822,17 @@ proc EVP_KEM_encap*(
   secret_len: csize_t,
   peer_key: ptr EVP_PKEY,
 ): cint {.cdecl, importc: "EVP_KEM_encap".}
+
+proc EVP_KEM_encap_external_entropy_for_testing*(
+  kem: ptr EVP_KEM,
+  out_ciphertext: ptr uint8,
+  ciphertext_len: csize_t,
+  out_secret: ptr uint8,
+  secret_len: csize_t,
+  peer_key: ptr EVP_PKEY,
+  entropy: ptr uint8,
+  entropy_len: csize_t,
+): cint {.cdecl, importc: "EVP_KEM_encap_external_entropy_for_testing".}
 
 proc EVP_KEM_decap*(
   kem: ptr EVP_KEM,
@@ -29306,13 +29572,9 @@ proc ASN1_STRING_get0_data*(
   str: ptr ASN1_STRING
 ): ptr uint8 {.cdecl, importc: "ASN1_STRING_get0_data".}
 
-proc ASN1_STRING_data*(
+proc ASN1_STRING_get_length*(
   str: ptr ASN1_STRING
-): ptr uint8 {.cdecl, importc: "ASN1_STRING_data".}
-
-proc ASN1_STRING_length*(
-  str: ptr ASN1_STRING
-): cint {.cdecl, importc: "ASN1_STRING_length".}
+): csize_t {.cdecl, importc: "ASN1_STRING_get_length".}
 
 proc ASN1_STRING_cmp*(
   a: ptr ASN1_STRING, b: ptr ASN1_STRING
@@ -29947,6 +30209,14 @@ proc ASN1_STRING_get_default_mask*(): culong {.
 .}
 
 proc ASN1_STRING_TABLE_cleanup*(): void {.cdecl, importc: "ASN1_STRING_TABLE_cleanup".}
+proc ASN1_STRING_data*(
+  str: ptr ASN1_STRING
+): ptr uint8 {.cdecl, importc: "ASN1_STRING_data".}
+
+proc ASN1_STRING_length*(
+  str: ptr ASN1_STRING
+): cint {.cdecl, importc: "ASN1_STRING_length".}
+
 proc ASN1_INTEGER_set*(
   a: ptr ASN1_INTEGER, v: clong
 ): cint {.cdecl, importc: "ASN1_INTEGER_set".}
@@ -29992,6 +30262,7 @@ proc OPENSSL_no_config*(): void {.cdecl, importc: "OPENSSL_no_config".}
 proc DH_new*(): ptr DH {.cdecl, importc: "DH_new".}
 proc DH_free*(dh: ptr DH): void {.cdecl, importc: "DH_free".}
 proc DH_up_ref*(dh: ptr DH): cint {.cdecl, importc: "DH_up_ref".}
+proc DH_dup_ref*(dh: ptr DH): ptr DH {.cdecl, importc: "DH_dup_ref".}
 proc DH_bits*(dh: ptr DH): cuint {.cdecl, importc: "DH_bits".}
 proc DH_size*(dh: ptr DH): cint {.cdecl, importc: "DH_size".}
 proc DH_get0_pub_key*(dh: ptr DH): ptr BIGNUM {.cdecl, importc: "DH_get0_pub_key".}
@@ -30098,6 +30369,7 @@ proc DH_compute_key*(
 proc DSA_new*(): ptr DSA {.cdecl, importc: "DSA_new".}
 proc DSA_free*(dsa: ptr DSA): void {.cdecl, importc: "DSA_free".}
 proc DSA_up_ref*(dsa: ptr DSA): cint {.cdecl, importc: "DSA_up_ref".}
+proc DSA_dup_ref*(dsa: ptr DSA): ptr DSA {.cdecl, importc: "DSA_dup_ref".}
 proc DSA_bits*(dsa: ptr DSA): cuint {.cdecl, importc: "DSA_bits".}
 proc DSA_get0_pub_key*(dsa: ptr DSA): ptr BIGNUM {.cdecl, importc: "DSA_get0_pub_key".}
 proc DSA_get0_priv_key*(
@@ -30488,6 +30760,16 @@ proc EC_wpa3_sae_hash_to_curve_p256*(
   ikm_len: csize_t,
 ): cint {.cdecl, importc: "EC_wpa3_sae_hash_to_curve_p256".}
 
+proc EC_wpa3_sae_hunt_and_peck_p256*(
+  group: ptr EC_GROUP,
+  out_arg: ptr EC_POINT,
+  salt: ptr uint8,
+  salt_len: csize_t,
+  password: ptr uint8,
+  password_len: csize_t,
+  min_iterations: uint8,
+): cint {.cdecl, importc: "EC_wpa3_sae_hunt_and_peck_p256".}
+
 proc EC_GROUP_free*(group: ptr EC_GROUP): void {.cdecl, importc: "EC_GROUP_free".}
 proc EC_GROUP_dup*(group: ptr EC_GROUP): ptr EC_GROUP {.cdecl, importc: "EC_GROUP_dup".}
 proc EC_GROUP_new_curve_GFp*(
@@ -30562,6 +30844,7 @@ proc EC_KEY_new_by_curve_name*(
 proc EC_KEY_free*(key: ptr EC_KEY): void {.cdecl, importc: "EC_KEY_free".}
 proc EC_KEY_dup*(src: ptr EC_KEY): ptr EC_KEY {.cdecl, importc: "EC_KEY_dup".}
 proc EC_KEY_up_ref*(key: ptr EC_KEY): cint {.cdecl, importc: "EC_KEY_up_ref".}
+proc EC_KEY_dup_ref*(key: ptr EC_KEY): ptr EC_KEY {.cdecl, importc: "EC_KEY_dup_ref".}
 proc EC_KEY_is_opaque*(key: ptr EC_KEY): cint {.cdecl, importc: "EC_KEY_is_opaque".}
 proc EC_KEY_get0_group*(
   key: ptr EC_KEY
@@ -31242,6 +31525,10 @@ proc CRYPTO_BUFFER_POOL_up_ref*(
   pool: ptr CRYPTO_BUFFER_POOL
 ): cint {.cdecl, importc: "CRYPTO_BUFFER_POOL_up_ref".}
 
+proc CRYPTO_BUFFER_POOL_dup_ref*(
+  pool: ptr CRYPTO_BUFFER_POOL
+): ptr CRYPTO_BUFFER_POOL {.cdecl, importc: "CRYPTO_BUFFER_POOL_dup_ref".}
+
 proc CRYPTO_BUFFER_new*(
   data: ptr uint8, len: csize_t, pool: ptr CRYPTO_BUFFER_POOL
 ): ptr CRYPTO_BUFFER {.cdecl, importc: "CRYPTO_BUFFER_new".}
@@ -31301,6 +31588,7 @@ proc RSA_new*(): ptr RSA {.cdecl, importc: "RSA_new".}
 proc RSA_new_method*(engine: ptr ENGINE): ptr RSA {.cdecl, importc: "RSA_new_method".}
 proc RSA_free*(rsa: ptr RSA): void {.cdecl, importc: "RSA_free".}
 proc RSA_up_ref*(rsa: ptr RSA): cint {.cdecl, importc: "RSA_up_ref".}
+proc RSA_dup_ref*(rsa: ptr RSA): ptr RSA {.cdecl, importc: "RSA_dup_ref".}
 proc RSA_bits*(rsa: ptr RSA): cuint {.cdecl, importc: "RSA_bits".}
 proc RSA_get0_n*(rsa: ptr RSA): ptr BIGNUM {.cdecl, importc: "RSA_get0_n".}
 proc RSA_get0_e*(rsa: ptr RSA): ptr BIGNUM {.cdecl, importc: "RSA_get0_e".}
@@ -31616,83 +31904,6 @@ proc RSA_new_method_no_e*(
   engine: ptr ENGINE, n: ptr BIGNUM
 ): ptr RSA {.cdecl, importc: "RSA_new_method_no_e".}
 
-proc SHA224_Init*(sha: ptr SHA256_CTX): cint {.cdecl, importc: "SHA224_Init".}
-proc SHA224_Update*(
-  sha: ptr SHA256_CTX, data: pointer, len: csize_t
-): cint {.cdecl, importc: "SHA224_Update".}
-
-proc SHA224_Final*(
-  out_arg: array[28'i64, uint8], sha: ptr SHA256_CTX
-): cint {.cdecl, importc: "SHA224_Final".}
-
-proc SHA224*(
-  data: ptr uint8, len: csize_t, out_arg: array[28'i64, uint8]
-): ptr uint8 {.cdecl, importc: "SHA224".}
-
-proc SHA256_Init*(sha: ptr SHA256_CTX): cint {.cdecl, importc: "SHA256_Init".}
-proc SHA256_Update*(
-  sha: ptr SHA256_CTX, data: pointer, len: csize_t
-): cint {.cdecl, importc: "SHA256_Update".}
-
-proc SHA256_Final*(
-  out_arg: array[32'i64, uint8], sha: ptr SHA256_CTX
-): cint {.cdecl, importc: "SHA256_Final".}
-
-proc SHA256*(
-  data: ptr uint8, len: csize_t, out_arg: array[32'i64, uint8]
-): ptr uint8 {.cdecl, importc: "SHA256".}
-
-proc SHA256_Transform*(
-  sha: ptr SHA256_CTX, block_arg: array[64'i64, uint8]
-): void {.cdecl, importc: "SHA256_Transform".}
-
-proc SHA256_TransformBlocks*(
-  state: array[8'i64, uint32], data: ptr uint8, num_blocks: csize_t
-): void {.cdecl, importc: "SHA256_TransformBlocks".}
-
-proc SHA384_Init*(sha: ptr SHA512_CTX): cint {.cdecl, importc: "SHA384_Init".}
-proc SHA384_Update*(
-  sha: ptr SHA512_CTX, data: pointer, len: csize_t
-): cint {.cdecl, importc: "SHA384_Update".}
-
-proc SHA384_Final*(
-  out_arg: array[48'i64, uint8], sha: ptr SHA512_CTX
-): cint {.cdecl, importc: "SHA384_Final".}
-
-proc SHA384*(
-  data: ptr uint8, len: csize_t, out_arg: array[48'i64, uint8]
-): ptr uint8 {.cdecl, importc: "SHA384".}
-
-proc SHA512_Init*(sha: ptr SHA512_CTX): cint {.cdecl, importc: "SHA512_Init".}
-proc SHA512_Update*(
-  sha: ptr SHA512_CTX, data: pointer, len: csize_t
-): cint {.cdecl, importc: "SHA512_Update".}
-
-proc SHA512_Final*(
-  out_arg: array[64'i64, uint8], sha: ptr SHA512_CTX
-): cint {.cdecl, importc: "SHA512_Final".}
-
-proc SHA512*(
-  data: ptr uint8, len: csize_t, out_arg: array[64'i64, uint8]
-): ptr uint8 {.cdecl, importc: "SHA512".}
-
-proc SHA512_Transform*(
-  sha: ptr SHA512_CTX, block_arg: array[128'i64, uint8]
-): void {.cdecl, importc: "SHA512_Transform".}
-
-proc SHA512_256_Init*(sha: ptr SHA512_CTX): cint {.cdecl, importc: "SHA512_256_Init".}
-proc SHA512_256_Update*(
-  sha: ptr SHA512_CTX, data: pointer, len: csize_t
-): cint {.cdecl, importc: "SHA512_256_Update".}
-
-proc SHA512_256_Final*(
-  out_arg: array[32'i64, uint8], sha: ptr SHA512_CTX
-): cint {.cdecl, importc: "SHA512_256_Final".}
-
-proc SHA512_256*(
-  data: ptr uint8, len: csize_t, out_arg: array[32'i64, uint8]
-): ptr uint8 {.cdecl, importc: "SHA512_256".}
-
 var X509_it* {.importc: "X509_it".}: ASN1_ITEM
 proc X509_up_ref*(x509: ptr X509): cint {.cdecl, importc: "X509_up_ref".}
 proc X509_dup_ref*(x509: ptr X509): ptr X509 {.cdecl, importc: "X509_dup_ref".}
@@ -31953,6 +32164,10 @@ proc X509_add1_reject_object*(
 proc X509_trust_clear*(x509: ptr X509): void {.cdecl, importc: "X509_trust_clear".}
 proc X509_reject_clear*(x509: ptr X509): void {.cdecl, importc: "X509_reject_clear".}
 proc X509_CRL_up_ref*(crl: ptr X509_CRL): cint {.cdecl, importc: "X509_CRL_up_ref".}
+proc X509_CRL_dup_ref*(
+  crl: ptr X509_CRL
+): ptr X509_CRL {.cdecl, importc: "X509_CRL_dup_ref".}
+
 proc X509_CRL_dup*(crl: ptr X509_CRL): ptr X509_CRL {.cdecl, importc: "X509_CRL_dup".}
 proc X509_CRL_free*(crl: ptr X509_CRL): void {.cdecl, importc: "X509_CRL_free".}
 proc d2i_X509_CRL*(
@@ -32932,6 +33147,10 @@ proc X509_STORE_up_ref*(
   store: ptr X509_STORE
 ): cint {.cdecl, importc: "X509_STORE_up_ref".}
 
+proc X509_STORE_dup_ref*(
+  store: ptr X509_STORE
+): ptr X509_STORE {.cdecl, importc: "X509_STORE_dup_ref".}
+
 proc X509_STORE_free*(store: ptr X509_STORE): void {.cdecl, importc: "X509_STORE_free".}
 proc X509_STORE_add_cert*(
   store: ptr X509_STORE, x509: ptr X509
@@ -33025,10 +33244,6 @@ proc X509_STORE_CTX_get_error_depth*(
 proc X509_STORE_CTX_get_current_cert*(
   ctx: ptr X509_STORE_CTX
 ): ptr X509 {.cdecl, importc: "X509_STORE_CTX_get_current_cert".}
-
-proc X509_STORE_CTX_get0_current_crl*(
-  ctx: ptr X509_STORE_CTX
-): ptr X509_CRL {.cdecl, importc: "X509_STORE_CTX_get0_current_crl".}
 
 proc X509_STORE_CTX_get0_store*(
   ctx: ptr X509_STORE_CTX
@@ -34839,6 +35054,10 @@ proc SSL_CTX_new*(
 ): ptr SSL_CTX {.cdecl, importc: "SSL_CTX_new".}
 
 proc SSL_CTX_up_ref*(ctx: ptr SSL_CTX): cint {.cdecl, importc: "SSL_CTX_up_ref".}
+proc SSL_CTX_dup_ref*(
+  ctx: ptr SSL_CTX
+): ptr SSL_CTX {.cdecl, importc: "SSL_CTX_dup_ref".}
+
 proc SSL_CTX_free*(ctx: ptr SSL_CTX): void {.cdecl, importc: "SSL_CTX_free".}
 proc SSL_new*(ctx: ptr SSL_CTX): ptr SSL {.cdecl, importc: "SSL_new".}
 proc SSL_free*(ssl: ptr SSL): void {.cdecl, importc: "SSL_free".}
@@ -35009,6 +35228,10 @@ proc SSL_CREDENTIAL_set_must_match_issuer*(
   cred: ptr SSL_CREDENTIAL, match: cint
 ): void {.cdecl, importc: "SSL_CREDENTIAL_set_must_match_issuer".}
 
+proc SSL_CREDENTIAL_set1_session_id_context*(
+  cred: ptr SSL_CREDENTIAL, sid_ctx: ptr uint8, sid_ctx_len: csize_t
+): cint {.cdecl, importc: "SSL_CREDENTIAL_set1_session_id_context".}
+
 proc SSL_CTX_add1_credential*(
   ctx: ptr SSL_CTX, cred: ptr SSL_CREDENTIAL
 ): cint {.cdecl, importc: "SSL_CTX_add1_credential".}
@@ -35042,9 +35265,21 @@ proc SSL_CTX_set_cert_cb*(
   ctx: ptr SSL_CTX, cb: proc(a0: ptr SSL, a1: pointer): cint {.cdecl.}, arg: pointer
 ): void {.cdecl, importc: "SSL_CTX_set_cert_cb".}
 
+proc SSL_CTX_set_cert_cb_ex*(
+  ctx: ptr SSL_CTX,
+  cb: proc(a0: ptr SSL, a1: pointer, a2: ptr uint8): cint {.cdecl.},
+  arg: pointer,
+): void {.cdecl, importc: "SSL_CTX_set_cert_cb_ex".}
+
 proc SSL_set_cert_cb*(
   ssl: ptr SSL, cb: proc(a0: ptr SSL, a1: pointer): cint {.cdecl.}, arg: pointer
 ): void {.cdecl, importc: "SSL_set_cert_cb".}
+
+proc SSL_set_cert_cb_ex*(
+  ssl: ptr SSL,
+  cb: proc(a0: ptr SSL, a1: pointer, a2: ptr uint8): cint {.cdecl.},
+  arg: pointer,
+): void {.cdecl, importc: "SSL_set_cert_cb_ex".}
 
 proc SSL_get0_peer_verify_algorithms*(
   ssl: ptr SSL, out_sigalgs: ptr ptr uint16
@@ -35326,6 +35561,14 @@ proc SSL_get_ciphers*(
   ssl: ptr SSL
 ): ptr struct_stack_st_SSL_CIPHER {.cdecl, importc: "SSL_get_ciphers".}
 
+proc SSL_CTX_set1_tls13_ciphers*(
+  ctx: ptr SSL_CTX, cipher_ids: ptr uint16, flags: ptr uint32, num_cipher_ids: csize_t
+): cint {.cdecl, importc: "SSL_CTX_set1_tls13_ciphers".}
+
+proc SSL_set1_tls13_ciphers*(
+  ssl: ptr SSL, cipher_ids: ptr uint16, flags: ptr uint32, num_cipher_ids: csize_t
+): cint {.cdecl, importc: "SSL_set1_tls13_ciphers".}
+
 proc SSL_is_init_finished*(
   ssl: ptr SSL
 ): cint {.cdecl, importc: "SSL_is_init_finished".}
@@ -35390,6 +35633,10 @@ proc SSL_SESSION_new*(
 proc SSL_SESSION_up_ref*(
   session: ptr SSL_SESSION
 ): cint {.cdecl, importc: "SSL_SESSION_up_ref".}
+
+proc SSL_SESSION_dup_ref*(
+  session: ptr SSL_SESSION
+): ptr SSL_SESSION {.cdecl, importc: "SSL_SESSION_dup_ref".}
 
 proc SSL_SESSION_free*(
   session: ptr SSL_SESSION
@@ -35894,9 +36141,9 @@ proc SSL_CREDENTIAL_set1_trust_anchor_id*(
   cred: ptr SSL_CREDENTIAL, id: ptr uint8, id_len: csize_t
 ): cint {.cdecl, importc: "SSL_CREDENTIAL_set1_trust_anchor_id".}
 
-proc SSL_CREDENTIAL_add1_trust_anchor_group_inclusion*(
-  cred: ptr SSL_CREDENTIAL, base: ptr uint8, base_len: csize_t, min: uint64, max: uint64
-): cint {.cdecl, importc: "SSL_CREDENTIAL_add1_trust_anchor_group_inclusion".}
+proc SSL_CREDENTIAL_add1_trust_anchor_group*(
+  cred: ptr SSL_CREDENTIAL, pattern: ptr uint8, pattern_len: csize_t
+): cint {.cdecl, importc: "SSL_CREDENTIAL_add1_trust_anchor_group".}
 
 proc SSL_CTX_set1_requested_trust_anchors*(
   ctx: ptr SSL_CTX, ids: ptr uint8, ids_len: csize_t
@@ -36304,6 +36551,10 @@ proc SSL_ECH_KEYS_up_ref*(
   keys: ptr SSL_ECH_KEYS
 ): void {.cdecl, importc: "SSL_ECH_KEYS_up_ref".}
 
+proc SSL_ECH_KEYS_dup_ref*(
+  keys: ptr SSL_ECH_KEYS
+): ptr SSL_ECH_KEYS {.cdecl, importc: "SSL_ECH_KEYS_dup_ref".}
+
 proc SSL_ECH_KEYS_free*(
   keys: ptr SSL_ECH_KEYS
 ): void {.cdecl, importc: "SSL_ECH_KEYS_free".}
@@ -36606,10 +36857,6 @@ proc SSL_CTX_set_grease_enabled*(
   ctx: ptr SSL_CTX, enabled: cint
 ): void {.cdecl, importc: "SSL_CTX_set_grease_enabled".}
 
-proc SSL_CTX_set_grease_sigalgs_enabled*(
-  ctx: ptr SSL_CTX, enabled: cint
-): void {.cdecl, importc: "SSL_CTX_set_grease_sigalgs_enabled".}
-
 proc SSL_CTX_set_permute_extensions*(
   ctx: ptr SSL_CTX, enabled: cint
 ): void {.cdecl, importc: "SSL_CTX_set_permute_extensions".}
@@ -36637,6 +36884,34 @@ proc SSL_set_jdk11_workaround*(
 proc SSL_parse_client_hello*(
   ssl: ptr SSL, out_arg: ptr SSL_CLIENT_HELLO, in_arg: ptr uint8, len: csize_t
 ): cint {.cdecl, importc: "SSL_parse_client_hello".}
+
+proc SSL_CTX_set_compliance_policy*(
+  ctx: ptr SSL_CTX, policy: enum_ssl_compliance_policy_t
+): cint {.cdecl, importc: "SSL_CTX_set_compliance_policy".}
+
+proc SSL_CTX_get_compliance_policy*(
+  ctx: ptr SSL_CTX
+): enum_ssl_compliance_policy_t {.cdecl, importc: "SSL_CTX_get_compliance_policy".}
+
+proc SSL_set_compliance_policy*(
+  ssl: ptr SSL, policy: enum_ssl_compliance_policy_t
+): cint {.cdecl, importc: "SSL_set_compliance_policy".}
+
+proc SSL_get_compliance_policy*(
+  ssl: ptr SSL
+): enum_ssl_compliance_policy_t {.cdecl, importc: "SSL_get_compliance_policy".}
+
+proc SSL_set_server_padding_request*(
+  ssl: ptr SSL, num_bytes: uint16
+): void {.cdecl, importc: "SSL_set_server_padding_request".}
+
+proc SSL_set_server_padding_enabled*(
+  ssl: ptr SSL, enabled: cint
+): void {.cdecl, importc: "SSL_set_server_padding_enabled".}
+
+proc SSL_server_sent_requested_padding*(
+  ssl: ptr SSL
+): cint {.cdecl, importc: "SSL_server_sent_requested_padding".}
 
 proc SSL_library_init*(): cint {.cdecl, importc: "SSL_library_init".}
 proc SSL_CIPHER_description*(
@@ -36976,34 +37251,6 @@ proc SSL_CTX_get_security_level*(
 proc SSL_CTX_set0_buffer_pool*(
   ctx: ptr SSL_CTX, pool: ptr CRYPTO_BUFFER_POOL
 ): void {.cdecl, importc: "SSL_CTX_set0_buffer_pool".}
-
-proc SSL_CTX_set_compliance_policy*(
-  ctx: ptr SSL_CTX, policy: enum_ssl_compliance_policy_t
-): cint {.cdecl, importc: "SSL_CTX_set_compliance_policy".}
-
-proc SSL_CTX_get_compliance_policy*(
-  ctx: ptr SSL_CTX
-): enum_ssl_compliance_policy_t {.cdecl, importc: "SSL_CTX_get_compliance_policy".}
-
-proc SSL_set_compliance_policy*(
-  ssl: ptr SSL, policy: enum_ssl_compliance_policy_t
-): cint {.cdecl, importc: "SSL_set_compliance_policy".}
-
-proc SSL_get_compliance_policy*(
-  ssl: ptr SSL
-): enum_ssl_compliance_policy_t {.cdecl, importc: "SSL_get_compliance_policy".}
-
-proc SSL_set_server_padding_request*(
-  ssl: ptr SSL, num_bytes: uint16
-): void {.cdecl, importc: "SSL_set_server_padding_request".}
-
-proc SSL_set_server_padding_enabled*(
-  ssl: ptr SSL, enabled: cint
-): void {.cdecl, importc: "SSL_set_server_padding_enabled".}
-
-proc SSL_server_sent_requested_padding*(
-  ssl: ptr SSL
-): cint {.cdecl, importc: "SSL_server_sent_requested_padding".}
 
 proc RAND_bytes*(buf: ptr uint8, len: csize_t): cint {.cdecl, importc: "RAND_bytes".}
 proc RAND_enable_fork_unsafe_buffering*(
