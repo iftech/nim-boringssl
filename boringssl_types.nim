@@ -18,6 +18,7 @@ template borrowCEnumOps(T: typedesc) =
 type
   enum_evp_aead_direction_t* = distinct cuint
   enum_spake2_role_t* = distinct cuint
+  enum_cpace_role_t* = distinct cuint
   enum_bn_primality_result_t* = distinct cuint
   enum_point_conversion_form_t* = distinct cuint
   enum_fips_counter_t* = distinct cuint
@@ -32,6 +33,7 @@ type
 
 borrowCEnumOps(enum_evp_aead_direction_t)
 borrowCEnumOps(enum_spake2_role_t)
+borrowCEnumOps(enum_cpace_role_t)
 borrowCEnumOps(enum_bn_primality_result_t)
 borrowCEnumOps(enum_point_conversion_form_t)
 borrowCEnumOps(enum_fips_counter_t)
@@ -50,6 +52,9 @@ const
 
   spake2_role_alice* = enum_spake2_role_t(0)
   spake2_role_bob* = enum_spake2_role_t(1)
+
+  cpace_role_initiator* = enum_cpace_role_t(0)
+  cpace_role_responder* = enum_cpace_role_t(1)
 
   bn_probably_prime* = enum_bn_primality_result_t(0)
   bn_composite* = enum_bn_primality_result_t(1)
