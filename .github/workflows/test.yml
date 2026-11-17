@@ -130,6 +130,12 @@ jobs:
         run: |
           nimble test_no_asm --styleCheck:off --verbose --debug
 
+      - name: Run tests with TLS record buffer zeroing
+        if: runner.os != 'Windows'
+        run: |
+          export NIMFLAGS="${NIMFLAGS} --mm:${{ matrix.nim.memory_management }}"
+          nimble test_zero_record_buffers --styleCheck:off --verbose --debug
+
       - name: Checkout nim-libp2p
         uses: actions/checkout@v6
         with:

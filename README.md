@@ -47,7 +47,18 @@ BoringSSL is a C++ library, so [`config.nims`](config.nims) overrides the linker
 | Define | Default | Effect |
 |--------|---------|--------|
 | `-d:BORINGSSL_USE_ASM=false` | `true` | Disable optimised assembly sources (portable C only) |
+| `-d:BORINGSSL_ZERO_RECORD_BUFFERS=true` | `false` | Zero TLS record buffers before they are freed (see below) |
 | `-d:fast` | off | Used by the test task; enables faster builds |
+
+### Zeroing TLS record buffers
+
+BoringSSL decrypts TLS records in place, in the connection's record buffer, and releases that buffer with plain `free`, so the plaintext of every record read stays in freed heap memory. Upstream has never zeroed this buffer: the change that made `OPENSSL_free` zero memory (c0e15d1d, 2017) moved the record buffer to plain `malloc`/`free` to keep that cost off a hot path.
+
+With `-d:BORINGSSL_ZERO_RECORD_BUFFERS=true` the fork allocates the record buffers with `OPENSSL_malloc`, so `OPENSSL_free` zeroes them, once per consumed record and at `SSL_free`. Without it, which is the default, the code is upstream's. `boringsslZeroRecordBuffers` tells a consumer at compile time which build it got.
+
+- **Cost:** measured on an Apple M1 Max with assembly, both ends in one process: handshakes unchanged; bulk TLS-over-TCP throughput about 2.5 % lower. 8 more bytes per buffer.
+- **Not covered:** the application's own copies of the plaintext, and a record's plaintext while it is still being read (the buffer is zeroed when it is released).
+- **Test:** `nimble test_zero_record_buffers` runs the suite with the option; `tests/test_ssl_buffer_zeroing.nim` scans every block BoringSSL frees (macOS and glibc) and expects none to hold the plaintext with the option, and the plaintext still there without it.
 
 ### Platform notes
 

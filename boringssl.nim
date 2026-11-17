@@ -53,6 +53,17 @@ const BORINGSSL_USE_ASM {.booldefine.}: bool = true
 when not BORINGSSL_USE_ASM:
   {.passc: "-DOPENSSL_NO_ASM".}
 
+# Zero TLS record buffers before they are freed (the fork's
+# BORINGSSL_ZERO_RECORD_BUFFERS, ssl/ssl_buffer.cc). Off by default: without it
+# the record buffers are upstream's plain malloc/free. Like OPENSSL_NO_ASM, the
+# define goes to every compiled file, so it reaches ssl_buffer.cc in whichever
+# unity chunk includes it.
+const BORINGSSL_ZERO_RECORD_BUFFERS {.booldefine.}: bool = false
+const boringsslZeroRecordBuffers* = BORINGSSL_ZERO_RECORD_BUFFERS
+  ## Whether this build zeroes TLS record buffers before freeing them.
+when BORINGSSL_ZERO_RECORD_BUFFERS:
+  {.passc: "-DBORINGSSL_ZERO_RECORD_BUFFERS".}
+
 when BORINGSSL_USE_ASM:
   when not defined(windows):
     {.compile("./boringssl/crypto/hrss/asm/poly_rq_mul.S", boringsslPerFileFlags).}

@@ -1,5 +1,5 @@
 packageName = "boringssl"
-version = "0.0.15"
+version = "0.0.16"
 author = "Status Research & Development GmbH"
 description = "Nim ffi bindings for boringssl"
 license = "MIT"
@@ -26,6 +26,10 @@ task test, "Run tests":
 
 task test_no_asm, "Run tests without BoringSSL assembly":
   flags = flags & " -d:BORINGSSL_USE_ASM=false "
+  testTask()
+
+task test_zero_record_buffers, "Run tests with TLS record buffer zeroing":
+  flags = flags & " -d:BORINGSSL_ZERO_RECORD_BUFFERS=true "
   testTask()
 
 task test_release, "Run tests - release":
