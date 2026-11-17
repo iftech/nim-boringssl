@@ -20,7 +20,7 @@ Or pin in your `.nimble`:
 requires "boringssl"
 ```
 
-The BoringSSL sources live in a git submodule that tracks the [`iftech/boringssl`](https://github.com/iftech/boringssl) fork. The fork tracks upstream while preserving the fork’s update workflows. Upstream platform guards select portable C for `fiat_p256` multiplication and squaring on Windows, so no local fallback patch is needed.
+The BoringSSL sources live in a git submodule that tracks the [`iftech/boringssl`](https://github.com/iftech/boringssl) fork. The fork tracks upstream while preserving local patch support and its update workflows. Upstream platform guards select portable C for `fiat_p256` multiplication and squaring on Windows, so no local fallback patch is needed.
 
 When working from a clone, initialise submodules:
 
@@ -80,6 +80,7 @@ The fork's [`sync-upstream.yml`](https://github.com/vacp2p/boringssl/blob/main/.
 - resolve canonical upstream `https://boringssl.googlesource.com/boringssl` `main`;
 - cross-check the `google/boringssl` GitHub mirror;
 - verify the new upstream SHA is a fast-forward from `.vac/boringssl-upstream.json`;
+- replay and verify the local patches registered in `LOCAL_PATCHES`, if any;
 - open or update the `automation/boringssl-upstream-sync` PR.
 
 After that PR is reviewed and merged into the fork's `main`, the fork's [`notify-nim-boringssl.yml`](https://github.com/vacp2p/boringssl/blob/main/.github/workflows/notify-nim-boringssl.yml) workflow checks whether `.vac/boringssl-upstream.json` changed. If it did, it sends a `repository_dispatch` event named `boringssl-updated` to this repository, including the new fork commit SHA.
