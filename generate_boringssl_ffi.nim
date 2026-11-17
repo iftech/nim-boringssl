@@ -2,10 +2,12 @@
 # Copyright (c) Status Research & Development GmbH 
 
 import futhark
-import std/[json, strutils]
+import std/[json, macros, strutils]
 from os import parentDir, `/`
 
 include boringssl_types
+
+const oneShotShaNames = ["SHA1", "SHA224", "SHA256", "SHA384", "SHA512", "SHA512_256"]
 
 proc rewriteEnumAliases(node: JsonNode, enumNames: openArray[string]) =
   case node.kind
@@ -36,6 +38,10 @@ proc normalizeOpirImpl(opirOutput: JsonNode): JsonNode =
     if node{"kind"}.getStr("") == "typedef" and node{"name"}.getStr("") == "ptrdiff_t":
       continue
 
+    # Futhark skips inline functions; retain the existing SHA API via its header.
+    if node{"kind"}.getStr("") == "proc" and node{"name"}.getStr("") in oneShotShaNames:
+      node["inlined"] = %false
+
     rewriteEnumAliases(node, enumNames)
 
     if node{"kind"}.getStr("") == "typedef" and node{"name"}.getStr("") == "ossl_ssize_t":
@@ -54,6 +60,9 @@ importc:
   path currentSourcePath.parentDir / "boringssl/include"
   addopircallback proc(opirOutput: JsonNode): JsonNode {.closure.} =
     normalizeOpirImpl(opirOutput)
+  pragmascallback proc(name: string, kind: SymbolKind, pragmas: var seq[NimNode]) =
+    if kind == SymbolKind.Proc and name in oneShotShaNames:
+      pragmas.add nnkExprColonExpr.newTree(ident("header"), newLit("<openssl/sha.h>"))
   rename FILE, CFile # Rename `FILE` that STB uses to `CFile` which is the Nim equivalent
   "openssl/aead.h"
   "openssl/hkdf.h"

@@ -359,6 +359,7 @@ when BORINGSSL_USE_ASM:
 {.compile("./boringssl/crypto/err/err.cc", boringsslPerFileFlags).}
 {.compile("./boringssl_units/crypto_evp_core.cc", boringsslPerFileFlags).}
 {.compile("./boringssl/crypto/evp/p_mlkem.cc", boringsslPerFileFlags).}
+{.compile("./boringssl/crypto/evp/p_slhdsa.cc", boringsslPerFileFlags).}
 {.
   compile("./boringssl/crypto/fipsmodule/fips_shared_support.cc", boringsslPerFileFlags)
 .}

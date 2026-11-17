@@ -5,3 +5,4 @@
 {.used.}
 
 import ./test_sha256
+import ./test_p256

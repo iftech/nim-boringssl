@@ -22,7 +22,7 @@ task test, "Run tests":
     nimc &= " -d:nimDebugDlOpen"
 
   exec nimc & " tests/test_all.nim"
-  exec "./tests/test_all --output-level=VERBOSE"
+  exec "./tests/test_all"
 
 task test_no_asm, "Run tests without BoringSSL assembly":
   flags = flags & " -d:BORINGSSL_USE_ASM=false "
